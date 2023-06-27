@@ -1,5 +1,6 @@
 import classNames = require('classnames');
 import * as React from 'react';
+import useMediaQuery from 'react-responsive';
 import { GameData } from './models/gameData.model';
 import { gotmRunnerUp } from './resources/gotmRunnerUp';
 import { gotmWinners } from './resources/gotmWinners';
@@ -10,6 +11,7 @@ import './style.css';
 
 export default function App() {
   const imgEl = React.useRef<HTMLImageElement>(null);
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [loaded, setLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
@@ -87,6 +89,8 @@ export default function App() {
     includeRpgRunnerUp,
     includeRpgWinners,
   ]);
+
+  console.log('isMobile: ', isMobile);
 
   return (
     <div>
@@ -171,7 +175,12 @@ export default function App() {
 
         <div className="has-text-centered">
           <button
-            className="button is-primary rollBtn"
+            className={classNames({
+              button: true,
+              'is-primary': true,
+              rollBtn: true,
+              'is-fullwidth': isMobile,
+            })}
             onClick={() => handleButtonClick()}
           >
             Reroll {!loaded && <span className="loader"></span>}
