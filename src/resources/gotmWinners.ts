@@ -318,7 +318,7 @@ export const gotmWinners: GameData[] = [
       "The heir to the Belmont lineage is MIA, and evil is stirring once again. Play the role of Alucard, Dracula's own son, in this​ legendary genre-defining Metroidvania.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15668486-ys-book-i-ii-turbografx-cd-intro-cinema.png',
+    img: 'https://cdn.mobygames.com/screenshots/15668504-ys-book-i-ii-turbografx-cd-adol-leaving-ship.png',
     title: 'Ys Book 1 & 2',
     year: 1989,
     system: 'TG-CD/PCE-CD',
@@ -457,7 +457,7 @@ export const gotmWinners: GameData[] = [
       'Step into the shoes of Phoenix Wright, somewhat competent defense attorney, in this wacky courtroom simulator. Find evidence, interrogate witness, expose their lies and find the truth!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5647&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Custom Robo',
     year: 1999,
     system: 'Nintendo 64',
