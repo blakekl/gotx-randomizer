@@ -6,5 +6,5 @@ export interface GameData {
   genre: string;
   description: string;
   img: string;
-  timeToBeat?: string;
+  timeToBeat: number;
 }
