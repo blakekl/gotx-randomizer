@@ -797,7 +797,7 @@ export const gotmWinners: GameData[] = [
       "A follow-up to the iconic Mother sequel Earthbound, this cult classic was only released in Japan, ported to the Wii U in 2016. Lucas and friends' cult classic adventure has been the subject of many a gaming discussion and is one of the most requested games for English localization.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/7426891-dr-slump-arcadia-2001-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=130197&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dr. Slump',
     year: 1999,
     system: 'PS1',
