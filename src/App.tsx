@@ -18,35 +18,24 @@ export default function App() {
   const [gamePool, setGamePool] = React.useState(
     gotmWinners.filter((x) => x.img)
   );
+  const [currentIndex, setCurrentIndex] = React.useState(
+    Math.floor(Math.random() * gamePool.length)
+  );
 
-  const getRandomGameNotRandom = (game?: GameData) => {
-    const nextGameIndex = !!game
-      ? gamePool.findIndex((x) => x.title === game.title) + 1
-      : 0;
-    return gamePool[nextGameIndex];
-  };
-
-  const getRandomGame = (game?: GameData) => {
-    let newGame: GameData;
-    if (game) {
-      newGame = gamePool.filter((x) => x.title !== game.title)[
-        Math.floor(Math.random() * gamePool.length - 1)
-      ];
-    } else {
-      newGame = gamePool[Math.floor(Math.random() * gamePool.length)];
-    }
-    console.log('newGame: ', newGame);
-    return newGame;
-  };
-  const [game, setGame] = React.useState(getRandomGame());
-
+  const getNextGame = () =>
+    setCurrentIndex((currentIndex + 1) % gamePool.length);
+  const [game, setGame] = React.useState(gamePool[currentIndex]);
   const handleButtonClick = () => {
     setLoaded(false);
-    setGame(getRandomGame(game));
+    getNextGame();
   };
 
-  const onImageLoaded = () => setLoaded(imgEl.current.complete);
+  React.useEffect(() => {
+    const newGame = gamePool[currentIndex];
+    setGame(newGame);
+  }, [currentIndex]);
 
+  const onImageLoaded = () => setLoaded(imgEl.current.complete);
   React.useEffect(() => {
     const imgElCurrent = imgEl.current;
 
@@ -58,26 +47,35 @@ export default function App() {
     }
   }, [imgEl]);
 
+  const shuffle = (inputArray) => {
+    const outputArray = [...inputArray];
+    for (let i = outputArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
+    }
+    return outputArray;
+  };
+
   React.useEffect(() => {
     let newPool: GameData[] = [];
     if (includeGotmRunnerUp) {
-      newPool = newPool.concat(gotmRunnerUp);
+      newPool = newPool.concat(gotmRunnerUp.filter((x) => x.img));
     }
     if (includeGotmWinners) {
-      newPool = newPool.concat(gotmWinners);
+      newPool = newPool.concat(gotmWinners.filter((x) => x.img));
     }
     if (includeRetrobits) {
-      newPool = newPool.concat(retrobits);
+      newPool = newPool.concat(retrobits.filter((x) => x.img));
     }
     if (includeRpgRunnerUp) {
-      newPool = newPool.concat(rpgRunnerUp);
+      newPool = newPool.concat(rpgRunnerUp.filter((x) => x.img));
     }
     if (includeRpgWinners) {
-      newPool = newPool.concat(rpgWinner);
+      newPool = newPool.concat(rpgWinner.filter((x) => x.img));
     }
 
-    console.log('newPool size: ', newPool.length);
-    setGamePool(newPool);
+    setGamePool(shuffle(newPool));
+    setCurrentIndex(0);
   }, [
     includeGotmRunnerUp,
     includeGotmWinners,
