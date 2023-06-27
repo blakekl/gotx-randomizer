@@ -1,0 +1,13 @@
+div.loader {
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+
+img {
+  max-height: 480px;
+}
+
+label input {
+  margin-inline-end: 5px;
+}
