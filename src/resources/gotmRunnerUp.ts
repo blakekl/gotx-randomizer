@@ -1,5 +1,19 @@
 import { GameData } from '../models/gameData.model';
 
+const current: GameData[] = [
+  {
+    img: 'https://cdn.mobygames.com/screenshots/16137795-tokimeki-memorial-turbografx-cd-a-meeting-outside-its-decision-t.png',
+    title: 'Tokimeki Memorial - Densetsu No Ki No Shita De',
+    year: 1994,
+    system: 'Super Famicom',
+    developer: 'Konami',
+    genre: 'Dating Simulation',
+    timeToBeat: 8,
+    description:
+      "There's a legend at Kirameki High School that if a girl confesses her love for you under a certain tree, you'll have happiness forever...",
+  },
+];
+
 export const gotmRunnerUp: GameData[] = [
   {
     img: 'https://cdn.mobygames.com/screenshots/1635348-who-framed-roger-rabbit-apple-ii-driving-to-the-ink-amp-paint-cl.png',
