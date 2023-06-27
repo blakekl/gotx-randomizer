@@ -8,7 +8,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Treasure',
     genre: 'Rail Shooter',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       'This is an incredibly kickass on-rails shooter from Treasure that is every bit as good as any Star Fox or Panzer Dragoon game.  Play as either Saki or Airan while fighting off mutants in Japan in the distant dystopian future of 2007.  While initially only released in Japan, all the dialogue is in English anyway so this is an easy one to play even without a translation patch.',
   },
@@ -19,7 +19,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Sky Think System',
     genre: "Shoot 'em Up",
-    timeToBeat: '1 Hour',
+    timeToBeat: 1,
     description:
       'Wild, colorful, goofy, charming shmup action in a dangerous theme park! A game in the same vein as the Parodius series.',
   },
@@ -30,7 +30,7 @@ export const gotmWinners: GameData[] = [
     system: 'Saturn',
     developer: 'Sega',
     genre: 'Platformer',
-    timeToBeat: '1 Hour',
+    timeToBeat: 1,
     description:
       'An early release on the Sega Saturn, it was largely ignored for being a 2D platformer on a system expected to produce 3D titles, but its graphics have aged better than 3D titles of the time. Its box art on the other hand...',
   },
@@ -41,7 +41,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Squaresoft',
     genre: 'ARPG',
-    timeToBeat: '24 Hours',
+    timeToBeat: 24,
     description:
       'Play as Ashley Riot, a Riskbreaker exploring the link between a cult leader and a senior Parliament member, Duke Bardorba, in the Kingdom of Valendia. Using a pauseable real-time combat mechanic (similar to Parasite Eve) and deep weapon crafting system, fight your way through undead, phantoms, beasts, and other unsettling enemies as you explore the catacombs of the ruined city Leá Monde.',
   },
@@ -52,7 +52,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Squaresoft',
     genre: 'ARPG/Survival Horror',
-    timeToBeat: '12 Hours',
+    timeToBeat: 12,
     description:
       'Aya is back and so is that pesky mitochondria. Instead of the turn based rpg style of the first one, the sequel is more action based/survival horror. It still retains some of that rpg goodness though.',
   },
@@ -63,7 +63,7 @@ export const gotmWinners: GameData[] = [
     system: 'TG-CD/PCE-CD, PSP',
     developer: 'Konami',
     genre: 'Action-Platformer',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       'Guide Richter Belmont through Dracula’s castle as he tries to save his beloved Annette and others kidnapped by Dracula’s servants.',
   },
@@ -74,7 +74,7 @@ export const gotmWinners: GameData[] = [
     system: 'DS',
     developer: 'Tecmo Koei',
     genre: 'TRPG',
-    timeToBeat: '14 Hours',
+    timeToBeat: 14,
     description:
       "A crossover between Pokemon and the acclaimed Nobunaga's Ambition, Pokemon Conquest takes elements from both series to create a fun and unique tactical experience. Perfect for both newcomers and veterans of the genre, Pokemon Conquest lets everyone experience the fun of tactics.",
   },
@@ -85,7 +85,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Namco',
     genre: 'Racing',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       'Choose one of four teams to drive for and compete in the Real Racing Roots ‘99 Grand Prix in this classic racing game. Regarded as one of the best racers on the system and still beloved as the best game in the ridge racer franchise.',
   },
@@ -96,7 +96,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES, Arcade',
     developer: 'Konami',
     genre: "Beat 'em Up",
-    timeToBeat: '1 Hour',
+    timeToBeat: 1,
     description:
       "Play as one of the four Ninja Turtles in this rad Beat em' Up through the Ages!",
   },
@@ -107,7 +107,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Dimps',
     genre: "Beat 'em Up",
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       "In this 2D side-scrolling beat 'em up, special items can be collected throughout each stage, including those that increase the player's health and/or ki, and Dragon Balls. Clearing the story mode unlocks the ability to play as Krillin. The story mode is divided in various stage types; including standard platforming levels, flying stages, and one-on-one battles.",
   },
@@ -118,7 +118,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'E-Game',
     genre: 'Racing RPG',
-    timeToBeat: 'No Data',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description:
       'The latest translated Choro Q game is said to be the stepping stone between the old, classic Choro Q games and the new, more heavily CarPG focused games. Race, upgrade your car and do quests in the over world; Talk about Wonderful!',
   },
@@ -129,7 +129,7 @@ export const gotmWinners: GameData[] = [
     system: 'Genesis/MD',
     developer: 'Sega',
     genre: 'Platformer',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       "Play as Mickey or Donald as they use their magic capes to go through the world of illusion in one of the best platformers on the genesis. This game has no right to be as good as it is. Plus it's a nice short 2 hour jaunt. May contain violence.",
   },
@@ -140,7 +140,7 @@ export const gotmWinners: GameData[] = [
     system: 'DC',
     developer: 'Hudsonsoft',
     genre: 'Action-Adventure',
-    timeToBeat: '14 Hours',
+    timeToBeat: 14,
     description:
       'You are a man found inside a buried egg shaped robot in a deep slumber. Traverse this beautiful hand drawn adventure with 3D graphic boss battles.',
   },
@@ -151,7 +151,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Nintendo R&D1',
     genre: 'Metroidvania',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description:
       'A remake of the original Metroid where the player controls bounty hunter Samus Aran, who travels to planet Zebes after learning that the Space Pirates are experimenting with Metroids, hostile parasitic creatures.',
   },
@@ -162,7 +162,7 @@ export const gotmWinners: GameData[] = [
     system: 'NES',
     developer: 'Capcom',
     genre: 'Action-Platformer',
-    timeToBeat: '3 Hours',
+    timeToBeat: 3,
     description:
       "Mega Man 2 is an action game developed and published by Capcom for the Nintendo Entertainment System. It was released in Japan in 1988 and in North America and PAL regions the following years. Mega Man 2 continues Mega Man's battle against the evil Dr. Wily and his rogue robots. It introduced graphical and gameplay changes, many of which became series staples.",
   },
@@ -173,7 +173,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Rare',
     genre: 'FPS',
-    timeToBeat: '9 Hours',
+    timeToBeat: 9,
     description:
       'Perfect Dark is a dystopian sci-fi FPS where you play as newly minted secret agent Joanna "Perfect" Dark, uncovering a sinister, very far reaching conspiracy.',
   },
@@ -184,7 +184,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Konami',
     genre: 'Action-Adventure',
-    timeToBeat: '10 Hours',
+    timeToBeat: 10,
     description:
       'Mystical Ninja Starring Goemon is a platform action-adventure video game released by Konami for the Nintendo 64 on August 7, 1997 in Japan, April 16, 1998 in North America, and 18 April 1998 in Europe as the fifth entry in the Ganbare Goemon series. The second Goemon game released in North America and Europe, it follows The Legend of the Mystical Ninja and features hybrid elements of platform games and action-adventure games.',
   },
@@ -195,7 +195,7 @@ export const gotmWinners: GameData[] = [
     system: 'Genesis/MD',
     developer: 'Ancient',
     genre: 'ARPG',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description:
       'Control spirits with the power of the armlet in this ARPG on the genesis. Solid combat mechanics and fun puzzles make this one my favorite Zelda-like of the 16-bit era. And Bill likes it too.',
   },
@@ -206,7 +206,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Now Production',
     genre: 'Platformer',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description: '',
   },
   {
@@ -216,7 +216,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Rareware',
     genre: 'Platformer',
-    timeToBeat: '11 Hours',
+    timeToBeat: 11,
     description:
       "There's so much water in this game. Even FROZEN water. Go on this Bear and Bird water platforming adventure.",
   },
@@ -227,7 +227,7 @@ export const gotmWinners: GameData[] = [
     system: 'Atari 2600, GBA, Android',
     developer: 'Activision',
     genre: 'Racing',
-    timeToBeat: '<1 Hour',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description:
       "A true classic with surprising performance for it's hardware, Enduro is a racing video game that features inclement weather, and a transition from day to night where you can only see others' taillights. Pass a specific number of cars each day to keep going, don't crash,  and make it through day 5 to win Activision's prize!",
   },
@@ -238,7 +238,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBC',
     developer: 'Nintendo R&D1',
     genre: 'Action',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description:
       "Wario must take advantage of his enemies' attacks to physically change and access new areas. The game features a day/night cycle, and stages change depending on the time of day; certain enemies may be replaced or different paths may open up.",
   },
@@ -249,7 +249,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBC',
     developer: 'Konami',
     genre: 'Survival',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description:
       'You crash on a deserted island. Survive on the island with scavenging, crafting, fishing, and more until you find a way back to civilization!',
   },
@@ -260,7 +260,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Capcom',
     genre: 'RPG',
-    timeToBeat: '28 Hours',
+    timeToBeat: 28,
     description:
       "One of Capcom's greatest role-playing game franchises, Breath of Fire follows the journey of a boy named Ryu, one of the last surviving members of an ancient race with the ability to transform into mighty dragons, as he searches the world for his sister.",
   },
@@ -271,7 +271,7 @@ export const gotmWinners: GameData[] = [
     system: 'Gamecube, 3DS',
     developer: 'Nintendo',
     genre: 'Action-Adventure',
-    timeToBeat: '7 Hours',
+    timeToBeat: 7,
     description:
       'Mario is missing again in a haunted mansion, time for Luigi to play Ghost Buster while looking for his bro.',
   },
@@ -282,7 +282,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'FromSoftware',
     genre: 'Adventure',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description: '',
   },
   {
@@ -292,7 +292,7 @@ export const gotmWinners: GameData[] = [
     system: 'GB',
     developer: 'C.P. Brain',
     genre: 'Platformer',
-    timeToBeat: '1 Hour',
+    timeToBeat: 1,
     description: '',
   },
   {
@@ -302,7 +302,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBC',
     developer: 'Flagship',
     genre: 'Action Adventure',
-    timeToBeat: '17 Hours',
+    timeToBeat: 17,
     description:
       'A top down action-adventure game released in two separate versions: this version (Ages) being the more puzzle focused of the two entries. Name a more iconic sword and shield combination in gaming. I’ll wait.',
   },
@@ -313,7 +313,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1, Saturn, PSP, Android',
     developer: 'Konami',
     genre: 'Metroidvania',
-    timeToBeat: '9 Hours',
+    timeToBeat: 9,
     description:
       "The heir to the Belmont lineage is MIA, and evil is stirring once again. Play the role of Alucard, Dracula's own son, in this​ legendary genre-defining Metroidvania.",
   },
@@ -324,7 +324,7 @@ export const gotmWinners: GameData[] = [
     system: 'TG-CD/PCE-CD',
     developer: 'Nihon Falcom',
     genre: 'ARPG',
-    timeToBeat: '15 Hours',
+    timeToBeat: 15,
     description:
       'The start of one of the best ARPG series. Has one of the best soundtracks I’ve heard, a great story, fast-paced combat that is very satisfying, challenging boss fights, and more. The game has been acclaimed by fans and critics alike since it’s release and still is regarded as one of the best games of all time by Electronic Gaming Monthly, IGN, Gamespot, and others.',
   },
@@ -335,7 +335,7 @@ export const gotmWinners: GameData[] = [
     system: 'Nintendo DS',
     developer: 'Chunsoft',
     genre: 'Visual Novel',
-    timeToBeat: '9.5 hours',
+    timeToBeat: 9.5,
     description:
       'Do you like murder mysteries? Do you like puzzle games? Do you like good quality narrative told in a compelling manner? Then check out 999 a fantastic point and click puzzle mystery with a fantastic plot that keeps you guessing.',
   },
@@ -346,7 +346,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Namco',
     genre: 'Platformer',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       "Klonoa: Door to Phantomile is a 2.5D platformer game and the first entry in the character's unfortunately short-lived game series. It has charm, dreams and platforming. Can't think of anything else a Playstation game would need.",
   },
@@ -357,7 +357,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Hect',
     genre: 'Adventure',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       "An extremely chill game where you collect the works of children's lit poet Kenji Miyazawa in a city populated by talking animals.",
   },
@@ -368,7 +368,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'AlphaDream',
     genre: 'RPG',
-    timeToBeat: '11 Hours',
+    timeToBeat: 11,
     description:
       "Don't want to play Superstar Saga again but something similar. With a great mini game type combat system. Give Tomato Adventure a try or don't.",
   },
@@ -379,7 +379,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1, PS4',
     developer: 'SCE Studio Cambridge',
     genre: 'Action',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description: '',
   },
   {
@@ -389,7 +389,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Quintet',
     genre: 'ARPG',
-    timeToBeat: '16 Hours',
+    timeToBeat: 16,
     description:
       "The game tells the story of the Earth's resurrection by the hands of a boy named Ark, and its progress from the evolution of life to the present day. The game is played from a top-down perspective. Different attacks can be performed based on whether Ark is jumping, running, walking, or standing still.",
   },
@@ -400,7 +400,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBC',
     developer: 'Nintendo',
     genre: 'Card Game',
-    timeToBeat: 'No Data',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description:
       'Pokémon Card GB2: Here Comes Team GR!, abbreviated Pokémon Card GB2, is the Japan-only sequel to Pokémon Trading Card Game. The game story revolves around a new villainous team, Team Great Rocket, and contains nearly all of the cards from Base Set, Jungle, Fossil, and Team Rocket.',
   },
@@ -411,7 +411,7 @@ export const gotmWinners: GameData[] = [
     system: 'SFC',
     developer: 'ASCII Media Works',
     genre: 'Action Adventure',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description: '',
   },
   {
@@ -421,7 +421,7 @@ export const gotmWinners: GameData[] = [
     system: 'GB',
     developer: 'Nintendo R&D1, Intelligent Systems',
     genre: 'ARPG',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description:
       "Often compared to Link's Awakening, Its got both a top down bird's eye view as well as 2D platforming sections with a interesting battle system.",
   },
@@ -432,7 +432,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Nintendo',
     genre: 'Mini-Game Collection',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description: 'Join the King of minigames',
   },
   {
@@ -442,7 +442,7 @@ export const gotmWinners: GameData[] = [
     system: 'GB',
     developer: 'Nintendo',
     genre: 'Platformer',
-    timeToBeat: '3 Hours',
+    timeToBeat: 3,
     description: '',
   },
   {
@@ -452,7 +452,7 @@ export const gotmWinners: GameData[] = [
     system: 'DS, PS4, Switch',
     developer: 'Capcom',
     genre: 'Visual Novel',
-    timeToBeat: '18 Hours',
+    timeToBeat: 18,
     description:
       'Step into the shoes of Phoenix Wright, somewhat competent defense attorney, in this wacky courtroom simulator. Find evidence, interrogate witness, expose their lies and find the truth!',
   },
@@ -463,7 +463,7 @@ export const gotmWinners: GameData[] = [
     system: 'Nintendo 64',
     developer: 'Noise',
     genre: 'Action RPG',
-    timeToBeat: '?',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description:
       'Build your tiny robot and do battle with other Custom Robos in the Holosseum! A unique action game with RPG elements that spawned a franchise. Thanks to a fan translation, now English-speakers can enjoy the original Custom Robo!',
   },
@@ -474,7 +474,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Tamsoft/Takara',
     genre: 'Racing',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       "Get your CaRPG on! In this cute racing game based on the Japanese toy car company of the same name, (you may remember them as Penny or Gadget Racers), you'll aim for the Hyper GP as you upgrade your car with the money you earn in races. Besides racing, there's a huge city to explore to find new shops, 100 different events, mini games, and more!",
   },
@@ -485,7 +485,7 @@ export const gotmWinners: GameData[] = [
     system: 'Arcade',
     developer: 'Sega',
     genre: 'Racing',
-    timeToBeat: '1 Hour',
+    timeToBeat: 1,
     description:
       'Get Ready…for the classic racer game that pushed graphical limitations back in the 80s. With its aesthetics; the colorful graphics, great music and charm, its no wonder why this game got ported to so many systems/consoles to this day.',
   },
@@ -496,7 +496,7 @@ export const gotmWinners: GameData[] = [
     system: 'Game Boy Advance',
     developer: 'Game Freak',
     genre: 'Action/Platform',
-    timeToBeat: '5.5 Hours',
+    timeToBeat: 5.5,
     description:
       'Drill Dozer is an action platformer developed by acclaimed publisher Gamefreak of Pokémon fame. It’s a gorgeous, colorful story, following a gang of mech-wielding scrapyard workers/bandits with a heart of gold as you tackle the nefarious rival gang of the Skullkers. You battle your way to reclaim a family jewel and uncover the mystery behind its power.',
   },
@@ -507,7 +507,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1/N64',
     developer: 'Ubisoft',
     genre: 'Platformer',
-    timeToBeat: '8 Hours',
+    timeToBeat: 8,
     description:
       'An absolute classic and a key part of 3D platforming history which still holds up today. One of the most iconic mascots in gaming, in this adventure Rayman is taking on robot pirates. Robot. Pirates. Could that be any cooler?',
   },
@@ -518,7 +518,7 @@ export const gotmWinners: GameData[] = [
     system: 'Sega CD/PS1',
     developer: 'Konami',
     genre: 'Graphic Adventure',
-    timeToBeat: '8 Hours',
+    timeToBeat: 8,
     description:
       'Snatcher is a cyberpunk graphic adventure game developed and published by Konami. It was written and designed by Hideo Kojima and first released in 1988 for the PC-8801 and MSX2 in Japan. Snatcher is set in a future East Asian metropolis where humanoid robots dubbed "Snatchers" have been discovered killing humans and replacing them in society. The game follows Gillian Seed, an amnesiac who joins an anti-Snatcher agency in search of his past. Gameplay takes place primarily through a menu-based interface through which the player can choose to examine items, search rooms, speak to characters, explore a semi-open world, and perform other actions.',
   },
@@ -529,7 +529,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Capcom/Nintendo',
     genre: 'Action Adventure',
-    timeToBeat: '16 Hours',
+    timeToBeat: 16,
     description:
       'The Legend of Zelda: The Minish Cap is an action-adventure video game and the twelfth entry in The Legend of Zelda series. Developed by Capcom and Flagship, with Nintendo overseeing the development process, Minish Cap was released for the Game Boy Advance in Japan and Europe in 2004 and in North America and Australia the following year. In June 2014, it was made available on the Wii U Virtual Console.',
   },
@@ -540,7 +540,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES/DS',
     developer: 'HAL Laboratory',
     genre: 'Platformer',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       'This pinnacle of pink puff platforming premiered partners! Kirby Super Star contains a half-dozen mini Kirby adventures, and lets you bring a co-cop couch partner along as a “Helper” character. This surprisingly deep platformer has enough secrets to keep you constantly coming back for more, and features over twenty unique copy abilities to learn and master! The DS remaster adds a few more game modes and updated pixel art graphics.',
   },
@@ -551,7 +551,7 @@ export const gotmWinners: GameData[] = [
     system: 'Genesis/MD',
     developer: 'Treasure',
     genre: 'Action Platformer',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       'Gunstar Heroes is a run and gun game played from a side-scrolling perspective and can be played in single-player, or cooperatively with a partner.',
   },
@@ -562,7 +562,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Camelot',
     genre: 'RPG',
-    timeToBeat: '22 Hours',
+    timeToBeat: 22,
     description:
       "Golden Sun is a contemporary presentation of the traditional role-playing video game formula, in which the player controls a cast of four characters as they journey through a fantasy-themed world, interact with other characters, battle monsters, acquire increasingly powerful abilities and equipment, and take part in an ongoing narrative.  Although many of the player's actions are compulsory, Golden Sun often allows the player to visit previous locations and complete certain objectives out of order.",
   },
@@ -573,7 +573,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Square',
     genre: 'ARPG',
-    timeToBeat: '15 Hours',
+    timeToBeat: 15,
     description:
       "Believe it or don't, there was a time when Square was more ambitious about experimenting with ideas and genres outside of Final Fantasy! This is one of those!",
   },
@@ -584,7 +584,7 @@ export const gotmWinners: GameData[] = [
     system: 'Genesis/MD',
     developer: 'Nextech',
     genre: 'Action Adventure',
-    timeToBeat: '8 Hours',
+    timeToBeat: 8,
     description:
       'You play as Corona, a 14 year old who must train to fight. You can speak with and recruit plants/animals to help you with their special abilities.',
   },
@@ -595,7 +595,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Intelligent Systems',
     genre: 'RPG',
-    timeToBeat: '23 Hours',
+    timeToBeat: 23,
     description:
       "When Princess Peach is kidnapped, Mario plots to rescue the seven Star Spirits and rid the Mushroom Kingdom of Bowser's cruel cohorts. As he travels from the tropical jungles of Lavalava Island to the frosty heights of Shiver Mountain, he’ll meet up with seven all-new companions…and he’ll need help from each one or there’ll be no happily ever after.",
   },
@@ -606,7 +606,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES/PSP',
     developer: 'tri-ace',
     genre: 'RPG',
-    timeToBeat: '21 Hours',
+    timeToBeat: 21,
     description:
       'The story involves three friends who, while searching for the cure to a new disease, come into contact with a space-faring federation that is locked in a war with another galactic power. Using advanced technologies and time travel, the group attempts to uncover the cause of the war and to find a cure for their planet',
   },
@@ -617,7 +617,7 @@ export const gotmWinners: GameData[] = [
     system: 'Sega Genesis',
     developer: 'Sega',
     genre: 'Platformer',
-    timeToBeat: '',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description: '',
   },
   {
@@ -627,7 +627,7 @@ export const gotmWinners: GameData[] = [
     system: 'Neo Geo',
     developer: 'SNK',
     genre: "Run 'n Gun",
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       'Mission Start! You want vehicles? How about Super Vehicles? Take control of tanks, helicopters, armored camels, and more in this gorgeous pixel art run-and-gun classic!',
   },
@@ -638,7 +638,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Nintendo',
     genre: 'Rail Shooter',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       'Star Fox 64 invites players to take on the role of legendary Fox McCloud as they lead a fearless squadron of fighters in fierce aerial combat to battle the evil forces of Andross and save the galaxy from destruction.',
   },
@@ -649,7 +649,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Squaresoft',
     genre: 'SRPG',
-    timeToBeat: '22 Hours',
+    timeToBeat: 22,
     description:
       'Front Mission, a tactical role-playing game, is part of a serialized storyline that follows the stories of various characters and their struggles involving mecha known as Wanzers.',
   },
@@ -660,7 +660,7 @@ export const gotmWinners: GameData[] = [
     system: 'Mobile',
     developer: 'Id Software',
     genre: 'RPG',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description:
       'An exciting new direction for Doom, less frantic but extremely well realized (as expected of John Carmack, who wrote the engine in a week during his honeymoon). Very interesting gameplay and a blend of Doom 1 graphics with Doom 3 plot plots for the scenario.',
   },
@@ -671,7 +671,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Konami',
     genre: 'Survival Horror',
-    timeToBeat: '7 Hours',
+    timeToBeat: 7,
     description:
       'Trapped in the eponymous town of Silent Hill, Harry Mason searches for his missing daughter Cheryl as he attempts to unravel the mysterious evil plaguing the town.',
   },
@@ -682,7 +682,7 @@ export const gotmWinners: GameData[] = [
     system: 'GB',
     developer: 'Capcom',
     genre: 'Platformer',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       "Play as Firebrand, one of the antagonists of Ghosts 'n Goblins, and save the Ghoul Realm from the Destroyers!",
   },
@@ -693,7 +693,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'GameFreak/Chunsoft',
     genre: 'Roguelite',
-    timeToBeat: '20 Hours',
+    timeToBeat: 20,
     description:
       'Take on the role of an actual Pokemon as you team up to start a rescue business and end up discovering a bigger threat than just some lost Pokemon.',
   },
@@ -704,7 +704,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Square',
     genre: 'SRPG',
-    timeToBeat: '40 Hours',
+    timeToBeat: 40,
     description:
       "Final Fantasy's first take on the SRPG genre follows Ramza Beoulve and the situations surrounding him as he learns the truth behind the Zodiac Brave Story in this epic, sprawling adventure; story twists around every corner as friend becomes foe and fable becomes reality.",
   },
@@ -715,7 +715,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Capcom',
     genre: 'Platformer',
-    timeToBeat: '4 Hours',
+    timeToBeat: 4,
     description:
       "This is very favorite Mega Man game. The music. The mechanics. The characters. The bosses. Everything about it I vibed with back in '93, and still to this day!",
   },
@@ -726,7 +726,7 @@ export const gotmWinners: GameData[] = [
     system: 'NGPC',
     developer: 'Sacnoth',
     genre: 'RPG',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description:
       'Interesting little cross of JRPG and Submarine combat featuring a "Pokemon Red and Blue" style Matt or Becky version.',
   },
@@ -737,7 +737,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBC',
     developer: 'Marvellous',
     genre: 'Fishing/RPG',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description:
       'A young boy (you) must catch the Guardian Fish to use its magical powers to cure your sister from a mysterious illness.',
   },
@@ -748,7 +748,7 @@ export const gotmWinners: GameData[] = [
     system: 'Genesis/Megadrive',
     developer: 'MicroProse',
     genre: 'ARPG',
-    timeToBeat: '20 Hours',
+    timeToBeat: 20,
     description:
       'The player can play as a pirate, privateer, or a pirate hunter.  It features sword fighting, ocean-faring battles, and land battles as its three main arenas of action, connected by role-playing which allows the player to court the favor of local politicos, romance women, and recruit pirates in the local pub.  Players have the opportunity to go on quests, but must also strategically plan raiding excursions and trading routes.',
   },
@@ -759,7 +759,7 @@ export const gotmWinners: GameData[] = [
     system: 'Dreamcast',
     developer: 'Smilebit',
     genre: '3D Action Platformer',
-    timeToBeat: '7 Hours',
+    timeToBeat: 7,
     description:
       'Newly developed Netrium-powered inline skates enable Rudies, self-expression loving, spray-painting vandals to shred, paint, and thwart both rival gangs and the Rokkaku police in this amazing looking, sounding, and playing cult classic.',
   },
@@ -770,7 +770,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'NanaOn-Sha',
     genre: 'Music Rhythm',
-    timeToBeat: '2 Hours',
+    timeToBeat: 2,
     description:
       "One of the stranger games of all time. Rap your way through it and win SunnyFunny's heart.",
   },
@@ -781,7 +781,7 @@ export const gotmWinners: GameData[] = [
     system: 'Genesis',
     developer: 'Sega',
     genre: 'Platformer',
-    timeToBeat: '3 Hours',
+    timeToBeat: 3,
     description:
       'Sonic the Hedgehog 2 is a 1992 platform game developed and published by Sega for the Sega Genesis. It follows Sonic as he attempts to stop Doctor Robotnik from stealing the Chaos Emeralds to power his space station. All while listening to a banger of a (sound)track!',
   },
@@ -792,7 +792,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Brownie Brown, HAL Laboratory',
     genre: 'RPG',
-    timeToBeat: '27 Hours',
+    timeToBeat: 27,
     description:
       "A follow-up to the iconic Mother sequel Earthbound, this cult classic was only released in Japan, ported to the Wii U in 2016. Lucas and friends' cult classic adventure has been the subject of many a gaming discussion and is one of the most requested games for English localization.",
   },
@@ -803,7 +803,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Bandai',
     genre: 'Action-Adventure',
-    timeToBeat: '???',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description:
       'Dr. Slump is an action-adventure game based on the manga and anime series by Akira Toriyama of Dragon Ball fame. It received its first English fan translation two months ago!',
   },
@@ -814,7 +814,7 @@ export const gotmWinners: GameData[] = [
     system: 'NES',
     developer: 'Capcom',
     genre: 'RPG',
-    timeToBeat: '8 Hours',
+    timeToBeat: 8,
     description:
       "An NES movie-game based on the film of the same name. This game mixes turn-based RPG mechanics and survival horror, requiring you to explore a haunted mansion, mixing and matching each character's unique tool to solve puzzles and come out unscathed. Developed by none other than Capcom, this game served as the main inspiration for Resident Evil, and may in fact be the first Survival Horror game.",
   },
@@ -825,7 +825,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Skeli',
     genre: 'RPG',
-    timeToBeat: '20 Hours',
+    timeToBeat: 20,
     description:
       'Pokemon Unbound features updated graphics, difficulty modes, a unique mission system, character customization, daily events, a rich OST as well as a wide variety of pokemon from gen1-7.',
   },
@@ -836,7 +836,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Kaze Emanuar',
     genre: 'Action-Adventure',
-    timeToBeat: '3 Hours',
+    timeToBeat: 3,
     description:
       "This mini adventure is set between Ocarina of Time and Majora's Mask as the Hero of Time searches for his missing fairy, Navi. Experience new environments, music, graphics, items and mechanics on this highly acclaimed adventure.",
   },
@@ -847,7 +847,7 @@ export const gotmWinners: GameData[] = [
     system: 'NES',
     developer: 'Southbird',
     genre: 'Platformer',
-    timeToBeat: '10 Hours',
+    timeToBeat: 10,
     description:
       'Super Mario 3 Mix takes the best bits of modern Mario games and back ports them so smoothly to the NES that it makes you wonder what the series could have become in an alternate universe.',
   },
@@ -858,7 +858,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Capcom Production Studio 4',
     genre: 'Action-Adventure',
-    timeToBeat: '6 Hours',
+    timeToBeat: 6,
     description:
       'Run and Gun!? Dino Crisis 2 is where the franchise gains its own identity, and becomes much more action-focused than its zombie mansion sibling. More importantly, DC2 came out in 2000, which means it gets to help fill out the Modern category!',
   },
@@ -869,7 +869,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Rare',
     genre: 'Racing',
-    timeToBeat: '14 Hours',
+    timeToBeat: 14,
     description:
       'Choose one of your favorite Rare characters and race a Dinosaur and other animals! Balloons are a delicacy that help you defeat an Evil Pig.',
   },
@@ -880,7 +880,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Nintendo',
     genre: 'Platformer',
-    timeToBeat: '8 Hours',
+    timeToBeat: 8,
     description:
       "Baby Mario fell from the Sky and landed in the safe hands of the Yoshis. BUT OH NO! Baby Bowser's minions captured Baby Luigi and its your mission to save him! Beware! The minions will still try to capture Baby Mario.",
   },
@@ -891,7 +891,7 @@ export const gotmWinners: GameData[] = [
     system: 'Android',
     developer: 'Concerned Ape',
     genre: 'Simulation',
-    timeToBeat: '53 Hours',
+    timeToBeat: 53,
     description:
       "Players take the role of a character who takes over their deceased grandfather's dilapidated farm in a place known as Stardew Valley. The game is open-ended, allowing players to take on activities such as growing crops, raising livestock, crafting goods, mining for ores, selling produce, and socializing with the townspeople, including marriage and having children. It also allows up to three other players to play together online.",
   },
@@ -902,7 +902,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'Natsume',
     genre: 'Farm Simulation',
-    timeToBeat: '44 Hours',
+    timeToBeat: 44,
     description:
       'My personal favorite of the original Harvest Moon series. Farming, ranching, and romance. Getting married and starting a family is a key component.',
   },
@@ -913,7 +913,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Quintet',
     genre: 'Platformer/City Sim',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description:
       'An animal-raising game where the animal...is MAN. In ActRaiser, you play The Master - or "God" in the original translation. Your god duties are divided into two parts: Side scrolling monster slaying, and top down sim-lite civilization growth. As a side scroller, you possess a statue and go around shredding monsters that might threaten your fledgling human society. When you\'re not killing monsters, you are observing your civilization from above, helping the humans thrive. Beginning with just two humans, you protect their cities from monsters (through weird semi-shmup gameplay), direct their roads and city construction, and receive offerings which you then use to benefit other humans.',
   },
@@ -924,7 +924,7 @@ export const gotmWinners: GameData[] = [
     system: 'PSP',
     developer: 'Atlus',
     genre: 'Role-Playing',
-    timeToBeat: '66.5 hours',
+    timeToBeat: 66.5,
     description:
       'Greatest JRPG of all time, but on a handheld, now starring a female protagonist, featuring some of the greatest game music, story and characters of its era.',
   },
@@ -935,7 +935,7 @@ export const gotmWinners: GameData[] = [
     system: 'PS1',
     developer: 'Squaresoft',
     genre: 'RPG',
-    timeToBeat: '41 Hours',
+    timeToBeat: 41,
     description:
       'Set on an unnamed fantasy world with science fiction elements, the game follows a group of young mercenaries, led by Squall Leonhart, as they are drawn into a conflict sparked by Ultimecia, a sorceress from the future who wishes to compress time. During the quest to defeat Ultimecia, Squall struggles with his role as leader and develops a romance with one of his comrades',
   },
@@ -946,7 +946,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Nintendo',
     genre: 'Platformer',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description:
       'A plumber named Mario and his brother Luigi along with their new friend yoshi travel through the Mushroom Kingdom to save the princess from the evil Bowser. Plumber brothers Mario and Luigi from Brooklyn have just arrived in an outlandish realm called the Mushroom Kingdom. It was ruled by Princess Toadstool and her faithful Mushroom people.',
   },
@@ -957,7 +957,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'THQ',
     genre: 'Platformer',
-    timeToBeat: '5 Hours',
+    timeToBeat: 5,
     description:
       "Is it a good game... kinda, sure? It's like the game devs were thinking what kinda insanely difficult borderline assholish things can we throw in every corner of every level, you're never not getting absolutely pummeled by enemies! Everything is out to get you, you can be killed by a damn tumbleweed. What makes it worse is every time Spongebob gets hit he makes the most loud guttural sound imaginable.",
   },
@@ -968,7 +968,7 @@ export const gotmWinners: GameData[] = [
     system: 'N64',
     developer: 'VIS Interactive',
     genre: 'Platformer',
-    timeToBeat: '9 Hours',
+    timeToBeat: 9,
     description:
       "Earthworm Jim was one of my fave games to play as a kid. The 3D version always had me cracking up though as he gets knocked out and put into a coma by a cow, then has to battle through his own subconcious, battling all of his fears. This version wasn't by any means the best in the series, in fact, they tend to say it was the downfall of the series itself, but I still always enjoyed it.",
   },
@@ -979,7 +979,7 @@ export const gotmWinners: GameData[] = [
     system: 'NES',
     developer: 'Software Creations',
     genre: 'Scrolling Shooter',
-    timeToBeat: '1 Hour',
+    timeToBeat: 1,
     description:
       "Okay, hear me out; this game is actually really good and unironically one of me and a couple of my friend's favorites. Is it very hard? Yes. Is it borderline unfair at times? Yes. Is it beatable? Also yes (and I have!). Behind this frustrating game is actually a very competent shoot 'em up with powerups that change the direction of your shot and a collection of both top down and side scrolling stages. If you persevere and get into a groove and begin memorizing stage hazards, there's a lot of fun to be had in this one. Oh, and the music is composed by musical genius Tim Follin.",
   },
@@ -990,7 +990,7 @@ export const gotmWinners: GameData[] = [
     system: 'GBA',
     developer: 'Nintendo',
     genre: 'Metroidvania',
-    timeToBeat: '5 hours',
+    timeToBeat: 5,
     description:
       "As the latest entry (chronologically) in the Metroid series, Samus has taken on countless enemies that would make the most daring of warriors quake in their space boots... not this bounty hunter... not until now, for what foe could possibly stand toe-to-toe with the galaxies best bounty hunter... but an evil parasite that has taken the shape and characteristics of Samus herself. Now the world of SR388 NAY! THE GALAXY is at a teetering point between safety... and peril, and the only one to weigh the scales in its favor... is Samus 'MF' Aran.",
   },
@@ -1001,7 +1001,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Rare',
     genre: 'Platformer',
-    timeToBeat: '5 hours',
+    timeToBeat: 5,
     description:
       "Released midway through the SNES lifecycle, this platformer pushes the hardware capabilities while also building on the already-great gameplay of earlier DK titles. The plot revolves around Dixie Kong and her cousin, Kiddy Kong, in their attempts to rescue the kidnapped Donkey Kong and Diddy Kong from the series' antagonist King K. Rool.",
   },
@@ -1012,7 +1012,7 @@ export const gotmWinners: GameData[] = [
     system: 'Mega Drive',
     developer: 'Sega',
     genre: "Beat 'em up",
-    timeToBeat: '1.5 hours',
+    timeToBeat: 1.5,
     description:
       "What to say about the penultimate side-scrolling beat 'em up? Streets of Rage is a fantastic game, well designed and beautifully realised. It's glittering streets pop with colour, but trash is piled high on every corner. The game tasks no nonsense Police Officer Blaze Fielding (and two other nameless dudebros) with cleaning the filth, and clearing the trash from the streets of Wood Oak City, one punk's face at a time!",
   },
@@ -1023,7 +1023,7 @@ export const gotmWinners: GameData[] = [
     system: 'Game Boy Advance',
     developer: 'Konami',
     genre: 'Metroidvania',
-    timeToBeat: '7 hours',
+    timeToBeat: 7,
     description:
       "Aria of Sorrow is a 2D Castlevania where you follow Soma Cruz, a teenager granted occult power as a result of being a potential vessel of Dracula's reincarnation, as he battles dark figures that wish to inherit the undead lord's power.",
   },
@@ -1034,7 +1034,7 @@ export const gotmWinners: GameData[] = [
     system: 'PlayStation',
     developer: 'SquareSoft',
     genre: 'Action RPG',
-    timeToBeat: '9.5 hours',
+    timeToBeat: 9.5,
     description:
       "The year is 1998. Officer Aya Brea discovers that a woman with the ability to make people spontaneously combust is hell-bent on destroying the human race, one flaming pile at a time... except Aya, who seems to be immune and, in fact... has some powers of her own. Horrifying hallways and blood stained corpses stacked one after another with relentless enemies and puzzles, this game borrows the best of Resident Evil while adding in its own RPG strategic combat system. Aya's in the business of killin' monsters.... and business is good...",
   },
@@ -1045,7 +1045,7 @@ export const gotmWinners: GameData[] = [
     system: 'SNES',
     developer: 'Human Entertainment',
     genre: 'Point-and-click adventure',
-    timeToBeat: '2.5 hours',
+    timeToBeat: 2.5,
     description:
       "Clock Tower is a survival horror point-and-click adventure game developed and published by Human Entertainment for the Super Famicom in 1995. It is the first installment in the Clock Tower series. You're a girl on the run for a madman wielding scissors. Truly terrifying despite it being 2D. Clocktower still manages to frighten.",
   },
@@ -1056,7 +1056,7 @@ export const gotmWinners: GameData[] = [
     system: 'Game Boy Color',
     developer: 'Nintendo',
     genre: 'Action-adventure',
-    timeToBeat: '15.5 Hours',
+    timeToBeat: 15.5,
     description:
       'In Oracle of Seasons, players traverse the seasons and unlock the secrets of Hyrule held within each climate. Originally intended as a direct port of the original Legend of Zelda to the Game Boy Color, this title\'s development expanded into something greater, standing as an interconnected entry with the Oracle of Ages. Featuring both gorgeous visuals and depth far beyond that of the original NES entry, it was well-deserving of IGN\'s proclamation that both it and its counterpart were "the best games ever made for the Game Boy Color".',
   },
@@ -1067,7 +1067,7 @@ export const gotmWinners: GameData[] = [
     system: 'PlayStation',
     developer: 'Media.Vision',
     genre: 'RPG',
-    timeToBeat: '29 Hours',
+    timeToBeat: 29,
     description:
       "While FFVII evolved the JRPG genre on the PlayStation 1, Wild Arms took tropes that were already present and elevated them. There's turn-based battles, Zelda-like puzzles and one of the most amazing soundtracks ever to have graced this genre. And did I mention it's a freaking western?",
   },
@@ -1078,7 +1078,7 @@ export const gotmWinners: GameData[] = [
     system: 'PlayStation',
     developer: 'Konami',
     genre: 'Visual Novel',
-    timeToBeat: '11.5 Hours',
+    timeToBeat: 11.5,
     description:
       'Before Konami\'s Metal Gear Solid took the PlayStation by storm, its creator - Hideo Kojima - explored his cinematic ambitions for gaming in a very different form: an endlessly stylish cyberpunk adventure game. Jonathon Ingram, one of five "Policenauts", wakes up 28 years after a spacewalk gone wrong to discover that his team has succeeded. Now, mankind lives among the stars.',
   },
@@ -1089,7 +1089,7 @@ export const gotmWinners: GameData[] = [
     system: 'Nintendo Gameboy Advance',
     developer: '',
     genre: '',
-    timeToBeat: '',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description: '',
   },
   {
@@ -1099,7 +1099,7 @@ export const gotmWinners: GameData[] = [
     system: 'Nintendo 64',
     developer: '',
     genre: '',
-    timeToBeat: '',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description: '',
   },
   {
@@ -1109,7 +1109,7 @@ export const gotmWinners: GameData[] = [
     system: 'Super Nintendo',
     developer: '',
     genre: '',
-    timeToBeat: '',
+    timeToBeat: Number.MAX_SAFE_INTEGER,
     description: '',
   },
 ];
