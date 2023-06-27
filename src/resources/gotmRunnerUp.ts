@@ -1748,7 +1748,7 @@ export const gotmRunnerUp: GameData[] = [
       "They're TINY, they're toony, they're all a little looney! In this underrated platformer you guide Bugs Bunny's favorite student Buster through over 30 levels to try and defeat Montana Max and rescue Babs Bunny.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22257&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Maximo: Ghosts to Glory',
     year: 2001,
     system: 'PS2',
@@ -1945,7 +1945,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fly around levels and shoot everything that moves in this hectic, colourful, explosion-filled multidirectional 2d shmup from Treasure.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19609&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dragon Valor',
     year: 1999,
     system: 'PS1',
@@ -2182,7 +2182,7 @@ export const gotmRunnerUp: GameData[] = [
       "I hate this game. Its soundtrack is garish, with jarring, discordant notes that make me personally uncomfortable. Its visuals are cluttered, with bug-eyed, freakish blobs crowding the playfield. FlipOut! is a monotonous puzzler that creeped the hell out of me as a kid, and that's why it gets my nomination for spook of the month.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19681&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Armored Core',
     year: 1997,
     system: 'PS1',
@@ -2226,7 +2226,7 @@ export const gotmRunnerUp: GameData[] = [
       'The demon lord Zeon has been set free by an unwitting thief. It is the job of Bowie, a young hero from the Kingdom of Granseal, to lead the Shining Force to victory in this tactical RPG.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22939&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Scooby-Doo! Night of 100 Frights',
     year: 2002,
     system: 'PS2, GC',
@@ -3743,7 +3743,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19811&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Vanguard Bandits',
     year: 1998,
     system: 'PS1',
@@ -4573,7 +4573,7 @@ export const gotmRunnerUp: GameData[] = [
       "How can we forget this game, the game where the fog was so intense you couldn't see more than about 20 metres infront of you. In a game you spent most of your time trying to fly through rings - yet it still suffered from slowdown, poor lighting and terrible animations.  A story that dictated that Superman is in a VR World to help justify the silly stuff going on. What a riot!",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=103499&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Mary-Kate and Ashley: Magical Mystery Mall',
     year: 2000,
     system: 'PS1',
@@ -4823,7 +4823,7 @@ export const gotmRunnerUp: GameData[] = [
       'The sequel to Pocky & Rocky brings back the cooperative shooter action to the SNES with enhanced gameplay mechanics. Princess Luna has been kidnapped by a gang of evil spirits and its up to Shinto priestess Pocky and her raccoon buddy Rocky to rescue her.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19618&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pac Man World',
     year: 1999,
     system: 'PS1, Switch, PS4',
@@ -4889,7 +4889,7 @@ export const gotmRunnerUp: GameData[] = [
       'Another in a long line of Japanese anime/manga turned Super Famicom video game adaptation, GeGeGe no Kitarō is one of the strangest SNES games you could ever encounter. It’s a side-scrolling shoot ‘em up platformer',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19425&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Vandal Hearts II',
     year: 1999,
     system: 'PS1',
@@ -5029,7 +5029,7 @@ export const gotmRunnerUp: GameData[] = [
       'Classic DS game with 70+ minigames spanning over five themed game boards',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=24579&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Harvey Birdman: Attorney at Law',
     year: 2008,
     system: 'PSP, PS2, Wii',
@@ -5462,7 +5462,7 @@ export const gotmRunnerUp: GameData[] = [
       "An incredibly enjoyable and expansive turn-based RPG that includes wonderfully expressive monster designs by Akira Toriyama (of Dragon Ball fame) in an endearing narrative that doesn't overstay its welcome. With over 300 monsters, an expansive over-world, and a deeply engaging party system, Joker 2 has all of the game-play chops it needs to stand the test of time.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19830&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Rapid Reload/Gunner's Heaven",
     year: 1995,
     system: 'PS1',
@@ -5484,7 +5484,7 @@ export const gotmRunnerUp: GameData[] = [
       'Follow this bad ass but cute huge gun wielding protagonist through what I believe is 5 stages. Boss battles are where the action builds up to. Definitely want to finish this game sooner rather than later.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=20624&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Reel Fishing II',
     year: 2000,
     system: 'PS1',
@@ -5615,7 +5615,7 @@ export const gotmRunnerUp: GameData[] = [
       'You are Joe and you must collect money to buy parts to customize your car to make it stronger in this action rpg!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=150926&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rakugaki Showtime',
     year: 1999,
     system: 'PS1',
@@ -5966,7 +5966,7 @@ export const gotmRunnerUp: GameData[] = [
       'Surf and Skate your way to victory! You can bring a friend along too!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22797&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Full Metal Alchemist and the Broken Angel',
     year: 2003,
     system: 'PS2',
@@ -6280,7 +6280,7 @@ export const gotmRunnerUp: GameData[] = [
       "Henry the Hyperactive Flea just can't stop jumping! In this hardcore, old-school 2D platformer, designed with classic 8-bit platforms in mind, you'll navigate assorted hairy beasts, suck blood and fulfil Henry's life goals of... whatever is that fleas dream about. Probably more jumping and sucking blood.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=21997&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fatal Frame/Project Zero',
     year: 2001,
     system: 'PS2',
