@@ -232,7 +232,7 @@ export const gotmWinners: GameData[] = [
       "A true classic with surprising performance for it's hardware, Enduro is a racing video game that features inclement weather, and a transition from day to night where you can only see others' taillights. Pass a specific number of cars each day to keep going, don't crash,  and make it through day 5 to win Activision's prize!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16131001-wario-land-3-game-boy-color-stage-clear.png',
+    img: 'https://cdn.mobygames.com/screenshots/16135044-wario-land-3-game-boy-color-inside-the-woods.png',
     title: 'Wario Land 3',
     year: 2000,
     system: 'GBC',
@@ -436,17 +436,6 @@ export const gotmWinners: GameData[] = [
     description: 'Join the King of minigames',
   },
   {
-    img: '',
-    title: 'Custom Robo',
-    year: 2004,
-    system: 'GC',
-    developer: 'Noise',
-    genre: 'Action RPG',
-    timeToBeat: '9 Hours',
-    description:
-      'Launch your robot into deadly combat in the Holosseum. The arena is virtual, but the blows are very real.',
-  },
-  {
     img: 'https://cdn.mobygames.com/screenshots/1201237-super-mario-land-2-6-golden-coins-game-boy-map-of-the-land.png',
     title: 'Super Mario Land 2',
     year: 1992,
@@ -469,6 +458,17 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: '',
+    title: 'Custom Robo',
+    year: 1999,
+    system: 'Nintendo 64',
+    developer: 'Noise',
+    genre: 'Action RPG',
+    timeToBeat: '?',
+    description:
+      'Build your tiny robot and do battle with other Custom Robos in the Holosseum! A unique action game with RPG elements that spawned a franchise. Thanks to a fan translation, now English-speakers can enjoy the original Custom Robo!',
+  },
+  {
+    img: 'https://screenscraper.fr/image.php?gameid=20580&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Choro Q 3',
     year: 1998,
     system: 'PS1',
@@ -1039,7 +1039,7 @@ export const gotmWinners: GameData[] = [
       "The year is 1998. Officer Aya Brea discovers that a woman with the ability to make people spontaneously combust is hell-bent on destroying the human race, one flaming pile at a time... except Aya, who seems to be immune and, in fact... has some powers of her own. Horrifying hallways and blood stained corpses stacked one after another with relentless enemies and puzzles, this game borrows the best of Resident Evil while adding in its own RPG strategic combat system. Aya's in the business of killin' monsters.... and business is good...",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16936588-clock-tower-windows-every-mansion-have-dark-scary-corridors.png',
+    img: 'https://cdn.mobygames.com/screenshots/15999636-clock-tower-snes-scissorman.png',
     title: 'Clock Tower',
     year: 1995,
     system: 'SNES',
