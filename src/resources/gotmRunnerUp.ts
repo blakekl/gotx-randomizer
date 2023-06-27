@@ -5637,7 +5637,7 @@ export const gotmRunnerUp: GameData[] = [
       "Trax is a side scrolling shoot'em up game that put you in command of a tiny tank in some classic action levels. Pitting your tankmanship against a villainous tank master who is creating machine of destruction that has taken over the land.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16553427-medabots-ax-rokusho-ver-game-boy-advance-rokusho-intro-before-th.png',
+    img: 'https://screenscraper.fr/image.php?gameid=84142&media=ss&hd=0&region=wor&num=&version=&maxwidth=338&maxheight=190',
     title: 'Medabots (Medabee and Rokusho)',
     year: 2002,
     system: 'GBA',
