@@ -394,7 +394,7 @@ export const gotmWinners: GameData[] = [
       "The game tells the story of the Earth's resurrection by the hands of a boy named Ark, and its progress from the evolution of life to the present day. The game is played from a top-down perspective. Different attacks can be performed based on whether Ark is jumping, running, walking, or standing still.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5424908-populous-ii-trials-of-the-olympian-gods-dos-another-kind-of-deat.png',
+    img: 'https://screenscraper.fr/image.php?gameid=82594&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pokemon TCG2: The Invasion of Team GR!',
     year: 2001,
     system: 'GBC',
