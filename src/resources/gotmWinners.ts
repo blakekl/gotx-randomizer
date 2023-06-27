@@ -512,7 +512,7 @@ export const gotmWinners: GameData[] = [
       'An absolute classic and a key part of 3D platforming history which still holds up today. One of the most iconic mascots in gaming, in this adventure Rayman is taking on robot pirates. Robot. Pirates. Could that be any cooler?',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16645375-ctr-crash-team-racing-playstation-a-tribal-head-explains-the-rul.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12726&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Snatcher',
     year: 1988,
     system: 'Sega CD/PS1',
