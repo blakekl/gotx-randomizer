@@ -73,6 +73,8 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinner.filter((x) => x.img));
     }
+    setGamePool(shuffle(newPool));
+    setCurrentIndex(0);
   }, [
     includeGotmRunnerUp,
     includeGotmWinners,
