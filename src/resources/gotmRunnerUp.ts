@@ -1748,7 +1748,7 @@ export const gotmRunnerUp: GameData[] = [
       "They're TINY, they're toony, they're all a little looney! In this underrated platformer you guide Bugs Bunny's favorite student Buster through over 30 levels to try and defeat Montana Max and rescue Babs Bunny.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22257&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Maximo: Ghosts to Glory',
     year: 2001,
     system: 'PS2',
@@ -1945,7 +1945,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fly around levels and shoot everything that moves in this hectic, colourful, explosion-filled multidirectional 2d shmup from Treasure.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19609&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dragon Valor',
     year: 1999,
     system: 'PS1',
@@ -2182,7 +2182,7 @@ export const gotmRunnerUp: GameData[] = [
       "I hate this game. Its soundtrack is garish, with jarring, discordant notes that make me personally uncomfortable. Its visuals are cluttered, with bug-eyed, freakish blobs crowding the playfield. FlipOut! is a monotonous puzzler that creeped the hell out of me as a kid, and that's why it gets my nomination for spook of the month.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19681&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Armored Core',
     year: 1997,
     system: 'PS1',
@@ -2226,7 +2226,7 @@ export const gotmRunnerUp: GameData[] = [
       'The demon lord Zeon has been set free by an unwitting thief. It is the job of Bowie, a young hero from the Kingdom of Granseal, to lead the Shining Force to victory in this tactical RPG.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22939&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Scooby-Doo! Night of 100 Frights',
     year: 2002,
     system: 'PS2, GC',
@@ -2258,7 +2258,7 @@ export const gotmRunnerUp: GameData[] = [
       "Famed RPG by the Final Fantasy team released at the end of the Super Famicom's lifespan in Japan, featuring a hybrid battle system with dragons. On the 25th anniversary of the game's release, in February of 2021, Near released a new high quality translation that also includes several performances improvements.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=3837&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Harvest Moon: Friends of Mineral Town',
     year: 2003,
     system: 'GBA',
@@ -2831,7 +2831,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5585&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'WCW vs NWO World Tour',
     year: 1997,
     system: 'N64',
@@ -2896,7 +2896,7 @@ export const gotmRunnerUp: GameData[] = [
       "A wonderfully great Metroidvania starring Firebrand, a character with two previous entries (Gargoyle's Quest (GB) and Gargoyle's Quest II (NES)). You must gather all 5 Crests to defeat Phalanx and save the Demon Realm.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5525&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Buck Bumble',
     year: 1998,
     system: 'N64',
@@ -2972,7 +2972,7 @@ export const gotmRunnerUp: GameData[] = [
       "Yoko Shimomura's first major RPG music project, Live A Live tells the story of seven characters who live in seven eras, played in any order you choose.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=13615&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Evolution: The World of Sacred Device',
     year: 1999,
     system: 'DC, NGPC',
@@ -3027,7 +3027,7 @@ export const gotmRunnerUp: GameData[] = [
       'One of the best games on the Saturn, and according to some one of the best games of all time! This turn-based TRPG has you playing Synbios, a young lord who must protect your homeland Aspinia against the forces of Destonia. Develop friendships, upgrade to a bunch of neat classes, and discover the true motives behind the conflict.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=13682&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pen Pen TriIcelon',
     year: 1998,
     system: 'DC',
@@ -3330,7 +3330,7 @@ export const gotmRunnerUp: GameData[] = [
     description: 'Noah makes the rounds on the Ark, feeding all the animals.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22951&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Spongebob Squarepants: Battle for Bikini Bottom',
     year: 2003,
     system: 'GC, PS2, Xbox, Android',
@@ -3743,7 +3743,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19811&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Vanguard Bandits',
     year: 1998,
     system: 'PS1',
@@ -4179,7 +4179,7 @@ export const gotmRunnerUp: GameData[] = [
       'Robots! Gravity flipping! Outer-space tech bases! Gravity flipping! Impressive mechanical designs for NES! Gravity Flipping! Lasers! Gravity flipping! Action-platforming!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5118&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Custom Robo',
     year: 2004,
     system: 'GC',
@@ -4321,7 +4321,7 @@ export const gotmRunnerUp: GameData[] = [
       'Rebelstar is a 24-stage tactical RPG that focuses on the long-range combat of guns and grenades over swords and sorcery. There are some interesting design choices here like fog of war, a morale system, and a constant balance between moving further versus attacking.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5742&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Animal Crossing: Wild World',
     year: 2005,
     system: 'NDS',
@@ -4573,7 +4573,7 @@ export const gotmRunnerUp: GameData[] = [
       "How can we forget this game, the game where the fog was so intense you couldn't see more than about 20 metres infront of you. In a game you spent most of your time trying to fly through rings - yet it still suffered from slowdown, poor lighting and terrible animations.  A story that dictated that Superman is in a VR World to help justify the silly stuff going on. What a riot!",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=103499&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Mary-Kate and Ashley: Magical Mystery Mall',
     year: 2000,
     system: 'PS1',
@@ -4823,7 +4823,7 @@ export const gotmRunnerUp: GameData[] = [
       'The sequel to Pocky & Rocky brings back the cooperative shooter action to the SNES with enhanced gameplay mechanics. Princess Luna has been kidnapped by a gang of evil spirits and its up to Shinto priestess Pocky and her raccoon buddy Rocky to rescue her.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19618&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pac Man World',
     year: 1999,
     system: 'PS1, Switch, PS4',
@@ -4856,7 +4856,7 @@ export const gotmRunnerUp: GameData[] = [
       "I must ask you play this game starring my sister, the gnome Ingrid Bottomlow, she has displeased our family by her un-gnomelike behavior, such as going off to university and getting an education. We still love her. She has been teleported from her village by a faulty scroll, and must find her way back. The snow based areas are some of the toughest, don't let Ingrid get stuck on the iceberg! This is a classic, and not many people recall that I make a guest appearance either, If you find me, show me, and you will unlock a secret gift.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=4720&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'American Idol/Pop Idol',
     year: 2003,
     system: 'GBA',
@@ -4889,7 +4889,7 @@ export const gotmRunnerUp: GameData[] = [
       'Another in a long line of Japanese anime/manga turned Super Famicom video game adaptation, GeGeGe no Kitarō is one of the strangest SNES games you could ever encounter. It’s a side-scrolling shoot ‘em up platformer',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19425&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Vandal Hearts II',
     year: 1999,
     system: 'PS1',
@@ -5029,7 +5029,7 @@ export const gotmRunnerUp: GameData[] = [
       'Classic DS game with 70+ minigames spanning over five themed game boards',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=24579&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Harvey Birdman: Attorney at Law',
     year: 2008,
     system: 'PSP, PS2, Wii',
@@ -5116,7 +5116,7 @@ export const gotmRunnerUp: GameData[] = [
       "Who needs story? You're a mech destructicating stuff in a free-scrolling shooter. Explosions! Action! Drop some napalm on unsuspecting enemies.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5943&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Jump Ultimate Stars',
     year: 2006,
     system: 'Nintendo DS',
@@ -5181,7 +5181,7 @@ export const gotmRunnerUp: GameData[] = [
       'Originally billed as a GBC pokemon knockoff, a unique battle system made this mech battler really interesting!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=7329&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Retro Game Challenge',
     year: 2007,
     system: 'Nintendo DS',
@@ -5279,7 +5279,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as a Prinny on a mission to collect the ingredients for the Ultra Dessert.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=28706&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Holy Invasion of Privacy Badman, What Did I Do to Deserve This?',
     year: 2007,
     system: 'PSP',
@@ -5311,7 +5311,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Link and disembodied Ghost Zelda on their journey aboard a choo choo train',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=13802&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'L.O.L.: Lack of Love',
     year: 2000,
     system: 'Dreamcast',
@@ -5462,7 +5462,7 @@ export const gotmRunnerUp: GameData[] = [
       "An incredibly enjoyable and expansive turn-based RPG that includes wonderfully expressive monster designs by Akira Toriyama (of Dragon Ball fame) in an endearing narrative that doesn't overstay its welcome. With over 300 monsters, an expansive over-world, and a deeply engaging party system, Joker 2 has all of the game-play chops it needs to stand the test of time.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19830&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Rapid Reload/Gunner's Heaven",
     year: 1995,
     system: 'PS1',
@@ -5484,7 +5484,7 @@ export const gotmRunnerUp: GameData[] = [
       'Follow this bad ass but cute huge gun wielding protagonist through what I believe is 5 stages. Boss battles are where the action builds up to. Definitely want to finish this game sooner rather than later.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=20624&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Reel Fishing II',
     year: 2000,
     system: 'PS1',
@@ -5495,7 +5495,7 @@ export const gotmRunnerUp: GameData[] = [
       'Sequel of Reel Fishing, this fun little fishing sim lets you catch fish in a interesting and realistic FMV style, even without the fun little controller.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=105659&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Gnome Alone',
     year: 1991,
     system: 'Amiga/MS-DOS',
@@ -5593,7 +5593,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as Mario or Luigi in this rare official remix of Super Mario Bros 1 and 2 featuring a bunch of Japanese radio celebrities from the 1980s.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=2293&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tactics Ogre: Let Us Cling Together',
     year: 1995,
     system: 'SNES, PSP',
@@ -5615,7 +5615,7 @@ export const gotmRunnerUp: GameData[] = [
       'You are Joe and you must collect money to buy parts to customize your car to make it stronger in this action rpg!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=150926&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rakugaki Showtime',
     year: 1999,
     system: 'PS1',
@@ -5702,7 +5702,7 @@ export const gotmRunnerUp: GameData[] = [
       'Sonic 3 needs no introduction. Sonic 3 & Knuckles complete with full 14 zones, Super Emeralds, Hyper transformations, 9 different endings and more. Enjoy the beautiful ice cap zone one of first games that came to my mind with the theme',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=144886&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Valkyria Chronicles III',
     year: 2011,
     system: 'PSP',
@@ -5746,7 +5746,7 @@ export const gotmRunnerUp: GameData[] = [
       'Danganronpa is a visual novel that’s similar to ace attorney, the game is about a group of students trapped in a school by a evil bear called Monokuma and the only way to get out of the school is killing each other. The game is split in two segments the school part where you can interact with people and objects, and then there’s the class trials, it’s when you are trying to find the culprit.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=28119&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480&stamp=wor',
     title: 'Gladiator Begins',
     year: 2010,
     system: 'PSP',
@@ -5790,7 +5790,7 @@ export const gotmRunnerUp: GameData[] = [
       'From the developer of Dark Souls and Armored Core comes the precursor to the Souls series. Die, explore, fight, and die again as you try to stop a dark power.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=13720&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Gundam Side Story 0079: Rise from the Ashes',
     year: 1999,
     system: 'DC',
@@ -5801,7 +5801,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play a role in the elite White Dingo Squadron as they battle against the Principality of Zeon during the universal century timeline. Players pilot mobile suits through a first-person cockpit view while also employing team-tactics with two AI-controlled teammates.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=369144&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pokemon Picross',
     year: 1999,
     system: 'GBC',
@@ -5823,7 +5823,7 @@ export const gotmRunnerUp: GameData[] = [
       'Is it a good game... kinda, sure? It’s like the game devs were thinking what kinda insanely difficult boardline assholish things can we throw in ever corner of every level, you’re never not getting absolutely pummeled by enemies! Everything is out to get you, you can killed by a damn tumbleweed. What makes it worse every time Spongebob gets hit he makes the most loud guttural sound imaginable.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=11014&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ultimate NES Remix',
     year: 2014,
     system: '3DS',
@@ -5867,7 +5867,7 @@ export const gotmRunnerUp: GameData[] = [
       'Dragon Quest combat, FFV class system, and Earthbound humor. Looks like a fun and unique rpg experience for the snes.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=28269&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Lunar: Silver Star Harmony',
     year: 2010,
     system: 'PSP',
@@ -5878,7 +5878,7 @@ export const gotmRunnerUp: GameData[] = [
       'First game beat on my retroid was this very fun RPG (thank god for auto battle), the story is superb and the romance between the 3 pairs (no spoilers) is actually very well done. Oh, and its funny as heck in many places, made this old man laugh out loud many times.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=140704&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hungry Giraffe',
     year: 2012,
     system: 'PSP',
@@ -5900,7 +5900,7 @@ export const gotmRunnerUp: GameData[] = [
       'Hack and slash your way through this genre defying rogue-like. Employ a variety of weapons and abilities over every one of your runs until you gain mastery over the mechanics and find one that fits your play style.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19622&media=ss&hd=0&region=eu&num=&version=&maxwidth=640&maxheight=480',
     title: 'Darkstalkers 3 (Vampire Savior)',
     year: 1997,
     system: 'PlayStation',
@@ -5911,7 +5911,7 @@ export const gotmRunnerUp: GameData[] = [
       "The third installment in the franchise, it's widely regarded as the best one, with bright, colorful graphics, awesome soundtrack, great gameplay, and a cast of 18 playable characters, this is a masterpiece of a fighting game.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=171159&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ski Jump International 3',
     year: 2000,
     system: 'MS-DOS',
@@ -5922,7 +5922,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game simulates the ski jump event, an olympic event which I was personally never much interested in, but this athletic competition has been transformed into a realistic game of reflexes and timing.',
   },
   {
-    img: '',
+    img: 'https://img.itch.zone/aW1hZ2UvODE1NzAxLzcyNDU1NDEucG5n/original/oXEEqO.png',
     title: 'Ghoul Grind',
     year: 2021,
     system: 'NES, DC',
@@ -5933,7 +5933,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as justice seeking vigilante Nox "Nightser" Francisca and his dagger adept girlfriend Veronica Mimieux. Grind your way through the eerie town of St. Crypton and stop your best friend Vlad Drachovi from raising the dead before midnight strikes on All Hallows Eve!',
   },
   {
-    img: '',
+    img: 'https://i.ytimg.com/vi/QtTaH4KbCrU/maxresdefault.jpg',
     title: 'Dragon Quest and Final Fantasy in Itadaki Street',
     year: 2004,
     system: 'PS2, PSP',
@@ -5944,7 +5944,7 @@ export const gotmRunnerUp: GameData[] = [
       'A spinoff of a minigame from early in the Dragon Quest franchise, Itadaki Street answers the question noone asked of whether mixing Mario Party and Monopoly would result in a good game with a resounding YES.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=13998&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Haunted House',
     year: 1982,
     system: 'Atari 2600',
@@ -5955,7 +5955,7 @@ export const gotmRunnerUp: GameData[] = [
       'The player controls an avatar shaped like a pair of eyes who explores a mansion seeking out parts of an urn to return to the entrance. A game of many firsts: earliest horror game, first player controlled scrolling, and, controversially, the first survival horror game.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=18902&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Town & Country Surf Designs: Wood and Water Rage',
     year: 1987,
     system: 'NES',
@@ -5966,7 +5966,7 @@ export const gotmRunnerUp: GameData[] = [
       'Surf and Skate your way to victory! You can bring a friend along too!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=22797&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Full Metal Alchemist and the Broken Angel',
     year: 2003,
     system: 'PS2',
@@ -5977,8 +5977,8 @@ export const gotmRunnerUp: GameData[] = [
       "Embark on a journey with Ed and Al in this beat-em-up. They take a break from their main story of searching for the Philosopher's Stone and track  down a new object called the \"Philosopher's Catalyst\". Will this new object be what they've been searching for all this time?!",
   },
   {
-    img: '',
-    title: 'Tale of the Sun',
+    img: 'https://screenscraper.fr/image.php?gameid=102995&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: 'Tail of the Sun',
     year: 1997,
     system: 'PS1',
     developer: 'Artdink',
@@ -5988,7 +5988,7 @@ export const gotmRunnerUp: GameData[] = [
       "The player's ultimate objective is to build a tower of mammoth tusks that reaches the sun.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=145023&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Legend of Heroes: Ao no Kiseki',
     year: 2011,
     system: 'PSP',
@@ -6009,7 +6009,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=346844&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Timespinner',
     year: 2018,
     system: 'PC',
@@ -6020,7 +6020,7 @@ export const gotmRunnerUp: GameData[] = [
       'Travel to the past in order to save your tribe, throw orbs and fire lasers while exploring the castle together with your familiar.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=38813&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Golf Daisuki!: O.B. Club',
     year: 1997,
     system: 'SFC',
@@ -6031,7 +6031,7 @@ export const gotmRunnerUp: GameData[] = [
       'A charming mini-golf game for the Super Nintendo. It was originally released on the Stellaview satellite system. It was only available for two weeks then never released again. That is a shame considering how fun it is.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19378&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rugrats: The Search for Reptar',
     year: 1998,
     system: 'PS1',
@@ -6042,7 +6042,7 @@ export const gotmRunnerUp: GameData[] = [
       "Search for Reptar follows the cartoon's main character, Tommy Pickles, who has lost his Reptar puzzle. It features stages that are typically based on episodes from the television show. It is a 3D platform game which requires players to control several of the main characters in order to accomplish the goals.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=69990&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pokemon Red/Blue/Green',
     year: 1996,
     system: 'GB',
@@ -6063,7 +6063,7 @@ export const gotmRunnerUp: GameData[] = [
       'There is a reason why Doug is namedropped twice in the game title. He’s bigger than life, and you can join him in his first, and last, video game, in which each player gets a different experience : beating the game consists of completing 3 quests randomly selected out of 20+ different ones, and ultimately meeting patty mayo in one of many possible endings.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=85059&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Zoids Legacy/Zoids Saga II',
     year: 2003,
     system: 'GBA',
@@ -6073,7 +6073,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=66217&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Chalvo 55: Super Puzzle Action',
     year: 1997,
     system: 'GB',
@@ -6095,7 +6095,7 @@ export const gotmRunnerUp: GameData[] = [
       'You are Noobow, a chocolate mascot in Japan. In this puzzle platformer you are picking up items to help your animal friends.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=83969&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pocky and Rocky with Becky',
     year: 2001,
     system: 'GBA',
@@ -6106,7 +6106,7 @@ export const gotmRunnerUp: GameData[] = [
       'Long ago, a demon took over and a shrine maiden sealed the demon. Later, the demon breaks out and the gang - Pocky, Rocky, and Becky - has to defeat the demon before it is too late. A rare Gameboy game (perfect for emulation), consider this shoot ‘em up for this month’s theme.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=20238&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Barbie: Race and Ride',
     year: 1999,
     system: 'PS1',
@@ -6116,7 +6116,7 @@ export const gotmRunnerUp: GameData[] = [
     description: 'She racing, she riding, all the way to the bank!',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=20146&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: "Chocobo's Mystery Dungeon",
     year: 1997,
     system: 'PS1',
@@ -6138,7 +6138,7 @@ export const gotmRunnerUp: GameData[] = [
       'A mysterious man known as Joker is bringing rumors to life, so Tatsuya and co. set out to find out who, why, and how.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=136591&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Star Fox 2',
     year: 2017,
     system: 'SNES',
@@ -6149,7 +6149,7 @@ export const gotmRunnerUp: GameData[] = [
       'The sequel to star fox/Lylat wars which was ultimately completed but not released - we got star fox 64 instead. But years later it was released as part of the SNES classic collection and can now be played on switch online.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=132238&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Mizzurna Falls',
     year: 1998,
     system: 'PS1',
@@ -6171,7 +6171,7 @@ export const gotmRunnerUp: GameData[] = [
       "Have you ever watched Shaolin Soccer? If you haven't, what are you waiting for? Go watch it! This game is... if Shaolin Soccer comes to pixels... and you can play as Stephen Chow and friends as well (HK Team). Win the World Cup just as Messi did!",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=28433&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ys vs. Sora no Kiseki: Alternative Saga',
     year: 2010,
     system: 'PSP',
@@ -6182,7 +6182,7 @@ export const gotmRunnerUp: GameData[] = [
       'Cross over fighting mashup game involving Falcom’s two biggest IP’s: Ys and The Legend of Heroes: Trails in the Sky. Credited as being a title that drove PSP hardware sales in Japan.',
   },
   {
-    img: '',
+    img: 'https://static.pokemoncoders.com/wp-content/uploads/2021/08/SuperGold97SS3.png',
     title: 'Pokémon Super Gold 97’',
     year: 2020,
     system: 'GB',
@@ -6193,7 +6193,7 @@ export const gotmRunnerUp: GameData[] = [
       'Were you intrigued by the spaceworld 97 demos that revealed tons and tons of beta Pokémon, towns, items, etc? Well if so this game is for you! Step inside the historic region of Nihon! With the help of Professor Oak, Blue/Green, Your Rival, and your Pokémon. You can save the region of nihon from the evil doings of the infamous team rocket. Awaken the legendary beasts, and beat the elite four! An alternate version to the gold and silver we all love! And an awesome sequel to red & green! Just apply a clean copy of Pokémon gold (us release)  to the patch to play!',
   },
   {
-    img: '',
+    img: 'https://img.itch.zone/aW1hZ2UvNDkwNzQzLzI1MzY2MjUuZ2lm/347x500/TAK3HO.gif',
     title: "Grimm's Hollow",
     year: 2019,
     system: 'PC, RPGMaker',
@@ -6226,7 +6226,7 @@ export const gotmRunnerUp: GameData[] = [
       'Royal Stone is a Japan-exclusive tactical RPG exclusive to the game gear. It has some of the best graphics on the system as well as a typical plot and some interesting battle mechanics. A chance for a game gear game to win GOTM! Also doesn’t have an English wiki page so I’ve linked more info below and attached the box art as a picture.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=87356&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Another Code: Two Memories/Trace Memory',
     year: 2005,
     system: 'DS',
@@ -6248,7 +6248,7 @@ export const gotmRunnerUp: GameData[] = [
       "Throw scenery at your enemies, hijack a pogo stick, and fight an evil robotic Santa in this goofy dieselpunk shoot'em up",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=37439&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Knights of Valour: The Seven Spirits',
     year: 2003,
     system: 'Atomiswave',
@@ -6258,7 +6258,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=5802&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fire Emblem: Shadow Dragon and the Blade of Light',
     year: 1990,
     system: 'Famicom, DS',
@@ -6269,7 +6269,7 @@ export const gotmRunnerUp: GameData[] = [
       'It is the first installment in the Fire Emblem series. the story follows the tale of Marth, prince of the kingdom of Altea, who is sent on a quest to reclaim his throne after being forced into exile by the evil sorcerer Gharnef and his dark master Medeus, the titular Shadow Dragon.',
   },
   {
-    img: '',
+    img: 'https://img.itch.zone/aW1hZ2UvNjg4MDYwLzM3ODk1ODcucG5n/347x500/9T4jr3.png',
     title: 'Flea',
     year: 2020,
     system: 'NES, DC, PC',
@@ -6280,7 +6280,7 @@ export const gotmRunnerUp: GameData[] = [
       "Henry the Hyperactive Flea just can't stop jumping! In this hardcore, old-school 2D platformer, designed with classic 8-bit platforms in mind, you'll navigate assorted hairy beasts, suck blood and fulfil Henry's life goals of... whatever is that fleas dream about. Probably more jumping and sucking blood.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=21997&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fatal Frame/Project Zero',
     year: 2001,
     system: 'PS2',
@@ -6302,7 +6302,7 @@ export const gotmRunnerUp: GameData[] = [
       'A game about a haunted retro video game that will KILL YOU. Packed full of spooks and scares, The Nameless game alternates between two game modes: Exploring the real world as you seek a way to escape your curse (holding the DS like a book), and progressing through the haunted 8-bit game itself, The Nameless Game (holding the DS normally).',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=102130&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bulk Slash',
     year: 1997,
     system: 'Saturn',
@@ -6324,7 +6324,7 @@ export const gotmRunnerUp: GameData[] = [
       'Battle your way through an ancient Egyptian city in this FPS that is sometimes thought of as a precursor to Metroid Prime since it has some Metroidvania elements',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19273&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Final Fantasy VI',
     year: 1994,
     system: 'SNES, GBA, PS1',
@@ -6335,7 +6335,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fourteen playable characters in this steampunk inspired adventure. Don’t want to give away too much for spoilers, but it’s Final Fantasy at its best.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=2434&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ivan "Ironman" Stewart\'s Super Off Road',
     year: 1989,
     system: 'Arcade, NES, SNES',
@@ -6346,7 +6346,7 @@ export const gotmRunnerUp: GameData[] = [
       "Can you beat the off-road legend himself? This arcade racer features a unique top down perspective, and offers a variety of challenging single-screen courses. Can you stay in the race long enough to survive the dreaded mirror tracks? Don't forget to take a break between stages to upgrade your truck!",
   },
   {
-    img: '',
+    img: 'https://pm1.narvii.com/6375/9f84232771c8d43051e362d2766b41cb688c5f1a_hq.jpg',
     title: 'Ib',
     year: 2012,
     system: 'PC',
@@ -6368,7 +6368,7 @@ export const gotmRunnerUp: GameData[] = [
       'Teenage Mutant Ninja Turtles: Shredder’s Revenge, a sidescrolling beat ‘em up that aims to recapture the spirit of the TMNT arcade games from decades past',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=3156&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Mega Man II (Game Boy)',
     year: 1992,
     system: 'GB',
@@ -6379,7 +6379,7 @@ export const gotmRunnerUp: GameData[] = [
       'The game follows Mega Man as he pursues his arch-enemy Dr. Wily, whose most recent ploy for world domination involves the theft of an experimental time machine. Mega Man confronts both Wily and a number of enemies from his past, including a new and mysterious robot named Quint.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19943&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Super Gem Fighter Mini Mix/Pocket Fighter',
     year: 1997,
     system: 'PS1, Arcade',
@@ -6390,7 +6390,7 @@ export const gotmRunnerUp: GameData[] = [
       'Don\'t let the "kiddie" look fool you, Pocket Fighter is a through-and-through Capcom fighter that no 2D fighting game fan should miss.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19431&media=ss&hd=0&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "A Bug's Life",
     year: 1998,
     system: 'PS1',
@@ -6401,7 +6401,7 @@ export const gotmRunnerUp: GameData[] = [
       'A Bug\'s Life is a platform game in which the player controls Flik the Ant throughout settings and a storyline based on the namesake film. The game is divided into five distinct "lands" consisting of three levels each.  To complete a level, the player must either find an exit, complete a goal or defeat a boss character.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=59765&media=ss&region=wor&num=&version=&maxwidth=150&maxheight=80&stamp=wor',
     title: 'Densha de Go! 64',
     year: 1998,
     system: 'N64',
@@ -6412,7 +6412,7 @@ export const gotmRunnerUp: GameData[] = [
       "Designed with pure train enthusiasts in mind, this game aims to provide as authentic a train-driving experience as possible. You'll need to time your acceleration and braking just right to achieve a maximum score. With as popular as this series is in Japan, it’s fair to say that Densha de Go! 64 delivers a wagon-load of off-the-rails fun.",
   },
   {
-    img: '',
+    img: 'https://upload.wikimedia.org/wikipedia/en/d/d6/Portopia_PC-6001.gif',
     title: 'The Portopia Serial Murder Case',
     year: 1983,
     system: 'Famicom',
@@ -6422,7 +6422,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=65204&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Banishing Racer',
     year: 1991,
     system: 'GB',
@@ -6433,7 +6433,7 @@ export const gotmRunnerUp: GameData[] = [
       'This Japan exclusive has you take the role of a car rescued from a scrapyard that must travel from Los Angeles to New York City. Full of platforming challenges, this is one of the quirkier hidden gems of the Game Boy library.',
   },
   {
-    img: '',
+    img: 'https://static.pokemoncoders.com/wp-content/uploads/2017/05/prism-screenshot3-300x264.png',
     title: 'Pokemon Prism',
     year: 2016,
     system: 'GBC',
@@ -6444,7 +6444,7 @@ export const gotmRunnerUp: GameData[] = [
       'Considered one of the best GBC hacks, Pokémon Prism is a highly customized romhack of Pokémon Crystal that takes place in a previously unexplored region. It contains new mechanics unseen in its inspired franchise, while refining existing gameplay.',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=151239&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'BS The Legend of Zelda',
     year: 1995,
     system: 'SFC Satellaview',
@@ -6455,7 +6455,7 @@ export const gotmRunnerUp: GameData[] = [
       'A 16-bit remake of the first Legend of Zelda, featuring orchestral music, voices, and timed events, thanks to the capabilities of the satellite broadcast. For a long time difficult to emulate, it is today possible to play it in perfect conditions, AND with voices in English!',
   },
   {
-    img: '',
+    img: 'https://static.pokemoncoders.com/wp-content/uploads/2016/10/screenshots-657x1024.png',
     title: 'Pokémon Light Platinum',
     year: 2009,
     system: 'GBA',
@@ -6466,7 +6466,7 @@ export const gotmRunnerUp: GameData[] = [
       'Pokémon Light Platinum features a new story line set in the Pokémon world with an entirely new evil organisation named "Team Steam". The player could travel through brand new, custom regions called Zhery and Lauren filled with new gym leaders, Elite Four, and rivals. There is plenty more to discover so what are you waiting for!?',
   },
   {
-    img: '',
+    img: 'https://static.pokemoncoders.com/wp-content/uploads/2022/01/CrystalClearSS4-300x270.png',
     title: 'Pokemon Crystal Clear',
     year: 2019,
     system: 'GBC',
@@ -6564,7 +6564,7 @@ export const gotmRunnerUp: GameData[] = [
       'The only complete Yoshi’s Island hack in the world. This contains 54 brand new levels, so have fun.',
   },
   {
-    img: '',
+    img: 'https://www.zophar.net/pics/365-uhapghgpet.png',
     title: 'Mother 2.5: The Giftman Chronicles (Earthbound Hack)',
     year: 2003,
     system: 'SNES',
