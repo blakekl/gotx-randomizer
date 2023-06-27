@@ -12,7 +12,7 @@ export const rpgRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=19403&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Digimon World 2',
     year: 2000,
     system: 'Sony Playstation',
@@ -23,7 +23,7 @@ export const rpgRunnerUp: GameData[] = [
       "When wild Digimon begin attacking towns, it's up to the guard teams to maintain peace. As Akira, join one of three guard teams, raise Digimon, and battle them 3-on-3, leveling and Digivolving.",
   },
   {
-    img: '',
+    img: 'https://screenscraper.fr/image.php?gameid=2789&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Super Robot Wars 3',
     year: 1993,
     system: 'SNES, PS1',
