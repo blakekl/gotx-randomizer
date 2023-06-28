@@ -5520,7 +5520,7 @@ export const gotmRunnerUp: GameData[] = [
       'The classic action farming sim starring my brother, Gnomorr. Catch those pesky carrots, you fools!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16277774-yume-kojo-dokidoki-panic-nes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=135038&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Yume Koujou: Doki Doki Panic',
     year: 1987,
     system: 'FC',
