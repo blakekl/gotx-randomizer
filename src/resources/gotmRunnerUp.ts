@@ -2696,7 +2696,7 @@ export const gotmRunnerUp: GameData[] = [
       'In the game, the player controls one of five snowboarders from a third-person perspective, using a combination of buttons to jump and perform tricks over eight levels.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/8710250-ice-climber-sharp-x1-watch-out-for-the-falling-icicles.png',
+    img: 'https://screenscraper.fr/image.php?gameid=20066&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Thousand Arms',
     year: 1998,
     system: 'PS1',
