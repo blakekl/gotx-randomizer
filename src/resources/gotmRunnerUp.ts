@@ -5260,7 +5260,7 @@ export const gotmRunnerUp: GameData[] = [
       'SkiFree is a single-player skiing computer game released  for Windows and DOS in October 1991, Game Boy Color in 2000. The player controls a skier on a mountain slope, avoiding obstacles while racing against time or performing stunts for points, depending on the game mode.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5298858-tetris-game-boy-starting-with-height-level-5.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2976&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tetris',
     year: 1989,
     system: 'GBA',
