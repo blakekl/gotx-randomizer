@@ -1,3 +1,4 @@
+import { toast } from 'bulma-toast';
 import classNames = require('classnames');
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -12,6 +13,7 @@ import './style.css';
 export default function App() {
   const imgEl = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const [filterError, setFilterError] = React.useState(false);
   const [showSettings, setShowSettings] = React.useState(true);
   const [loaded, setLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
@@ -90,6 +92,37 @@ export default function App() {
     includeRpgWinners,
   ]);
 
+  const handleFilterChange = (item: number, value: boolean) => {
+    const updaters = [
+      setIncludeGotmRunnerUp,
+      setIncludeGotmWinners,
+      setIncludeRetrobits,
+      setIncludeRpgRunnerUp,
+      setIncludeRpgWinners,
+    ];
+    const filters = [
+      includeGotmRunnerUp,
+      includeGotmWinners,
+      includeRetrobits,
+      includeRpgRunnerUp,
+      includeRpgWinners,
+    ];
+    filters[item] = value;
+    if (filters.some((x) => x)) {
+      setFilterError(false);
+      updaters[item](value);
+    } else {
+      setFilterError(true);
+      toast({
+        message: 'You must include a list. Please include something.',
+        type: 'is-danger',
+        dismissible: true,
+        pauseOnHover: true,
+        animate: { in: 'fadeIn', out: 'fadeOut' },
+      });
+    }
+  };
+
   return (
     <div>
       <div
@@ -128,7 +161,7 @@ export default function App() {
                 type="checkbox"
                 className="checkbox"
                 checked={includeGotmWinners}
-                onChange={() => setIncludeGotmWinners(!includeGotmWinners)}
+                onChange={() => handleFilterChange(1, !includeGotmWinners)}
               ></input>
               GotM Winners
             </label>{' '}
@@ -138,7 +171,7 @@ export default function App() {
                 className="checkbox"
                 name="GotM Runner Ups"
                 checked={includeGotmRunnerUp}
-                onChange={() => setIncludeGotmRunnerUp(!includeGotmRunnerUp)}
+                onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
               ></input>
               GotM Runner Ups
             </label>
@@ -147,7 +180,7 @@ export default function App() {
                 type="checkbox"
                 className="checkbox"
                 checked={includeRetrobits}
-                onChange={() => setIncludeRetrobits(!includeRetrobits)}
+                onChange={() => handleFilterChange(2, !includeRetrobits)}
               ></input>
               Retrobits
             </label>
@@ -156,7 +189,7 @@ export default function App() {
                 type="checkbox"
                 className="checkbox"
                 checked={includeRpgWinners}
-                onChange={() => setIncludeRpgWinners(!includeRpgWinners)}
+                onChange={() => handleFilterChange(4, !includeRpgWinners)}
               ></input>
               RPGotQ Winners
             </label>
@@ -165,7 +198,7 @@ export default function App() {
                 type="checkbox"
                 className="checkbox"
                 checked={includeRpgRunnerUp}
-                onChange={() => setIncludeRpgRunnerUp(!includeRpgRunnerUp)}
+                onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
               ></input>
               RPGotQ Runner Ups
             </label>

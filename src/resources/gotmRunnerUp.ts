@@ -3703,7 +3703,7 @@ export const gotmRunnerUp: GameData[] = [
       'Bushi Seiryuuden: Futari no Yuusha (“Warriors of the Blue Dragon Legend – The Two Heroes”) is a rather unique action/tactical RPG hybrid. It was developed by Game Freak and published by T&E Soft in 1997, as one of the last titles released on the system. Game Freak should, of course, be known to every gamer out there, since they developed Pokémon for Nintendo. Bushi Seiryuuden shares a similar artwork style, but this is the only similarity to the well known series.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15655575-warlocked-game-boy-color-dragons-are-the-most-powerful-units.png',
+    img: 'https://screenscraper.fr/image.php?gameid=37022&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Warlocked',
     year: 2000,
     system: 'GBC',
