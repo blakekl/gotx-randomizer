@@ -1425,7 +1425,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play against gym leads, collect new cards and build the definitive Pokémon deck',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15748029-pokemon-puzzle-challenge-game-boy-color-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=82600&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pokemon Puzzle Challenge',
     year: 2000,
     system: 'GBC',
@@ -2814,7 +2814,7 @@ export const gotmRunnerUp: GameData[] = [
       'To quote a review by Ed Driscoll, which best sums up this game, "...if you simply enjoy shooting evil robots in electrified mazes, then look for this at your local store.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16064398-space-station-silicon-valley-playstation-dans-trying-to-tell-evo.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5521&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Space Station Silicon Valley',
     year: 1998,
     system: 'N64',
@@ -4018,7 +4018,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Donald Duck doing his best Indiana Jones impression. Explore ANCIENT ruins, ghost ships and the urban jungle armed with your trusty plunger gun and a bad temper.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/996654-tecmo-super-bowl-snes-weather-select-this-feature-is-absent-in-t.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1984&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tecmo Super Bowl',
     year: 1991,
     system: 'NES',
@@ -4182,7 +4182,7 @@ export const gotmRunnerUp: GameData[] = [
       "Bust out your Super Scope and climb into your Standing Tank in this classic light gun shooter! Anubis' reign of terror has to be stopped, but you'll have to make it through the cutthroat \"Battle Game\" in order to challenge him. Do you have what it takes to be the gunner of the world's only co-piloted ST? Find out in this surprisingly touchscreen-friendly hidden gem!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4617115-metal-storm-nes-level-4-bosses.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1465&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Metal Storm',
     year: 1991,
     system: 'NES',
@@ -5672,7 +5672,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16783860-team-hot-wheels-night-racer-street-drift-windows-entering-nickna.png',
+    img: 'https://screenscraper.fr/image.php?gameid=103513&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Sheep, Dog 'n' Wolf/Sheep Raider",
     year: 2001,
     system: 'PS1',
