@@ -100,7 +100,10 @@ export default function App() {
       >
         <div className="dropdown-trigger">
           <button
-            className="button"
+            className={classNames({
+              button: true,
+              'is-large': !isMobile,
+            })}
             aria-haspopup="true"
             aria-controls="dropdown-menu"
             onClick={() => setShowSettings(!showSettings)}
@@ -177,6 +180,7 @@ export default function App() {
             'is-primary': true,
             rollBtn: true,
             'is-fullwidth': isMobile,
+            'is-large': !isMobile,
           })}
           onClick={() => handleButtonClick()}
         >
