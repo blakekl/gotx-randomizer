@@ -375,7 +375,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11668863-mad-dog-ii-the-lost-gold-3do-attempted-ambush-from-the-stairs.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=1399&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Low G Man: The Low Gravity Man',
     year: 1990,
     system: 'NES',
