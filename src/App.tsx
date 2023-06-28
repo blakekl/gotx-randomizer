@@ -1,6 +1,6 @@
 import classNames = require('classnames');
 import * as React from 'react';
-import useMediaQuery from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
 import { GameData } from './models/gameData.model';
 import { gotmRunnerUp } from './resources/gotmRunnerUp';
 import { gotmWinners } from './resources/gotmWinners';
