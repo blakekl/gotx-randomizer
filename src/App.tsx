@@ -92,111 +92,109 @@ export default function App() {
 
   return (
     <div>
-      <section className="section">
-        <div
-          className={classNames({
-            dropdown: true,
-            'is-active': showSettings,
-          })}
-        >
-          <div className="dropdown-trigger">
-            <button
-              className="button"
-              aria-haspopup="true"
-              aria-controls="dropdown-menu"
-              onClick={() => setShowSettings(!showSettings)}
-            >
-              <span>Settings</span>
-              <span className="icon is-small">
-                <span
-                  className={classNames({
-                    fas: true,
-                    'fa-angle-down': !showSettings,
-                    'fa-angle-up': showSettings,
-                  })}
-                  aria-hidden="true"
-                ></span>
-              </span>
-            </button>
-          </div>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
-            <div className="dropdown-content">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeGotmWinners}
-                  onChange={() => setIncludeGotmWinners(!includeGotmWinners)}
-                ></input>
-                GotM Winners
-              </label>{' '}
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  name="GotM Runner Ups"
-                  checked={includeGotmRunnerUp}
-                  onChange={() => setIncludeGotmRunnerUp(!includeGotmRunnerUp)}
-                ></input>
-                GotM Runner Ups
-              </label>
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeRetrobits}
-                  onChange={() => setIncludeRetrobits(!includeRetrobits)}
-                ></input>
-                Retrobits
-              </label>
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeRpgWinners}
-                  onChange={() => setIncludeRpgWinners(!includeRpgWinners)}
-                ></input>
-                RPGotQ Winners
-              </label>
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeRpgRunnerUp}
-                  onChange={() => setIncludeRpgRunnerUp(!includeRpgRunnerUp)}
-                ></input>
-                RPGotQ Runner Ups
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div className="has-text-centered">
+      <div
+        className={classNames({
+          dropdown: true,
+          'is-active': showSettings,
+        })}
+      >
+        <div className="dropdown-trigger">
           <button
-            className={classNames({
-              button: true,
-              'is-primary': true,
-              rollBtn: true,
-              'is-fullwidth': isMobile,
-            })}
-            onClick={() => handleButtonClick()}
+            className="button"
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+            onClick={() => setShowSettings(!showSettings)}
           >
-            Reroll {!loaded && <span className="loader"></span>}
+            <span>Settings</span>
+            <span className="icon is-small">
+              <span
+                className={classNames({
+                  fas: true,
+                  'fa-angle-down': !showSettings,
+                  'fa-angle-up': showSettings,
+                })}
+                aria-hidden="true"
+              ></span>
+            </span>
           </button>
         </div>
-        <div
-          className="loader"
-          style={{ display: loaded ? 'none' : 'block' }}
-        ></div>
-        <img
-          ref={imgEl}
-          src={game.img}
-          style={{
-            display: !!game.img && loaded ? 'block' : 'none',
-            margin: 'auto',
-          }}
-        />
-      </section>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeGotmWinners}
+                onChange={() => setIncludeGotmWinners(!includeGotmWinners)}
+              ></input>
+              GotM Winners
+            </label>{' '}
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                name="GotM Runner Ups"
+                checked={includeGotmRunnerUp}
+                onChange={() => setIncludeGotmRunnerUp(!includeGotmRunnerUp)}
+              ></input>
+              GotM Runner Ups
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRetrobits}
+                onChange={() => setIncludeRetrobits(!includeRetrobits)}
+              ></input>
+              Retrobits
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRpgWinners}
+                onChange={() => setIncludeRpgWinners(!includeRpgWinners)}
+              ></input>
+              RPGotQ Winners
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRpgRunnerUp}
+                onChange={() => setIncludeRpgRunnerUp(!includeRpgRunnerUp)}
+              ></input>
+              RPGotQ Runner Ups
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className="has-text-centered">
+        <button
+          className={classNames({
+            button: true,
+            'is-primary': true,
+            rollBtn: true,
+            'is-fullwidth': isMobile,
+          })}
+          onClick={() => handleButtonClick()}
+        >
+          Reroll {!loaded && <span className="loader"></span>}
+        </button>
+      </div>
+      <div
+        className="loader"
+        style={{ display: loaded ? 'none' : 'block' }}
+      ></div>
+      <img
+        ref={imgEl}
+        src={game.img}
+        style={{
+          display: !!game.img && loaded ? 'block' : 'none',
+          margin: 'auto',
+        }}
+      />
       <section className="section">
         <h1 className="title has-text-centered">🎮 {game.title}</h1>
         <h2 className="subtitle has-text-centered">
