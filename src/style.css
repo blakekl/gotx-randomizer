@@ -19,3 +19,7 @@ label input {
 .hidden {
   display: none;
 }
+
+.level-item .subtitle .is-hidden-tablet {
+  margin-inline: 10px;
+}
