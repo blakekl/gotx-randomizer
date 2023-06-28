@@ -2554,7 +2554,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15677349-un-squadron-amiga-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=29&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Wonder Boy in Monster World',
     year: 1991,
     system: 'Genesis/MD',
