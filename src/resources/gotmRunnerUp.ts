@@ -397,7 +397,7 @@ export const gotmRunnerUp: GameData[] = [
       'The seventh game (probably?) in the iconic Final Fantasy series is a classic for the ages. Guide Cloud Strife and his group of "definitely not terrorists" on their mission to save the world. And maybe do some Chocobo Racing on the way.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/798955-soldiers-of-fortune-dos-humans-and-animals-were-turned.png',
+    img: 'https://screenscraper.fr/image.php?gameid=205&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Chaos Engine',
     year: 1993,
     system: 'Amiga, Genesis',
@@ -5760,7 +5760,7 @@ export const gotmRunnerUp: GameData[] = [
       'Danganronpa is a visual novel that’s similar to ace attorney, the game is about a group of students trapped in a school by a evil bear called Monokuma and the only way to get out of the school is killing each other. The game is split in two segments the school part where you can interact with people and objects, and then there’s the class trials, it’s when you are trying to find the culprit.',
   },
   {
-    img: 'https://screenscraper.fr/image.php?gameid=28119&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480&stamp=wor',
+    img: 'https://screenscraper.fr/image.php?gameid=28119&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Gladiator Begins',
     year: 2010,
     system: 'PSP',
