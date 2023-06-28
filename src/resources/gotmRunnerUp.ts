@@ -2707,7 +2707,7 @@ export const gotmRunnerUp: GameData[] = [
       "What do you get when you try combining JRPGs and Dating Sims? Why it's Thousand Arms! Atlus' farcical steampunk RPG flew under the radar back in the day, but you weren't going to let Romance Month go by without a having a few solid dates, right? You play as Meis, a \"Spirit Blacksmith\" who requires someone he has a strong emotional bond with to pray over the magical artifacts that he forges. It's a lighthearted game with a good amount of fourth-wall breaking humor, and it makes a good effort to integrate its usual dating sim elements with the rest of the game's narrative and mechanics.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/388648-teenage-mutant-ninja-turtles-the-hyperstone-heist-genesis-and-gu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1356&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ice Climber',
     year: 1989,
     system: 'NES',
