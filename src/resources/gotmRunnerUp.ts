@@ -538,7 +538,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9365660-sid-meiers-civilization-ii-scenarios-conflicts-in-civilization-w.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=21944&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Soul Calibur III',
     year: 2005,
     system: 'Arcade, PS2',
