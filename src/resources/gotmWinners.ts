@@ -362,7 +362,7 @@ export const gotmWinners: GameData[] = [
       "An extremely chill game where you collect the works of children's lit poet Kenji Miyazawa in a city populated by talking animals.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16134456-tomato-adventure-game-boy-advance-once-upon-a-time.png',
+    img: 'https://screenscraper.fr/image.php?gameid=84858&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tomato Adventure',
     year: 2002,
     system: 'GBA',
