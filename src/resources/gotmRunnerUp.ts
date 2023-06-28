@@ -321,7 +321,7 @@ export const gotmRunnerUp: GameData[] = [
       "“Cool Spot was ranked 88th on Complex's 'Best Super Nintendo Games of All Time' list, which praised the game for being a 'pretty enjoyable platformer' despite blatant product placement.”",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15722385-lemmings-zx-spectrum-lemmings-clear-a-path.png',
+    img: 'https://screenscraper.fr/image.php?gameid=66&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Lemmings',
     year: 1991,
     system: 'Yes',
@@ -332,7 +332,7 @@ export const gotmRunnerUp: GameData[] = [
       "Murder little animals because they're too stupid to know to breathe without being told to.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9875161-descent-dos-ptmc-mission-briefing-game-intro-sequence.png',
+    img: 'https://screenscraper.fr/image.php?gameid=20015&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Descent',
     year: 1995,
     system: 'PS1, DOS',
@@ -614,7 +614,7 @@ export const gotmRunnerUp: GameData[] = [
       "The player takes control of martial artist Billy Lee, or his twin brother Jimmy (also known as Hammer and Spike in the supplementary materials for the American arcade release), as they fight their way into the turf of the Black Warriors gang in order to rescue Billy's girlfriend, Marian.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10163707-diablo-ii-windows-sorceress-character-unleashes-her-flame-touch.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13566&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'D2',
     year: 1999,
     system: 'DC',
@@ -1425,7 +1425,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play against gym leads, collect new cards and build the definitive Pokémon deck',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15748029-pokemon-puzzle-challenge-game-boy-color-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=82600&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pokemon Puzzle Challenge',
     year: 2000,
     system: 'GBC',
@@ -1479,7 +1479,7 @@ export const gotmRunnerUp: GameData[] = [
       "Smell that? That's pure testosterone emitted by only the most badass commando duo Bill & Lance during their fights against the evil Red Falcon Organization. So grab your little brother, hand him the bad controller, punch in the Konami Code and repel the alien threat in the most masculine, muscle-glistening way the world has ever seen.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1934062-ace-combat-3-electrosphere-playstation-armament-selection.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19433&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ace Combat 3: Electrosphere',
     year: 1999,
     system: 'PS1',
@@ -1556,7 +1556,7 @@ export const gotmRunnerUp: GameData[] = [
       'Enhanced first generation Pokémon game, where you can capture, evolve and train 151 different pocketable monsters, pit them against each other in violent battles and claim the title of the Pokémon Champion.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15992095-mega-man-4-nes-mega-mans-transformation.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1317&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Mega Man 4',
     year: 1991,
     system: 'NES',
@@ -2294,7 +2294,7 @@ export const gotmRunnerUp: GameData[] = [
       'Great little hockey game for the NES. easy control, very accessible, and a lot of fast hockey  fun. Features a cool little fighting mini game where the loser sits in the penalty box.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5289210-toejam-earl-genesis-hula-dancers-slow-you-down-by-making-you-dan.png',
+    img: 'https://screenscraper.fr/image.php?gameid=22452&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Way of the Samurai',
     year: 2002,
     system: 'PSP, PS2',
@@ -2305,7 +2305,7 @@ export const gotmRunnerUp: GameData[] = [
       'Live out a samurai movie with action adventure gameplay. The plot changes with variations based on the choices you make, so each completion is unique. Play it again and again to see every plot!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16351840-decapattack-genesis-walk-in-the-bottom-of-the-water-tank.png',
+    img: 'https://cdn.mobygames.com/screenshots/5289210-toejam-earl-genesis-hula-dancers-slow-you-down-by-making-you-dan.png',
     title: 'ToeJam & Earl',
     year: 1991,
     system: 'Genesis/MD',
@@ -2316,7 +2316,7 @@ export const gotmRunnerUp: GameData[] = [
       'Get jiggy with the blinged-out ToeJam or his fresh homeslice Earl as they escape from a roguelike planet with negative funk',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2145490-night-trap-sega-cd-two-of-the-creeps-get-captured.png',
+    img: 'https://cdn.mobygames.com/screenshots/16351840-decapattack-genesis-walk-in-the-bottom-of-the-water-tank.png',
     title: 'DecapAttack',
     year: 1991,
     system: 'Genesis/MD',
@@ -2327,7 +2327,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as Chuck D. Head a headless mummy created by the mad scientist Dr. Frank N. Stein. Your on a crusade to defeat Max D. Cap and his underworld army of monsters all on a island shaped as a skeleton (ohhh so very creepy).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1640039-alien3-genesis-title-screen.png',
+    img: 'https://cdn.mobygames.com/screenshots/2145490-night-trap-sega-cd-two-of-the-creeps-get-captured.png',
     title: 'Night Trap',
     year: 1992,
     system: 'Sega CD, Switch',
@@ -2338,7 +2338,7 @@ export const gotmRunnerUp: GameData[] = [
       'A spooky game where you need to save a house full of sleepover guests from being murdered in comical ways. Is also the reason we have the ESRB ratings that we do on games now. Or at least, was used as the scapegoat for it',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/98574-final-fantasy-msx-this-place-is-strange.png',
+    img: 'https://cdn.mobygames.com/screenshots/1640039-alien3-genesis-title-screen.png',
     title: 'Alien 3',
     year: 1993,
     system: 'SNES',
@@ -2348,7 +2348,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/859453-faxanadu-nes-japan-title-screen.png',
+    img: 'https://cdn.mobygames.com/screenshots/98574-final-fantasy-msx-this-place-is-strange.png',
     title: 'Final Fantasy',
     year: 1987,
     system: 'NES, PSP, GBA',
@@ -2359,7 +2359,7 @@ export const gotmRunnerUp: GameData[] = [
       'The four Warriors of Light are tasked by the King of Cornelia to rescue Princess Sarah from Garland. This sets them off on an adventure to defeat the Four Fiends and rescue the world.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10267619-kingdom-hearts-playstation-2-getting-to-know-some-characters-fro.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/859453-faxanadu-nes-japan-title-screen.png',
     title: 'Faxanadu',
     year: 1987,
     system: 'NES',
@@ -2369,7 +2369,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15743007-ninja-gaiden-nes-japanese-title-screen.png',
+    img: 'https://cdn.mobygames.com/screenshots/10267619-kingdom-hearts-playstation-2-getting-to-know-some-characters-fro.jpg',
     title: 'Kingdom Hearts',
     year: 2002,
     system: 'PS2, PS4, Switch',
@@ -2380,7 +2380,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Sora, Donald and Goofy in this mash up of Disney and Final Fantasy. Maybe the real Kingdom Hearts is the friends we made along the way?',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16590965-rocket-knight-adventures-genesis-alls-right-with-the-world.png',
+    img: 'https://cdn.mobygames.com/screenshots/15743007-ninja-gaiden-nes-japanese-title-screen.png',
     title: 'Ninja Gaiden',
     year: 1988,
     system: 'NES',
@@ -2391,7 +2391,7 @@ export const gotmRunnerUp: GameData[] = [
       'A difficult action platform game credited as the first game to use cutscenes for storytelling and the soundtrack is one that I’m quite fond of.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15719266-chuck-rock-sega-master-system-game-over.png',
+    img: 'https://cdn.mobygames.com/screenshots/16590965-rocket-knight-adventures-genesis-alls-right-with-the-world.png',
     title: 'Rocket Knight Adventures',
     year: 1993,
     system: 'Genesis/MD',
@@ -2402,7 +2402,7 @@ export const gotmRunnerUp: GameData[] = [
       "Sure you've played as a knight , but have you played as an opossum knight? Fight and fly through this Genesis platformer as Sparky the Knight and save the planet from certain destruction.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15883251-panzer-dragoon-saga-sega-saturn-you-get-different-comments-depen.png',
+    img: 'https://cdn.mobygames.com/screenshots/15719266-chuck-rock-sega-master-system-game-over.png',
     title: 'Chuck Rock',
     year: 1992,
     system: 'Genesis/MD',
@@ -2413,7 +2413,7 @@ export const gotmRunnerUp: GameData[] = [
       'Prehistoric platformer where you throw rocks and bump enemies with your big caveman belly.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16492426-snatcher-pc-88-poor-little-john-is-in-bad-shape.png',
+    img: 'https://cdn.mobygames.com/screenshots/15883251-panzer-dragoon-saga-sega-saturn-you-get-different-comments-depen.png',
     title: 'Panzer Dragoon Saga',
     year: 1998,
     system: 'Saturn',
@@ -2424,7 +2424,7 @@ export const gotmRunnerUp: GameData[] = [
       "Not only have we not played any of the Panzer Dragoon titles, we haven't had a single sega saturn GOTM yet! This RPG with a very unique battle system has you traveling with a giant dragon buddy in the middle of a conflict between two factions that are abusing ancient technology for their own gains. It can easily be beaten in less than 20 hours!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1558284-aerobiz-supersonic-snes-japanese-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19266&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Crash Team Racing',
     year: 1999,
     system: 'PS1',
@@ -2435,7 +2435,7 @@ export const gotmRunnerUp: GameData[] = [
       'Crash Team Racing is one of the most fun kart racers ever and it was made to kill the Crash series as a whole by the devs going "lets add an alien they\'ll hate it" and instead, made arguably one of the most fun kart racers in the genre. With an innovative powerslide mechanic, as well as the amazingly tight but fun kart controls, CTR is an amazing game to play on your own in it\'s adventure mode or with friends!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12634968-knuckles-chaotix-sega-32x-music-test.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2612&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Aerobiz: Supersonic',
     year: 1993,
     system: 'Super Nintendo',
@@ -2445,7 +2445,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10227190-grand-theft-auto-vice-city-playstation-2-cruising-miami-beach.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/12634968-knuckles-chaotix-sega-32x-music-test.png',
     title: "Knuckles' Chaotix",
     year: 1995,
     system: '32X',
@@ -2456,7 +2456,7 @@ export const gotmRunnerUp: GameData[] = [
       'The end result of the infamous sonic crackers, which doesn’t include sonic; a platform game where you control two sonic characters joined by the love-it-or-hate-it elastic ring system',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16073053-river-city-ransom-turbografx-cd-starting-the-game.png',
+    img: 'https://cdn.mobygames.com/screenshots/10227190-grand-theft-auto-vice-city-playstation-2-cruising-miami-beach.jpg',
     title: 'Grand Theft Auto: Vice City',
     year: 2002,
     system: 'PS2',
@@ -2467,7 +2467,7 @@ export const gotmRunnerUp: GameData[] = [
       'Lets travel back to the ancient times of 1986 to rid a city of the old crime lords to become the one and only kingpin. Great tunes and the ability to ride ancient vehicles like motorcycles and cars with gasoline engines.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10612096-spyro-year-of-the-dragon-playstation-in-sunny-villa.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/16073053-river-city-ransom-turbografx-cd-starting-the-game.png',
     title: 'River City Ransom',
     year: 1989,
     system: 'NES',
@@ -2478,7 +2478,7 @@ export const gotmRunnerUp: GameData[] = [
       "River City Ransom is a beat 'em up game with action role-playing elements. The game is non-linear, allowing players to explore an open world, in a sandbox manner. The fighting style is very similar to Double Dragon, in that the player can move freely around the screen while pressing buttons to punch, kick, or jump. Objects such as brass knuckles, steel pipes, and trash cans can be used as melee weapons or thrown at enemies. However, the characters' effectiveness in battle is determined by several statistics and their knowledge of fighting techniques, such as Grand Slam, Stone Hands, and Dragon Feet, which are purchased as books in shops throughout the city using funds recovered from defeated gang members.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16526292-phantasy-star-ii-genesis-teleport-station.png',
+    img: 'https://cdn.mobygames.com/screenshots/10612096-spyro-year-of-the-dragon-playstation-in-sunny-villa.jpg',
     title: 'Spyro: Year of the Dragon',
     year: 2000,
     system: 'PS1',
@@ -2489,7 +2489,7 @@ export const gotmRunnerUp: GameData[] = [
       'There are two ice themed levels in this game: Icy Peak and Frozen Altars',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2220315-phantasy-star-iii-generations-of-doom-genesis-on-the-world-map.png',
+    img: 'https://cdn.mobygames.com/screenshots/16526292-phantasy-star-ii-genesis-teleport-station.png',
     title: 'Phantasy Star II',
     year: 1990,
     system: 'Genesis/MD, PS2',
@@ -2500,7 +2500,7 @@ export const gotmRunnerUp: GameData[] = [
       "Taking place 1000 years after the original Phantasy Star, you don't need to play that to enjoy this game, one of the best games in the original tetralogy. Have your map guide handy as you explore complex dungeons in the first sci-fi JRPG series ever, jumping from planet to planet.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10361921-rad-racer-nes-racing-in-the-grand-canyon.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/2220315-phantasy-star-iii-generations-of-doom-genesis-on-the-world-map.png',
     title: 'Phantasy Star III',
     year: 1990,
     system: 'Sega Genesis/Megadrive',
@@ -2511,7 +2511,7 @@ export const gotmRunnerUp: GameData[] = [
       "Take control of Rhys the prince of Landen who is set to marry Maia... a girl who washed up on Landen shores a mere 2 months earlier. And since every RPG from the 90s had to have someone lose their memory this time it's Maia. The real hook of this game is that it spans three generations. And you get to choose each generation making the endings all different and whatnot.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16890849-cyberball-arcade-and-if-you-fail-to-defuse-or-score-on-that-crit.png',
+    img: 'https://cdn.mobygames.com/screenshots/10361921-rad-racer-nes-racing-in-the-grand-canyon.jpg',
     title: 'Rad Racer',
     year: 1987,
     system: 'NES',
@@ -2522,7 +2522,7 @@ export const gotmRunnerUp: GameData[] = [
       'Rad Racer is a racing game in which the player races in a "Transamerica" race from the West Coast to the East Coast.[3] The gameplay is sprite-based, and the player controls the car from a "behind the vehicle" perspective.[4] At the start of the game, the player chooses between two types of car to race, either a 328 Twin Turbo or an F1 Machine, though both cars perform exactly the same.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16492648-metroid-fusion-game-boy-advance-chinese-ique-advance-title-scree.png',
+    img: 'https://cdn.mobygames.com/screenshots/16890849-cyberball-arcade-and-if-you-fail-to-defuse-or-score-on-that-crit.png',
     title: 'Cyberball',
     year: 1990,
     system: 'Genesis/MD',
@@ -2533,7 +2533,7 @@ export const gotmRunnerUp: GameData[] = [
       'I have fond memories of playing this with the neighbor kid. There are several versions of the game the original was released by Atari in 1988. Ironically, it’s supposed to be taking place in the year 2022.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12212906-little-nemo-the-dream-master-nes-riding-a-crab-underwater.png',
+    img: 'https://screenscraper.fr/image.php?gameid=325&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Vectorman 2',
     year: 1996,
     system: 'Genesis/MD',
@@ -2544,7 +2544,7 @@ export const gotmRunnerUp: GameData[] = [
       "The sequel to 1995's Vectorman, Vectorman 2 was one of the last titles released on the Genesis in North America. It has great animations, a lovably 90s Genesis soundtrack, and pretty decent platform shooter gameplay. It cuts out a lot of the filler of the original game while keeping the same creative transformations.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/542228-wonder-boy-in-monster-world-sega-master-system-a-woman-who-was-h.png',
+    img: 'https://cdn.mobygames.com/screenshots/12212906-little-nemo-the-dream-master-nes-riding-a-crab-underwater.png',
     title: 'Little Nemo: The Dream Master',
     year: 1990,
     system: 'NES',
@@ -2565,7 +2565,7 @@ export const gotmRunnerUp: GameData[] = [
       'The fifth game in the Wonder Boy series, a side-scrolling action RPG, with adorable graphics.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2169552-the-ooze-genesis-spooky-start-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2256&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'U.N. Squadron',
     year: 1991,
     system: 'SNES, Arcade',
@@ -2575,7 +2575,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/429526-uniracers-snes-game-in-action-1.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/2169552-the-ooze-genesis-spooky-start-menu.png',
     title: 'The Ooze',
     year: 1995,
     system: 'Genesis/MD',
@@ -2586,7 +2586,7 @@ export const gotmRunnerUp: GameData[] = [
       'Some evil maniac has turned you into a green ooze in order to stop you to find evidence that crimes were being committed using a toxic gas you created.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/325216-mischief-makers-nintendo-64-marina-can-pick-up-and-shake-enemies.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/429526-uniracers-snes-game-in-action-1.jpg',
     title: 'Uniracers/Unirally',
     year: 1994,
     system: 'N64',
@@ -2597,7 +2597,7 @@ export const gotmRunnerUp: GameData[] = [
       'Race and perform stunts with some riderless sentient unicycles.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15844067-phantasy-star-sega-master-system-second-hand-shop-what-the-hey-i.png',
+    img: 'https://cdn.mobygames.com/screenshots/325216-mischief-makers-nintendo-64-marina-can-pick-up-and-shake-enemies.jpg',
     title: 'Mischeif Makers',
     year: 1997,
     system: 'N64',
@@ -2608,7 +2608,7 @@ export const gotmRunnerUp: GameData[] = [
       'Take control of Marina as she tries to rescue Dr. Theo from the evil emperor and his imperial army.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/8634691-haunting-starring-polterguy-genesis-you-can-directly-control-som.png',
+    img: 'https://cdn.mobygames.com/screenshots/15844067-phantasy-star-sega-master-system-second-hand-shop-what-the-hey-i.png',
     title: 'Phantasy Star',
     year: 1987,
     system: 'Master System',
@@ -2619,7 +2619,7 @@ export const gotmRunnerUp: GameData[] = [
       'Discover the beginning of this long-lasting franchise from Sega. Crawl through dungeons in one of the first sci-fi RPGs ever created with one of the few early female protagonists as well.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16616796-digimon-world-playstation-hello-jijimon.png',
+    img: 'https://cdn.mobygames.com/screenshots/8634691-haunting-starring-polterguy-genesis-you-can-directly-control-som.png',
     title: 'Haunting Starring Polterguy',
     year: 1993,
     system: 'Sega Genesis/Mega Drive',
@@ -2630,7 +2630,7 @@ export const gotmRunnerUp: GameData[] = [
       "As a rebellious punk teenager turned poltergeist, it's your job to scare the living daylights out of the Sardini family in this classic comedy-horror title from Electronic Arts. With a great deal of gameplay variety, including trips to the underworld and the rather unique concept of possessing household objects, Haunting Starring Polterguy is \"so fun, it's scary!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9375654-wonder-boy-iii-the-dragons-trap-turbografx-16-i-have-turned-into.png',
+    img: 'https://cdn.mobygames.com/screenshots/16616796-digimon-world-playstation-hello-jijimon.png',
     title: 'Digimon World',
     year: 2000,
     system: 'PS1',
@@ -2641,7 +2641,7 @@ export const gotmRunnerUp: GameData[] = [
       'Unlike Pokemon, Digimon games tend to take a different turn than the classic catch/battle/level/master challenge. Trapped in the Digital World, the player must raise Digimon, and those Digimon will digivolve based on their stats. If you neglect or take poor care of your pal, you may end up with a weak and disgusting Digimon! You Digimon can and will pass away and the cycle starts anew. The player is tasked with exploring File Island and helping other Digimon who have lost their memories and have become feral. As you save them, your town builds up and more services are made available such as food, shops, and much more!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/8167822-battle-city-sharp-x1-stage-1.png',
+    img: 'https://cdn.mobygames.com/screenshots/9375654-wonder-boy-iii-the-dragons-trap-turbografx-16-i-have-turned-into.png',
     title: "Wonder Boy III: The Dragon's Trap",
     year: 1989,
     system: 'Master System, GG',
@@ -2652,7 +2652,7 @@ export const gotmRunnerUp: GameData[] = [
       'Cute platforming action adventure game, one of the best master system games to play, with a beautiful remake available',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15876453-robotech-the-macross-saga-game-boy-advance-destroying-multiple-e.png',
+    img: 'https://cdn.mobygames.com/screenshots/8167822-battle-city-sharp-x1-stage-1.png',
     title: 'Battle City',
     year: 1985,
     system: 'NES',
@@ -2663,7 +2663,7 @@ export const gotmRunnerUp: GameData[] = [
       'I love this shitty polygon crammed adventure! Sure it averaged a 58% by critics, but you get to play as explorer Barbie! Running through jungles, deserts and mountains like a bastardized love child birthed from the forbidden romance of Tomb Raider and Crash Bandicoot, but like, their 2nd or 3rd cousins twice removed. The big redeeming quality of this game is the "VR" mode, which im still trying to get the world record on to this day. Mainly, it has retro achievements, and that is addicting. The games its trying to imitate are two of my favorites, and I appreciate Runecraft giving Mattel\'s cherished IP a go.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/122868-gex-windows-ride-the-waves-dude.png',
+    img: 'https://cdn.mobygames.com/screenshots/15876453-robotech-the-macross-saga-game-boy-advance-destroying-multiple-e.png',
     title: 'Robotech: The Macross Saga',
     year: 2002,
     system: 'GBA',
@@ -2674,7 +2674,7 @@ export const gotmRunnerUp: GameData[] = [
       "It's a jet no it's a robot now it's a mash up of both! Transforming mecha destroying alien scum it's Robotech need I say more.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10057545-1080-snowboarding-nintendo-64-match-race.jpg',
+    img: 'https://cdn.mobygames.com/screenshots/122868-gex-windows-ride-the-waves-dude.png',
     title: 'Gex',
     year: 1995,
     system: 'PS1/3DO',
@@ -2685,7 +2685,7 @@ export const gotmRunnerUp: GameData[] = [
       'Travel with Gex through the TV set and try to defeat the evil Rez!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16479859-thousand-arms-playstation-house-environments-are-unique-and-craf.png',
+    img: 'https://cdn.mobygames.com/screenshots/10057545-1080-snowboarding-nintendo-64-match-race.jpg',
     title: '1080 Snowboarding',
     year: 1998,
     system: 'N64',
@@ -2718,7 +2718,7 @@ export const gotmRunnerUp: GameData[] = [
       'Forget ice levels, this is all ice, all the time. Jump and smash your way up many frozen peaks to teach a condor a lesson!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15840616-disneys-ducktales-game-boy-the-transylvania-stage-now-a-little-t.png',
+    img: 'https://screenscraper.fr/image.php?gameid=60&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Teenage Mutant Ninja Turtles: The Hyperstone Heist',
     year: 1992,
     system: 'Genesis/MD',
@@ -2729,7 +2729,7 @@ export const gotmRunnerUp: GameData[] = [
       "Released the same year as the SNES port of TMNT: Turtles In Time, TMNT: HH plays faster, features more aggressive enemy AI, tighter controls, makes dash a separate button, and has more detailed sprite work than it's ported cousin. Cowabunga dudes & dudettes!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16555867-hamtaro-ham-ham-heartbreak-game-boy-advance-these-two-are-thinki.png',
+    img: 'https://cdn.mobygames.com/screenshots/15840616-disneys-ducktales-game-boy-the-transylvania-stage-now-a-little-t.png',
     title: 'Ducktales',
     year: 1989,
     system: 'NES',
@@ -2740,7 +2740,7 @@ export const gotmRunnerUp: GameData[] = [
       'Travel around the world in the greatest NES platformer as Scrooge McDuck to become the world’s richest duck.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15678405-harvest-moon-friends-of-mineral-town-game-boy-advance-my-wife.png',
+    img: 'https://cdn.mobygames.com/screenshots/16555867-hamtaro-ham-ham-heartbreak-game-boy-advance-these-two-are-thinki.png',
     title: 'Hamtaro: Ham-Ham Heartbreak',
     year: 2003,
     system: 'GBA',
@@ -2814,7 +2814,7 @@ export const gotmRunnerUp: GameData[] = [
       'To quote a review by Ed Driscoll, which best sums up this game, "...if you simply enjoy shooting evil robots in electrified mazes, then look for this at your local store.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16064398-space-station-silicon-valley-playstation-dans-trying-to-tell-evo.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5521&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Space Station Silicon Valley',
     year: 1998,
     system: 'N64',
@@ -3703,7 +3703,7 @@ export const gotmRunnerUp: GameData[] = [
       'Bushi Seiryuuden: Futari no Yuusha (“Warriors of the Blue Dragon Legend – The Two Heroes”) is a rather unique action/tactical RPG hybrid. It was developed by Game Freak and published by T&E Soft in 1997, as one of the last titles released on the system. Game Freak should, of course, be known to every gamer out there, since they developed Pokémon for Nintendo. Bushi Seiryuuden shares a similar artwork style, but this is the only similarity to the well known series.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15655575-warlocked-game-boy-color-dragons-are-the-most-powerful-units.png',
+    img: 'https://screenscraper.fr/image.php?gameid=37022&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Warlocked',
     year: 2000,
     system: 'GBC',
@@ -4018,7 +4018,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Donald Duck doing his best Indiana Jones impression. Explore ANCIENT ruins, ghost ships and the urban jungle armed with your trusty plunger gun and a bad temper.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/996654-tecmo-super-bowl-snes-weather-select-this-feature-is-absent-in-t.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1984&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tecmo Super Bowl',
     year: 1991,
     system: 'NES',
@@ -4040,7 +4040,7 @@ export const gotmRunnerUp: GameData[] = [
       'You take the role of a Graveyard Keeper, protecting your graves from various monsters and dealing with bosses that fill up entire screens. Incredibly addictive game and a great co-op.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16096095-metal-warriors-snes-main-options.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2380&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Metal Warriors',
     year: 1995,
     system: 'SNES',
@@ -4116,7 +4116,7 @@ export const gotmRunnerUp: GameData[] = [
       "For those that know it, This is one of the best games on the gba. It wasn't the most popular game on the gba but I'm surprised it wasn't already on here. This game isn't just another beat em up, it has rpg elements to it that make the gameplay unique and fun! It even mixes up the gameplay style at some points. It has great ratings & reviews, Please check it out, it's alot of fun!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/8752989-firestriker-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18943&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Firestriker',
     year: 1993,
     system: 'SNES',
@@ -4182,7 +4182,7 @@ export const gotmRunnerUp: GameData[] = [
       "Bust out your Super Scope and climb into your Standing Tank in this classic light gun shooter! Anubis' reign of terror has to be stopped, but you'll have to make it through the cutthroat \"Battle Game\" in order to challenge him. Do you have what it takes to be the gunner of the world's only co-piloted ST? Find out in this surprisingly touchscreen-friendly hidden gem!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4617115-metal-storm-nes-level-4-bosses.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1465&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Metal Storm',
     year: 1991,
     system: 'NES',
@@ -4226,7 +4226,7 @@ export const gotmRunnerUp: GameData[] = [
       'Racing Lagoon is a unique and memorable blending of RPG story and progression with Racing gameplay, creating an experience that feels ahead of its time and still unmatched today in many respects. It is perhaps most known for its moody 90’s aesthetic and jazzy soundtrack.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10124255-choro-q-playstation-2-one-of-many-many-many-minigames-and-like-m.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=23889&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'ChoroQ',
     year: 2003,
     system: 'PS2',
@@ -4598,7 +4598,7 @@ export const gotmRunnerUp: GameData[] = [
       "Mary-Kate and Ashley's Magical Mystery Mall is a video game that was produced by Dualstar Interactive, designed by Nickelodeon, developed by n-Space and distributed by Club Acclaim for the PlayStation system in 2000. In the game, the mall has supposedly been cursed and everything is where it doesn't belong, so the player must pass through some levels so that the mall can go back to the way it was. Players do that by collecting some Magical Gems, after passing each level, which offer different challenges.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15774648-rhythm-tengoku-game-boy-advance-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3983&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rhythm Tengoku',
     year: 2006,
     system: 'GBA',
@@ -5433,7 +5433,7 @@ export const gotmRunnerUp: GameData[] = [
       "The absolute worst has happened: Yellow Duck has gone missing! It's up to Maus and Elephant to find him. In this riveting action / puzzle game based on the German children's television program: Die Sendung mit der Maus (The show with the mouse), you control both main characters, the mouse and the elephant, in a search for the duck who has disappeared. The levels of the game are isometric puzzles. Both characters must reach the exit using and combining their different abilities. The mouse, for instance, is larger than the elephant, but the elephant is able to push heavy objects around. The game contains more than 150 puzzles in 5 different game worlds.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16177642-go-go-ackman-snes-tenshi-summons-his-minions-in-the-opening-cuts.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2563&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Go Go Ackman',
     year: 1994,
     system: 'SFC',
@@ -5672,7 +5672,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16783860-team-hot-wheels-night-racer-street-drift-windows-entering-nickna.png',
+    img: 'https://screenscraper.fr/image.php?gameid=103513&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Sheep, Dog 'n' Wolf/Sheep Raider",
     year: 2001,
     system: 'PS1',
@@ -6174,7 +6174,7 @@ export const gotmRunnerUp: GameData[] = [
       'Early strange open world game which was originally a Japanese only release until a great fan translation was completed last year. Twin Peaks soaked weirdness in a snowy small town, so perfect for Christmas.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15897690-super-shot-soccer-playstation-intro-movie.png',
+    img: 'https://screenscraper.fr/image.php?gameid=103427&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Super Shot Soccer',
     year: 2002,
     system: 'PS1',
