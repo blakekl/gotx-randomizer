@@ -808,7 +808,7 @@ export const gotmWinners: GameData[] = [
       'Dr. Slump is an action-adventure game based on the manga and anime series by Akira Toriyama of Dragon Ball fame. It received its first English fan translation two months ago!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1198721-sweet-home-nes-its-dark-in-here.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1993&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Sweet Home',
     year: 1989,
     system: 'NES',
