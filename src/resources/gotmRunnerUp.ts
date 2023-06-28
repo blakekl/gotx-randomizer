@@ -3954,7 +3954,7 @@ export const gotmRunnerUp: GameData[] = [
       'In a much improved version of the NES classic, play as Master Higgins and free your children from captivity.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15830331-hercules-zx-spectrum-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19310&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hercules',
     year: 1997,
     system: 'PS1',
