@@ -6415,7 +6415,7 @@ export const gotmRunnerUp: GameData[] = [
       'A Bug\'s Life is a platform game in which the player controls Flik the Ant throughout settings and a storyline based on the namesake film. The game is divided into five distinct "lands" consisting of three levels each.  To complete a level, the player must either find an exit, complete a goal or defeat a boss character.',
   },
   {
-    img: 'https://screenscraper.fr/image.php?gameid=59765&media=ss&region=wor&num=&version=&maxwidth=150&maxheight=80&stamp=wor',
+    img: 'https://screenscraper.fr/image.php?gameid=59765&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Densha de Go! 64',
     year: 1998,
     system: 'N64',
