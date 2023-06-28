@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@types/react": "18.2.13",
+    "@types/react-dom": "18.2.6",
+    "classnames": "^2.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "@types/react": "18.2.13",
-    "@types/react-dom": "18.2.6"
+    "react-responsive": "^9.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

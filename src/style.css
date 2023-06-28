@@ -9,5 +9,13 @@ img {
 }
 
 label input {
-  margin-inline-end: 5px;
+  margin-inline: 10px;
+}
+
+.rollBtn {
+  margin-block: 16px;
+}
+
+.hidden {
+  display: none;
 }

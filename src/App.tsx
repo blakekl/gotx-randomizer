@@ -1,4 +1,6 @@
+import classNames = require('classnames');
 import * as React from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { GameData } from './models/gameData.model';
 import { gotmRunnerUp } from './resources/gotmRunnerUp';
 import { gotmWinners } from './resources/gotmWinners';
@@ -9,6 +11,8 @@ import './style.css';
 
 export default function App() {
   const imgEl = React.useRef<HTMLImageElement>(null);
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const [showSettings, setShowSettings] = React.useState(true);
   const [loaded, setLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
   const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
@@ -73,9 +77,11 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinner.filter((x) => x.img));
     }
-    setGamePool(shuffle(newPool));
+    const shuffledPool = shuffle(newPool);
+    setGamePool(shuffledPool);
     setLoaded(false);
     setCurrentIndex(0);
+    setGame(shuffledPool[0]);
   }, [
     includeGotmRunnerUp,
     includeGotmWinners,
@@ -86,68 +92,101 @@ export default function App() {
 
   return (
     <div>
-      <section className="section">
-        <p>Select which game lists to include</p>
-        <div>
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={includeGotmWinners}
-              onChange={() => setIncludeGotmWinners(!includeGotmWinners)}
-            ></input>
-            GotM Winners
-          </label>{' '}
+      <div
+        className={classNames({
+          dropdown: true,
+          'is-active': showSettings,
+        })}
+      >
+        <div className="dropdown-trigger">
+          <button
+            className={classNames({
+              button: true,
+              'is-large': !isMobile,
+            })}
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+            onClick={() => setShowSettings(!showSettings)}
+          >
+            <span>Settings</span>
+            <span className="icon is-small">
+              <span
+                className={classNames({
+                  fas: true,
+                  'fa-angle-down': !showSettings,
+                  'fa-angle-up': showSettings,
+                })}
+                aria-hidden="true"
+              ></span>
+            </span>
+          </button>
         </div>
-        <div>
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              className="checkbox"
-              name="GotM Runner Ups"
-              checked={includeGotmRunnerUp}
-              onChange={() => setIncludeGotmRunnerUp(!includeGotmRunnerUp)}
-            ></input>
-            GotM Runner Ups
-          </label>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeGotmWinners}
+                onChange={() => setIncludeGotmWinners(!includeGotmWinners)}
+              ></input>
+              GotM Winners
+            </label>{' '}
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                name="GotM Runner Ups"
+                checked={includeGotmRunnerUp}
+                onChange={() => setIncludeGotmRunnerUp(!includeGotmRunnerUp)}
+              ></input>
+              GotM Runner Ups
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRetrobits}
+                onChange={() => setIncludeRetrobits(!includeRetrobits)}
+              ></input>
+              Retrobits
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRpgWinners}
+                onChange={() => setIncludeRpgWinners(!includeRpgWinners)}
+              ></input>
+              RPGotQ Winners
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRpgRunnerUp}
+                onChange={() => setIncludeRpgRunnerUp(!includeRpgRunnerUp)}
+              ></input>
+              RPGotQ Runner Ups
+            </label>
+          </div>
         </div>
-        <div>
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={includeRetrobits}
-              onChange={() => setIncludeRetrobits(!includeRetrobits)}
-            ></input>
-            Retrobits
-          </label>
-        </div>
-        <div>
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={includeRpgWinners}
-              onChange={() => setIncludeRpgWinners(!includeRpgWinners)}
-            ></input>
-            RPG of the Quarter Winners
-          </label>
-        </div>
-        <div>
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={includeRpgRunnerUp}
-              onChange={() => setIncludeRpgRunnerUp(!includeRpgRunnerUp)}
-            ></input>
-            RPG of the Quarter Runner Ups
-          </label>
-        </div>
-      </section>
-      <button className="button" onClick={() => handleButtonClick()}>
-        Reroll {!loaded && <span className="loader"></span>}
-      </button>
+      </div>
+
+      <div className="has-text-centered">
+        <button
+          className={classNames({
+            button: true,
+            'is-primary': true,
+            rollBtn: true,
+            'is-fullwidth': isMobile,
+            'is-large': !isMobile,
+          })}
+          onClick={() => handleButtonClick()}
+        >
+          Reroll {!loaded && <span className="loader"></span>}
+        </button>
+      </div>
       <div
         className="loader"
         style={{ display: loaded ? 'none' : 'block' }}
@@ -162,10 +201,49 @@ export default function App() {
       />
       <section className="section">
         <h1 className="title has-text-centered">🎮 {game.title}</h1>
-        <h2 className="subtitle has-text-centered">
-          🗓️ {game.year} &bull; 🕹️ {game.system} &bull; 🏢 {game.developer}
-        </h2>
-        <p>{game.description}</p>
+        <div className="level">
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🗓️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🗓️</span>
+                <span>{game.year}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🕹️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🕹️</span>
+                <span>{game.system}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🏢</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🏢</span>
+                <span>{game.developer}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">⏱️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">⏱️</span>
+                <span>
+                  {game.timeToBeat < Number.MAX_SAFE_INTEGER
+                    ? `~${game.timeToBeat} hours`
+                    : 'No data'}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <blockquote>{game.description}</blockquote>
       </section>
     </div>
   );
