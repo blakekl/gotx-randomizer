@@ -15,3 +15,7 @@ label input {
 .rollBtn {
   margin-block: 16px;
 }
+
+.hidden {
+  display: none;
+}

@@ -201,13 +201,48 @@ export default function App() {
       />
       <section className="section">
         <h1 className="title has-text-centered">🎮 {game.title}</h1>
-        <h2 className="subtitle has-text-centered">
-          🗓️ {game.year} &bull; 🕹️ {game.system} &bull; 🏢 {game.developer}{' '}
-          &bull; ⏱️{' '}
-          {game.timeToBeat < Number.MAX_SAFE_INTEGER
-            ? `~${game.timeToBeat} hours`
-            : 'No data'}
-        </h2>
+        <div className="level">
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🗓️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🗓️</span>
+                <span>{game.year}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🕹️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🕹️</span>
+                <span>{game.system}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🏢</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🏢</span>
+                <span>{game.developer}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">⏱️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">⏱️</span>
+                <span>
+                  {game.timeToBeat < Number.MAX_SAFE_INTEGER
+                    ? `~${game.timeToBeat} hours`
+                    : 'No data'}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
         <blockquote>{game.description}</blockquote>
       </section>
     </div>
