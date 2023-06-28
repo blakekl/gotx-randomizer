@@ -90,8 +90,6 @@ export default function App() {
     includeRpgWinners,
   ]);
 
-  console.log('isMobile: ', isMobile);
-
   return (
     <div>
       <section className="section">
