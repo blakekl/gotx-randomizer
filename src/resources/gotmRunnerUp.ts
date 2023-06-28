@@ -375,7 +375,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11668863-mad-dog-ii-the-lost-gold-3do-attempted-ambush-from-the-stairs.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=1399&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Low G Man: The Low Gravity Man',
     year: 1990,
     system: 'NES',
@@ -397,7 +397,7 @@ export const gotmRunnerUp: GameData[] = [
       'The seventh game (probably?) in the iconic Final Fantasy series is a classic for the ages. Guide Cloud Strife and his group of "definitely not terrorists" on their mission to save the world. And maybe do some Chocobo Racing on the way.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/798955-soldiers-of-fortune-dos-humans-and-animals-were-turned.png',
+    img: 'https://screenscraper.fr/image.php?gameid=205&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Chaos Engine',
     year: 1993,
     system: 'Amiga, Genesis',
@@ -2554,7 +2554,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15677349-un-squadron-amiga-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=29&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Wonder Boy in Monster World',
     year: 1991,
     system: 'Genesis/MD',
@@ -2696,7 +2696,7 @@ export const gotmRunnerUp: GameData[] = [
       'In the game, the player controls one of five snowboarders from a third-person perspective, using a combination of buttons to jump and perform tricks over eight levels.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/8710250-ice-climber-sharp-x1-watch-out-for-the-falling-icicles.png',
+    img: 'https://screenscraper.fr/image.php?gameid=20066&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Thousand Arms',
     year: 1998,
     system: 'PS1',
@@ -2707,7 +2707,7 @@ export const gotmRunnerUp: GameData[] = [
       "What do you get when you try combining JRPGs and Dating Sims? Why it's Thousand Arms! Atlus' farcical steampunk RPG flew under the radar back in the day, but you weren't going to let Romance Month go by without a having a few solid dates, right? You play as Meis, a \"Spirit Blacksmith\" who requires someone he has a strong emotional bond with to pray over the magical artifacts that he forges. It's a lighthearted game with a good amount of fourth-wall breaking humor, and it makes a good effort to integrate its usual dating sim elements with the rest of the game's narrative and mechanics.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/388648-teenage-mutant-ninja-turtles-the-hyperstone-heist-genesis-and-gu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1356&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ice Climber',
     year: 1989,
     system: 'NES',
@@ -3954,7 +3954,7 @@ export const gotmRunnerUp: GameData[] = [
       'In a much improved version of the NES classic, play as Master Higgins and free your children from captivity.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15830331-hercules-zx-spectrum-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19310&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hercules',
     year: 1997,
     system: 'PS1',
@@ -5260,7 +5260,7 @@ export const gotmRunnerUp: GameData[] = [
       'SkiFree is a single-player skiing computer game released  for Windows and DOS in October 1991, Game Boy Color in 2000. The player controls a skier on a mountain slope, avoiding obstacles while racing against time or performing stunts for points, depending on the game mode.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5298858-tetris-game-boy-starting-with-height-level-5.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2976&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tetris',
     year: 1989,
     system: 'GBA',
@@ -5520,7 +5520,7 @@ export const gotmRunnerUp: GameData[] = [
       'The classic action farming sim starring my brother, Gnomorr. Catch those pesky carrots, you fools!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16277774-yume-kojo-dokidoki-panic-nes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=135038&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Yume Koujou: Doki Doki Panic',
     year: 1987,
     system: 'FC',
@@ -5760,7 +5760,7 @@ export const gotmRunnerUp: GameData[] = [
       'Danganronpa is a visual novel that’s similar to ace attorney, the game is about a group of students trapped in a school by a evil bear called Monokuma and the only way to get out of the school is killing each other. The game is split in two segments the school part where you can interact with people and objects, and then there’s the class trials, it’s when you are trying to find the culprit.',
   },
   {
-    img: 'https://screenscraper.fr/image.php?gameid=28119&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480&stamp=wor',
+    img: 'https://screenscraper.fr/image.php?gameid=28119&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Gladiator Begins',
     year: 2010,
     system: 'PSP',
