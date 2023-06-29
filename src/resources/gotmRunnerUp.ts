@@ -450,7 +450,7 @@ export const gotmRunnerUp: GameData[] = [
       'The original was made for Macintosh and later put on NES and further ported to The Pocket Boys. A point a click dungeon style RPG',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16234056-grand-theft-auto-2-game-boy-color-respraying-the-car.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19333&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Grand Theft Auto 2',
     year: 1999,
     system: 'PS1',
@@ -2129,7 +2129,7 @@ export const gotmRunnerUp: GameData[] = [
       "You and your friend set out to clean up the lawless land of the west. Enjoy finding upgrades, dodging bullets, and taking out the big bads. Just don't forget to bury them with their money.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15671123-super-ghouls-n-ghosts-game-boy-advance-somebody-is-observing-the.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2180&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Super Ghouls 'n Ghosts",
     year: 1992,
     system: 'SNES, GBA',
@@ -4553,7 +4553,7 @@ export const gotmRunnerUp: GameData[] = [
       'Super Robot Wars Original Generation (スーパーロボット大戦ORIGINAL GENERATION Sūpā Robotto Taisen ORIGINAL GENERATION) is a tactical role-playing game for the Nintendo Game Boy Advance, developed and published by Banpresto in Japan, and later localized by Atlus in North America as Super Robot Taisen Original Generation. This is basically Fire Emblem in space with Gundams. You know you want to vote for this.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15774855-claymates-snes-each-level-has-its-own-name.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2516&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Claymates',
     year: 1993,
     system: 'SNES',
@@ -4901,7 +4901,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10836920-snowboard-kids-nintendo-64-this-new-stage-is-also-unlocked.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5570&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Snowboard Kids',
     year: 1997,
     system: 'Nintendo 64',
