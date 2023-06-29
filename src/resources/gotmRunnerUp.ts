@@ -1630,7 +1630,7 @@ export const gotmRunnerUp: GameData[] = [
       "This prequel to the Shadow Hearts series is set in the haunted Nemeton Monastery in Wales, the plot follows protagonists Koudelka Iasant, Edward Plunkett and Bishop James O'Flaherty as they uncover Nemeton's secrets and confront monsters created from its dark past. Its gameplay blends exploration and puzzle elements with turn-based battles waged on a grid.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10236631-harry-potter-and-the-sorcerers-stone-windows-scene-from-the-intr.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19284&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Harry Potter and the Sorcerer's Stone",
     year: 2001,
     system: 'PS1',
