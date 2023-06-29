@@ -3855,7 +3855,7 @@ export const gotmRunnerUp: GameData[] = [
       'The Thousand-Year Door is the second game in the Paper Mario series following Paper Mario, and is part of the larger Mario franchise. In the game, when Mario and Princess Peach get involved in the search for a mystic treasure that holds great fortune, Peach is kidnapped by an alien group called the X-Nauts; Mario sets out to find the treasure and save the princess.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3359863-shining-force-cd-sega-cd-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12738&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shining Force CD',
     year: 1995,
     system: 'Sega CD',
