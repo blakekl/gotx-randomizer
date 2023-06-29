@@ -4259,7 +4259,7 @@ export const gotmRunnerUp: GameData[] = [
       'As Soma, from our October 2020 winner Castlevania: Aria of Sorrow, murder baddies and equip their ghosts!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11916018-robots-windows-main-menu.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22751&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Robots',
     year: 2005,
     system: 'PS2',
