@@ -16,7 +16,7 @@ const current: GameData[] = [
 
 export const gotmRunnerUp: GameData[] = [
   {
-    img: 'https://cdn.mobygames.com/screenshots/1635348-who-framed-roger-rabbit-apple-ii-driving-to-the-ink-amp-paint-cl.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1657&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Who Framed Roger Rabbit',
     year: 1989,
     system: 'NES',
