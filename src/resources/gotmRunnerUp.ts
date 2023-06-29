@@ -5564,7 +5564,7 @@ export const gotmRunnerUp: GameData[] = [
       'A deep roguelike experience that doesn’t over-complicate things, accomplished in 1991 on the freaking Gameboy, no less! Unlike the long campaigns of, say, Dragon Quest or Final Fantasy, Cave Noire has only 4 dungeons. However, each involves unique, smart, and fun objectives. Thanks to its 10 difficulty levels, Cave Noire is a great pick up and play game for everyone!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16391525-doctor-hauzer-3do-the-opening-fmv-shows-our-hero-entering-the-ma.png',
+    img: 'https://screenscraper.fr/image.php?gameid=14375&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Doctor Hauzer',
     year: 1994,
     system: '3DO',
