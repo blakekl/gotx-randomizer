@@ -1739,8 +1739,8 @@ export const gotmRunnerUp: GameData[] = [
       'A 2D sidescroller sequel to Kid Icarus which contains 4 directional free scrolling. A small adventure that sees Pit training to face off agains the deamon Orcos and his minions after Palutena has a nightmare about an invasion.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16233255-tiny-toon-adventures-nes-while-buster-watches-tv-montana-max-app.png',
-    title: 'Tiny Toon Adventures',
+    img: 'https://screenscraper.fr/image.php?gameid=79&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: "Tiny Toon Adventures: Buster's Hidden Treasure",
     year: 1993,
     system: 'Genesis/MD',
     developer: 'Konami',
