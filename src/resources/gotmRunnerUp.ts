@@ -580,7 +580,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16109766-shipwreckers-playstation-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=105244&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shipwreckers!/Overboard!',
     year: 1997,
     system: 'PS1',
