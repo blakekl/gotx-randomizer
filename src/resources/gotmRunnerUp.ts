@@ -3148,7 +3148,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as the Simpsons family and Abu in this gta-esque game to uncover the mysterious things happening in Springfield.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3024885-skyblazer-snes-story.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2242&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Skyblazer',
     year: 1994,
     system: 'SNES',
