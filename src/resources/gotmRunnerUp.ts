@@ -2402,7 +2402,7 @@ export const gotmRunnerUp: GameData[] = [
       "Sure you've played as a knight , but have you played as an opossum knight? Fight and fly through this Genesis platformer as Sparky the Knight and save the planet from certain destruction.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15719266-chuck-rock-sega-master-system-game-over.png',
+    img: 'https://screenscraper.fr/image.php?gameid=165&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Chuck Rock',
     year: 1992,
     system: 'Genesis/MD',
