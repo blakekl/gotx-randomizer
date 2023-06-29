@@ -114,7 +114,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fun and quirky run-and-gun third-person shooter! I remember being super hype for it when it came out and had a blast playing it.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11128807-star-wars-rogue-squadron-3d-windows-x-wing-from-above.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5413&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Star Wars: Rogue Squadron',
     year: 1998,
     system: 'N64',
