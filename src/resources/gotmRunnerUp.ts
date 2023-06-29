@@ -3866,7 +3866,7 @@ export const gotmRunnerUp: GameData[] = [
       'Shining Force CD is a 1994 strategy role-playing game developed by Sonic! Software Planning for the Sega CD, and a remake of the games Shining Force Gaiden and Shining Force Gaiden II that were originally for the Game Gear. Although the game went largely unnoticed upon release in 1995. It has gained a cult following and considered to be one of the best titles released for the SEGA CD platform.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16566478-kuon-playstation-2-shit-happens.png',
+    img: 'https://screenscraper.fr/image.php?gameid=22372&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kuon',
     year: 2004,
     system: 'PS2',
