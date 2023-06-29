@@ -4738,7 +4738,7 @@ export const gotmRunnerUp: GameData[] = [
       'Get your zords out and fight all the evil Rita can throw at ya!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15713034-kickle-cubicle-arcade-cleared-the-second-round.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1368&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kickle Cubicle',
     year: 1988,
     system: 'NES',
