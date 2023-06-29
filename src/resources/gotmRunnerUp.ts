@@ -4521,7 +4521,7 @@ export const gotmRunnerUp: GameData[] = [
       'Complete quests as Mario, Luigi, Peach, or Yoshi to collect over 120 minigames that were scattered across Shroom City by Bowser.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10546597-a-force-more-powerful-the-game-of-nonviolent-strategy-windows-do.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=43007&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Street Fighter: The Movie: The Game',
     year: 1995,
     system: 'PS1, Saturn, Arcade',
