@@ -3117,7 +3117,7 @@ export const gotmRunnerUp: GameData[] = [
       "There's no case too big, no case too small. When you need help, just call...",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/6567127-blaster-master-nes-level-select-screen-prototype-version.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1474&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Blaster Master',
     year: 1988,
     system: 'NES',
