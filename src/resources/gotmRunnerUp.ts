@@ -5141,7 +5141,7 @@ export const gotmRunnerUp: GameData[] = [
       "Who would win in a fight between Goku and Naruto ? Gon Freks and Ichigo ? Bobobo-bo and Aralé? It's time to settle the debate with this fighting game featuring more than 300 manga characters from Jump magazine, with 56 of them playable.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4628506-monster-in-my-pocket-nes-of-course-the-vampire-and-the-monster-w.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1994&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Monster in My Pocket',
     year: 1992,
     system: 'NES',
