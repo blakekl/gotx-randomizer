@@ -3300,7 +3300,7 @@ export const gotmRunnerUp: GameData[] = [
       'Manhunt is a controversial and gory stealth horror game where you go against the worst humanity itself has to offer in a sadistic game of cat and mouse.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15639018-fire-emblem-game-boy-advance-the-game-allows-some-customization-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3757&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fire Emblem: The Blazing Blade',
     year: 2003,
     system: 'GBA',
