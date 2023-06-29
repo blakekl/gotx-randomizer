@@ -560,7 +560,7 @@ export const gotmRunnerUp: GameData[] = [
       'Take control of Vampire-turned-wraith (ie ghost) Raziel in this 3rd person action adventure game. Phase through objects and shift between the material and spectral realms on your way to revenge.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4124445-rise-of-the-robots-dos-then-transported-to-metropolis-4.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2156&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rise of the Robots',
     year: 1994,
     system: 'SNES',
