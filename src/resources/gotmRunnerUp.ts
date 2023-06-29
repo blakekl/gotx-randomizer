@@ -2876,7 +2876,7 @@ export const gotmRunnerUp: GameData[] = [
       'Set after the events of the anime series, .hack//Sign, the games focus on the character Kite and his quest to discover why some users have become comatose in the real world as a result of playing The World--the most popular action MMORPG ever made.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10593826-roll-away-playstation-scores.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19581&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kula World',
     year: 1998,
     system: 'PS1',
