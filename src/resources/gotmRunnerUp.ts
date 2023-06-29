@@ -59,7 +59,7 @@ export const gotmRunnerUp: GameData[] = [
       'What fits better in the robot theme than mechs beating each other into piles of scrap metal? In this fighting game, you take control of one of the pilots operating a wide variety of giant fighting robots to square off in hazardous arenas. There might be not fancy finishers or gore, but only one can stand in triumph while the loser must fall!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11635923-syndicate-3do-intro-movie-a-bleak-future.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=287&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Syndicate',
     year: 1993,
     system: 'Genesis, SNES',
