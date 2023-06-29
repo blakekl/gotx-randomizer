@@ -3030,7 +3030,7 @@ export const gotmRunnerUp: GameData[] = [
       'Epic medieval fantasy themed side scrolling beat ‘em up with branching paths, multiple endings, and light ROG elements',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1302719-shining-force-iii-sega-saturn-a-burning-castle-intro.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13086&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shining Force 3',
     year: 1998,
     system: 'Saturn',
