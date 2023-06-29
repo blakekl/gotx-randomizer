@@ -2283,7 +2283,7 @@ export const gotmRunnerUp: GameData[] = [
       "You know how these games work. You're friends with an old man who has a farm you visited as a kid, and he sends you weird letters in the mail. One day he stops sending you mail, so you travel to Mineral Town, find that the farm has gone to pot, and discover that the Old Manbought the farm around half a year ago. You're awful for not writing more btw - you were his only friend. The mayor of Mineral Town informs the player that in the farmer's will, he left the player the farm.  You then get to have cute, non-violent, fun doing farming stuff until Rapid says you're finished.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16132882-blades-of-steel-game-boy-uh-oh-not-good.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1514&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Blades of Steel',
     year: 1988,
     system: 'NES',
