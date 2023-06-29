@@ -5574,7 +5574,7 @@ export const gotmRunnerUp: GameData[] = [
       "In retrospective coverage, Sapphire is considered one of the best PC Engine shoot 'em ups. Although the gameplay was found to be average, critics concluded that the graphics and sound were of such incredible quality that they made up for any shortcomings in the game mechanics. Sapphire was produced in low numbers at the end of the PC Engine's lifespan and subsequently became a rare collector's item.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16407767-snoopys-magic-show-game-boy-game-start-or-password.png',
+    img: 'https://screenscraper.fr/image.php?gameid=70476&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Snoopy's Magic Show",
     year: 1990,
     system: 'GB',
