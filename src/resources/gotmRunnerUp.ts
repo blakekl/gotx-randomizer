@@ -516,7 +516,7 @@ export const gotmRunnerUp: GameData[] = [
       'In a conflict between insane Middle Eastern dictator General Kilbaba and the United States, you control an Apache helicopter and attempt to destroy enemy weapons and installations, rescue hostages and capture enemy personnel, while managing supplies of fuel and ammunition.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4569884-jrr-tolkiens-the-lord-of-the-rings-vol-ii-the-two-towers-dos-tit.png',
+    img: 'https://screenscraper.fr/image.php?gameid=84080&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Lord of the Rings, The: The Two Towers',
     year: 2002,
     system: 'Nintendo Gameboy Advance',
