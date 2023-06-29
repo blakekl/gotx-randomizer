@@ -2618,7 +2618,7 @@ export const gotmRunnerUp: GameData[] = [
       "As a rebellious punk teenager turned poltergeist, it's your job to scare the living daylights out of the Sardini family in this classic comedy-horror title from Electronic Arts. With a great deal of gameplay variety, including trips to the underworld and the rather unique concept of possessing household objects, Haunting Starring Polterguy is \"so fun, it's scary!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16616796-digimon-world-playstation-hello-jijimon.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19263&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Digimon World',
     year: 2000,
     system: 'PS1',
