@@ -927,7 +927,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11604940-shenmue-dreamcast-buy-cassette-tapes-and-play-them-from-your-col.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13485&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shenmue',
     year: 1999,
     system: 'Dreamcast, PS4',
