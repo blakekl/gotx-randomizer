@@ -5870,7 +5870,7 @@ export const gotmRunnerUp: GameData[] = [
       "Based on the Arcade game by the same name, Enduro Racer on the Master System is an incredibly satisfying checkpoint racing game, about avoiding obstacles and reaching your goal, once there you upgrade your bike and hope to continue until you find glory or crash out. If you play it, make sure it's the Japanese original, as the worldwide release also removed multiple stages from the final product.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3484258-the-amazing-adventures-of-harry-haddock-amiga-a-seagull-patrols-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=38874&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Adventures of Hourai High',
     year: 1996,
     system: 'Super Famicom',
