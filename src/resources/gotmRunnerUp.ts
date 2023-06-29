@@ -700,7 +700,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as a vampire trying to reverse the curse in an action-packed adventure to murder the Circle of Nine',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1282731-the-hunt-for-red-october-apple-ii-the-end-is-nigh.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1522&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Hunt for the Red October',
     year: 1991,
     system: 'NES, GB, SNES',
