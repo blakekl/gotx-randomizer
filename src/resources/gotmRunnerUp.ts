@@ -1870,7 +1870,7 @@ export const gotmRunnerUp: GameData[] = [
       "Krusty's Fun House is a game similar to Lemmings in some ways. Your goal is to create a path as Krusty for all the mice to make it to the end of the stage where one of the Simpson's family members are waiting to exterminate these many pests.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1296198-breath-of-fire-ii-snes-in-the-town.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2188&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Breath of Fire II',
     year: 1994,
     system: 'SNES, GBA',
