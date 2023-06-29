@@ -3083,7 +3083,7 @@ export const gotmRunnerUp: GameData[] = [
       "It's an RTS game from Aliens vs Predators franchise. You can play as Colonial Marines, Predators, and Aliens. Which one will you play as? Each factions have their own strengths and weaknesses.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16341306-incredible-crisis-arcade-continue.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19740&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Incredible Crisis',
     year: 1999,
     system: 'PS1',
