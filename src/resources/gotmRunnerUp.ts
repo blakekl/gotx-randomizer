@@ -4248,7 +4248,7 @@ export const gotmRunnerUp: GameData[] = [
       "If you're a fan of the 90's feminist and LGBTQ+ icon, you'll love this game. You play as Xena in mostly linear hack-n-slash with occasional platforming and puzzles. Do you have what it takes to save Gabrielle, Queen of the Amazons?",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15827804-castlevania-dawn-of-sorrow-nintendo-ds-start-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5809&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Castlevania: Dawn of Sorrow',
     year: 2005,
     system: 'DS',
