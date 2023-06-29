@@ -4149,7 +4149,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fantastic puzzle game with a decent story. The characters are wacky and charming. The humor is good. And the gameplay is great.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4294284-destroy-all-humans-playstation-2-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22415&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Destroy All Humans!',
     year: 2005,
     system: 'PS2, Wii',
