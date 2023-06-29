@@ -1968,7 +1968,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1078591-harvest-moon-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=38622&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Harvest Moon',
     year: 1997,
     system: 'SNES',
