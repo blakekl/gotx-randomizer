@@ -4901,7 +4901,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10836920-snowboard-kids-nintendo-64-this-new-stage-is-also-unlocked.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5570&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Snowboard Kids',
     year: 1997,
     system: 'Nintendo 64',
