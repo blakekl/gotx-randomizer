@@ -5107,7 +5107,7 @@ export const gotmRunnerUp: GameData[] = [
       "This T-RPG makes use of various fantasy elements, and is loosely based on the story of Joan of Arc and her struggles against the English occupation of France during the Hundred Years' War in the early 15th century.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16236223-bangai-o-spirits-nintendo-ds-title-screen-and-main-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=6253&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bangai-O Spirits',
     year: 2008,
     system: 'DS',
