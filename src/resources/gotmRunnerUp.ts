@@ -4324,7 +4324,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game is a platformer meant to teach kids about asthma. When the wind machine meant to get rid of dust is stolen by the evil Mr. Rexo you play as Bronkie in an attempt to find the pieces of the broken machine before the dust comes back.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15753897-rebelstar-tactical-command-game-boy-advance-talking-between-batt.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4199&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rebelstar: Tactical Command',
     year: 2005,
     system: 'GBA',
