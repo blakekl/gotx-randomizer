@@ -3519,7 +3519,7 @@ export const gotmRunnerUp: GameData[] = [
       'Rob banks together with a friend in a fun coop experience. A classic stealth title.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16130338-robotrek-snes-part-of-the-intro-jp.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2389&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Robotrek',
     year: 1994,
     system: 'SNES',
