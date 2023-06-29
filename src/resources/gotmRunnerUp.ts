@@ -3530,7 +3530,7 @@ export const gotmRunnerUp: GameData[] = [
       'Robotrek, known in Japan as Slapstick, is a role-playing video game for the SNES. It was developed by Quintet and published by Enix in both Japan and North America in 1994. Set on the fictional planet Quintenix, the game puts the player in control of a budding robotics expert who is the son of a famous inventor. Build and battle robots!!!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10125658-christmas-nights-into-dreams-sega-saturn-christmas-nights-openin.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13240&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Christmas NiGHTS into Dreams',
     year: 1996,
     system: 'Saturn, PS1, PC',
