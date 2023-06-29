@@ -5226,7 +5226,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16727068-punch-out-wii-post-round-statistics-with-some-encouraging-words-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1259&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Punch-Out!!',
     year: 1987,
     system: 'NES',
