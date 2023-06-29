@@ -4126,7 +4126,7 @@ export const gotmRunnerUp: GameData[] = [
       'I had no idea that Guardian Heroes had a sequel on GBA. I should try this when I finish Guardian Heroes on my Xbox 360',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2839880-puyo-pop-n-gage-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=84452&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Puyo Pop',
     year: 2002,
     system: 'GBA',
