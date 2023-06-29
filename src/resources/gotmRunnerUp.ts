@@ -982,7 +982,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as Leo Stenbuck, the lone survivor after an attack on his home colony near Jupiter by the evil military organization known as BAHRAM. Take control of the orbital frame known as Jehuty, defend civilians and avenge those lost. Mechas, in space!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10044698-conkers-bad-fur-day-nintendo-64-evil-panther-king.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5402&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Conker's Bad Fur Day",
     year: 2001,
     system: 'N64',
