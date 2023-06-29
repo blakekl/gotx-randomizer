@@ -3311,7 +3311,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fire Emblem,[a] also officially known as Fire Emblem: The Blazing Blade, is a tactical role-playing game developed by Intelligent Systems and published by Nintendo for the Game Boy Advance handheld video game console. It is the seventh installment in the Fire Emblem series,[b] the second to be released for the platform after Fire Emblem: The Binding Blade, and the first to be localized for international audiences. It was released in Japan and North America in 2003, and in Europe and Australia in 2004.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16613652-sword-of-mana-game-boy-advance-a-look-at-the-level-up-screen-you.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3768&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Sword of Mana',
     year: 2003,
     system: 'GBA',
