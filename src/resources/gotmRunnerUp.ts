@@ -1317,7 +1317,7 @@ export const gotmRunnerUp: GameData[] = [
       "I can't think of a game with a more rockin soundtrack than TM2. The Los Angeles stage, Paris, Amazonia, all the hits! Twisted car combat with classic graphics and slippery brilliant mechanics. U R Not (red) E!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/118879-tetris-dx-game-boy-color-gameplay-selection-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=37208&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tetris DX',
     year: 1998,
     system: 'GBC',
