@@ -1685,7 +1685,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15703210-bust-a-move-game-gear-the-results-scroll-by.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2530&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bust-a-Move/Puzzle Bobble',
     year: 1994,
     system: 'Neo Geo',
