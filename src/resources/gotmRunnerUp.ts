@@ -2575,7 +2575,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2169552-the-ooze-genesis-spooky-start-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=392&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Ooze',
     year: 1995,
     system: 'Genesis/MD',
