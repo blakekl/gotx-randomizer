@@ -3443,7 +3443,7 @@ export const gotmRunnerUp: GameData[] = [
       '2D action/platformer. In the year 2056, you play a military agent who has transferred his brain into binary code in order to combat a virus in the main defense computer. You take on the image of a Kabuki dancer, like your ancestor, and attack with your hair.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15739659-monster-rancher-advance-2-game-boy-advance-some-of-the-stats-you.png',
+    img: 'https://screenscraper.fr/image.php?gameid=84231&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Monster Rancher Advance 2',
     year: 2002,
     system: 'GBA',
