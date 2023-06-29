@@ -582,7 +582,7 @@ export const gotmRunnerUp: GameData[] = [
       "Lemmings does not need an introduction: it's one of the best games ever. If you add the Xmas theme, is there any better game you can play for Christmas? I don't think so.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10580419-colin-mcrae-rally-windows-rally-school-menu-polish-version.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19517&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Colin McRae Rally',
     year: 1998,
     system: 'PS1',
