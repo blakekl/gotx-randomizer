@@ -559,8 +559,8 @@ export const gotmRunnerUp: GameData[] = [
       'Take control of the ECO35-2 Cyborg as he confronts the Supervisor’s minions across the vast facilities of Electrocorp.  This 2D fighting game was hyped at the time for its advanced graphics…and turned out to be considered one of the worst games ever made.  It also features music by Queen’s guitarist Brian May.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16300654-holiday-lemmings-dos-holiday-93-flurry-level-2-intro.png',
-    title: "Holiday Lemmings '93",
+    img: 'https://screenscraper.fr/image.php?gameid=34156&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: "Holiday Lemmings 1993",
     year: 1993,
     system: 'Amiga',
     developer: 'Psygnosis',
