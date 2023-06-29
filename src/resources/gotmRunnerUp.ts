@@ -5369,7 +5369,7 @@ export const gotmRunnerUp: GameData[] = [
       'The third installment of the famed Jetpac series from Ultimate Play the Game, better known as Rare. Explore a dozen planets as the Jetman to collect the pieces of the Golden Warpship, always keeping an eye on the fuel gauge !',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16090387-dragon-ball-z-attack-of-the-saiyans-nintendo-ds-title-screen-wit.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5815&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dragon Ball Z: Attack of the Saiyans',
     year: 2009,
     system: 'Nintendo DS',
