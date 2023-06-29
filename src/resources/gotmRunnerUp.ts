@@ -4935,7 +4935,7 @@ export const gotmRunnerUp: GameData[] = [
       'Digimon meets JRPG, plenty of content and fun to be had while getting to be a digimon tamer.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3547787-batman-the-video-game-nes-intro.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1287&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Batman: The Video Game',
     year: 1989,
     system: 'NES',
