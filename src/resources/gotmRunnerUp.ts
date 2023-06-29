@@ -2379,7 +2379,7 @@ export const gotmRunnerUp: GameData[] = [
       'A difficult action platform game credited as the first game to use cutscenes for storytelling and the soundtrack is one that I’m quite fond of.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16590965-rocket-knight-adventures-genesis-alls-right-with-the-world.png',
+    img: 'https://screenscraper.fr/image.php?gameid=72&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rocket Knight Adventures',
     year: 1993,
     system: 'Genesis/MD',
