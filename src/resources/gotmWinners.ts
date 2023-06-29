@@ -951,7 +951,7 @@ export const gotmWinners: GameData[] = [
       'A plumber named Mario and his brother Luigi along with their new friend yoshi travel through the Mushroom Kingdom to save the princess from the evil Bowser. Plumber brothers Mario and Luigi from Brooklyn have just arrived in an outlandish realm called the Mushroom Kingdom. It was ruled by Princess Toadstool and her faithful Mushroom people.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15704047-spongebob-squarepants-revenge-of-the-flying-dutchman-playstation.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4315&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Spongebob Squarepants - Revenge of the Flying Dutchman',
     year: 2002,
     system: 'GBA',
