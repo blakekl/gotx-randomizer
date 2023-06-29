@@ -699,7 +699,7 @@ export const gotmRunnerUp: GameData[] = [
       'Take command of a advance ballistic missile submarine in this side-scrolling action game, as you try to defect and escape Soviet waters in the late Cold War era.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11183862-waterworld-dos-capturing-desalination-machine.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4729&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Waterworld',
     year: 1995,
     system: 'Virtual Boy',
