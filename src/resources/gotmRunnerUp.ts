@@ -1175,7 +1175,7 @@ export const gotmRunnerUp: GameData[] = [
       'As in Vigilante 8, players control a vehicle and eliminate all other vehicles in the arena with the use of weapons and upgrades. The player can choose to play through a story mode, Quest Mode, or play with an assorted number of bots in Arcade mode. The game also offers a new two-player cooperative mode and a Grand Melee Deathmatch mode, wherein the player endures attacks by multiple AI opponents.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16355388-spyro-2-riptos-rage-playstation-movie-scene-ripto-is-taking-over.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19302&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Spyro 2: Ripto's Rage",
     year: 1999,
     system: 'PS1',
