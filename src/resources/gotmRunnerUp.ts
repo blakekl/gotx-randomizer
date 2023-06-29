@@ -4378,7 +4378,7 @@ export const gotmRunnerUp: GameData[] = [
       'Adventure with the sword wielding princess to get back big sparkly magic jewel from the demon king.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15978141-fire-emblem-thracia-776-snes-shot-from-the-intro.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2238&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fire Emblem: Thracia 776',
     year: 1999,
     system: 'SFC',
