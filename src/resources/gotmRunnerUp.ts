@@ -1296,7 +1296,7 @@ export const gotmRunnerUp: GameData[] = [
       "Published as a launch title in 2001, Circle of the Moon belongs to Konami's Castlevania video game series, the premise of which centers on the eternal conflict between the vampire hunters of the Belmont clan and the vampire Dracula...One of the best playing Castlevania games released.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15690949-spider-man-nintendo-64-here-instead-movie-cutscenes-a-slide-show.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19358&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Spider-Man',
     year: 2000,
     system: 'PS1, N64, DC',
