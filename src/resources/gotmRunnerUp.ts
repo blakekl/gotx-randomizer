@@ -15,7 +15,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game was terrifying because as a child you had no idea where to go and you basicially got melted every time you played. Not intentionally spooky, but the game gave me nightmares growing up lol. Seriously.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1667432-wing-commander-dos-external-camera.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12747&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Wing Commander',
     year: 1994,
     system: 'Sega CD',
@@ -136,7 +136,7 @@ export const gotmRunnerUp: GameData[] = [
       "It is hard to find anyone who doesn't know what Tomb Raider is. Tomb Raider is a 3rd person 3D action adventure game where you take on the role of Lara Croft. You will be raiding all types of tombs for ancient artifacts (or spend most of your time not knowing what to do and locking your butler in the freezer). The creation and popularity of this game definitely helped usher in an era of 3D action adventure games that still persists today.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5435563-duke-nukem-3d-iphone-opening-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=108792&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Duke Nukem 3D',
     year: 1996,
     system: 'DOS, PC, N64',
@@ -559,8 +559,8 @@ export const gotmRunnerUp: GameData[] = [
       'Take control of the ECO35-2 Cyborg as he confronts the Supervisor’s minions across the vast facilities of Electrocorp.  This 2D fighting game was hyped at the time for its advanced graphics…and turned out to be considered one of the worst games ever made.  It also features music by Queen’s guitarist Brian May.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16300654-holiday-lemmings-dos-holiday-93-flurry-level-2-intro.png',
-    title: "Holiday Lemmings '93",
+    img: 'https://screenscraper.fr/image.php?gameid=34156&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: "Holiday Lemmings 1993",
     year: 1993,
     system: 'Amiga',
     developer: 'Psygnosis',
@@ -699,7 +699,7 @@ export const gotmRunnerUp: GameData[] = [
       'Take command of a advance ballistic missile submarine in this side-scrolling action game, as you try to defect and escape Soviet waters in the late Cold War era.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11183862-waterworld-dos-capturing-desalination-machine.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4729&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Waterworld',
     year: 1995,
     system: 'Virtual Boy',
@@ -841,7 +841,7 @@ export const gotmRunnerUp: GameData[] = [
       "Kao is a young kangaroo living with his family in the jungle when they are one day captured by a ruthless hunter and his goons. It's up to Kao to drive the invaders from his home and save his family.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15705547-goldeneye-007-nintendo-64-mission-briefing.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5397&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Goldeneye 007',
     year: 1997,
     system: 'N64',
@@ -982,7 +982,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as Leo Stenbuck, the lone survivor after an attack on his home colony near Jupiter by the evil military organization known as BAHRAM. Take control of the orbital frame known as Jehuty, defend civilians and avenge those lost. Mechas, in space!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10044698-conkers-bad-fur-day-nintendo-64-evil-panther-king.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5402&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Conker's Bad Fur Day",
     year: 2001,
     system: 'N64',
@@ -1122,7 +1122,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as Lenneth, a Valkyrie tasked with recruiting einherjar (AKA GHOST warriors) to fight for Odin in a war to stop Ragnarok from destroying everything.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/515010-forgotten-worlds-sega-master-system-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=316&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Forgotten Worlds',
     year: 1988,
     system: 'Genesis/MD',
@@ -1175,7 +1175,7 @@ export const gotmRunnerUp: GameData[] = [
       'As in Vigilante 8, players control a vehicle and eliminate all other vehicles in the arena with the use of weapons and upgrades. The player can choose to play through a story mode, Quest Mode, or play with an assorted number of bots in Arcade mode. The game also offers a new two-player cooperative mode and a Grand Melee Deathmatch mode, wherein the player endures attacks by multiple AI opponents.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16355388-spyro-2-riptos-rage-playstation-movie-scene-ripto-is-taking-over.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19302&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Spyro 2: Ripto's Rage",
     year: 1999,
     system: 'PS1',
@@ -1630,7 +1630,7 @@ export const gotmRunnerUp: GameData[] = [
       "This prequel to the Shadow Hearts series is set in the haunted Nemeton Monastery in Wales, the plot follows protagonists Koudelka Iasant, Edward Plunkett and Bishop James O'Flaherty as they uncover Nemeton's secrets and confront monsters created from its dark past. Its gameplay blends exploration and puzzle elements with turn-based battles waged on a grid.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10236631-harry-potter-and-the-sorcerers-stone-windows-scene-from-the-intr.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19284&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Harry Potter and the Sorcerer's Stone",
     year: 2001,
     system: 'PS1',
@@ -1903,7 +1903,7 @@ export const gotmRunnerUp: GameData[] = [
       'The Elder Scrolls III: Morrowind is an open-world action role-playing video game developed by Bethesda Game Studios and is the third installment in the Elder Scrolls series. The main story takes place on Vvardenfell, an island in the Dunmer (Dark Elf) province of Morrowind, part of the continent of Tamriel. The central quests concern the demigod Dagoth Ur, housed within the volcanic Red Mountain, who seeks to gain power and break Morrowind free from Imperial reign.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10261430-jade-cocoon-story-of-the-tamamayu-playstation-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19309&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Jade Cocoon: Story of the Tamamayu',
     year: 1998,
     system: 'PS1',
@@ -2618,7 +2618,7 @@ export const gotmRunnerUp: GameData[] = [
       "As a rebellious punk teenager turned poltergeist, it's your job to scare the living daylights out of the Sardini family in this classic comedy-horror title from Electronic Arts. With a great deal of gameplay variety, including trips to the underworld and the rather unique concept of possessing household objects, Haunting Starring Polterguy is \"so fun, it's scary!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16616796-digimon-world-playstation-hello-jijimon.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19263&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Digimon World',
     year: 2000,
     system: 'PS1',
@@ -3148,7 +3148,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as the Simpsons family and Abu in this gta-esque game to uncover the mysterious things happening in Springfield.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3024885-skyblazer-snes-story.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2242&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Skyblazer',
     year: 1994,
     system: 'SNES',
@@ -3300,7 +3300,7 @@ export const gotmRunnerUp: GameData[] = [
       'Manhunt is a controversial and gory stealth horror game where you go against the worst humanity itself has to offer in a sadistic game of cat and mouse.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15639018-fire-emblem-game-boy-advance-the-game-allows-some-customization-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3757&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fire Emblem: The Blazing Blade',
     year: 2003,
     system: 'GBA',
@@ -3311,7 +3311,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fire Emblem,[a] also officially known as Fire Emblem: The Blazing Blade, is a tactical role-playing game developed by Intelligent Systems and published by Nintendo for the Game Boy Advance handheld video game console. It is the seventh installment in the Fire Emblem series,[b] the second to be released for the platform after Fire Emblem: The Binding Blade, and the first to be localized for international audiences. It was released in Japan and North America in 2003, and in Europe and Australia in 2004.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16613652-sword-of-mana-game-boy-advance-a-look-at-the-level-up-screen-you.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3768&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Sword of Mana',
     year: 2003,
     system: 'GBA',
@@ -3519,7 +3519,7 @@ export const gotmRunnerUp: GameData[] = [
       'Rob banks together with a friend in a fun coop experience. A classic stealth title.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16130338-robotrek-snes-part-of-the-intro-jp.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2389&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Robotrek',
     year: 1994,
     system: 'SNES',
@@ -3713,7 +3713,7 @@ export const gotmRunnerUp: GameData[] = [
       'Tired of GotW NOT being Golden Axe? Bummed that Zelda is disqualified this month? Vote for Sega’s answer to The Legend of Zelda that GamePro magazine scored a perfect 5/5',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1719338-laplace-no-ma-snes-hey-im-not-a-transvestite.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18959&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Laplace no Ma',
     year: 1987,
     system: 'SNES, TG-CD',
@@ -3822,7 +3822,7 @@ export const gotmRunnerUp: GameData[] = [
       'Why go to work, start a family and pay bills in the real world when you can do it in a game instead? Goodbye free time!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10269711-katamari-damacy-playstation-2-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22736&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Katamari Damacy',
     year: 2004,
     system: 'PS2, PC, PS4, Switch',
@@ -3855,7 +3855,7 @@ export const gotmRunnerUp: GameData[] = [
       'The Thousand-Year Door is the second game in the Paper Mario series following Paper Mario, and is part of the larger Mario franchise. In the game, when Mario and Princess Peach get involved in the search for a mystic treasure that holds great fortune, Peach is kidnapped by an alien group called the X-Nauts; Mario sets out to find the treasure and save the princess.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3359863-shining-force-cd-sega-cd-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12738&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shining Force CD',
     year: 1995,
     system: 'Sega CD',
@@ -3866,7 +3866,7 @@ export const gotmRunnerUp: GameData[] = [
       'Shining Force CD is a 1994 strategy role-playing game developed by Sonic! Software Planning for the Sega CD, and a remake of the games Shining Force Gaiden and Shining Force Gaiden II that were originally for the Game Gear. Although the game went largely unnoticed upon release in 1995. It has gained a cult following and considered to be one of the best titles released for the SEGA CD platform.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16566478-kuon-playstation-2-shit-happens.png',
+    img: 'https://screenscraper.fr/image.php?gameid=22372&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kuon',
     year: 2004,
     system: 'PS2',
@@ -4126,7 +4126,7 @@ export const gotmRunnerUp: GameData[] = [
       'I had no idea that Guardian Heroes had a sequel on GBA. I should try this when I finish Guardian Heroes on my Xbox 360',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2839880-puyo-pop-n-gage-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=84452&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Puyo Pop',
     year: 2002,
     system: 'GBA',
@@ -4279,8 +4279,8 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3851318-scooby-doo-commodore-64-i-need-to-jump-over-skulls.png',
-    title: 'Scooby Doo Mystery',
+    img: 'https://screenscraper.fr/image.php?gameid=2605&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: 'Scooby-Doo Mystery',
     year: 1995,
     system: 'SNES',
     developer: 'Sunsoft',
@@ -4288,17 +4288,6 @@ export const gotmRunnerUp: GameData[] = [
     timeToBeat: 3,
     description:
       "You play as Shaggy and Scooby in a hanful of classic Scooby style mysteries. You're goal is to find clues to solve the mystery at hand while avoiding enemies and various obstacles.",
-  },
-  {
-    img: 'https://cdn.mobygames.com/screenshots/3805757-leyendas-de-lhodrye-la-luz-del-druida-dos-one-of-the-first-quest.png',
-    title: "Laplace's Demon",
-    year: 1987,
-    system: 'PC-88, SFC',
-    developer: 'Group SNE',
-    genre: 'Survival Horror RPG',
-    timeToBeat: 27,
-    description:
-      'Choose from classes like detective, medium, or scientist and investigate a haunted New England mansion in this Lovecraft-inspired horror RPG.',
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15698233-bronkie-the-bronchiasaurus-snes-bronkie-jumping-away-from-dust.png',
@@ -4749,7 +4738,7 @@ export const gotmRunnerUp: GameData[] = [
       'Get your zords out and fight all the evil Rita can throw at ya!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15713034-kickle-cubicle-arcade-cleared-the-second-round.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1368&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kickle Cubicle',
     year: 1988,
     system: 'NES',
