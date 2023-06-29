@@ -1653,7 +1653,7 @@ export const gotmRunnerUp: GameData[] = [
       "From the makers of Croc, this game sees Harry in an expanded adventure of the first book in the series as he encounters many magical creatures and situations, INCLUDING ghosts. Also, it features a section where you run away from a troll that used to terrify me as a kid so bad, I couldn't finish the level due to anxiety.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15755031-dokapon-monster-hunter-game-boy-advance-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3910&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dokapon: Monster Hunter',
     year: 2001,
     system: 'GBA',
