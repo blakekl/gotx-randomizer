@@ -4279,8 +4279,8 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3851318-scooby-doo-commodore-64-i-need-to-jump-over-skulls.png',
-    title: 'Scooby Doo Mystery',
+    img: 'https://screenscraper.fr/image.php?gameid=2605&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: 'Scooby-Doo Mystery',
     year: 1995,
     system: 'SNES',
     developer: 'Sunsoft',
