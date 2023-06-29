@@ -4717,7 +4717,7 @@ export const gotmRunnerUp: GameData[] = [
       'Hyper V-Ball is a volleyball game where you can play as Man, Woman or Hyper League. The human gameplay is fun enough: as a human, you get to pick a country and play a world series. But where Hyper V-Ball really shines is the robot gameplay. As a robot team, you get to relish in all the special abilities and power-ups that you could hope for in such a thing as robot volleyball.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16008071-deep-fear-sega-saturn-map.png',
+    img: 'https://screenscraper.fr/image.php?gameid=13091&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Deep Fear',
     year: 1998,
     system: 'Saturn',
