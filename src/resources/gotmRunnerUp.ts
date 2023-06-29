@@ -4641,7 +4641,7 @@ export const gotmRunnerUp: GameData[] = [
       'Become a Craftknight! Explore dungeons, collect materials, and forge 5 unique types of weapons in this action RPG for GBA.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4108335-no-one-can-stop-mr-domino-playstation-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=103456&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'No One Can Stop Mr. Domino',
     year: 1998,
     system: 'PS1',
