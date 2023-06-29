@@ -874,7 +874,7 @@ export const gotmWinners: GameData[] = [
       'Choose one of your favorite Rare characters and race a Dinosaur and other animals! Balloons are a delicacy that help you defeat an Evil Pig.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10398588-super-mario-world-2-yoshis-island-snes-the-story-begins.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=2163&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Super Mario World 2: Yoshi's Island",
     year: 1995,
     system: 'SNES',
