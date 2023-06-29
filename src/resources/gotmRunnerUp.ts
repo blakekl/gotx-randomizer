@@ -1816,7 +1816,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/257284-tetris-attack-game-boy-clearing-the-block.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2559&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tetris Attack',
     year: 1995,
     system: 'SNES',
