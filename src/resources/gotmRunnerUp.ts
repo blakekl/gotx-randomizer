@@ -2129,7 +2129,7 @@ export const gotmRunnerUp: GameData[] = [
       "You and your friend set out to clean up the lawless land of the west. Enjoy finding upgrades, dodging bullets, and taking out the big bads. Just don't forget to bury them with their money.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15671123-super-ghouls-n-ghosts-game-boy-advance-somebody-is-observing-the.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2180&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Super Ghouls 'n Ghosts",
     year: 1992,
     system: 'SNES, GBA',
