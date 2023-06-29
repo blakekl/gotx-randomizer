@@ -4290,17 +4290,6 @@ export const gotmRunnerUp: GameData[] = [
       "You play as Shaggy and Scooby in a hanful of classic Scooby style mysteries. You're goal is to find clues to solve the mystery at hand while avoiding enemies and various obstacles.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3805757-leyendas-de-lhodrye-la-luz-del-druida-dos-one-of-the-first-quest.png',
-    title: "Laplace's Demon",
-    year: 1987,
-    system: 'PC-88, SFC',
-    developer: 'Group SNE',
-    genre: 'Survival Horror RPG',
-    timeToBeat: 27,
-    description:
-      'Choose from classes like detective, medium, or scientist and investigate a haunted New England mansion in this Lovecraft-inspired horror RPG.',
-  },
-  {
     img: 'https://cdn.mobygames.com/screenshots/15698233-bronkie-the-bronchiasaurus-snes-bronkie-jumping-away-from-dust.png',
     title: 'Bronkie the Bronchiasaurus',
     year: 1995,
