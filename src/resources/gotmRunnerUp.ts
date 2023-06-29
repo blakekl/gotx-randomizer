@@ -5085,7 +5085,7 @@ export const gotmRunnerUp: GameData[] = [
       'Say goodbye to oddly-colored hedgehogs as you play as the true hero of the Sonic franchise, Tails!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16578634-hooters-road-trip-playstation-fake-smile-maybe.png',
+    img: 'https://screenscraper.fr/image.php?gameid=104923&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hooters Road Trip',
     year: 2002,
     system: 'PS1, PC',
