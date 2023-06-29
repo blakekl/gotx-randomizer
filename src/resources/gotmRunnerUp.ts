@@ -3171,7 +3171,7 @@ export const gotmRunnerUp: GameData[] = [
       'A platform game that involves Sky, the Skyblazer hero searching for Ashura, the Lord of War, who had kidnapped the sorceress Ariana.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15974255-boktai-the-sun-is-in-your-hand-game-boy-advance-the-map.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3833&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Boktai: The Sun is in Your Hand',
     year: 2003,
     system: 'GBA',
