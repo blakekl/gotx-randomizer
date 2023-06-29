@@ -2368,7 +2368,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Sora, Donald and Goofy in this mash up of Disney and Final Fantasy. Maybe the real Kingdom Hearts is the friends we made along the way?',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15743007-ninja-gaiden-nes-japanese-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18922&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ninja Gaiden',
     year: 1988,
     system: 'NES',
