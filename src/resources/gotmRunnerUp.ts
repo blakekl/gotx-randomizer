@@ -3692,7 +3692,7 @@ export const gotmRunnerUp: GameData[] = [
       'Quick! Grab your hose and be the hero you always wanted to be in this truly great game.  It is also one of the best top down action games for the SNES.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1487844-bushi-seiryuden-futari-no-yusha-snes-naming-jin.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18933&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bushi Seiryuuden: Futari no Yuusha',
     year: 1997,
     system: 'SNES',
