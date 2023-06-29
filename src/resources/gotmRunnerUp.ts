@@ -3476,7 +3476,7 @@ export const gotmRunnerUp: GameData[] = [
       "Crystal is an updated definitive version of Pokémon Gold/Silver. First time in a Pokémon adventure you can choosh to be a male or female character. Towns are announced, Pokémon have animated entrances, and other general improvements to the the UI. Even though this is related to gold/silver it’s worth mentioning. Satoru Iwata's story of saving the development of Pokemon Gold & Silver by compressing its assets to fit on the GameBoy Color cartridge is something of a legend. Iwata optimised the game so much that GameFreak was even able to include two whole regions in the game.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1048164-snow-bros-nick-tom-nes-the-king-thought-the-two-princes-were-out.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1719&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Snow Bros.',
     year: 1990,
     system: 'NES',
