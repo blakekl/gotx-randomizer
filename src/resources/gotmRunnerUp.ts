@@ -1794,9 +1794,9 @@ export const gotmRunnerUp: GameData[] = [
       'Play as the titular dreamwalker in this Zelda-like action-adventure game.  Explore the island and enter the dreams of the villagers of Inoa.  Though a cult classic today, upon release it was critically lauded for its tight gameplay, complex puzzle-solving, soundtrack, and mature storyline.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2152252-the-final-fantasy-legend-wonderswan-color-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3017&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Final Fantasy Legend',
-    year: 1990,
+    year: 1989,
     system: 'GB',
     developer: 'Squaresoft',
     genre: 'RPG',
