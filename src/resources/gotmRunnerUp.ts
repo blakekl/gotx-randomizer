@@ -6305,7 +6305,7 @@ export const gotmRunnerUp: GameData[] = [
       'In 1986, Mafuyu sets out to learn of the mysterious disappearance of his mentor, who was said to be heading to the haunted Himuro mansion for research on his book. When Mafuyu also disappears, his sister Mika heads out, and with the help of an otherworldly camera with the ability to capture ghosts, she attempts to unravel the brutal past of Himuro mansion and to save Mafuyu.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16855536-nanashi-no-game-nintendo-ds-title-screen-amp-main-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=7565&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Nanashi no Game',
     year: 2008,
     system: 'DS',
