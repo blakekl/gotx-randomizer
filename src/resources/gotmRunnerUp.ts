@@ -1468,7 +1468,7 @@ export const gotmRunnerUp: GameData[] = [
       'I bring you the classic twisted car combat game that started it all, with nostalgic graphics and slippery mechanics. The stories are devilish and the bosses are tough, but you can beat this in one sitting. U R Not (red) E!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15714795-contra-zx-spectrum-worthy-of-an-action-film-scene.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18624&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Contra',
     year: 1986,
     system: 'NES',
