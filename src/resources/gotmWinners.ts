@@ -874,7 +874,7 @@ export const gotmWinners: GameData[] = [
       'Choose one of your favorite Rare characters and race a Dinosaur and other animals! Balloons are a delicacy that help you defeat an Evil Pig.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10398588-super-mario-world-2-yoshis-island-snes-the-story-begins.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=2163&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Super Mario World 2: Yoshi's Island",
     year: 1995,
     system: 'SNES',
@@ -951,7 +951,7 @@ export const gotmWinners: GameData[] = [
       'A plumber named Mario and his brother Luigi along with their new friend yoshi travel through the Mushroom Kingdom to save the princess from the evil Bowser. Plumber brothers Mario and Luigi from Brooklyn have just arrived in an outlandish realm called the Mushroom Kingdom. It was ruled by Princess Toadstool and her faithful Mushroom people.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15704047-spongebob-squarepants-revenge-of-the-flying-dutchman-playstation.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4315&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Spongebob Squarepants - Revenge of the Flying Dutchman',
     year: 2002,
     system: 'GBA',

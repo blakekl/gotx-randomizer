@@ -277,7 +277,7 @@ export const gotmRunnerUp: GameData[] = [
       'Star in your own 1950s B-Movie when you play as a scientist investigating a meteor strike who finds the local townsfolk acting WEIRD. An adventure with mini-games (FPS, Driving, Top-down run/fight). Try to work out what’s going on before the town is overrun. If you fail, use what you learnt to do better next time (like The Outer Wilds).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16213953-the-secret-of-monkey-island-sega-cd-over-head-view-of-monkey-isl.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12705&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Secret of Monkey Island',
     year: 1990,
     system: 'Sega CD, Android',
@@ -451,7 +451,7 @@ export const gotmRunnerUp: GameData[] = [
       'Doom is a groundbreaking first-person shooter that popularized the genre, immersing players in fast-paced combat against hordes of demons and otherworldly creatures in maze-like environments.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9693387-shadowgate-macintosh-credits-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1292&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shadowgate',
     year: 1987,
     system: 'NES, GBC',
@@ -560,7 +560,7 @@ export const gotmRunnerUp: GameData[] = [
       'Take control of Vampire-turned-wraith (ie ghost) Raziel in this 3rd person action adventure game. Phase through objects and shift between the material and spectral realms on your way to revenge.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4124445-rise-of-the-robots-dos-then-transported-to-metropolis-4.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2156&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rise of the Robots',
     year: 1994,
     system: 'SNES',
@@ -582,7 +582,7 @@ export const gotmRunnerUp: GameData[] = [
       "Lemmings does not need an introduction: it's one of the best games ever. If you add the Xmas theme, is there any better game you can play for Christmas? I don't think so.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10580419-colin-mcrae-rally-windows-rally-school-menu-polish-version.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19517&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Colin McRae Rally',
     year: 1998,
     system: 'PS1',
@@ -700,7 +700,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as a vampire trying to reverse the curse in an action-packed adventure to murder the Circle of Nine',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1282731-the-hunt-for-red-october-apple-ii-the-end-is-nigh.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1522&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Hunt for the Red October',
     year: 1991,
     system: 'NES, GB, SNES',
@@ -1317,7 +1317,7 @@ export const gotmRunnerUp: GameData[] = [
       "I can't think of a game with a more rockin soundtrack than TM2. The Los Angeles stage, Paris, Amazonia, all the hits! Twisted car combat with classic graphics and slippery brilliant mechanics. U R Not (red) E!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/118879-tetris-dx-game-boy-color-gameplay-selection-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=37208&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tetris DX',
     year: 1998,
     system: 'GBC',
@@ -1653,7 +1653,7 @@ export const gotmRunnerUp: GameData[] = [
       "From the makers of Croc, this game sees Harry in an expanded adventure of the first book in the series as he encounters many magical creatures and situations, INCLUDING ghosts. Also, it features a section where you run away from a troll that used to terrify me as a kid so bad, I couldn't finish the level due to anxiety.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15755031-dokapon-monster-hunter-game-boy-advance-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3910&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dokapon: Monster Hunter',
     year: 2001,
     system: 'GBA',
@@ -1685,7 +1685,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15703210-bust-a-move-game-gear-the-results-scroll-by.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2530&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bust-a-Move/Puzzle Bobble',
     year: 1994,
     system: 'Neo Geo',
@@ -2402,7 +2402,7 @@ export const gotmRunnerUp: GameData[] = [
       "Sure you've played as a knight , but have you played as an opossum knight? Fight and fly through this Genesis platformer as Sparky the Knight and save the planet from certain destruction.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15719266-chuck-rock-sega-master-system-game-over.png',
+    img: 'https://screenscraper.fr/image.php?gameid=165&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Chuck Rock',
     year: 1992,
     system: 'Genesis/MD',
@@ -2575,7 +2575,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2169552-the-ooze-genesis-spooky-start-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=392&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Ooze',
     year: 1995,
     system: 'Genesis/MD',
@@ -3117,7 +3117,7 @@ export const gotmRunnerUp: GameData[] = [
       "There's no case too big, no case too small. When you need help, just call...",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/6567127-blaster-master-nes-level-select-screen-prototype-version.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1474&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Blaster Master',
     year: 1988,
     system: 'NES',
@@ -3171,7 +3171,7 @@ export const gotmRunnerUp: GameData[] = [
       'A platform game that involves Sky, the Skyblazer hero searching for Ashura, the Lord of War, who had kidnapped the sorceress Ariana.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15974255-boktai-the-sun-is-in-your-hand-game-boy-advance-the-map.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3833&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Boktai: The Sun is in Your Hand',
     year: 2003,
     system: 'GBA',
@@ -3443,7 +3443,7 @@ export const gotmRunnerUp: GameData[] = [
       '2D action/platformer. In the year 2056, you play a military agent who has transferred his brain into binary code in order to combat a virus in the main defense computer. You take on the image of a Kabuki dancer, like your ancestor, and attack with your hair.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15739659-monster-rancher-advance-2-game-boy-advance-some-of-the-stats-you.png',
+    img: 'https://screenscraper.fr/image.php?gameid=84231&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Monster Rancher Advance 2',
     year: 2002,
     system: 'GBA',
@@ -3790,7 +3790,7 @@ export const gotmRunnerUp: GameData[] = [
       "This game is the second entry into the Front Mission Series and is a side-scrolling action RPG. It was only released in Japan however fortunately there is a full fan translation. Fun mech battles and lots of upgrades to your mechs. What's not to love!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/626224-david-cranes-a-boy-and-his-blob-trouble-on-blobolonia-nes-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1438&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'A Boy and His Blob: Trouble on Blobolonia',
     year: 1989,
     system: 'NES',
@@ -4149,7 +4149,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fantastic puzzle game with a decent story. The characters are wacky and charming. The humor is good. And the gameplay is great.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4294284-destroy-all-humans-playstation-2-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22415&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Destroy All Humans!',
     year: 2005,
     system: 'PS2, Wii',
@@ -4259,7 +4259,7 @@ export const gotmRunnerUp: GameData[] = [
       'As Soma, from our October 2020 winner Castlevania: Aria of Sorrow, murder baddies and equip their ghosts!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11916018-robots-windows-main-menu.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22751&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Robots',
     year: 2005,
     system: 'PS2',
@@ -4324,7 +4324,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game is a platformer meant to teach kids about asthma. When the wind machine meant to get rid of dust is stolen by the evil Mr. Rexo you play as Bronkie in an attempt to find the pieces of the broken machine before the dust comes back.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15753897-rebelstar-tactical-command-game-boy-advance-talking-between-batt.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4199&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rebelstar: Tactical Command',
     year: 2005,
     system: 'GBA',
@@ -4467,7 +4467,7 @@ export const gotmRunnerUp: GameData[] = [
       "Bounce, roll, and explore this playful, colorful, and infectiously upbeat world. Take control of their planet to help these gelatinous morphy balls who don't commit crimes protect their homeworld from ruthless assault.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2391655-home-improvement-power-tool-pursuit-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19078&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Home Improvement: Power Tool Pursuit',
     year: 1994,
     system: 'SNES',
@@ -4521,7 +4521,7 @@ export const gotmRunnerUp: GameData[] = [
       'Complete quests as Mario, Luigi, Peach, or Yoshi to collect over 120 minigames that were scattered across Shroom City by Bowser.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10546597-a-force-more-powerful-the-game-of-nonviolent-strategy-windows-do.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=43007&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Street Fighter: The Movie: The Game',
     year: 1995,
     system: 'PS1, Saturn, Arcade',
@@ -4772,7 +4772,7 @@ export const gotmRunnerUp: GameData[] = [
       'Kick the cubes in this puzzle game to beat the level and move on. Collect the Dream bags by moving cubes out of the way, or turning enemies into walkways to cross gaps.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15984268-hotel-dusk-room-215-nintendo-ds-hand-selection.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5833&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hotel Dusk: Room 215',
     year: 2007,
     system: 'DS',
@@ -5065,7 +5065,7 @@ export const gotmRunnerUp: GameData[] = [
       'A fun puzzle game the first pioneered the use of a rewind feature.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3788861-danger-ranger-dragon-3264-choose-a-colour.png',
+    img: 'https://screenscraper.fr/image.php?gameid=227&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ranger-X',
     year: 1993,
     system: 'Genesis/MD',
@@ -6141,7 +6141,7 @@ export const gotmRunnerUp: GameData[] = [
       'Chocobo no Fushigi na Dungeon (チョコボの不思議なダンジョン) is a (Dungeon) RPG video game published by SquareSoft released on December 23rd, 1997 for the Sony PlayStation.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12599250-shin-megami-tensei-persona-2-innocent-sin-psp-the-green-on-red-l.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19422&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shin Megami Tensei: Persona 2: Innocent Sin',
     year: 1999,
     system: 'PS1',

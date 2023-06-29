@@ -716,4 +716,14 @@ export const retrobits: GameData[] = [
       "The Legend of Zelda meets Disney? Capcom created an amazing multiplayer, Zelda-like experience here, don't let the licencsing fool you! As Max or Goofy, use various tools like grappling hooks to solve puzzles and defeat Pete and his crew!",
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1119778552787767348/Retro_Bits_65_-_Goof_Troop.gif',
   },
+  {
+    title: 'Ghost Sweeper Mikami: Joreishi wa Nice Body',
+    year: 1993,
+    system: 'Super Nintendo',
+    developer: 'Natsume',
+    genre: 'Action-Platformer',
+    img: 'https://media.discordapp.net/attachments/957342297270415480/1122315465386106890/Retro_Bits_66_-_Ghost_Sweeper_Mikami_-_Joreishi_wa_Nice_Body.gif',
+    description: 'Based on the manga and anime series Ghost Sweeper Mikami, take control of Reiki, the exorcist with the  "Nice Body," and take on all sorts of ghosts and ghoullies with your magically charged baton! No translation available.',
+    timeToBeat: 2,
+  },
 ];
