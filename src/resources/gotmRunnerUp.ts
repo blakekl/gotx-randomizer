@@ -3790,7 +3790,7 @@ export const gotmRunnerUp: GameData[] = [
       "This game is the second entry into the Front Mission Series and is a side-scrolling action RPG. It was only released in Japan however fortunately there is a full fan translation. Fun mech battles and lots of upgrades to your mechs. What's not to love!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/626224-david-cranes-a-boy-and-his-blob-trouble-on-blobolonia-nes-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1438&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'A Boy and His Blob: Trouble on Blobolonia',
     year: 1989,
     system: 'NES',
