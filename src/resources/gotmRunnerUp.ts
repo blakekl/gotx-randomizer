@@ -1859,7 +1859,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Chocobo, Mog, Black Mage, Cid, and a cast of other Final Fantasy characters in a drift-heavy kart racer with a story mode!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15746328-krustys-super-fun-house-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2325&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Krusty's Fun House",
     year: 1992,
     system: 'SNES',
