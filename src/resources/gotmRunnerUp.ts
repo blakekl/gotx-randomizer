@@ -3365,7 +3365,7 @@ export const gotmRunnerUp: GameData[] = [
       "Rock n' Roll Racing is a vehicular combat-based racing video game developed by Silicon & Synapse and published by Interplay Productions for the Super Nintendo Entertainment System in 1993 and the Mega Drive/Genesis in 1994.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10267104-kid-klown-in-crazy-chase-snes-introduction.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=2493&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kid Klown in Crazy Chase',
     year: 1994,
     system: 'SNES',
