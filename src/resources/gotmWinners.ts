@@ -753,7 +753,7 @@ export const gotmWinners: GameData[] = [
       'The player can play as a pirate, privateer, or a pirate hunter.  It features sword fighting, ocean-faring battles, and land battles as its three main arenas of action, connected by role-playing which allows the player to court the favor of local politicos, romance women, and recruit pirates in the local pub.  Players have the opportunity to go on quests, but must also strategically plan raiding excursions and trading routes.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16280249-jet-grind-radio-android-what-tear-gas.png',
+    img: 'https://screenscraper.fr/image.php?gameid=13498&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Jet Set Radio',
     year: 2000,
     system: 'Dreamcast',
