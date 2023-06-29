@@ -15,7 +15,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game was terrifying because as a child you had no idea where to go and you basicially got melted every time you played. Not intentionally spooky, but the game gave me nightmares growing up lol. Seriously.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1667432-wing-commander-dos-external-camera.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12747&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Wing Commander',
     year: 1994,
     system: 'Sega CD',
