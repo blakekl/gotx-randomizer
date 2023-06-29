@@ -2445,7 +2445,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12634968-knuckles-chaotix-sega-32x-music-test.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12670&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Knuckles' Chaotix",
     year: 1995,
     system: '32X',
