@@ -191,7 +191,7 @@ export const gotmRunnerUp: GameData[] = [
       "Beneath a Steel Sky is a point and click adventure game devised by director Charles Cecil and Watchman's comic book artist Dave Gibbons wich takes place in a distopian future.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1957178-dracula-unleashed-sega-cd-saucy-jack-bar-picture.png',
+    img: 'https://screenscraper.fr/image.php?gameid=58733&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dracula Unleashed',
     year: 1993,
     system: 'DOS, Sega CD',
@@ -1253,7 +1253,7 @@ export const gotmRunnerUp: GameData[] = [
       'Yokosuka, Japan, 2112 AD. Young student Kazuki Takemura works as a test pilot for military battle Wanzers, mechanized walking robots, and is swept up in a plot of conflicting loyalties and attacked by various factions. A large explosion, a wanzer theft, his sister Alysia being hunted, rumors of a powerful weapon, and accusations of involvement by agents of both the OCU and the USN all make the situation more complicated.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10437776-threads-of-fate-playstation-choosing-a-hero.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19704&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Threads of Fate',
     year: 1999,
     system: 'PS1',
@@ -1296,7 +1296,7 @@ export const gotmRunnerUp: GameData[] = [
       "Published as a launch title in 2001, Circle of the Moon belongs to Konami's Castlevania video game series, the premise of which centers on the eternal conflict between the vampire hunters of the Belmont clan and the vampire Dracula...One of the best playing Castlevania games released.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15690949-spider-man-nintendo-64-here-instead-movie-cutscenes-a-slide-show.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19358&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Spider-Man',
     year: 2000,
     system: 'PS1, N64, DC',
@@ -1468,7 +1468,7 @@ export const gotmRunnerUp: GameData[] = [
       'I bring you the classic twisted car combat game that started it all, with nostalgic graphics and slippery mechanics. The stories are devilish and the bosses are tough, but you can beat this in one sitting. U R Not (red) E!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15714795-contra-zx-spectrum-worthy-of-an-action-film-scene.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18624&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Contra',
     year: 1986,
     system: 'NES',
@@ -1816,7 +1816,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/257284-tetris-attack-game-boy-clearing-the-block.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2559&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tetris Attack',
     year: 1995,
     system: 'SNES',
@@ -2207,7 +2207,7 @@ export const gotmRunnerUp: GameData[] = [
       'You’re a mercenary hired out by private organizations and the government alike. You pilot a mech known as an Armored Core which allows you to swap out individual parts to either gain a defensive/offensive/speed boost to better tackle each mission.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/350678-zombies-ate-my-neighbors-snes-the-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=87&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Zombies Ate My Neighbors',
     year: 1993,
     system: 'Genesis/MD',
@@ -2283,7 +2283,7 @@ export const gotmRunnerUp: GameData[] = [
       "You know how these games work. You're friends with an old man who has a farm you visited as a kid, and he sends you weird letters in the mail. One day he stops sending you mail, so you travel to Mineral Town, find that the farm has gone to pot, and discover that the Old Manbought the farm around half a year ago. You're awful for not writing more btw - you were his only friend. The mayor of Mineral Town informs the player that in the farmer's will, he left the player the farm.  You then get to have cute, non-violent, fun doing farming stuff until Rapid says you're finished.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16132882-blades-of-steel-game-boy-uh-oh-not-good.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1514&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Blades of Steel',
     year: 1988,
     system: 'NES',
@@ -2445,7 +2445,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12634968-knuckles-chaotix-sega-32x-music-test.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12670&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Knuckles' Chaotix",
     year: 1995,
     system: '32X',
@@ -3030,7 +3030,7 @@ export const gotmRunnerUp: GameData[] = [
       'Epic medieval fantasy themed side scrolling beat ‘em up with branching paths, multiple endings, and light ROG elements',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1302719-shining-force-iii-sega-saturn-a-burning-castle-intro.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13086&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shining Force 3',
     year: 1998,
     system: 'Saturn',
@@ -3235,7 +3235,7 @@ export const gotmRunnerUp: GameData[] = [
       "It's the usual JRPG story where you have to stop a rising power-hungry force from destroying the world as we know it. BUT it has a vast open world where you'll get to fight and collect Craymels which are like gods of different elements, mix and match them to obtain different skills and effects, makes the game replayable since you can try out different elements each time you play it. Fighting is Tales-usual like a free-roam arena fight but in 2D. Lots of mini-games and side-quests. Plus you get to explore the ocean with a big customizable ship and submarine!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15871299-willow-nes-status-inventory-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1479&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Willow',
     year: 1989,
     system: 'NES',
@@ -3476,7 +3476,7 @@ export const gotmRunnerUp: GameData[] = [
       "Crystal is an updated definitive version of Pokémon Gold/Silver. First time in a Pokémon adventure you can choosh to be a male or female character. Towns are announced, Pokémon have animated entrances, and other general improvements to the the UI. Even though this is related to gold/silver it’s worth mentioning. Satoru Iwata's story of saving the development of Pokemon Gold & Silver by compressing its assets to fit on the GameBoy Color cartridge is something of a legend. Iwata optimised the game so much that GameFreak was even able to include two whole regions in the game.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1048164-snow-bros-nick-tom-nes-the-king-thought-the-two-princes-were-out.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1719&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Snow Bros.',
     year: 1990,
     system: 'NES',
@@ -3692,7 +3692,7 @@ export const gotmRunnerUp: GameData[] = [
       'Quick! Grab your hose and be the hero you always wanted to be in this truly great game.  It is also one of the best top down action games for the SNES.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1487844-bushi-seiryuden-futari-no-yusha-snes-naming-jin.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18933&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bushi Seiryuuden: Futari no Yuusha',
     year: 1997,
     system: 'SNES',
@@ -4050,7 +4050,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/792811-need-for-speed-underground-rivals-psp-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=28012&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Need for Speed Underground: Rivals',
     year: 2005,
     system: 'PSP',
@@ -4248,7 +4248,7 @@ export const gotmRunnerUp: GameData[] = [
       "If you're a fan of the 90's feminist and LGBTQ+ icon, you'll love this game. You play as Xena in mostly linear hack-n-slash with occasional platforming and puzzles. Do you have what it takes to save Gabrielle, Queen of the Amazons?",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15827804-castlevania-dawn-of-sorrow-nintendo-ds-start-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5809&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Castlevania: Dawn of Sorrow',
     year: 2005,
     system: 'DS',
@@ -4717,7 +4717,7 @@ export const gotmRunnerUp: GameData[] = [
       'Hyper V-Ball is a volleyball game where you can play as Man, Woman or Hyper League. The human gameplay is fun enough: as a human, you get to pick a country and play a world series. But where Hyper V-Ball really shines is the robot gameplay. As a robot team, you get to relish in all the special abilities and power-ups that you could hope for in such a thing as robot volleyball.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16008071-deep-fear-sega-saturn-map.png',
+    img: 'https://screenscraper.fr/image.php?gameid=13091&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Deep Fear',
     year: 1998,
     system: 'Saturn',
@@ -4935,7 +4935,7 @@ export const gotmRunnerUp: GameData[] = [
       'Digimon meets JRPG, plenty of content and fun to be had while getting to be a digimon tamer.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3547787-batman-the-video-game-nes-intro.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1287&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Batman: The Video Game',
     year: 1989,
     system: 'NES',
@@ -5054,7 +5054,7 @@ export const gotmRunnerUp: GameData[] = [
       'In a game that was not even slightly influenced by that other Capcom game Phoenix Write, you play a lawyer who alternates between examining crime scenes and cross examining witnesses in a courtroom in order to prove your client - usually Hanna-Barbera character - innocent. Features a cameo from a Street Fighter 2 character in each case',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15885266-catrap-game-boy-main-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3280&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Catrap',
     year: 1985,
     system: 'Sharp MZ-700, GB, 3DS',
@@ -5141,7 +5141,7 @@ export const gotmRunnerUp: GameData[] = [
       "Who would win in a fight between Goku and Naruto ? Gon Freks and Ichigo ? Bobobo-bo and Aralé? It's time to settle the debate with this fighting game featuring more than 300 manga characters from Jump magazine, with 56 of them playable.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4628506-monster-in-my-pocket-nes-of-course-the-vampire-and-the-monster-w.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1994&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Monster in My Pocket',
     year: 1992,
     system: 'NES',
@@ -5369,7 +5369,7 @@ export const gotmRunnerUp: GameData[] = [
       'The third installment of the famed Jetpac series from Ultimate Play the Game, better known as Rare. Explore a dozen planets as the Jetman to collect the pieces of the Golden Warpship, always keeping an eye on the fuel gauge !',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16090387-dragon-ball-z-attack-of-the-saiyans-nintendo-ds-title-screen-wit.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5815&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dragon Ball Z: Attack of the Saiyans',
     year: 2009,
     system: 'Nintendo DS',
@@ -5465,7 +5465,7 @@ export const gotmRunnerUp: GameData[] = [
       'Welcome to the land of the dead! You play the role of a ghost with no memory of your past life, or how you may have died! Can you solve the mystery of your own death before you disappear at sunrise? And why do you keep crossing paths with an enigmatic young detective?',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15812003-dragon-quest-monsters-joker-2-nintendo-ds-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5783&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dragon Quest Monsters: Joker 2',
     year: 2011,
     system: 'Nintendo DS',
@@ -5683,7 +5683,7 @@ export const gotmRunnerUp: GameData[] = [
       'Sheep Raider is one pretty looking PS game. The animations are smooth and varied and the levels are well-designed and sufficiently cartoony. Sure, you start out swiping sheep in a quiet meadow, but quickly you will be running across snow and dodging lava.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1254728-flashback-windows-fighting-the-cyborgs-in-vr-missions.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=2229&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Flashback',
     year: 1992,
     system: 'SNES',
@@ -6327,7 +6327,7 @@ export const gotmRunnerUp: GameData[] = [
       'Bulk Slash is a thrilling third person action game where you pilot a mech that can switch between walking and flying mode and graphically, is a show piece for the Saturn, proving that the hardware was capable of great looking 3D games in the right hands.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12566337-powerslave-exhumed-windows-animated-opening-sequence.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13185&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Powerslave/Exhumed',
     year: 1996,
     system: 'Saturn, PS1, PC',
@@ -6501,7 +6501,7 @@ export const gotmRunnerUp: GameData[] = [
       'Know Super Mario RPG like the back of your hand? Super Mario RPG: Armegeddon is a difficulty and content mod for Super Mario RPG. It adds double timed hits, a plethora of new bosses from across RPG history, and a ton of new surprises. This mod was originally not for the faint of heart, but has been updated with a more relaxed and balanced “Content” edition.',
   },
   {
-    img: 'https://lh3.googleusercontent.com/proxy/16W6ARqjreC-r0pB8BB43KRuLpuEM22-K-EXeUtcL7iKwUWEnGqBXOaQzWPXR_KFF0vNtmw079tzqYsaFBzUcVbX-IPoXhVDRj9I5QCiezh5EAYMYV3aCAMbF8XMo2v-BxlO0d6e5GHe41xA',
+    img: 'https://www.romhacking.net/hacks/snes/images/4134screenshot1.gif',
     title: 'Final Fantasy IV - Ultima',
     year: 1991,
     system: 'SNES',
