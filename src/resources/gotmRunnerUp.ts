@@ -1,22 +1,10 @@
 import { GameData } from '../models/gameData.model';
 
-const current: GameData[] = [
-  {
-    img: 'https://cdn.mobygames.com/screenshots/16137795-tokimeki-memorial-turbografx-cd-a-meeting-outside-its-decision-t.png',
-    title: 'Tokimeki Memorial - Densetsu No Ki No Shita De',
-    year: 1994,
-    system: 'Super Famicom',
-    developer: 'Konami',
-    genre: 'Dating Simulation',
-    timeToBeat: 8,
-    description:
-      "There's a legend at Kirameki High School that if a girl confesses her love for you under a certain tree, you'll have happiness forever...",
-  },
-];
+const current: GameData[] = [];
 
 export const gotmRunnerUp: GameData[] = [
   {
-    img: 'https://cdn.mobygames.com/screenshots/1635348-who-framed-roger-rabbit-apple-ii-driving-to-the-ink-amp-paint-cl.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1657&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Who Framed Roger Rabbit',
     year: 1989,
     system: 'NES',
@@ -126,7 +114,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fun and quirky run-and-gun third-person shooter! I remember being super hype for it when it came out and had a blast playing it.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11128807-star-wars-rogue-squadron-3d-windows-x-wing-from-above.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5413&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Star Wars: Rogue Squadron',
     year: 1998,
     system: 'N64',
@@ -224,7 +212,7 @@ export const gotmRunnerUp: GameData[] = [
       'Dark Forces is an FPS where the player controls Kyle Katarn with a focus on combat against various creatures and characters from the Star Wars universe, although the game also includes environmental puzzles and hazards.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15740826-ms-pac-man-lynx-game-over.png',
+    img: 'https://screenscraper.fr/image.php?gameid=60558&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ms. Pac Man',
     year: 1982,
     system: 'Arcade',
@@ -288,7 +276,7 @@ export const gotmRunnerUp: GameData[] = [
       'The definitive 90s Point and Click Adventure, TSOMI follows Guybrush Threepwood on his adventures to become a Pirate, hindered by the character who will become his arch-nemisis, "The Ghost Pirate LeChuck" - this game appeared in pretty much all "top 10" reader currated lists for any brand of 16-bit home computer in Europe, and is basically the classiciest of classics. Playable on any handheld which can run ScummVM (eg. anbernics, Miyoo Mini, etc etc).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16532645-micro-machines-v3-game-boy-color-pond-life.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19385&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Micro Machines V3',
     year: 1997,
     system: 'PS1',
@@ -636,7 +624,7 @@ export const gotmRunnerUp: GameData[] = [
       'Like its predecessor Heretic, Hexen is a fantasy FPS built on the Doom Engine with some light RPG elements.  Hexen builds on the solid foundation established by Heretic but adds some non-linearity to the structure with hub worlds, as well as multiple character classes to choose from, adding some additional depth not typically found in its doom engine cousins.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1633144-castlevania-amiga-one-part-of-the-map.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1268&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Castlevania',
     year: 1986,
     system: 'NES, GBA',
@@ -1751,8 +1739,8 @@ export const gotmRunnerUp: GameData[] = [
       'A 2D sidescroller sequel to Kid Icarus which contains 4 directional free scrolling. A small adventure that sees Pit training to face off agains the deamon Orcos and his minions after Palutena has a nightmare about an invasion.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16233255-tiny-toon-adventures-nes-while-buster-watches-tv-montana-max-app.png',
-    title: 'Tiny Toon Adventures',
+    img: 'https://screenscraper.fr/image.php?gameid=79&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: "Tiny Toon Adventures: Buster's Hidden Treasure",
     year: 1993,
     system: 'Genesis/MD',
     developer: 'Konami',
@@ -1871,7 +1859,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Chocobo, Mog, Black Mage, Cid, and a cast of other Final Fantasy characters in a drift-heavy kart racer with a story mode!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15746328-krustys-super-fun-house-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2325&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Krusty's Fun House",
     year: 1992,
     system: 'SNES',
@@ -1980,7 +1968,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1078591-harvest-moon-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=38622&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Harvest Moon',
     year: 1997,
     system: 'SNES',
@@ -2185,7 +2173,7 @@ export const gotmRunnerUp: GameData[] = [
       'An action platformer. The master plunges into the depth of hell in pursuit of Tanzra (satan in Japanese).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10204194-flipout-jaguar-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=157695&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'FlipOut!',
     year: 1995,
     system: 'MS-DOS',
@@ -3019,7 +3007,7 @@ export const gotmRunnerUp: GameData[] = [
       'Star Wars: Knights of the Old Republic (KOTOR) is an  RPG video game based on the fictional universe of Star Wars by George Lucas set four thousand years before the films.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10231553-guardian-heroes-sega-saturn-main-menu.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13094&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Guardian Heroes',
     year: 1996,
     system: 'Saturn',
@@ -3095,7 +3083,7 @@ export const gotmRunnerUp: GameData[] = [
       "It's an RTS game from Aliens vs Predators franchise. You can play as Colonial Marines, Predators, and Aliens. Which one will you play as? Each factions have their own strengths and weaknesses.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16341306-incredible-crisis-arcade-continue.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19740&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Incredible Crisis',
     year: 1999,
     system: 'PS1',
@@ -3279,7 +3267,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game is very unique in how it is so old that it barely has any ACTUAL critic reviews, but it is a such a neat little gem to play in your spare time with all the strategy of trying to protect your flag and such, it also has the awesome feature of being a 2 player game if you can get that to work since it was designed for NES. This game is already on the retroidOS as "Tank Battle',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1956268-crystalis-nes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1538&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Crystalis',
     year: 1990,
     system: 'NES, GBC',
@@ -3976,7 +3964,7 @@ export const gotmRunnerUp: GameData[] = [
       "Two years after defeating Clockwerk, Sly Cooper breaks into the Museum of Natural History in Cairo to steal the Clockwerk parts and destroy them to end his threat against Sly's family for good, but discovers that the parts are already missing.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16131295-blood-will-tell-tezuka-osamus-dororo-playstation-2-menu-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=22471&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Blood Will Tell: Tezuka Osamu's Dororo",
     year: 2004,
     system: 'PS2',
@@ -4390,7 +4378,7 @@ export const gotmRunnerUp: GameData[] = [
       'Adventure with the sword wielding princess to get back big sparkly magic jewel from the demon king.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15978141-fire-emblem-thracia-776-snes-shot-from-the-intro.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2238&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fire Emblem: Thracia 776',
     year: 1999,
     system: 'SFC',
@@ -4653,7 +4641,7 @@ export const gotmRunnerUp: GameData[] = [
       'Become a Craftknight! Explore dungeons, collect materials, and forge 5 unique types of weapons in this action RPG for GBA.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4108335-no-one-can-stop-mr-domino-playstation-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=103456&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'No One Can Stop Mr. Domino',
     year: 1998,
     system: 'PS1',
@@ -5206,7 +5194,7 @@ export const gotmRunnerUp: GameData[] = [
       'Travel back to a simpler time and play "classic games" with the inimitable Shinya Arino. Kachō On!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1091817-tom-and-jerry-the-movie-sega-master-system-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=939&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tom and Jerry: The Movie',
     year: 1992,
     system: 'Master System',
@@ -5238,7 +5226,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16727068-punch-out-wii-post-round-statistics-with-some-encouraging-words-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1259&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Punch-Out!!',
     year: 1987,
     system: 'NES',
@@ -5391,7 +5379,7 @@ export const gotmRunnerUp: GameData[] = [
       'A succession of 30 second RPGs. This is a charming game that’s a hidden gem on the PSP, easy to pick up and play and a lot of fun.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16137531-tokimeki-memorial-turbografx-cd-this-is-you-the-hero-of-the-game.png',
+    img: 'https://screenscraper.fr/image.php?gameid=65174&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tokimeki Memorial',
     year: 1994,
     system: 'SFC',
@@ -5564,7 +5552,7 @@ export const gotmRunnerUp: GameData[] = [
       'A deep roguelike experience that doesn’t over-complicate things, accomplished in 1991 on the freaking Gameboy, no less! Unlike the long campaigns of, say, Dragon Quest or Final Fantasy, Cave Noire has only 4 dungeons. However, each involves unique, smart, and fun objectives. Thanks to its 10 difficulty levels, Cave Noire is a great pick up and play game for everyone!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16391525-doctor-hauzer-3do-the-opening-fmv-shows-our-hero-entering-the-ma.png',
+    img: 'https://screenscraper.fr/image.php?gameid=14375&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Doctor Hauzer',
     year: 1994,
     system: '3DO',
@@ -5870,7 +5858,7 @@ export const gotmRunnerUp: GameData[] = [
       "Based on the Arcade game by the same name, Enduro Racer on the Master System is an incredibly satisfying checkpoint racing game, about avoiding obstacles and reaching your goal, once there you upgrade your bike and hope to continue until you find glory or crash out. If you play it, make sure it's the Japanese original, as the worldwide release also removed multiple stages from the final product.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3484258-the-amazing-adventures-of-harry-haddock-amiga-a-seagull-patrols-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=38874&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Adventures of Hourai High',
     year: 1996,
     system: 'Super Famicom',
@@ -6013,7 +6001,7 @@ export const gotmRunnerUp: GameData[] = [
       'A worthy title in the infamous Legend of Heroes series, and Geofront has just released a new translation patch that does the game justice!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9175933-minecraft-xbox-one-loading-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=195797&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Minecraft',
     year: 2011,
     system: 'Android',
@@ -6218,7 +6206,7 @@ export const gotmRunnerUp: GameData[] = [
       "Lavender died recently and became a reaper, so she has to fight ghosts in order to find her brother's soul to guide him into afterlife.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16517469-energy-breaker-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2918&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Energy Breaker',
     year: 1996,
     system: 'SNES',
@@ -6305,7 +6293,7 @@ export const gotmRunnerUp: GameData[] = [
       'In 1986, Mafuyu sets out to learn of the mysterious disappearance of his mentor, who was said to be heading to the haunted Himuro mansion for research on his book. When Mafuyu also disappears, his sister Mika heads out, and with the help of an otherworldly camera with the ability to capture ghosts, she attempts to unravel the brutal past of Himuro mansion and to save Mafuyu.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16855536-nanashi-no-game-nintendo-ds-title-screen-amp-main-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=7565&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Nanashi no Game',
     year: 2008,
     system: 'DS',
