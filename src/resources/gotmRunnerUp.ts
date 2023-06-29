@@ -3713,7 +3713,7 @@ export const gotmRunnerUp: GameData[] = [
       'Tired of GotW NOT being Golden Axe? Bummed that Zelda is disqualified this month? Vote for Sega’s answer to The Legend of Zelda that GamePro magazine scored a perfect 5/5',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1719338-laplace-no-ma-snes-hey-im-not-a-transvestite.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18959&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Laplace no Ma',
     year: 1987,
     system: 'SNES, TG-CD',
