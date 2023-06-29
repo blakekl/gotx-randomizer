@@ -277,7 +277,7 @@ export const gotmRunnerUp: GameData[] = [
       'Star in your own 1950s B-Movie when you play as a scientist investigating a meteor strike who finds the local townsfolk acting WEIRD. An adventure with mini-games (FPS, Driving, Top-down run/fight). Try to work out what’s going on before the town is overrun. If you fail, use what you learnt to do better next time (like The Outer Wilds).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16213953-the-secret-of-monkey-island-sega-cd-over-head-view-of-monkey-isl.png',
+    img: 'https://screenscraper.fr/image.php?gameid=12705&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Secret of Monkey Island',
     year: 1990,
     system: 'Sega CD, Android',
