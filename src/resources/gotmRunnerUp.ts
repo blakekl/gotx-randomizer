@@ -5465,7 +5465,7 @@ export const gotmRunnerUp: GameData[] = [
       'Welcome to the land of the dead! You play the role of a ghost with no memory of your past life, or how you may have died! Can you solve the mystery of your own death before you disappear at sunrise? And why do you keep crossing paths with an enigmatic young detective?',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15812003-dragon-quest-monsters-joker-2-nintendo-ds-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5783&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dragon Quest Monsters: Joker 2',
     year: 2011,
     system: 'Nintendo DS',
