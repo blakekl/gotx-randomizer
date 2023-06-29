@@ -1555,7 +1555,7 @@ export const gotmRunnerUp: GameData[] = [
       "The blue robot you've always loved, but this time with an upgrade that later on became iconic: the Mega Buster! Don't miss on this classic game.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10630810-monster-rancher-2-playstation-a-personality-test.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=103504&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Monster Rancher 2',
     year: 1999,
     system: 'PS1',
