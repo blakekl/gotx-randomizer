@@ -288,7 +288,7 @@ export const gotmRunnerUp: GameData[] = [
       'The definitive 90s Point and Click Adventure, TSOMI follows Guybrush Threepwood on his adventures to become a Pirate, hindered by the character who will become his arch-nemisis, "The Ghost Pirate LeChuck" - this game appeared in pretty much all "top 10" reader currated lists for any brand of 16-bit home computer in Europe, and is basically the classiciest of classics. Playable on any handheld which can run ScummVM (eg. anbernics, Miyoo Mini, etc etc).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16532645-micro-machines-v3-game-boy-color-pond-life.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19385&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Micro Machines V3',
     year: 1997,
     system: 'PS1',
