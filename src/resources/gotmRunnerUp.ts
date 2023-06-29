@@ -3019,7 +3019,7 @@ export const gotmRunnerUp: GameData[] = [
       'Star Wars: Knights of the Old Republic (KOTOR) is an  RPG video game based on the fictional universe of Star Wars by George Lucas set four thousand years before the films.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10231553-guardian-heroes-sega-saturn-main-menu.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13094&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Guardian Heroes',
     year: 1996,
     system: 'Saturn',
