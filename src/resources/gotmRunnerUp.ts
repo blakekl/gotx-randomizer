@@ -2185,7 +2185,7 @@ export const gotmRunnerUp: GameData[] = [
       'An action platformer. The master plunges into the depth of hell in pursuit of Tanzra (satan in Japanese).',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10204194-flipout-jaguar-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=157695&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'FlipOut!',
     year: 1995,
     system: 'MS-DOS',
