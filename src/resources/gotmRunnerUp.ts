@@ -1142,7 +1142,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10211369-f-zero-x-nintendo-64-the-winners-podium-thats-me-up-there-im-the.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5418&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'F-Zero X',
     year: 1998,
     system: 'N64',
