@@ -4050,7 +4050,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/792811-need-for-speed-underground-rivals-psp-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=28012&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Need for Speed Underground: Rivals',
     year: 2005,
     system: 'PSP',
