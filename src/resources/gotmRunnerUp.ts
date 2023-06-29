@@ -4772,7 +4772,7 @@ export const gotmRunnerUp: GameData[] = [
       'Kick the cubes in this puzzle game to beat the level and move on. Collect the Dream bags by moving cubes out of the way, or turning enemies into walkways to cross gaps.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15984268-hotel-dusk-room-215-nintendo-ds-hand-selection.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5833&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hotel Dusk: Room 215',
     year: 2007,
     system: 'DS',
