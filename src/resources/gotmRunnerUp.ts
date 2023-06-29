@@ -451,7 +451,7 @@ export const gotmRunnerUp: GameData[] = [
       'Doom is a groundbreaking first-person shooter that popularized the genre, immersing players in fast-paced combat against hordes of demons and otherworldly creatures in maze-like environments.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9693387-shadowgate-macintosh-credits-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1292&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shadowgate',
     year: 1987,
     system: 'NES, GBC',
