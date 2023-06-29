@@ -4771,7 +4771,7 @@ export const gotmRunnerUp: GameData[] = [
       'Solve this mystery in a single night and find out what happened in room 215.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2840563-ratchet-clank-size-matters-psp-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22186&media=ss&region=eu&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ratchet & Clank: Size Matters',
     year: 2007,
     system: 'PSP/PS2',
