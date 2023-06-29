@@ -1253,7 +1253,7 @@ export const gotmRunnerUp: GameData[] = [
       'Yokosuka, Japan, 2112 AD. Young student Kazuki Takemura works as a test pilot for military battle Wanzers, mechanized walking robots, and is swept up in a plot of conflicting loyalties and attacked by various factions. A large explosion, a wanzer theft, his sister Alysia being hunted, rumors of a powerful weapon, and accusations of involvement by agents of both the OCU and the USN all make the situation more complicated.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10437776-threads-of-fate-playstation-choosing-a-hero.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19704&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Threads of Fate',
     year: 1999,
     system: 'PS1',
