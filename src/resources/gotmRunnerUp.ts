@@ -5054,7 +5054,7 @@ export const gotmRunnerUp: GameData[] = [
       'In a game that was not even slightly influenced by that other Capcom game Phoenix Write, you play a lawyer who alternates between examining crime scenes and cross examining witnesses in a courtroom in order to prove your client - usually Hanna-Barbera character - innocent. Features a cameo from a Street Fighter 2 character in each case',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15885266-catrap-game-boy-main-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3280&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Catrap',
     year: 1985,
     system: 'Sharp MZ-700, GB, 3DS',
