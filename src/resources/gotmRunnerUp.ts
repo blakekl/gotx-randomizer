@@ -3279,7 +3279,7 @@ export const gotmRunnerUp: GameData[] = [
       'This game is very unique in how it is so old that it barely has any ACTUAL critic reviews, but it is a such a neat little gem to play in your spare time with all the strategy of trying to protect your flag and such, it also has the awesome feature of being a 2 player game if you can get that to work since it was designed for NES. This game is already on the retroidOS as "Tank Battle',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1956268-crystalis-nes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1538&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Crystalis',
     year: 1990,
     system: 'NES, GBC',
