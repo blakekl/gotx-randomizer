@@ -3,7 +3,7 @@ import { GameData } from '../models/gameData.model';
 export const gotmWinners: GameData[] = [
   {
     img: 'https://cdn.mobygames.com/screenshots/10940072-sin-and-punishment-wii-whats-going-on-achi-girl-in-blue-and-hell.jpg',
-    title: 'Sin & Punishment',
+    title: { usa: 'Sin & Punishment' },
     year: 2000,
     system: 'N64',
     developer: 'Treasure',
@@ -14,7 +14,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16580786-harmful-park-playstation-this-type-of-explosion-will-always-occu.png',
-    title: 'Harmful Park',
+    title: { usa: 'Harmful Park' },
     year: 1997,
     system: 'PS1',
     developer: 'Sky Think System',
@@ -25,7 +25,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10526434-astal-sega-saturn-stage-4-river-of-dreamsin-this-stage-you-even-.jpg',
-    title: 'Astal',
+    title: { usa: 'Astal' },
     year: 1995,
     system: 'Saturn',
     developer: 'Sega',
@@ -36,7 +36,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16480150-vagrant-story-playstation-oh-yeah-and-you-fight-like-a-cow.png',
-    title: 'Vagrant Story',
+    title: { usa: 'Vagrant Story' },
     year: 2000,
     system: 'PS1',
     developer: 'Squaresoft',
@@ -47,7 +47,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10341521-parasite-eve-ii-playstation-aya-is-talking-to-a-policeman.jpg',
-    title: 'Parasite Eve II',
+    title: { usa: 'Parasite Eve II' },
     year: 1999,
     system: 'PS1',
     developer: 'Squaresoft',
@@ -58,7 +58,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1618871-castlevania-rondo-of-blood-turbografx-cd-giant-bat.png',
-    title: 'Castlevania: Rondo of Blood',
+    title: { usa: 'Castlevania: Rondo of Blood' },
     year: 1993,
     system: 'TG-CD/PCE-CD, PSP',
     developer: 'Konami',
@@ -69,7 +69,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/9167297-pokemon-conquest-nintendo-ds-dramatic-pokemon-expressions.jpg',
-    title: 'Pokemon Conquest',
+    title: { usa: 'Pokemon Conquest' },
     year: 2012,
     system: 'DS',
     developer: 'Tecmo Koei',
@@ -80,7 +80,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10361302-r4-ridge-racer-type-4-playstation-while-in-first-person-mode-you.jpg',
-    title: 'R4: Ridge Racer Type 4',
+    title: { usa: 'R4: Ridge Racer Type 4' },
     year: 1999,
     system: 'PS1',
     developer: 'Namco',
@@ -91,7 +91,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1023760-teenage-mutant-ninja-turtles-turtles-in-time-snes-the-foot-soldi.png',
-    title: 'Teenage Mutant Ninja Turtles: Turtles in Time',
+    title: { usa: 'Teenage Mutant Ninja Turtles: Turtles in Time' },
     year: 1992,
     system: 'SNES, Arcade',
     developer: 'Konami',
@@ -102,7 +102,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15838084-dragon-ball-advanced-adventure-game-boy-advance-victory.png',
-    title: 'Dragon Ball: Advanced Adventure',
+    title: { usa: 'Dragon Ball: Advanced Adventure' },
     year: 2004,
     system: 'GBA',
     developer: 'Dimps',
@@ -113,7 +113,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/12456986-choro-q-wonderful-playstation-shopping-street.png',
-    title: 'ChoroQ Wonderful!',
+    title: { usa: 'ChoroQ Wonderful!' },
     year: 1999,
     system: 'PS1',
     developer: 'E-Game',
@@ -124,7 +124,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/393381-world-of-illusion-starring-mickey-mouse-and-donald-duck-genesis-.png',
-    title: 'World of Illusion Starring Mickey Mouse and Donald Duck',
+    title: { usa: 'World of Illusion Starring Mickey Mouse and Donald Duck' },
     year: 1992,
     system: 'Genesis/MD',
     developer: 'Sega',
@@ -135,7 +135,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16508941-egg-elemental-gimmick-gear-dreamcast-a-boss-battle-in-this-case-.png',
-    title: 'E.G.G.: Elemental Gimmick Gear',
+    title: { usa: 'E.G.G.: Elemental Gimmick Gear' },
     year: 1999,
     system: 'DC',
     developer: 'Hudsonsoft',
@@ -146,7 +146,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16040632-metroid-zero-mission-game-boy-advance-back-on-the-surface.png',
-    title: 'Metroid: Zero Mission',
+    title: { usa: 'Metroid: Zero Mission' },
     year: 2004,
     system: 'GBA',
     developer: 'Nintendo R&D1',
@@ -157,7 +157,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15734982-mega-man-2-nes-heat-mans-stage.png',
-    title: 'Mega Man 2',
+    title: { usa: 'Mega Man 2' },
     year: 1988,
     system: 'NES',
     developer: 'Capcom',
@@ -168,7 +168,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/11493568-perfect-dark-xbox-360-harsh-didnt-even-let-him-get-out-of-the-ch.jpg',
-    title: 'Perfect Dark',
+    title: { usa: 'Perfect Dark' },
     year: 2000,
     system: 'N64',
     developer: 'Rare',
@@ -179,7 +179,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10531148-mystical-ninja-starring-goemon-nintendo-64-two-sinister-figures-.jpg',
-    title: 'Mystical Ninja Starring Goemon',
+    title: { usa: 'Mystical Ninja Starring Goemon' },
     year: 1997,
     system: 'N64',
     developer: 'Konami',
@@ -190,7 +190,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/3394573-beyond-oasis-genesis-he-is-met-with-some-unexpected-opposition.png',
-    title: 'Beyond Oasis',
+    title: { usa: 'Beyond Oasis' },
     year: 1994,
     system: 'Genesis/MD',
     developer: 'Ancient',
@@ -201,7 +201,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15764364-klonoa-empire-of-dreams-game-boy-advance-after-defeating-that-gi.png',
-    title: 'Klonoa: Empire of Dreams',
+    title: { usa: 'Klonoa: Empire of Dreams' },
     year: 2001,
     system: 'GBA',
     developer: 'Now Production',
@@ -211,7 +211,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/11177293-banjo-kazooie-xbox-360-hiding-from-the-snowmen-under-the-water.jpg',
-    title: 'Banjo-Kazooie',
+    title: { usa: 'Banjo-Kazooie' },
     year: 1998,
     system: 'N64',
     developer: 'Rareware',
@@ -222,7 +222,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1077006-enduro-atari-2600-title-screen-game-demo.png',
-    title: 'Enduro',
+    title: { usa: 'Enduro' },
     year: 1983,
     system: 'Atari 2600, GBA, Android',
     developer: 'Activision',
@@ -233,7 +233,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16135044-wario-land-3-game-boy-color-inside-the-woods.png',
-    title: 'Wario Land 3',
+    title: { usa: 'Wario Land 3' },
     year: 2000,
     system: 'GBC',
     developer: 'Nintendo R&D1',
@@ -244,7 +244,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15891342-survival-kids-game-boy-color-take-this.png',
-    title: 'Survival Kids',
+    title: { usa: 'Survival Kids' },
     year: 1999,
     system: 'GBC',
     developer: 'Konami',
@@ -255,7 +255,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1292262-breath-of-fire-snes-this-gargoyle-is-just-a-saving-point-you-res.png',
-    title: 'Breath of Fire',
+    title: { usa: 'Breath of Fire' },
     year: 1993,
     system: 'SNES',
     developer: 'Capcom',
@@ -266,7 +266,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10288494-luigis-mansion-gamecube-ghost-training.jpg',
-    title: "Luigi's Mansion",
+    title: { usa: "Luigi's Mansion" },
     year: 2001,
     system: 'Gamecube, 3DS',
     developer: 'Nintendo',
@@ -277,7 +277,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/631840-echo-night-playstation-talking-with-ghosts.jpg',
-    title: 'Echo Night',
+    title: { usa: 'Echo Night' },
     year: 1998,
     system: 'PS1',
     developer: 'FromSoftware',
@@ -287,7 +287,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16859603-avenging-spirit-arcade-lets-go.png',
-    title: 'Avenging Spirit',
+    title: { usa: 'Avenging Spirit' },
     year: 1992,
     system: 'GB',
     developer: 'C.P. Brain',
@@ -297,7 +297,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1774703-the-legend-of-zelda-oracle-of-ages-game-boy-color-a-strange-boul.jpg',
-    title: 'The Legend of Zelda: Oracle of Ages',
+    title: { usa: 'The Legend of Zelda: Oracle of Ages' },
     year: 2001,
     system: 'GBC',
     developer: 'Flagship',
@@ -308,7 +308,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10896733-castlevania-symphony-of-the-night-playstation-in-classic-castlev.jpg',
-    title: 'Castlevania: Symphony of the Night',
+    title: { usa: 'Castlevania: Symphony of the Night' },
     year: 1997,
     system: 'PS1, Saturn, PSP, Android',
     developer: 'Konami',
@@ -319,7 +319,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15668504-ys-book-i-ii-turbografx-cd-adol-leaving-ship.png',
-    title: 'Ys Book 1 & 2',
+    title: { usa: 'Ys Book 1 & 2' },
     year: 1989,
     system: 'TG-CD/PCE-CD',
     developer: 'Nihon Falcom',
@@ -330,7 +330,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16439321-999-nine-hours-nine-persons-nine-doors-nintendo-ds-objects-that-.png',
-    title: '999 (Nine Hours, Nine Persons, Nine Doors)',
+    title: { usa: '999 (Nine Hours, Nine Persons, Nine Doors)' },
     year: 2009,
     system: 'Nintendo DS',
     developer: 'Chunsoft',
@@ -341,7 +341,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/11331689-klonoa-door-to-phantomile-playstation-shield-holding-enemies-can.jpg',
-    title: 'Klonoa: Door to Phantomile',
+    title: { usa: 'Klonoa: Door to Phantomile' },
     year: 1997,
     system: 'PS1',
     developer: 'Namco',
@@ -352,7 +352,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1308543-ihatovo-monogatari-snes-playing-a-school-teacher.png',
-    title: 'Ihatovo Monogatari',
+    title: { usa: 'Ihatovo Monogatari' },
     year: 1993,
     system: 'SNES',
     developer: 'Hect',
@@ -363,7 +363,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=84858&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Tomato Adventure',
+    screenscraperId: 84858,
+    title: { usa: 'Tomato Adventure' },
     year: 2002,
     system: 'GBA',
     developer: 'AlphaDream',
@@ -374,7 +375,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10542736-medievil-playstation-crossing-the-water-in-dans-crypt.jpg',
-    title: 'MediEvil',
+    title: { usa: 'MediEvil' },
     year: 1998,
     system: 'PS1, PS4',
     developer: 'SCE Studio Cambridge',
@@ -384,7 +385,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/2294572-terranigma-snes-angry-looking-metallic-guardians-hit-me-with-the.png',
-    title: 'Terranigma',
+    title: { usa: 'Terranigma' },
     year: 1995,
     system: 'SNES',
     developer: 'Quintet',
@@ -395,7 +396,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=82594&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Pokemon TCG2: The Invasion of Team GR!',
+    screenscraperId: 82594,
+    title: { usa: 'Pokemon TCG2: The Invasion of Team GR!' },
     year: 2001,
     system: 'GBC',
     developer: 'Nintendo',
@@ -406,7 +408,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/4478851-ganpuru-gunmans-proof-snes-dont-shoot-me-im-just-a-pianist.png',
-    title: "Gunple: Gunman's Proof",
+    title: { usa: "Gunple: Gunman's Proof" },
     year: 1997,
     system: 'SFC',
     developer: 'ASCII Media Works',
@@ -416,7 +418,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15785509-kaeru-no-tame-ni-kane-wa-naru-game-boy-after-being-beaten-up-you.png',
-    title: 'Kaeru no Tame ni Kane wa Naru',
+    title: { usa: 'Kaeru no Tame ni Kane wa Naru' },
     year: 1992,
     system: 'GB',
     developer: 'Nintendo R&D1, Intelligent Systems',
@@ -427,7 +429,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16232628-warioware-inc-mega-microgame-game-boy-advance-drop.png',
-    title: 'Wario Ware, Inc.: Mega Microgame$!',
+    title: { usa: 'Wario Ware, Inc.: Mega Microgame$!' },
     year: 2003,
     system: 'GBA',
     developer: 'Nintendo',
@@ -437,7 +439,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1201237-super-mario-land-2-6-golden-coins-game-boy-map-of-the-land.png',
-    title: 'Super Mario Land 2',
+    title: { usa: 'Super Mario Land 2' },
     year: 1992,
     system: 'GB',
     developer: 'Nintendo',
@@ -447,7 +449,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/5612440-phoenix-wright-ace-attorney-iphone-that-brat-is-pretty-though.png',
-    title: 'Phoenix Wright: Ace Attorney',
+    title: { usa: 'Phoenix Wright: Ace Attorney' },
     year: 2005,
     system: 'DS, PS4, Switch',
     developer: 'Capcom',
@@ -458,7 +460,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=5647&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Custom Robo',
+    screenscraperId: 5647,
+    title: { usa: 'Custom Robo' },
     year: 1999,
     system: 'Nintendo 64',
     developer: 'Noise',
@@ -469,7 +472,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=20580&media=ss&hd=0&region=jp&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Choro Q 3',
+    screenscraperId: 20580,
+    title: { usa: 'Choro Q 3' },
     year: 1998,
     system: 'PS1',
     developer: 'Tamsoft/Takara',
@@ -480,7 +484,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16417580-outrun-arcade-lets-go.png',
-    title: 'OutRun',
+    title: { usa: 'OutRun' },
     year: 1986,
     system: 'Arcade',
     developer: 'Sega',
@@ -491,7 +495,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15775137-drill-dozer-game-boy-advance-you-can-scope-out-your-surroundings.png',
-    title: 'Drill Dozer',
+    title: { usa: 'Drill Dozer' },
     year: 2005,
     system: 'Game Boy Advance',
     developer: 'Game Freak',
@@ -502,7 +506,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15879896-rayman-2-the-great-escape-windows-lava.png',
-    title: 'Rayman 2: The Great Escape',
+    title: { usa: 'Rayman 2: The Great Escape' },
     year: 1999,
     system: 'PS1/N64',
     developer: 'Ubisoft',
@@ -513,7 +517,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=12726&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Snatcher',
+    screenscraperId: 12726,
+    title: { usa: 'Snatcher' },
     year: 1988,
     system: 'Sega CD/PS1',
     developer: 'Konami',
@@ -524,7 +529,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16468876-the-legend-of-zelda-the-minish-cap-game-boy-advance-first-weapon.png',
-    title: 'The Legend of Zelda: The Minish Cap',
+    title: { usa: 'The Legend of Zelda: The Minish Cap' },
     year: 2005,
     system: 'GBA',
     developer: 'Capcom/Nintendo',
@@ -535,7 +540,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10272063-kirby-super-star-snes-watch-out-enemies-and-walls-this-kirby-sho.jpg',
-    title: 'Kirby Super Star',
+    title: { usa: 'Kirby Super Star' },
     year: 1996,
     system: 'SNES/DS',
     developer: 'HAL Laboratory',
@@ -546,7 +551,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1013065-gunstar-heroes-game-gear-in-this-stage-youll-be-flying-this-heli.png',
-    title: 'Gunstar Heroes',
+    title: { usa: 'Gunstar Heroes' },
     year: 1993,
     system: 'Genesis/MD',
     developer: 'Treasure',
@@ -557,7 +562,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15869910-golden-sun-game-boy-advance-portal.png',
-    title: 'Golden Sun',
+    title: { usa: 'Golden Sun' },
     year: 2001,
     system: 'GBA',
     developer: 'Camelot',
@@ -568,7 +573,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15848769-brave-fencer-musashi-playstation-action-figures-shop.png',
-    title: 'Brave Fencer Musashi',
+    title: { usa: 'Brave Fencer Musashi' },
     year: 1998,
     system: 'PS1',
     developer: 'Square',
@@ -579,7 +584,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/3774925-crusader-of-centy-genesis-inside-the-mountain.png',
-    title: 'Crusader of Centy/Soleil',
+    title: { usa: 'Crusader of Centy', eu: 'Soleil' },
     year: 1994,
     system: 'Genesis/MD',
     developer: 'Nextech',
@@ -590,7 +595,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/11513017-paper-mario-nintendo-64-fighting-a-pair-of-stone-chomps.jpg',
-    title: 'Paper Mario',
+    title: { usa: 'Paper Mario' },
     year: 2000,
     system: 'N64',
     developer: 'Intelligent Systems',
@@ -601,7 +606,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1147599-star-ocean-snes-ratix-in-his-home-town.png',
-    title: 'Star Ocean',
+    title: { usa: 'Star Ocean' },
     year: 1996,
     system: 'SNES/PSP',
     developer: 'tri-ace',
@@ -612,7 +617,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/12203436-sonic-the-hedgehog-3-knuckles-windows-play-as-knuckles.jpg',
-    title: 'Sonic the Hedgehog 3 & Knuckles',
+    title: { usa: 'Sonic the Hedgehog 3 & Knuckles' },
     year: 0,
     system: 'Sega Genesis',
     developer: 'Sega',
@@ -622,7 +627,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/12272450-metal-slug-3-windows-lots-of-mutants-but-there-is-some-unexpecte.jpg',
-    title: 'Metal Slug 3',
+    title: { usa: 'Metal Slug 3' },
     year: 2000,
     system: 'Neo Geo',
     developer: 'SNK',
@@ -633,7 +638,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16646642-star-fox-64-wii-a-warp-portal.png',
-    title: 'Star Fox 64',
+    title: { usa: 'Star Fox 64' },
     year: 1997,
     system: 'N64',
     developer: 'Nintendo',
@@ -644,7 +649,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/490787-front-mission-snes-preparing-a-ranged-technique.png',
-    title: 'Front Mission',
+    title: { usa: 'Front Mission' },
     year: 1995,
     system: 'SNES',
     developer: 'Squaresoft',
@@ -655,7 +660,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/117875-doom-rpg-j2me-lots-of-blood-and-level-up.png',
-    title: 'Doom RPG',
+    title: { usa: 'Doom RPG' },
     year: 2005,
     system: 'Mobile',
     developer: 'Id Software',
@@ -666,7 +671,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/690583-silent-hill-playstation-bloody-scenes-will-never-lack-especially.jpg',
-    title: 'Silent Hill',
+    title: { usa: 'Silent Hill' },
     year: 1999,
     system: 'PS1',
     developer: 'Konami',
@@ -677,7 +682,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15980792-gargoyles-quest-game-boy-use-the-block-buster-to-bust-blocks.png',
-    title: "Gargoyle's Quest",
+    title: { usa: "Gargoyle's Quest" },
     year: 1990,
     system: 'GB',
     developer: 'Capcom',
@@ -688,7 +693,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15776935-pokemon-mystery-dungeon-red-rescue-team-game-boy-advance-water-g.png',
-    title: 'Pokemon Mystery Dungeon: Red Rescue Team',
+    title: { usa: 'Pokemon Mystery Dungeon: Red Rescue Team' },
     year: 2005,
     system: 'GBA',
     developer: 'GameFreak/Chunsoft',
@@ -699,7 +704,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/120407-final-fantasy-tactics-playstation-examining-your-opponent-is-a-g.png',
-    title: 'Final Fantasy Tactics',
+    title: { usa: 'Final Fantasy Tactics' },
     year: 1997,
     system: 'PS1',
     developer: 'Square',
@@ -710,7 +715,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/2019130-mega-man-x-snes-every-stage-begins-naturally-with-the-introducti.png',
-    title: 'Mega Man X',
+    title: { usa: 'Mega Man X' },
     year: 1993,
     system: 'SNES',
     developer: 'Capcom',
@@ -721,7 +726,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16324344-dive-alert-beckys-version-neo-geo-pocket-color-becky-is-bored.png',
-    title: 'Dive Alert',
+    title: { usa: 'Dive Alert' },
     year: 2000,
     system: 'NGPC',
     developer: 'Sacnoth',
@@ -732,7 +737,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16220070-legend-of-the-river-king-gb-game-boy-color-town-and-options.png',
-    title: 'Legend of the River King',
+    title: { usa: 'Legend of the River King' },
     year: 1997,
     system: 'GBC',
     developer: 'Marvellous',
@@ -743,7 +748,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15747519-pirates-gold-genesis-buying-a-map.png',
-    title: 'Pirates! Gold',
+    title: { usa: 'Pirates! Gold' },
     year: 1993,
     system: 'Genesis/Megadrive',
     developer: 'MicroProse',
@@ -754,7 +759,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=13498&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Jet Set Radio',
+    screenscraperId: 13498,
+    title: { usa: 'Jet Set Radio' },
     year: 2000,
     system: 'Dreamcast',
     developer: 'Smilebit',
@@ -765,7 +771,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16645318-parappa-the-rapper-playstation-teaching-you-how-to-sell-at-the-f.png',
-    title: 'Parappa the Rapper',
+    title: { usa: 'Parappa the Rapper' },
     year: 1996,
     system: 'PS1',
     developer: 'NanaOn-Sha',
@@ -776,7 +782,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16501930-sonic-the-hedgehog-2-windows-under-the-water.png',
-    title: 'Sonic the Hedgehog 2',
+    title: { usa: 'Sonic the Hedgehog 2' },
     year: 1992,
     system: 'Genesis',
     developer: 'Sega',
@@ -787,7 +793,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15934321-mother-3-game-boy-advance-flint-wakes-up.png',
-    title: 'Mother 3',
+    title: { usa: 'Mother 3' },
     year: 2006,
     system: 'GBA',
     developer: 'Brownie Brown, HAL Laboratory',
@@ -798,7 +804,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=130197&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Dr. Slump',
+    screenscraperId: 130197,
+    title: { usa: 'Dr. Slump' },
     year: 1999,
     system: 'PS1',
     developer: 'Bandai',
@@ -809,7 +816,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=1993&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Sweet Home',
+    screenscraperId: 1993,
+    title: { usa: 'Sweet Home' },
     year: 1989,
     system: 'NES',
     developer: 'Capcom',
@@ -820,7 +828,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://1.bp.blogspot.com/-Qqs9iaX9HVs/X8fGsDQgXwI/AAAAAAAAF_A/XdLSQHrcg20_imZRDZlJH5cOmj39nfFkwCLcBGAsYHQ/s240/pokemon-unbound-1.png',
-    title: 'Pokemon Unbound',
+    title: { usa: 'Pokemon Unbound' },
     year: 2004,
     system: 'GBA',
     developer: 'Skeli',
@@ -831,7 +839,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://n64today.com/wp-content/uploads/2020/07/legend-of-zelda-missing-link-n64-kokiri-forest.jpg',
-    title: 'The Legend of Zelda: The Missing Link',
+    title: { usa: 'The Legend of Zelda: The Missing Link' },
     year: 1998,
     system: 'N64',
     developer: 'Kaze Emanuar',
@@ -842,7 +850,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://www.vizzed.com/vizzedboard/retro/user_screenshots/saves28/284139/NES--Super%20Mario%20Bros%203Mix_Jun24%209_40_42.png',
-    title: 'Super Mario Bros. 3Mix',
+    title: { usa: 'Super Mario Bros. 3Mix' },
     year: 1988,
     system: 'NES',
     developer: 'Southbird',
@@ -853,7 +861,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15788445-dino-crisis-2-playstation-dylan-killing-three-dinos-near-the-jee.png',
-    title: 'Dino Crisis 2',
+    title: { usa: 'Dino Crisis 2' },
     year: 2000,
     system: 'PS1',
     developer: 'Capcom Production Studio 4',
@@ -864,7 +872,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10532321-diddy-kong-racing-nintendo-64-the-plane-can-also-use-ground-turb.jpg',
-    title: 'Diddy Kong Racing',
+    title: { usa: 'Diddy Kong Racing' },
     year: 1997,
     system: 'N64',
     developer: 'Rare',
@@ -875,7 +883,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=2163&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: "Super Mario World 2: Yoshi's Island",
+    screenscraperId: 2163,
+    title: { usa: "Super Mario World 2: Yoshi's Island" },
     year: 1995,
     system: 'SNES',
     developer: 'Nintendo',
@@ -886,7 +895,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16590974-stardew-valley-android-my-farm-is-overgrown-with-grass-rocks-and.png',
-    title: 'Stardew Valley',
+    title: { usa: 'Stardew Valley' },
     year: 2016,
     system: 'Android',
     developer: 'Concerned Ape',
@@ -897,7 +906,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/3985143-harvest-moon-64-nintendo-64-this-is-what-happens-when-you-forget.jpg',
-    title: 'Harvest Moon 64',
+    title: { usa: 'Harvest Moon 64' },
     year: 1999,
     system: 'N64',
     developer: 'Natsume',
@@ -908,7 +917,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15882638-actraiser-snes-deadly-spikes-and-moving-platforms.png',
-    title: 'ActRaiser',
+    title: { usa: 'ActRaiser' },
     year: 1991,
     system: 'SNES',
     developer: 'Quintet',
@@ -919,7 +928,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/9785790-shin-megami-tensei-persona-3-portable-psp-nope-it-sure-wasnt-how.jpg',
-    title: 'Persona 3 portable',
+    title: { usa: 'Persona 3 portable' },
     year: 2009,
     system: 'PSP',
     developer: 'Atlus',
@@ -930,7 +939,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10199990-final-fantasy-viii-windows-our-hero-up-close-and-personal-in-act.jpg',
-    title: 'Final Fantasy VIII',
+    title: { usa: 'Final Fantasy VIII' },
     year: 1999,
     system: 'PS1',
     developer: 'Squaresoft',
@@ -941,7 +950,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/2804488-super-mario-world-snes-between-a-rock-and-a-molten-rock-in-a-cas.png',
-    title: 'Super Mario World',
+    title: { usa: 'Super Mario World' },
     year: 1990,
     system: 'SNES',
     developer: 'Nintendo',
@@ -952,7 +961,8 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=4315&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Spongebob Squarepants - Revenge of the Flying Dutchman',
+    screenscraperId: 4315,
+    title: { usa: 'Spongebob Squarepants - Revenge of the Flying Dutchman' },
     year: 2002,
     system: 'GBA',
     developer: 'THQ',
@@ -963,7 +973,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16355781-earthworm-jim-3d-nintendo-64-dialogue-with-green-blob.png',
-    title: 'Earthworm Jim 3D',
+    title: { usa: 'Earthworm Jim 3D' },
     year: 1999,
     system: 'N64',
     developer: 'VIS Interactive',
@@ -974,7 +984,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1032073-silver-surfer-nes-an-assault-of-ghosts-upon-the-silver-surfer.png',
-    title: 'Silver Surfer',
+    title: { usa: 'Silver Surfer' },
     year: 1990,
     system: 'NES',
     developer: 'Software Creations',
@@ -985,7 +995,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15795137-metroid-fusion-game-boy-advance-first-boss-fight.png',
-    title: 'Metroid Fusion',
+    title: { usa: 'Metroid Fusion' },
     year: 2002,
     system: 'GBA',
     developer: 'Nintendo',
@@ -996,7 +1006,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15684955-donkey-kong-country-3-dixie-kongs-double-trouble-game-boy-advanc.png',
-    title: "Donkey Kong Country 3: Dixie Kong's Double Trouble",
+    title: { usa: "Donkey Kong Country 3: Dixie Kong's Double Trouble" },
     year: 1996,
     system: 'SNES',
     developer: 'Rare',
@@ -1007,7 +1017,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/3359493-streets-of-rage-genesis-player-2s-special-attack-note-that-in-a-.png',
-    title: 'Streets of Rage (Bare Knuckle)',
+    title: { usa: 'Streets of Rage (Bare Knuckle)' },
     year: 1991,
     system: 'Mega Drive',
     developer: 'Sega',
@@ -1018,7 +1028,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16040575-castlevania-aria-of-sorrow-game-boy-advance-save-point.png',
-    title: 'Castlevania: Aria of Sorrow',
+    title: { usa: 'Castlevania: Aria of Sorrow' },
     year: 2003,
     system: 'Game Boy Advance',
     developer: 'Konami',
@@ -1029,7 +1039,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10340990-parasite-eve-playstation-dialogues-in-pe-are-sure-better-than-th.jpg',
-    title: 'Parasite Eve',
+    title: { usa: 'Parasite Eve' },
     year: 1998,
     system: 'PlayStation',
     developer: 'SquareSoft',
@@ -1040,7 +1050,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15999636-clock-tower-snes-scissorman.png',
-    title: 'Clock Tower',
+    title: { usa: 'Clock Tower' },
     year: 1995,
     system: 'SNES',
     developer: 'Human Entertainment',
@@ -1051,7 +1061,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16909103-the-legend-of-zelda-oracle-of-seasons-game-boy-color-in-the-gang.png',
-    title: 'The Legend of Zelda: Oracle of Seasons',
+    title: { usa: 'The Legend of Zelda: Oracle of Seasons' },
     year: 2001,
     system: 'Game Boy Color',
     developer: 'Nintendo',
@@ -1062,7 +1072,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16480375-wild-arms-playstation-battle-on-the-world-map-in-the-middle-of-t.png',
-    title: 'Wild Arms',
+    title: { usa: 'Wild Arms' },
     year: 1996,
     system: 'PlayStation',
     developer: 'Media.Vision',
@@ -1073,7 +1083,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/15748254-policenauts-sega-saturn-ed-ms-karen.png',
-    title: 'Policenauts',
+    title: { usa: 'Policenauts' },
     year: 1994,
     system: 'PlayStation',
     developer: 'Konami',
@@ -1084,7 +1094,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/16306120-advance-wars-2-black-hole-rising-game-boy-advance-capture-the-bu.png',
-    title: 'Advance Wars 2: Black Hole Rising',
+    title: { usa: 'Advance Wars 2: Black Hole Rising' },
     year: 2001,
     system: 'Nintendo Gameboy Advance',
     developer: 'Intelligent Systems',
@@ -1094,7 +1104,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/10781853-super-mario-64-nintendo-64-inside-the-castle.jpg',
-    title: 'Super Mario 64',
+    title: { usa: 'Super Mario 64' },
     year: 1996,
     system: 'Nintendo 64',
     developer: 'Nintendo',
@@ -1104,7 +1114,7 @@ export const gotmWinners: GameData[] = [
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/1242542-chrono-trigger-snes-map-ad.png',
-    title: 'Chrono Trigger',
+    title: { usa: 'Chrono Trigger' },
     year: 1995,
     system: 'Super Nintendo',
     developer: 'Square',
