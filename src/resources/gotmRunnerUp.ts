@@ -6327,7 +6327,7 @@ export const gotmRunnerUp: GameData[] = [
       'Bulk Slash is a thrilling third person action game where you pilot a mech that can switch between walking and flying mode and graphically, is a show piece for the Saturn, proving that the hardware was capable of great looking 3D games in the right hands.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12566337-powerslave-exhumed-windows-animated-opening-sequence.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13185&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Powerslave/Exhumed',
     year: 1996,
     system: 'Saturn, PS1, PC',
