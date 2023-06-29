@@ -5009,7 +5009,7 @@ export const gotmRunnerUp: GameData[] = [
     description: 'You hunt dinosaurs and I need to beat it finally!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15981549-god-of-war-chains-of-olympus-psp-weapon-power-up-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=27863&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'God of War: Chains of Olympus',
     year: 2008,
     system: 'PSP, PS2',
