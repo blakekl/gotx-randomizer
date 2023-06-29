@@ -4912,7 +4912,7 @@ export const gotmRunnerUp: GameData[] = [
       'Snowboard Kids is a fun downhill racing game, based around snowboarding, with quirky characters and fun power-ups. Tight controls, a deliciously 90s soundtrack, and the unique snowboarding concept elevate Snowboard Kids beyond other casual arcade racers from the era, forming a game that is certainly worth another look.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16641408-digimon-world-3-playstation-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19276&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Digimon World 3',
     year: 2002,
     system: 'PS1',
