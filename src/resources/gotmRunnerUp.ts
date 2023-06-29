@@ -2326,7 +2326,7 @@ export const gotmRunnerUp: GameData[] = [
       'A spooky game where you need to save a house full of sleepover guests from being murdered in comical ways. Is also the reason we have the ESRB ratings that we do on games now. Or at least, was used as the scapegoat for it',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1640039-alien3-genesis-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2285&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Alien 3',
     year: 1993,
     system: 'SNES',
