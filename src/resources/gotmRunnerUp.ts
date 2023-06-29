@@ -636,7 +636,7 @@ export const gotmRunnerUp: GameData[] = [
       'Like its predecessor Heretic, Hexen is a fantasy FPS built on the Doom Engine with some light RPG elements.  Hexen builds on the solid foundation established by Heretic but adds some non-linearity to the structure with hub worlds, as well as multiple character classes to choose from, adding some additional depth not typically found in its doom engine cousins.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1633144-castlevania-amiga-one-part-of-the-map.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1268&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Castlevania',
     year: 1986,
     system: 'NES, GBA',
