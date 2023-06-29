@@ -1,18 +1,6 @@
 import { GameData } from '../models/gameData.model';
 
-const current: GameData[] = [
-  {
-    img: 'https://cdn.mobygames.com/screenshots/16137795-tokimeki-memorial-turbografx-cd-a-meeting-outside-its-decision-t.png',
-    title: 'Tokimeki Memorial - Densetsu No Ki No Shita De',
-    year: 1994,
-    system: 'Super Famicom',
-    developer: 'Konami',
-    genre: 'Dating Simulation',
-    timeToBeat: 8,
-    description:
-      "There's a legend at Kirameki High School that if a girl confesses her love for you under a certain tree, you'll have happiness forever...",
-  },
-];
+const current: GameData[] = [];
 
 export const gotmRunnerUp: GameData[] = [
   {
@@ -5391,7 +5379,7 @@ export const gotmRunnerUp: GameData[] = [
       'A succession of 30 second RPGs. This is a charming game that’s a hidden gem on the PSP, easy to pick up and play and a lot of fun.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16137531-tokimeki-memorial-turbografx-cd-this-is-you-the-hero-of-the-game.png',
+    img: 'https://screenscraper.fr/image.php?gameid=65174&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tokimeki Memorial',
     year: 1994,
     system: 'SFC',
