@@ -5194,7 +5194,7 @@ export const gotmRunnerUp: GameData[] = [
       'Travel back to a simpler time and play "classic games" with the inimitable Shinya Arino. Kachō On!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1091817-tom-and-jerry-the-movie-sega-master-system-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=939&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Tom and Jerry: The Movie',
     year: 1992,
     system: 'Master System',
