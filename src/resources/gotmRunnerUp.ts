@@ -2207,7 +2207,7 @@ export const gotmRunnerUp: GameData[] = [
       'You’re a mercenary hired out by private organizations and the government alike. You pilot a mech known as an Armored Core which allows you to swap out individual parts to either gain a defensive/offensive/speed boost to better tackle each mission.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/350678-zombies-ate-my-neighbors-snes-the-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=87&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Zombies Ate My Neighbors',
     year: 1993,
     system: 'Genesis/MD',
