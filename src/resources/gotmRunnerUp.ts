@@ -6013,7 +6013,7 @@ export const gotmRunnerUp: GameData[] = [
       'A worthy title in the infamous Legend of Heroes series, and Geofront has just released a new translation patch that does the game justice!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/9175933-minecraft-xbox-one-loading-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=195797&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Minecraft',
     year: 2011,
     system: 'Android',
