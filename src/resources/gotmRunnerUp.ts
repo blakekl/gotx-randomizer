@@ -224,7 +224,7 @@ export const gotmRunnerUp: GameData[] = [
       'Dark Forces is an FPS where the player controls Kyle Katarn with a focus on combat against various creatures and characters from the Star Wars universe, although the game also includes environmental puzzles and hazards.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15740826-ms-pac-man-lynx-game-over.png',
+    img: 'https://screenscraper.fr/image.php?gameid=60558&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ms. Pac Man',
     year: 1982,
     system: 'Arcade',
