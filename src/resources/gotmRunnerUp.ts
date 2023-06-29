@@ -3822,7 +3822,7 @@ export const gotmRunnerUp: GameData[] = [
       'Why go to work, start a family and pay bills in the real world when you can do it in a game instead? Goodbye free time!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10269711-katamari-damacy-playstation-2-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22736&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Katamari Damacy',
     year: 2004,
     system: 'PS2, PC, PS4, Switch',
