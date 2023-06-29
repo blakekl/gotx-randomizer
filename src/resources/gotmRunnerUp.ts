@@ -6141,7 +6141,7 @@ export const gotmRunnerUp: GameData[] = [
       'Chocobo no Fushigi na Dungeon (チョコボの不思議なダンジョン) is a (Dungeon) RPG video game published by SquareSoft released on December 23rd, 1997 for the Sony PlayStation.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12599250-shin-megami-tensei-persona-2-innocent-sin-psp-the-green-on-red-l.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19422&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shin Megami Tensei: Persona 2: Innocent Sin',
     year: 1999,
     system: 'PS1',
