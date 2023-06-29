@@ -450,7 +450,7 @@ export const gotmRunnerUp: GameData[] = [
       'The original was made for Macintosh and later put on NES and further ported to The Pocket Boys. A point a click dungeon style RPG',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16234056-grand-theft-auto-2-game-boy-color-respraying-the-car.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19333&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Grand Theft Auto 2',
     year: 1999,
     system: 'PS1',
