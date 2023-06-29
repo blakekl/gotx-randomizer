@@ -191,7 +191,7 @@ export const gotmRunnerUp: GameData[] = [
       "Beneath a Steel Sky is a point and click adventure game devised by director Charles Cecil and Watchman's comic book artist Dave Gibbons wich takes place in a distopian future.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1957178-dracula-unleashed-sega-cd-saucy-jack-bar-picture.png',
+    img: 'https://screenscraper.fr/image.php?gameid=58733&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Dracula Unleashed',
     year: 1993,
     system: 'DOS, Sega CD',
