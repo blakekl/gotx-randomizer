@@ -3594,7 +3594,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fire Emblem Gaiden follows the battles of two opposing armies on the continent of Valentia, which is torn apart by political strife involving the princess Celica and her childhood friend Alm. The 3DS remake, Shadows of Valentia, is available in English and much more playable with QoL features, but requires a 3DS or Citra.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5081029-adventures-of-dino-riki-nes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1627&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Adventures of Dino Riki',
     year: 1989,
     system: 'NES',
