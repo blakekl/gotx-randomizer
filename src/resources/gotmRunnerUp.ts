@@ -6218,7 +6218,7 @@ export const gotmRunnerUp: GameData[] = [
       "Lavender died recently and became a reaper, so she has to fight ghosts in order to find her brother's soul to guide him into afterlife.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16517469-energy-breaker-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2918&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Energy Breaker',
     year: 1996,
     system: 'SNES',
