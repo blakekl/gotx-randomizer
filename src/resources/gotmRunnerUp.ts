@@ -3235,7 +3235,7 @@ export const gotmRunnerUp: GameData[] = [
       "It's the usual JRPG story where you have to stop a rising power-hungry force from destroying the world as we know it. BUT it has a vast open world where you'll get to fight and collect Craymels which are like gods of different elements, mix and match them to obtain different skills and effects, makes the game replayable since you can try out different elements each time you play it. Fighting is Tales-usual like a free-roam arena fight but in 2D. Lots of mini-games and side-quests. Plus you get to explore the ocean with a big customizable ship and submarine!",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15871299-willow-nes-status-inventory-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1479&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Willow',
     year: 1989,
     system: 'NES',
