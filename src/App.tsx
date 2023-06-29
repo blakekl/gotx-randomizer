@@ -8,6 +8,7 @@ import { gotmWinners } from './resources/gotmWinners';
 import { retrobits } from './resources/retrobits';
 import { rpgRunnerUp } from './resources/rpgRunnerUp';
 import { rpgWinner } from './resources/rpgWinners';
+import SheetsStore from './stores/SheetsStore';
 import './style.css';
 
 export default function App() {
