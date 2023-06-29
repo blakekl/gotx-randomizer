@@ -3756,8 +3756,8 @@ export const gotmRunnerUp: GameData[] = [
       'Vanguard Bandits is a support-centric strategy RPG featuring tactical combat in a medieval fantasy world in which knights and soldiers pilot mecha.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16056070-sub-terrania-genesis-he-is-the-driver.png',
-    title: 'Sub Terrania',
+    img: 'https://screenscraper.fr/image.php?gameid=1194&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: 'Sub-Terrania',
     year: 1994,
     system: 'Sega Genesis/Mega Drive',
     developer: 'Sega',
