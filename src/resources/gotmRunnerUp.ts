@@ -5683,7 +5683,7 @@ export const gotmRunnerUp: GameData[] = [
       'Sheep Raider is one pretty looking PS game. The animations are smooth and varied and the levels are well-designed and sufficiently cartoony. Sure, you start out swiping sheep in a quiet meadow, but quickly you will be running across snow and dodging lava.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1254728-flashback-windows-fighting-the-cyborgs-in-vr-missions.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=2229&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Flashback',
     year: 1992,
     system: 'SNES',
