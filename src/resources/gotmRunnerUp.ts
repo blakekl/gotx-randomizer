@@ -841,7 +841,7 @@ export const gotmRunnerUp: GameData[] = [
       "Kao is a young kangaroo living with his family in the jungle when they are one day captured by a ruthless hunter and his goons. It's up to Kao to drive the invaders from his home and save his family.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15705547-goldeneye-007-nintendo-64-mission-briefing.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5397&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Goldeneye 007',
     year: 1997,
     system: 'N64',
