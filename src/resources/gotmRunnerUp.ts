@@ -1327,7 +1327,7 @@ export const gotmRunnerUp: GameData[] = [
       'Pokémon is back! In pinball form! It includes two tables, the ability to catch and evolve Pokémon, and a built in rumble feature!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12553878-sonic-adventure-2-playstation-3-title-screen-with-battle-dlc-ins.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13488&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Sonic Adventure 2',
     year: 2001,
     system: 'DC, GC',
