@@ -136,7 +136,7 @@ export const gotmRunnerUp: GameData[] = [
       "It is hard to find anyone who doesn't know what Tomb Raider is. Tomb Raider is a 3rd person 3D action adventure game where you take on the role of Lara Croft. You will be raiding all types of tombs for ancient artifacts (or spend most of your time not knowing what to do and locking your butler in the freezer). The creation and popularity of this game definitely helped usher in an era of 3D action adventure games that still persists today.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5435563-duke-nukem-3d-iphone-opening-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=108792&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Duke Nukem 3D',
     year: 1996,
     system: 'DOS, PC, N64',
