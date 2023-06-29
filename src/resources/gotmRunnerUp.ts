@@ -3976,7 +3976,7 @@ export const gotmRunnerUp: GameData[] = [
       "Two years after defeating Clockwerk, Sly Cooper breaks into the Museum of Natural History in Cairo to steal the Clockwerk parts and destroy them to end his threat against Sly's family for good, but discovers that the parts are already missing.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16131295-blood-will-tell-tezuka-osamus-dororo-playstation-2-menu-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=22471&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Blood Will Tell: Tezuka Osamu's Dororo",
     year: 2004,
     system: 'PS2',
