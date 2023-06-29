@@ -59,7 +59,7 @@ export const gotmRunnerUp: GameData[] = [
       'What fits better in the robot theme than mechs beating each other into piles of scrap metal? In this fighting game, you take control of one of the pilots operating a wide variety of giant fighting robots to square off in hazardous arenas. There might be not fancy finishers or gore, but only one can stand in triumph while the loser must fall!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11635923-syndicate-3do-intro-movie-a-bleak-future.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=287&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Syndicate',
     year: 1993,
     system: 'Genesis, SNES',
@@ -516,7 +516,7 @@ export const gotmRunnerUp: GameData[] = [
       'In a conflict between insane Middle Eastern dictator General Kilbaba and the United States, you control an Apache helicopter and attempt to destroy enemy weapons and installations, rescue hostages and capture enemy personnel, while managing supplies of fuel and ammunition.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/4569884-jrr-tolkiens-the-lord-of-the-rings-vol-ii-the-two-towers-dos-tit.png',
+    img: 'https://screenscraper.fr/image.php?gameid=84080&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Lord of the Rings, The: The Two Towers',
     year: 2002,
     system: 'Nintendo Gameboy Advance',
@@ -580,7 +580,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16109766-shipwreckers-playstation-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=105244&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shipwreckers!/Overboard!',
     year: 1997,
     system: 'PS1',
@@ -927,7 +927,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11604940-shenmue-dreamcast-buy-cassette-tapes-and-play-them-from-your-col.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13485&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Shenmue',
     year: 1999,
     system: 'Dreamcast, PS4',
@@ -1142,7 +1142,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10211369-f-zero-x-nintendo-64-the-winners-podium-thats-me-up-there-im-the.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=5418&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'F-Zero X',
     year: 1998,
     system: 'N64',
@@ -1327,7 +1327,7 @@ export const gotmRunnerUp: GameData[] = [
       'Pokémon is back! In pinball form! It includes two tables, the ability to catch and evolve Pokémon, and a built in rumble feature!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/12553878-sonic-adventure-2-playstation-3-title-screen-with-battle-dlc-ins.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13488&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Sonic Adventure 2',
     year: 2001,
     system: 'DC, GC',
@@ -1555,7 +1555,7 @@ export const gotmRunnerUp: GameData[] = [
       "The blue robot you've always loved, but this time with an upgrade that later on became iconic: the Mega Buster! Don't miss on this classic game.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10630810-monster-rancher-2-playstation-a-personality-test.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=103504&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Monster Rancher 2',
     year: 1999,
     system: 'PS1',
@@ -1794,9 +1794,9 @@ export const gotmRunnerUp: GameData[] = [
       'Play as the titular dreamwalker in this Zelda-like action-adventure game.  Explore the island and enter the dreams of the villagers of Inoa.  Though a cult classic today, upon release it was critically lauded for its tight gameplay, complex puzzle-solving, soundtrack, and mature storyline.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2152252-the-final-fantasy-legend-wonderswan-color-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3017&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'The Final Fantasy Legend',
-    year: 1990,
+    year: 1989,
     system: 'GB',
     developer: 'Squaresoft',
     genre: 'RPG',
@@ -1870,7 +1870,7 @@ export const gotmRunnerUp: GameData[] = [
       "Krusty's Fun House is a game similar to Lemmings in some ways. Your goal is to create a path as Krusty for all the mice to make it to the end of the stage where one of the Simpson's family members are waiting to exterminate these many pests.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1296198-breath-of-fire-ii-snes-in-the-town.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2188&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Breath of Fire II',
     year: 1994,
     system: 'SNES, GBA',
@@ -2326,7 +2326,7 @@ export const gotmRunnerUp: GameData[] = [
       'A spooky game where you need to save a house full of sleepover guests from being murdered in comical ways. Is also the reason we have the ESRB ratings that we do on games now. Or at least, was used as the scapegoat for it',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1640039-alien3-genesis-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2285&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Alien 3',
     year: 1993,
     system: 'SNES',
@@ -2368,7 +2368,7 @@ export const gotmRunnerUp: GameData[] = [
       'Join Sora, Donald and Goofy in this mash up of Disney and Final Fantasy. Maybe the real Kingdom Hearts is the friends we made along the way?',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15743007-ninja-gaiden-nes-japanese-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=18922&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ninja Gaiden',
     year: 1988,
     system: 'NES',
@@ -2379,7 +2379,7 @@ export const gotmRunnerUp: GameData[] = [
       'A difficult action platform game credited as the first game to use cutscenes for storytelling and the soundtrack is one that I’m quite fond of.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16590965-rocket-knight-adventures-genesis-alls-right-with-the-world.png',
+    img: 'https://screenscraper.fr/image.php?gameid=72&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Rocket Knight Adventures',
     year: 1993,
     system: 'Genesis/MD',
@@ -2876,7 +2876,7 @@ export const gotmRunnerUp: GameData[] = [
       'Set after the events of the anime series, .hack//Sign, the games focus on the character Kite and his quest to discover why some users have become comatose in the real world as a result of playing The World--the most popular action MMORPG ever made.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10593826-roll-away-playstation-scores.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19581&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kula World',
     year: 1998,
     system: 'PS1',
@@ -3365,7 +3365,7 @@ export const gotmRunnerUp: GameData[] = [
       "Rock n' Roll Racing is a vehicular combat-based racing video game developed by Silicon & Synapse and published by Interplay Productions for the Super Nintendo Entertainment System in 1993 and the Mega Drive/Genesis in 1994.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10267104-kid-klown-in-crazy-chase-snes-introduction.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=2493&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Kid Klown in Crazy Chase',
     year: 1994,
     system: 'SNES',
@@ -3530,7 +3530,7 @@ export const gotmRunnerUp: GameData[] = [
       'Robotrek, known in Japan as Slapstick, is a role-playing video game for the SNES. It was developed by Quintet and published by Enix in both Japan and North America in 1994. Set on the fictional planet Quintenix, the game puts the player in control of a budding robotics expert who is the son of a famous inventor. Build and battle robots!!!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10125658-christmas-nights-into-dreams-sega-saturn-christmas-nights-openin.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=13240&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Christmas NiGHTS into Dreams',
     year: 1996,
     system: 'Saturn, PS1, PC',
@@ -3594,7 +3594,7 @@ export const gotmRunnerUp: GameData[] = [
       'Fire Emblem Gaiden follows the battles of two opposing armies on the continent of Valentia, which is torn apart by political strife involving the princess Celica and her childhood friend Alm. The 3DS remake, Shadows of Valentia, is available in English and much more playable with QoL features, but requires a 3DS or Citra.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5081029-adventures-of-dino-riki-nes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1627&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Adventures of Dino Riki',
     year: 1989,
     system: 'NES',
@@ -3756,8 +3756,8 @@ export const gotmRunnerUp: GameData[] = [
       'Vanguard Bandits is a support-centric strategy RPG featuring tactical combat in a medieval fantasy world in which knights and soldiers pilot mecha.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16056070-sub-terrania-genesis-he-is-the-driver.png',
-    title: 'Sub Terrania',
+    img: 'https://screenscraper.fr/image.php?gameid=1194&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: 'Sub-Terrania',
     year: 1994,
     system: 'Sega Genesis/Mega Drive',
     developer: 'Sega',
@@ -4771,7 +4771,7 @@ export const gotmRunnerUp: GameData[] = [
       'Solve this mystery in a single night and find out what happened in room 215.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2840563-ratchet-clank-size-matters-psp-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=22186&media=ss&region=eu&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ratchet & Clank: Size Matters',
     year: 2007,
     system: 'PSP/PS2',
@@ -4912,7 +4912,7 @@ export const gotmRunnerUp: GameData[] = [
       'Snowboard Kids is a fun downhill racing game, based around snowboarding, with quirky characters and fun power-ups. Tight controls, a deliciously 90s soundtrack, and the unique snowboarding concept elevate Snowboard Kids beyond other casual arcade racers from the era, forming a game that is certainly worth another look.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16641408-digimon-world-3-playstation-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19276&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Digimon World 3',
     year: 2002,
     system: 'PS1',
@@ -5009,7 +5009,7 @@ export const gotmRunnerUp: GameData[] = [
     description: 'You hunt dinosaurs and I need to beat it finally!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15981549-god-of-war-chains-of-olympus-psp-weapon-power-up-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=27863&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'God of War: Chains of Olympus',
     year: 2008,
     system: 'PSP, PS2',
@@ -5085,7 +5085,7 @@ export const gotmRunnerUp: GameData[] = [
       'Say goodbye to oddly-colored hedgehogs as you play as the true hero of the Sonic franchise, Tails!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16578634-hooters-road-trip-playstation-fake-smile-maybe.png',
+    img: 'https://screenscraper.fr/image.php?gameid=104923&media=ss&region=us&num=&version=&maxwidth=640&maxheight=480',
     title: 'Hooters Road Trip',
     year: 2002,
     system: 'PS1, PC',
@@ -5107,7 +5107,7 @@ export const gotmRunnerUp: GameData[] = [
       "This T-RPG makes use of various fantasy elements, and is loosely based on the story of Joan of Arc and her struggles against the English occupation of France during the Hundred Years' War in the early 15th century.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16236223-bangai-o-spirits-nintendo-ds-title-screen-and-main-menu.png',
+    img: 'https://screenscraper.fr/image.php?gameid=6253&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bangai-O Spirits',
     year: 2008,
     system: 'DS',
@@ -5574,7 +5574,7 @@ export const gotmRunnerUp: GameData[] = [
       "In retrospective coverage, Sapphire is considered one of the best PC Engine shoot 'em ups. Although the gameplay was found to be average, critics concluded that the graphics and sound were of such incredible quality that they made up for any shortcomings in the game mechanics. Sapphire was produced in low numbers at the end of the PC Engine's lifespan and subsequently became a rare collector's item.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16407767-snoopys-magic-show-game-boy-game-start-or-password.png',
+    img: 'https://screenscraper.fr/image.php?gameid=70476&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: "Snoopy's Magic Show",
     year: 1990,
     system: 'GB',
