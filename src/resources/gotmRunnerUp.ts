@@ -4467,7 +4467,7 @@ export const gotmRunnerUp: GameData[] = [
       "Bounce, roll, and explore this playful, colorful, and infectiously upbeat world. Take control of their planet to help these gelatinous morphy balls who don't commit crimes protect their homeworld from ruthless assault.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2391655-home-improvement-power-tool-pursuit-snes-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19078&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Home Improvement: Power Tool Pursuit',
     year: 1994,
     system: 'SNES',
