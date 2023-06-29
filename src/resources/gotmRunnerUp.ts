@@ -1903,7 +1903,7 @@ export const gotmRunnerUp: GameData[] = [
       'The Elder Scrolls III: Morrowind is an open-world action role-playing video game developed by Bethesda Game Studios and is the third installment in the Elder Scrolls series. The main story takes place on Vvardenfell, an island in the Dunmer (Dark Elf) province of Morrowind, part of the continent of Tamriel. The central quests concern the demigod Dagoth Ur, housed within the volcanic Red Mountain, who seeks to gain power and break Morrowind free from Imperial reign.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/10261430-jade-cocoon-story-of-the-tamamayu-playstation-title-screen.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19309&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Jade Cocoon: Story of the Tamamayu',
     year: 1998,
     system: 'PS1',
