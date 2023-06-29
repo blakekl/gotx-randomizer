@@ -6501,7 +6501,7 @@ export const gotmRunnerUp: GameData[] = [
       'Know Super Mario RPG like the back of your hand? Super Mario RPG: Armegeddon is a difficulty and content mod for Super Mario RPG. It adds double timed hits, a plethora of new bosses from across RPG history, and a ton of new surprises. This mod was originally not for the faint of heart, but has been updated with a more relaxed and balanced “Content” edition.',
   },
   {
-    img: 'https://lh3.googleusercontent.com/proxy/16W6ARqjreC-r0pB8BB43KRuLpuEM22-K-EXeUtcL7iKwUWEnGqBXOaQzWPXR_KFF0vNtmw079tzqYsaFBzUcVbX-IPoXhVDRj9I5QCiezh5EAYMYV3aCAMbF8XMo2v-BxlO0d6e5GHe41xA',
+    img: 'https://www.romhacking.net/hacks/snes/images/4134screenshot1.gif',
     title: 'Final Fantasy IV - Ultima',
     year: 1991,
     system: 'SNES',
