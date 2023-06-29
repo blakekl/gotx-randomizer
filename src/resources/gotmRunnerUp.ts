@@ -4553,7 +4553,7 @@ export const gotmRunnerUp: GameData[] = [
       'Super Robot Wars Original Generation (スーパーロボット大戦ORIGINAL GENERATION Sūpā Robotto Taisen ORIGINAL GENERATION) is a tactical role-playing game for the Nintendo Game Boy Advance, developed and published by Banpresto in Japan, and later localized by Atlus in North America as Super Robot Taisen Original Generation. This is basically Fire Emblem in space with Gundams. You know you want to vote for this.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15774855-claymates-snes-each-level-has-its-own-name.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2516&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Claymates',
     year: 1993,
     system: 'SNES',
