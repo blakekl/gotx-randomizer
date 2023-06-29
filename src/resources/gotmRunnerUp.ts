@@ -1122,7 +1122,7 @@ export const gotmRunnerUp: GameData[] = [
       'Play as Lenneth, a Valkyrie tasked with recruiting einherjar (AKA GHOST warriors) to fight for Odin in a war to stop Ragnarok from destroying everything.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/515010-forgotten-worlds-sega-master-system-title.png',
+    img: 'https://screenscraper.fr/image.php?gameid=316&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Forgotten Worlds',
     year: 1988,
     system: 'Genesis/MD',
