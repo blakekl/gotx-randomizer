@@ -60,7 +60,7 @@ export const gotmRunnerUp: GameData[] = [
       'The swansong of the Point-n-Click era, the PnC without the pointing or clicking (it introduced joystick controls and an ability to indicate interactive ‘hotspots’ so you wouldn’t need to “go searching” with a mouse pointer) and still considered the pinnacle of the genre, you play as a grim reaper has to investigate corruption within the afterlife, in a mix of Mexican folklore and film noire. Praised for the savvy and funny dialogue, this is the one that seems to constantly be near the top of all pre-2000 “best game ever lists”. This is the adventure game for people who don’t’ like Point and Click controls. This is also the dictionary definition of a macabre game',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2855459-one-must-fall-2097-dos-pre-fight-preparations.png',
+    img: 'https://screenscraper.fr/image.php?gameid=188245&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'One Must Fall: 2097',
     year: 1994,
     system: 'DOS',
@@ -213,7 +213,7 @@ export const gotmRunnerUp: GameData[] = [
       'Broken Sword: The Shadow of the Templars is a classic point-and-click adventure game that takes players on a thrilling journey through time and history. One of the most notable aspects of the game is its intriguing storyline, which delves into the mysteries of the medieval Knights Templar. As players progress through the game, they are transported back to the age of the Templars, uncovering secrets and conspiracies along the way.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5970784-star-wars-dark-forces-macintosh-loading-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=19548&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Star Wars: Dark Forces',
     year: 1995,
     system: 'PS1, DOS',
@@ -1675,7 +1675,7 @@ export const gotmRunnerUp: GameData[] = [
       'Michaelangelo sets out to rescue Splinter, April, and the other turtles in this Metroidvania adventure.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16328463-pokemon-gold-version-game-boy-color-title-screen-sgb.png',
+    img: 'https://screenscraper.fr/image.php?gameid=82619&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Pokemon Gold and Silver',
     year: 1999,
     system: 'GBC, DS',
@@ -2359,7 +2359,7 @@ export const gotmRunnerUp: GameData[] = [
       'The four Warriors of Light are tasked by the King of Cornelia to rescue Princess Sarah from Garland. This sets them off on an adventure to defeat the Four Fiends and rescue the world.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/859453-faxanadu-nes-japan-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1303&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Faxanadu',
     year: 1987,
     system: 'NES',
@@ -2835,7 +2835,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/11167749-disneypixar-toy-story-2-buzz-lightyear-to-the-rescue-windows-loa.jpg',
+    img: 'https://screenscraper.fr/image.php?gameid=19320&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Toy Story 2: Buzz Lightyear to the Rescue',
     year: 1999,
     system: 'PS1, N64, DC, PC',
@@ -2975,7 +2975,7 @@ export const gotmRunnerUp: GameData[] = [
       "This game is so ~oBsCuRe~ that it doesn't have it's own wikipedia page. Also, I guess it got a 4/10 from IGN when it first launched. Didn't stop my mom from buying it for me back in the day and GOOD BC THIS GAME IS A 10/10 TO MEEE. You've got like 6 or 7 mini-game challenges within the game and they're all super different. The challenges range from fashion show to snowboarding to a diner dash-kinda thing. One of the mini-games is a music video creator where you plan the dance and lights and everything, but the COOLEST PART was that you could take out your game disc and put in your own CD to use whatever music you want for your dance. You would probably cringe at the number of times I watched my girls Mary Kate and Ashley dance to Evanescence.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/8126888-live-a-live-snes-prehistoric-chapter-party-equipment-and-item-ma.png',
+    img: 'https://screenscraper.fr/image.php?gameid=2203&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Live a Live',
     year: 1994,
     system: 'SNES',
@@ -3268,7 +3268,7 @@ export const gotmRunnerUp: GameData[] = [
       'Super Famicon rpg with a banging soudntrack and special events based on the real time of day and year',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/1990938-festers-quest-nes-the-inside-of-a-3d-maze.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1343&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Fester’s Quest',
     year: 1989,
     system: 'NES',
@@ -3399,7 +3399,7 @@ export const gotmRunnerUp: GameData[] = [
       'A video game adaptation of the popular Nickelodeon game show.  Answer trivia questions about 80s pop culture and play minigames to compete in physical challenges!  Defeat your opponents to win fabulous prizes in the Double Dare Obstacle Course!',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/2149534-ninja-golf-atari-7800-the-game-introduction.png',
+    img: 'https://screenscraper.fr/image.php?gameid=38036&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ninja Golf',
     year: 1990,
     system: 'Atari 7800',
@@ -4007,7 +4007,7 @@ export const gotmRunnerUp: GameData[] = [
     description: '',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16522952-quackshot-zx-spectrum-lets-go.png',
+    img: 'https://screenscraper.fr/image.php?gameid=27&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'QuackShot',
     year: 1991,
     system: 'Genesis/MD',
@@ -4215,7 +4215,7 @@ export const gotmRunnerUp: GameData[] = [
       "Choose your side, collect over 300 cards, and compete in the SC Card Fighter's Clash tournament to prove you're the best around. This Neo Geo Pocket Color adventure is the first SNK/Capcom crossover and has gameplay similar to a simplified Yu-Gi-Oh/Magic mashup.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15723317-racing-lagoon-playstation-intro-movie.png',
+    img: 'https://screenscraper.fr/image.php?gameid=117305&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
     title: 'Racing Lagoon',
     year: 1999,
     system: 'PS1',
@@ -4642,7 +4642,7 @@ export const gotmRunnerUp: GameData[] = [
       "You have been framed so now it's time to bust out of jail and clear your name. Switch between 4 playable characters (Kunio, Riki and their girlfriends) with their own unique special moves. Also you get to ride a motorcycle and fight like in Road Rage. Time to kick butt and take names. Translation patch available.",
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15891273-summon-night-swordcraft-story-game-boy-advance-the-menu-has-many.png',
+    img: 'https://screenscraper.fr/image.php?gameid=4268&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Summon Night: Swordcraft Story',
     year: 2003,
     system: 'GBA',
@@ -4739,7 +4739,7 @@ export const gotmRunnerUp: GameData[] = [
       'Help Adol “the red” Christin defeat the demon Galbalan and restore peace to felghana in this action RPG with a killer soundtrack and excellent gameplay.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15778147-bubble-and-squeak-genesis-level-completion-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=1029&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Bubble and Squeak',
     year: 1994,
     system: 'Genesis/MD',
@@ -5032,7 +5032,7 @@ export const gotmRunnerUp: GameData[] = [
       'Kratos is back again. although earlier than ever before, experience the epic slash and hack prequel in glorious handheld',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16083443-mario-party-ds-nintendo-ds-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=5882&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Mario Party DS',
     year: 2007,
     system: 'DS',
@@ -5076,7 +5076,7 @@ export const gotmRunnerUp: GameData[] = [
       'Pilot your mech in defense of your home planet in this beautiful run n gun on the Genesis. At your disposal is a jet pack, a varied arsenal of weapons like a pulse rifle and flame thrower, as well as a support vehicle that GamePro described as “Robocop on a Harley”',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15931827-star-ocean-blue-sphere-game-boy-color-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=37198&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Star Ocean: Blue Sphere',
     year: 2001,
     system: 'GBC',
@@ -5618,7 +5618,7 @@ export const gotmRunnerUp: GameData[] = [
       'The creators of Final Fantasy Tactics bring you the next evolution in Tactics games from Square Enix in Tactics Ogre: Let Us Cling Together! A dream team lead by Yasumi Matsuno has reunited to bring a perfect vision of their lost tale of political intrigue, conquest, and rebellion to vivid life. Experience an epic story where your choices determine the fate of the Walister Resistance.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16468042-car-battler-joe-game-boy-advance-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=83304&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Car Battler Joe',
     year: 2001,
     system: 'GBA',
@@ -5771,7 +5771,7 @@ export const gotmRunnerUp: GameData[] = [
       'Gladiator is a brawling arena fighter with customizable characters, a neat left hand / right hand control scheme, and light RPG elements in the campaign as you murder your way out of debt slavery by choosing and upgrading the right equipment to suit the various scenarios your fighter is thrust into for the amusement of the Populus Romanus.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/16331034-magical-vacation-game-boy-advance-after-choosing-the-gender-you-.png',
+    img: 'https://screenscraper.fr/image.php?gameid=3990&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Magical Vacation',
     year: 2001,
     system: 'GBA',
@@ -5848,7 +5848,7 @@ export const gotmRunnerUp: GameData[] = [
       'A collection of quick challenges based on various NES/Famicom, From strange twists like beating a Super Mario Bros. level with Ice physics to doing challenges based on one game with a character from another.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/5579187-am2r-return-of-samus-windows-title-screen.png',
+    img: 'https://screenscraper.fr/image.php?gameid=273188&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Another Metroid 2 Remake',
     year: 2016,
     system: 'PC, Android, Portmaster',
