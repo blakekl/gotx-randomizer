@@ -5065,7 +5065,7 @@ export const gotmRunnerUp: GameData[] = [
       'A fun puzzle game the first pioneered the use of a rewind feature.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/3788861-danger-ranger-dragon-3264-choose-a-colour.png',
+    img: 'https://screenscraper.fr/image.php?gameid=227&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
     title: 'Ranger-X',
     year: 1993,
     system: 'Genesis/MD',
