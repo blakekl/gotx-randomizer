@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-const API_KEY = 'AIzaSyBO5VSSMTQxPeJEoa8yL0EWM9C87zMVzT0';
+const API_KEY = '';
 const FILE_ID = '1HRWFwU-yhNT5RVz-GwCN1N2BqowGRVQg4XDkErblgrw';
 
 export default class SheetsStore {
