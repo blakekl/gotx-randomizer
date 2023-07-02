@@ -2,6 +2,16 @@ import { GameData } from '../models/gameData.model';
 
 export const retrobits: GameData[] = [
   {
+    img: 'https://cdn.discordapp.com/attachments/957342297270415480/1124854628849287310/Retro_Bits_67_-_Psychic_Force.gif',
+    title: 'Psychic Force',
+    year: 1996,
+    system: 'Arcade, PS1',
+    developer: 'Taito',
+    genre:'Fighting',
+    timeToBeat: 2,
+    description: 'In  this unique fighter, control a fighter within a 3D psychic field. Fly around to dodge psychic blasts and answer with  attacks o f your own, or dash in  and get up close and personal with combo attacks!',
+  },
+  {
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/957401119619948605/Retro_Bits_01_-_Bomberman.gif',
     title: 'Bomberman',
     year: 1990,
