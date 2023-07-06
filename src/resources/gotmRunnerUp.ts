@@ -4650,7 +4650,7 @@ export const gotmRunnerUp: GameData[] = [
     genre: 'Fighting',
     timeToBeat: 1,
     description:
-      "t's a fighting game based off a fighting movie based off a fighting game. What more is there to say?",
+      "It's a fighting game based off a fighting movie based off a fighting game. What more is there to say?",
   },
   {
     img: 'https://cdn.mobygames.com/screenshots/529563-popolocrois-psp-ancient-sword-in-the-woods.jpg',
