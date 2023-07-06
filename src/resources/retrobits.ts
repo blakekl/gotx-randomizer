@@ -13,7 +13,7 @@ export const retrobits: GameData[] = [
   },
   {
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/957401119619948605/Retro_Bits_01_-_Bomberman.gif',
-    title: 'Bomberman',
+    title: { usa: 'Bomberman' },
     year: 1990,
     system: 'TG-16/PCE',
     developer: 'Hudson',
@@ -23,7 +23,7 @@ export const retrobits: GameData[] = [
       "Join White Bomberman in a reimagining of his original arcade release as he places bombs to deal with foes and save his creator's daughter from the clutches of Black Bormebrman! A classic puzzle game that's fun for everyone!",
   },
   {
-    title: 'Pahalanx: The Enforce Fighter A-144',
+    title: { usa: 'Pahalanx: The Enforce Fighter A-144' },
     year: 1992,
     system: 'SNES, GBA',
     developer: 'Kemco',
@@ -34,7 +34,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/959965544700850226/Retro_Bits_02_-_Phalanx.gif',
   },
   {
-    title: 'Alien Storm',
+    title: { usa: 'Alien Storm' },
     year: 1990,
     system: 'Arcade/Genesis',
     developer: 'Sega',
@@ -45,7 +45,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/962502522927456296/Retro_Bits_03_-_Alien_Storm.gif',
   },
   {
-    title: 'The Last Blade',
+    title: { usa: 'The Last Blade' },
     year: 1997,
     system: 'Neo Geo',
     developer: 'SNK',
@@ -56,7 +56,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/965043476871913482/Retro_Bits_04_-_The_Last_Blade.gif',
   },
   {
-    title: 'Night Striker',
+    title: { usa: 'Night Striker' },
     year: 1989,
     system: 'Arcade/PS1',
     developer: 'Taito',
@@ -67,7 +67,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/967576050185936966/Retro_Bits_05_-_Night_Striker.gif',
   },
   {
-    title: 'Rocket Knight Adventures',
+    title: { usa: 'Rocket Knight Adventures' },
     year: 1993,
     system: 'Sega Genesis/MD',
     developer: 'Konami',
@@ -78,7 +78,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/970112413133316096/Retro_Bits_06_-_Rocket_Knight_Adventures.gif',
   },
   {
-    title: 'Friday the 13th',
+    title: { usa: 'Friday the 13th' },
     year: 1993,
     system: 'NES',
     developer: 'Atlus',
@@ -89,7 +89,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/972650896200724510/Retro_Bits_07_-_Friday_the_13th.gif',
   },
   {
-    title: 'Cannon Spike',
+    title: { usa: 'Cannon Spike' },
     year: 2000,
     system: 'Arcade, Dreamcast',
     developer: 'Psikyo',
@@ -100,7 +100,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/975185861790539806/Retro_Bits_08_-_Cannon_Spike.gif',
   },
   {
-    title: 'Sonic Advance',
+    title: { usa: 'Sonic Advance' },
     year: 2001,
     system: 'GBA',
     developer: 'Dimps',
@@ -111,7 +111,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/977722623242960906/Retro_Bits_09_-_Sonic_Advance.gif',
   },
   {
-    title: 'Aero Fighters / Sonic Wings',
+    title: { usa: 'Aero Fighters', jap: 'Sonic Wings' },
     year: 1992,
     system: 'Arcade, SNES',
     developer: 'Tecmo',
@@ -122,7 +122,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/980259604422332456/Retro_Bits_10_-_Aero_Fighters_-_Sonic_Wings.gif',
   },
   {
-    title: 'Solstice: The Quest for the Staff of Demnos',
+    title: { usa: 'Solstice: The Quest for the Staff of Demnos' },
     year: 1990,
     system: 'NES',
     developer: 'Software Creations',
@@ -133,7 +133,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/982796151403188264/Retro_Bits_11_-_Solstice.gif',
   },
   {
-    title: 'Super R.C. Pro Am',
+    title: { usa: 'Super R.C. Pro Am' },
     year: 1991,
     system: 'Game Boy',
     developer: 'Rare',
@@ -144,7 +144,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/985332713970085939/Retro_Bits_12_-_Super_R.C._Pro_Am.gif',
   },
   {
-    title: 'Crossed Swords',
+    title: { usa: 'Crossed Swords' },
     year: 1991,
     system: 'Neo Geo, NGCD',
     developer: 'Alpha Denshi',
@@ -155,7 +155,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/987871302637453412/Retro_Bits_13_-_Crossed_Swords.gif',
   },
   {
-    title: 'SD Hero Soukessen: Taose! Aku no Gundam',
+    title: { jap: 'SD Hero Soukessen: Taose! Aku no Gundam' },
     year: 1991,
     system: 'Famicom',
     developer: 'Interlink',
@@ -166,7 +166,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/990406083157819392/Retro_Bits_14_-_SD_Hero_Soukessen_-_Taose_Aku_no_Gundan.gif',
   },
   {
-    title: 'Dead Moon',
+    title: { usa: 'Dead Moon' },
     year: 1991,
     system: 'TG-16/PCE',
     developer: 'Zap',
@@ -177,7 +177,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/992942834766327938/Retro_Bits_15_-_Dead_Moon.gif',
   },
   {
-    title: 'Alisia Dragoon',
+    title: { usa: 'Alisia Dragoon' },
     year: 1992,
     system: 'Sega Genesis/MD',
     developer: 'Game Arts',
@@ -188,7 +188,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/995479576807485440/Retro_Bits_16_-_Alisia_Dragoon.gif',
   },
   {
-    title: 'Star Gladiator - Episode 1: Final Crusade',
+    title: { usa: 'Star Gladiator - Episode 1: Final Crusade' },
     year: 1996,
     system: 'Arcade, PS1',
     developer: 'Capcom',
@@ -199,7 +199,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/998016247730032740/Retro_Bits_17_-_Star_Gladiator_-_Episode_1_-_Final_Crusade.gif',
   },
   {
-    title: 'Krazy Kreatures',
+    title: { usa: 'Krazy Kreatures' },
     year: 1990,
     system: 'NES',
     developer: 'Bitmasters',
@@ -210,7 +210,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1000553398304784404/Retro_Bits_18_-_Krazy_Kreatures.gif',
   },
   {
-    title: 'Bonks Adventure',
+    title: { usa: 'Bonks Adventure' },
     year: 1989,
     system: 'TG-16/PCE',
     developer: 'Red Company',
@@ -221,7 +221,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1003089759444418630/Retro_Bits_19_-_Bonks_Adventure.gif',
   },
   {
-    title: 'Cotton: Fantastic Night Dreams',
+    title: { usa: 'Cotton: Fantastic Night Dreams' },
     year: 1991,
     system: 'Arcade, TG-CD',
     developer: 'Success',
@@ -232,7 +232,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1005626438105444392/Retro_Bits_20_-_Cotton_-_Fantastic_Night_Dreams.gif',
   },
   {
-    title: 'Mighty Morphin Power Rangers: The Fighting Edition',
+    title: { usa: 'Mighty Morphin Power Rangers: The Fighting Edition' },
     year: 1995,
     system: 'Super Nintendo',
     developer: 'Natsume',
@@ -243,7 +243,11 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1008163936757088306/Retro_Bits_21_-_Mighty_Morphin_Power_Rangers_-_The_Fighting_Edition.gif',
   },
   {
-    title: 'Valis: The Fantasm Soldier',
+    title: {
+      usa: 'Valis',
+      jap: 'Mugen Senshi Valis',
+      other: 'Valis: The Fantasm Soldier',
+    },
     year: 1991,
     system: 'Sega Genesis/MD',
     developer: 'Wolf Team',
@@ -254,7 +258,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1010699842441453608/Retro_Bits_22_-_Valis_-_The_Fantasm_Soldier.gif',
   },
   {
-    title: 'Pu Li Ru La',
+    title: { world: 'Pu Li Ru La' },
     year: 1991,
     system: 'Arcade, PS1, PS2',
     developer: 'Taito',
@@ -265,7 +269,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1013236508301463582/Retro_Bits_23_-_Pu-Li-Ru-La.gif',
   },
   {
-    title: 'Magical Chase',
+    title: { usa: 'Magical Chase' },
     year: 1991,
     system: 'TG16/PCE, GBC',
     developer: 'Quest',
@@ -276,7 +280,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1015773342466318426/Retro_Bits_24_-_Magical_Chase.gif',
   },
   {
-    title: 'Sonic CD',
+    title: { usa: 'Sonic CD' },
     year: 1993,
     system: 'Sega CD, Android',
     developer: 'Sega',
@@ -287,7 +291,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1018310716593295430/Retro_Bits_25_-_Sonic_CD.gif',
   },
   {
-    title: 'Cadash',
+    title: { usa: 'Cadash' },
     year: 1989,
     system: 'Arcade, TG-16',
     developer: 'Taito',
@@ -298,7 +302,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1020846837831303208/Retro_Bits_26_-_Cadash.gif',
   },
   {
-    title: 'Digimon: Rumble Arena',
+    title: { usa: 'Digimon: Rumble Arena' },
     year: 2001,
     system: 'PS1',
     developer: 'Bandai',
@@ -309,7 +313,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1023383656456265738/Retro_Bits_27_-_Digimon_-_Rumble_Arena.gif',
   },
   {
-    title: "Devil's Crush",
+    title: { usa: "Devil's Crush" },
     year: 1990,
     system: 'TG-16, Genesis',
     developer: 'Compile',
@@ -320,7 +324,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1025920105483358238/Retro_Bits_28_-_Devils_Crush.gif',
   },
   {
-    title: 'Splatterhouse',
+    title: { usa: 'Splatterhouse' },
     year: 1988,
     system: 'Arcade, TG-16',
     developer: 'Namco',
@@ -331,7 +335,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1028456868651216916/Retro_Bits_29_-_Splatterhouse.gif',
   },
   {
-    title: "Castlevania II: Belmont's Revenge",
+    title: { usa: "Castlevania II: Belmont's Revenge" },
     year: 1991,
     system: 'Gameboy, GBC',
     developer: 'Konami',
@@ -342,7 +346,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1030993544611119114/Retro_Bits_30_-_Castlevania_II_-_Belmonts_Revenge.gif',
   },
   {
-    title: 'Haunting: Starring Polterguy',
+    title: { usa: 'Haunting: Starring Polterguy' },
     year: 1993,
     system: 'Genesis/MD, PSP',
     developer: 'Electronic Arts',
@@ -353,7 +357,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1033530450989305926/Retro_Bits_31_-_Haunting_Starring_Polterguy.gif',
   },
   {
-    title: 'Darkstalkers: The Night Warriors',
+    title: { usa: 'Darkstalkers: The Night Warriors' },
     year: 1994,
     system: 'Arcade, PS1, PS2',
     developer: 'Capcom',
@@ -364,7 +368,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1036067001191370822/Retro_Bits_32_-_Darkstalkers_-_The_Night_Warriors.gif',
   },
   {
-    title: 'Hagane: The Final Conflict',
+    title: { usa: 'Hagane: The Final Conflict' },
     year: 1994,
     system: 'SNES',
     developer: 'CAProduction',
@@ -375,7 +379,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1038919527104262184/Retro_Bits_33_-_Hagane_-_The_Final_Conflict.gif',
   },
   {
-    title: 'Metal Slug: 1st Mission',
+    title: { usa: 'Metal Slug: 1st Mission' },
     year: 1999,
     system: 'NGPC, Switch, PC',
     developer: 'Ukiyotei',
@@ -386,7 +390,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1041155565151322113/Retro_Bits_34_-_Metal_Slug_-_1st_Mission.gif',
   },
   {
-    title: 'Blazing Star',
+    title: { usa: 'Blazing Star' },
     year: 1998,
     system: 'Neo Geo',
     developer: 'Yumekobo',
@@ -397,7 +401,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1043692321717370890/Retro_Bits_35_-_Blazing_Star.gif',
   },
   {
-    title: 'Cocoron',
+    title: { jap: 'Cocoron' },
     year: 1991,
     system: 'Famicom',
     developer: 'K2, Takeru',
@@ -408,7 +412,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1046228924377608282/Retro_Bits_36_-_Cocoron.gif',
   },
   {
-    title: 'Snow Bros',
+    title: { usa: 'Snow Bros' },
     year: 1990,
     system: 'Arcade, NES, GB',
     developer: 'Toaplan',
@@ -419,7 +423,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1048765773826502727/Retro_Bits_37_-_Snow_Bros.gif',
   },
   {
-    title: 'Elf Bowling',
+    title: { usa: 'Elf Bowling' },
     year: 1998,
     system: 'PC, GBA, DS',
     developer: 'NStorm',
@@ -430,7 +434,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1051302401300238356/Retro_Bits_38_-_Elf_Bowling.gif',
   },
   {
-    title: 'Santa Claus Junior',
+    title: { usa: 'Santa Claus Junior' },
     year: 2001,
     system: 'Game Boy Color',
     developer: 'NEON Software',
@@ -441,7 +445,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1053839193979240498/Retro_Bits_39_-_Santa_Claus_Junior.gif',
   },
   {
-    title: 'Kickle Cubicle',
+    title: { usa: 'Kickle Cubicle' },
     year: 1998,
     system: 'Arcade, NES',
     developer: 'IREM',
@@ -452,7 +456,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1056375795414741032/Retro_Bits_40_-_Kickle_Cubicle.gif',
   },
   {
-    title: 'Unholy Night: The Darkness Hunter',
+    title: { usa: 'Unholy Night: The Darkness Hunter' },
     year: 2017,
     system: 'SNES',
     developer: 'Foxbat Corporation',
@@ -463,7 +467,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1058912434682871908/Retro_Bits_41_-_Unholy_Night_-_The_Darkness_Hunter.gif',
   },
   {
-    title: 'Teenage Mutant Ninja Turtles: Fall of the Foot Clan',
+    title: { usa: 'Teenage Mutant Ninja Turtles: Fall of the Foot Clan' },
     year: 1990,
     system: 'Game Boy',
     developer: 'Konami',
@@ -474,7 +478,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1061449263810347028/Retro_Bits_42_-_TMNT_-_Fall_of_the_Foot_Clan.gif',
   },
   {
-    title: 'Shock Troopers',
+    title: { usa: 'Shock Troopers' },
     year: 1997,
     system: 'Neo Geo',
     developer: 'Saurus',
@@ -485,7 +489,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1063986102169518160/Retro_Bits_43_-_Shock_Troopers.gif',
   },
   {
-    title: 'Um Jammer Lammy',
+    title: { usa: 'Um Jammer Lammy' },
     year: 1999,
     system: 'PS1, Arcade',
     developer: 'NanaOn-Sha',
@@ -496,7 +500,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1066522654963667114/Retro_Bits_44_-_Um_Jammer_Lammy.gif',
   },
   {
-    title: 'SD the Great Battle: Aratanaru Chousen',
+    title: { jap: 'SD the Great Battle: Aratanaru Chousen' },
     year: 1990,
     system: 'Super Famicom',
     developer: 'Banpresto',
@@ -507,7 +511,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1069059366210256916/Retro_Bits_45_-_SD_the_Great_Battle_-_Aratanaru_Chousen.gif',
   },
   {
-    title: 'Contra/Gryzor/Probotector',
+    title: { usa: 'Contra', jap: 'Gryzor', eu: 'Probotector' },
     year: 1986,
     system: 'Arcade, NES',
     developer: 'Konami',
@@ -518,7 +522,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1071597231083356280/Retro_Bits_46_-_Contra.gif',
   },
   {
-    title: 'Balloon Kid',
+    title: { usa: 'Balloon Kid' },
     year: 1990,
     system: 'Game Boy',
     developer: 'Nintendo R&D1',
@@ -529,7 +533,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1074132827257446491/Retro_Bits_47_-_Balloon_Kid.gif',
   },
   {
-    title: 'Chocobo Racing',
+    title: { usa: 'Chocobo Racing' },
     year: 1999,
     system: 'Playstation',
     developer: 'Squaresoft',
@@ -540,7 +544,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1076669676551147530/Retro_Bits_48_-_Chocobo_Racing.gif',
   },
   {
-    title: 'Magical Taruruuto-Kun',
+    title: { jap: 'Magical Taruruuto-Kun' },
     year: 1991,
     system: 'Sega Game Gear',
     developer: 'Tsukuda Ideal',
@@ -551,7 +555,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1079206279156871219/Retro_Bits_49_-_Magical_Taruruuto-kun.gif',
   },
   {
-    title: 'Gaiaopolis',
+    title: { usa: 'Gaiaopolis' },
     year: 1993,
     system: 'Arcade',
     developer: 'Konami',
@@ -562,7 +566,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1081743385313951855/Retro_Bits_50_-_Gaiapolis.gif',
   },
   {
-    title: "Spanky's Quest",
+    title: { usa: "Spanky's Quest" },
     year: 1991,
     system: 'SNES',
     developer: 'Natsume',
@@ -573,7 +577,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1084279703612969000/Retro_Bits_51_-_Spankys_Quest.gif',
   },
   {
-    title: 'Space Channel 5',
+    title: { usa: 'Space Channel 5' },
     year: 1999,
     system: 'Sega Dreamcast',
     developer: 'Sega',
@@ -584,7 +588,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1086802201785143386/Retro_Bits_52_-_Space_Channel_5.gif',
   },
   {
-    title: 'Prehistoric Isle in 1930',
+    title: { usa: 'Prehistoric Isle in 1930' },
     year: 1989,
     system: 'Arcade',
     developer: 'SNK',
@@ -595,7 +599,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1089338006676193310/Retro_Bits_53_-_Prehistoric_Isle_in_1930.gif',
   },
   {
-    title: 'Sonic Chaos',
+    title: { usa: 'Sonic Chaos' },
     year: 1993,
     system: 'Master System',
     developer: 'Aspect Co. Ltd',
@@ -606,7 +610,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1091874763892334663/Retro_Bits_54_-_Sonic_Chaos.gif',
   },
   {
-    title: 'The Last Blade: Beyond the Destiny',
+    title: { usa: 'The Last Blade: Beyond the Destiny' },
     year: 2000,
     system: 'NGPC',
     developer: 'SNK',
@@ -617,7 +621,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1094412140846272562/Retro_Bits_55_-_The_Last_Blade_-_Beyond_the_Destiny.gif',
   },
   {
-    title: 'Deadeus',
+    title: { usa: 'Deadeus' },
     year: 2019,
     system: 'Game boy',
     developer: '-IZMA-',
@@ -628,7 +632,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1096948135340802118/Retro_Bits_56_-_Deadeus.png',
   },
   {
-    title: 'Mystic Riders',
+    title: { usa: 'Mystic Riders' },
     year: 1992,
     system: 'Arcade',
     developer: 'Irem Corp.',
@@ -639,7 +643,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1099484890061349004/Retro_Bits_57_-_Mystic_Riders.gif',
   },
   {
-    title: 'Inspector Gadget',
+    title: { usa: 'Inspector Gadget' },
     year: 1993,
     system: 'SNES',
     developer: 'AIM',
@@ -650,7 +654,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1102021591937843290/Retro_Bits_58_-_Inspector_Gadget.gif',
   },
   {
-    title: 'River City Ransom/Street Gangs',
+    title: { usa: 'River City Ransom', jap: 'Street Gangs' },
     year: 1989,
     system: 'NES',
     developer: 'Technos Japan',
@@ -661,7 +665,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1104558367986430012/Retro_Bits_59_-_River_City_Ransom.gif',
   },
   {
-    title: 'NARC',
+    title: { usa: 'NARC' },
     year: 1988,
     system: 'Arcade, NES',
     developer: 'Williams Electronics',
@@ -672,7 +676,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1107095011654381689/Retro_Bits_60_-_NARC.png',
   },
   {
-    title: 'REZ',
+    title: { usa: 'REZ' },
     year: 2001,
     system: 'Dreamcast, PS2',
     developer: 'United Game Artists',
@@ -683,7 +687,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1109631698406228019/Retro_Bits_61_-_Rez.gif',
   },
   {
-    title: 'Power Blade',
+    title: { usa: 'Power Blade' },
     year: 1990,
     system: 'NES',
     developer: 'Taito',
@@ -694,7 +698,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1112168505081606195/Retro_Bits_62_Power_Blade.gif',
   },
   {
-    title: 'Fatal Fury: First Contact',
+    title: { usa: 'Fatal Fury: First Contact' },
     year: 1999,
     system: 'NGPC, Switch',
     developer: 'SNK',
@@ -705,7 +709,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1114705452928860231/Retro_Bits_63_-_Fatal_Fury_-_First_Contact_.gif',
   },
   {
-    title: 'Boogie Wings/The Great Ragtime Show',
+    title: { usa: 'Boogie Wings', jap: 'The Great Ragtime Show' },
     year: 1992,
     system: 'Arcade',
     developer: 'Data East',
@@ -716,7 +720,7 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1117241848797343864/Retro_Bits_64_-_Boogie_Wings.gif',
   },
   {
-    title: "Disney's Goof Troop",
+    title: { usa: "Disney's Goof Troop" },
     year: 1993,
     system: 'SNES',
     developer: 'Capcom',
@@ -727,13 +731,14 @@ export const retrobits: GameData[] = [
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/1119778552787767348/Retro_Bits_65_-_Goof_Troop.gif',
   },
   {
-    title: 'Ghost Sweeper Mikami: Joreishi wa Nice Body',
+    title: { jap: 'Ghost Sweeper Mikami: Joreishi wa Nice Body' },
     year: 1993,
     system: 'Super Nintendo',
     developer: 'Natsume',
     genre: 'Action-Platformer',
     img: 'https://media.discordapp.net/attachments/957342297270415480/1122315465386106890/Retro_Bits_66_-_Ghost_Sweeper_Mikami_-_Joreishi_wa_Nice_Body.gif',
-    description: 'Based on the manga and anime series Ghost Sweeper Mikami, take control of Reiki, the exorcist with the  "Nice Body," and take on all sorts of ghosts and ghoullies with your magically charged baton! No translation available.',
+    description:
+      'Based on the manga and anime series Ghost Sweeper Mikami, take control of Reiki, the exorcist with the  "Nice Body," and take on all sorts of ghosts and ghoullies with your magically charged baton! No translation available.',
     timeToBeat: 2,
   },
 ];

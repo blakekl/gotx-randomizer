@@ -3,7 +3,7 @@ import { GameData } from '../models/gameData.model';
 export const rpgWinner: GameData[] = [
   {
     img: 'https://cdn.discordapp.com/attachments/1058423116621172766/1058926906843594782/RPGotQ_1_-_Persona_3.png',
-    title: 'Persona 3',
+    title: { usa: 'Persona 3' },
     system: 'PS2, PSP',
     developer: 'Atlus',
     year: 2009,
@@ -14,7 +14,7 @@ export const rpgWinner: GameData[] = [
   },
   {
     img: 'https://cdn.discordapp.com/attachments/1058423116621172766/1091724371036487790/RPGotQ_2_-_Pokemon_Black_-_White.png',
-    title: 'Pokémon Black and White',
+    title: { usa: 'Pokémon Black and White' },
     system: 'Nintendo DS',
     developer: 'Game Freak',
     year: 2010,

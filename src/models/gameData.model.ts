@@ -1,5 +1,20 @@
+export interface Nomination {
+  nominator: string;
+  date: Date;
+}
+
+export interface Title {
+  usa?: string;
+  eu?: string;
+  jap?: string;
+  world?: string;
+  other?: string;
+}
+
 export interface GameData {
-  title: string;
+  title: Title;
+  screenscraperId?: number;
+  mobyGamesId?: number;
   year: number;
   system: string;
   developer: string;
@@ -7,4 +22,5 @@ export interface GameData {
   description: string;
   img: string;
   timeToBeat: number;
+  nominations?: Nomination[];
 }

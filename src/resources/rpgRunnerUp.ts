@@ -3,7 +3,8 @@ import { GameData } from '../models/gameData.model';
 const current: GameData[] = [
   {
     img: 'https://screenscraper.fr/image.php?gameid=5791&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Final Fantasy Tactics A2: Grimoire of the Rift',
+    screenscraperId: 5791,
+    title: { usa: 'Final Fantasy Tactics A2: Grimoire of the Rift' },
     year: 2007,
     system: 'Nintendo DS',
     developer: 'Square Enix',
@@ -14,7 +15,8 @@ const current: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=19513&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Wild Arms 2',
+    screenscraperId: 19513,
+    title: { usa: 'Wild Arms 2' },
     year: 1999,
     system: 'Playstation 1',
     developer: 'MediaVision, Contrail',
@@ -25,7 +27,8 @@ const current: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=117305&media=ss&region=jp&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Racing Lagoon',
+    screenscraperId: 117305,
+    title: { usa: 'Racing Lagoon' },
     year: 1999,
     system: 'Playstation 1',
     developer: 'Square',
@@ -36,7 +39,8 @@ const current: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=19292&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Valkyrie Profile',
+    screenscraperId: 19292,
+    title: { usa: 'Valkyrie Profile' },
     year: 1999,
     system: 'Playstation 1',
     developer: 'tri-ace',
@@ -50,7 +54,7 @@ const current: GameData[] = [
 export const rpgRunnerUp: GameData[] = [
   {
     img: 'https://cdn.mobygames.com/screenshots/15992482-infinite-space-nintendo-ds-going-back-a-bit-unsure-how-that-work.png',
-    title: 'Infinite Space',
+    title: { usa: 'Infinite Space' },
     year: 2009,
     system: 'Nintendo DS',
     developer: 'Platinum Games Inc.',
@@ -60,7 +64,8 @@ export const rpgRunnerUp: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=19403&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Digimon World 2',
+    screenscraperId: 19403,
+    title: { usa: 'Digimon World 2' },
     year: 2000,
     system: 'Sony Playstation',
     developer: 'BEC',
@@ -71,7 +76,8 @@ export const rpgRunnerUp: GameData[] = [
   },
   {
     img: 'https://screenscraper.fr/image.php?gameid=2789&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
-    title: 'Super Robot Wars 3',
+    screenscraperId: 2789,
+    title: { usa: 'Super Robot Wars 3' },
     year: 1993,
     system: 'SNES, PS1',
     developer: 'Winkysoft',

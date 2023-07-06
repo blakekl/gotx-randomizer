@@ -8,6 +8,7 @@ import { gotmWinners } from './resources/gotmWinners';
 import { retrobits } from './resources/retrobits';
 import { rpgRunnerUp } from './resources/rpgRunnerUp';
 import { rpgWinner } from './resources/rpgWinners';
+import SheetsStore from './stores/SheetsStore';
 import './style.css';
 
 export default function App() {
@@ -233,7 +234,18 @@ export default function App() {
         }}
       />
       <section className="section">
-        <h1 className="title has-text-centered">🎮 {game.title}</h1>
+        <h1 className="title has-text-centered">
+          🎮{' '}
+          {[
+            game.title.usa,
+            game.title.world,
+            game.title.eu,
+            game.title.jap,
+            game.title.other,
+          ]
+            .filter((x) => x)
+            .join(' / ')}
+        </h1>
         <div className="level">
           <div className="level-item has-text-centered">
             <div>
