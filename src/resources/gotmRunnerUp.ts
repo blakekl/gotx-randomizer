@@ -3552,17 +3552,6 @@ export const gotmRunnerUp: GameData[] = [
       'Great game that honestly encourages you to strategize and makes you form more of a connection with the monster you are with.',
   },
   {
-    img: 'https://cdn.mobygames.com/screenshots/15991873-mario-luigi-superstar-saga-game-boy-advance-luigi-watch-out.png',
-    title: { usa: 'Mario & Luigi: Superstar Saga' },
-    year: 2003,
-    system: 'GBA',
-    developer: 'AlphaDream',
-    genre: 'RPG',
-    timeToBeat: 19,
-    description:
-      "Mario and Luigi traveling to and exploring the Beanbean Kingdom to recover Princess Peach's voice from an evil witch, Cackletta, and her pupil, Fawful.",
-  },
-  {
     img: 'https://cdn.mobygames.com/screenshots/15807185-pokemon-crystal-version-game-boy-color-your-stats.png',
     title: { usa: 'Pokémon Crystal Version' },
     year: 2000,

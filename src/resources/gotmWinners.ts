@@ -2,6 +2,39 @@ import { GameData } from '../models/gameData.model';
 
 export const gotmWinners: GameData[] = [
   {
+    img: 'https://screenscraper.fr/image.php?gameid=3762&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: { usa: 'Mario & Luigi: Superstar Saga' },
+    year: 2003,
+    system: 'GBA',
+    developer: 'AlphaDream',
+    genre: 'RPG',
+    timeToBeat: 18,
+    description:
+      "Lighthearted and funny Mario RPG where you travel to Beanbean kingdom to retrieve princess Peach's voice that was stolen from the bad witch Cackletta. Full of good times and laugh out loud jokes.",
+  },
+  {
+    img: 'https://screenscraper.fr/image.php?gameid=19288&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: { usa: 'Spyro the Dragon' },
+    year: 1998,
+    system: 'PS1',
+    developer: 'Insomniac',
+    genre: '3D Platformer',
+    timeToBeat: 6,
+    description:
+      "The game I'd play every Christmas break with my family. The game I still go to if I just need to run around and have fun for a bit. Truly a game that sparks joy!",
+  },
+  {
+    img: 'https://screenscraper.fr/image.php?gameid=1279&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480',
+    title: { usa: "Kirby's Adventure" },
+    year: 1993,
+    system: 'NES,GBA',
+    developer: 'HAL Laboratories',
+    genre: 'Platformer',
+    timeToBeat: 0.5,
+    description:
+      "Like its predecessor Kirby's Dream Land (1992), Kirby's Adventure is a 2D side-scrolling platform game. In the game's scenario, an evil entity named Nightmare corrupts the Fountain of Dreams, which provides restful sleep to the residents of Dream Land.",
+  },
+  {
     img: 'https://cdn.mobygames.com/screenshots/10940072-sin-and-punishment-wii-whats-going-on-achi-girl-in-blue-and-hell.jpg',
     title: { usa: 'Sin & Punishment' },
     year: 2000,
