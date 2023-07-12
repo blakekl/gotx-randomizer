@@ -3,18 +3,18 @@ import classNames = require('classnames');
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { GameData } from './models/gameData.model';
-import { gotmRunnerUp } from './resources/gotmRunnerUp';
-import { gotmWinners } from './resources/gotmWinners';
-import { retrobits } from './resources/retrobits';
-import { rpgRunnerUp } from './resources/rpgRunnerUp';
-import { rpgWinner } from './resources/rpgWinners';
-import SheetsStore from './stores/SheetsStore';
+import { gotmRunnerUp } from './data/gotmRunnerUp';
+import { gotmWinners } from './data/gotmWinners';
+import { retrobits } from './data/retrobits';
+import { rpgRunnerUp } from './data/rpgRunnerUp';
+import { rpgWinner } from './data/rpgWinners';
+import initSqlJs from 'sql.js';
 import './style.css';
+import { creationCommand, topTenNominatedGames } from './data/DbCommands';
 
 export default function App() {
   const imgEl = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  const [filterError, setFilterError] = React.useState(false);
   const [showSettings, setShowSettings] = React.useState(true);
   const [loaded, setLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
@@ -37,11 +37,13 @@ export default function App() {
     getNextGame();
   };
 
+  // Update current game
   React.useEffect(() => {
     const newGame = gamePool[currentIndex];
     setGame(newGame);
   }, [currentIndex]);
 
+  // setup image load event
   const onImageLoaded = () => setLoaded(imgEl.current.complete);
   React.useEffect(() => {
     const imgElCurrent = imgEl.current;
@@ -54,6 +56,7 @@ export default function App() {
     }
   }, [imgEl]);
 
+  // shuffle the gamepool
   const shuffle = (inputArray) => {
     const outputArray = [...inputArray];
     for (let i = outputArray.length - 1; i > 0; i--) {
@@ -63,6 +66,7 @@ export default function App() {
     return outputArray;
   };
 
+  // recreate gamepool and reset based on filter changes.
   React.useEffect(() => {
     let newPool: GameData[] = [];
     if (includeGotmRunnerUp) {
@@ -110,10 +114,8 @@ export default function App() {
     ];
     filters[item] = value;
     if (filters.some((x) => x)) {
-      setFilterError(false);
       updaters[item](value);
     } else {
-      setFilterError(true);
       toast({
         message: 'You must include a list. Please include something.',
         type: 'is-danger',
@@ -123,6 +125,27 @@ export default function App() {
       });
     }
   };
+
+  // setup database goo
+  const setupDatabase = async () => {
+    const SQL = await initSqlJs({
+      locateFile: () =>
+        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm`,
+    });
+    const db = new SQL.Database();
+    console.log('db created. Inserting data.');
+    db.run(creationCommand);
+    console.log('db created');
+    try {
+      const res = db.exec(topTenNominatedGames);
+      console.log('query result: ', res);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  React.useEffect(() => {
+    setupDatabase();
+  }, []);
 
   return (
     <div>
