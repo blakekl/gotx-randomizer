@@ -216,9 +216,15 @@ export default function App() {
             'is-fullwidth': isMobile,
             'is-large': !isMobile,
           })}
+          disabled={!loaded}
           onClick={() => handleButtonClick()}
         >
-          Reroll {!loaded && <span className="loader"></span>}
+          {loaded && <span>Reroll</span>}
+          {!loaded && (
+            <span className="icon is-small">
+              <span className="loader"></span>
+            </span>
+          )}
         </button>
       </div>
       <div
