@@ -38,8 +38,6 @@ ORDER BY
     nominations DESC
 LIMIT 10;`;
 
-export const getAllGotmGames = `SELECT * FROM gotm_games;`;
-
 export const getGotmRunnerup = ` SELECT 
   *  FROM gotm_games 
   WHERE id NOT IN (
