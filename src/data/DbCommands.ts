@@ -38,6 +38,27 @@ ORDER BY
     nominations DESC
 LIMIT 10;`;
 
+export const getAllGotmGames = `SELECT * FROM gotm_games;`;
+
+export const getWinningGotm = `SELECT 
+  gotm_games.id, 
+  gotm_games.screenscraper_id, 
+  gotm_games.img, 
+  gotm_games.year, 
+  gotm_games.system, 
+  gotm_games.developer, 
+  gotm_games.genre, 
+  gotm_games.time_to_beat, 
+  gotm_games.title_usa, 
+  gotm_games.title_eu, 
+  gotm_games.title_jap, 
+  gotm_games.title_world, 
+  gotm_games.title_other 
+  FROM gotm_games 
+  INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id 
+  INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id;
+`;
+
 export const creationCommand = `DROP TABLE IF EXISTS [gotm_games];
 DROP TABLE IF EXISTS [gotm_nominators];
 DROP TABLE IF EXISTS [gotm_nominations];

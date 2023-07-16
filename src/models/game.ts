@@ -12,11 +12,11 @@ export interface Nomination {
 }
 
 export interface Title {
-  title_usa: string;
-  title_eu: string;
-  title_jap: string;
-  title_world: string;
-  title_other: string;
+  usa: string;
+  eu: string;
+  jap: string;
+  world: string;
+  other: string;
 }
 
 export interface Game {
@@ -41,13 +41,13 @@ export const gameDto = (data: any[]) => {
     system: data[4],
     developer: data[5],
     genre: data[6],
-    time_to_beat: data[7],
+    time_to_beat: data[7] !== '' ? data[7] : -1,
     title: {
-      title_usa: data[8],
-      title_eu: data[9],
-      title_jap: data[10],
-      title_world: data[11],
-      title_other: data[12]
+      usa: data[8],
+      eu: data[9],
+      jap: data[10],
+      world: data[11],
+      other: data[12],
     } as Title,
-  } as Game
+  } as Game;
 };
