@@ -40,6 +40,13 @@ LIMIT 10;`;
 
 export const getAllGotmGames = `SELECT * FROM gotm_games;`;
 
+export const getGotmRunnerup = ` SELECT 
+  *  FROM gotm_games 
+  WHERE id NOT IN (
+    SELECT gotm_games.id FROM gotm_games
+    INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id 
+    INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id);`;
+
 export const getWinningGotm = `SELECT 
   gotm_games.id, 
   gotm_games.screenscraper_id, 

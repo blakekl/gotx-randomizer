@@ -3,6 +3,7 @@ import initSqlJs = require('sql.js');
 import {
   creationCommand,
   getAllGotmGames,
+  getGotmRunnerup,
   getWinningGotm,
 } from '../data/DbCommands';
 import { Game, gameDto, Nomination, Nominator } from '../models/game';
@@ -26,9 +27,11 @@ export const useData = () => {
       const db = new SQL.Database();
       setDb(db);
       db.run(creationCommand);
-      const result = db.exec(`${getAllGotmGames} ${getWinningGotm}`);
-      const allGotmGames = result[0].values.map((x) => gameDto(x));
+      const result = db.exec(`${getGotmRunnerup} ${getWinningGotm}`);
+      const gotmRunnerup = result[0].values.map((x) => gameDto(x));
       const gotWinners = result[1].values.map((x) => gameDto(x));
+      console.log(gotmRunnerup);
+      setGotmRunnerUp(gotmRunnerup);
       setGotmWinners(gotWinners);
     } catch (e) {
       console.error(e);
