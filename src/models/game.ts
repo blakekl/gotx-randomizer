@@ -12,11 +12,11 @@ export interface Nomination {
 }
 
 export interface Title {
-  usa: string;
-  eu: string;
-  jap: string;
-  world: string;
-  other: string;
+  title_usa: string;
+  title_eu: string;
+  title_jap: string;
+  title_world: string;
+  title_other: string;
 }
 
 export interface Game {

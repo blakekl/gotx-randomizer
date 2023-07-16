@@ -14,16 +14,21 @@ export const useData = () => {
   const [rpgRunnerUp, setRpgRunnerUp] = useState(new Array<Game>());
 
   const setupDatabase = async () => {
-    const SQL = await initSqlJs({
-      locateFile: (file) =>
-        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm`,
-    });
-    const db = new SQL.Database();
-    setDb(db);
-    db.run(creationCommand);
-    const result = db.exec('SELECT * FROM gotm_games');
-    const allGames = new Array<Game>();
-    console.log('allGames: ', allGames);
+    try {
+      const SQL = await initSqlJs({
+        locateFile: (file) =>
+          `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm`,
+      });
+      const db = new SQL.Database();
+      setDb(db);
+      db.run(creationCommand);
+      const result = db.exec('SELECT * FROM gotm_games');
+      const allGames = new Array<Game>();
+      result[0].values.forEach((x) => {});
+      console.log('allGames: ', result);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {
