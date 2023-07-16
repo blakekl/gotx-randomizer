@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import initSqlJs = require('sql.js');
 import { creationCommand } from '../data/DbCommands';
-import { Game, Nomination, Nominator } from '../models/game';
+import { Game, gameDto, Nomination, Nominator } from '../models/game';
 
 export const useData = () => {
   const [db, setDb] = useState(null);
@@ -23,9 +23,8 @@ export const useData = () => {
       setDb(db);
       db.run(creationCommand);
       const result = db.exec('SELECT * FROM gotm_games');
-      const allGames = new Array<Game>();
-      result[0].values.forEach((x) => {});
-      console.log('allGames: ', result);
+      const allGames = result[0].values.map((x) => gameDto(x));
+      console.log('allGames: ', allGames);
     } catch (e) {
       console.error(e);
     }
