@@ -7,9 +7,10 @@ export const retrobits: GameData[] = [
     year: 1996,
     system: 'Arcade, PS1',
     developer: 'Taito',
-    genre:'Fighting',
+    genre: 'Fighting',
     timeToBeat: 2,
-    description: 'In  this unique fighter, control a fighter within a 3D psychic field. Fly around to dodge psychic blasts and answer with  attacks o f your own, or dash in  and get up close and personal with combo attacks!',
+    description:
+      'In  this unique fighter, control a fighter within a 3D psychic field. Fly around to dodge psychic blasts and answer with  attacks o f your own, or dash in  and get up close and personal with combo attacks!',
   },
   {
     img: 'https://cdn.discordapp.com/attachments/957342297270415480/957401119619948605/Retro_Bits_01_-_Bomberman.gif',
@@ -739,6 +740,20 @@ export const retrobits: GameData[] = [
     img: 'https://media.discordapp.net/attachments/957342297270415480/1122315465386106890/Retro_Bits_66_-_Ghost_Sweeper_Mikami_-_Joreishi_wa_Nice_Body.gif',
     description:
       'Based on the manga and anime series Ghost Sweeper Mikami, take control of Reiki, the exorcist with the  "Nice Body," and take on all sorts of ghosts and ghoullies with your magically charged baton! No translation available.',
+    timeToBeat: 2,
+  },
+  {
+    title: {
+      usa: 'Kid Klown in Night Mayor World',
+      jap: 'Mickey Mouse III: Yume Fuusen',
+    },
+    year: 1992,
+    system: 'NES',
+    developer: 'Kemco',
+    genre: 'Platformer',
+    img: 'https://cdn.discordapp.com/attachments/957342012250665000/1129925454413967411/Retro_Bits_69_-_Kid_Klown_in_Night_Mayor_World.gif',
+    description:
+      'Part of the notoriously reskinned Crazy Castle series, join Kid Klown in an effort to defeat the evil Night Mayor after he klownnaps your family! Use balloons as projectiles and to assist you in platforming challenges.',
     timeToBeat: 2,
   },
 ];
