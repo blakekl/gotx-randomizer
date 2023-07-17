@@ -7,7 +7,6 @@ import { useData } from './hooks/useData';
 import { Game } from './models/game';
 
 export default function App() {
-  const imgElement = React.useRef<HTMLImageElement>(null);
   const {
     isDbReady,
     gotmWinners,
@@ -16,6 +15,7 @@ export default function App() {
     rpgWinners,
     rpgRunnerUp,
   } = useData();
+  const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(false);
@@ -26,7 +26,26 @@ export default function App() {
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(false);
   const [gamePool, setGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const getCurrentGame = () => gamePool[currentIndex];
+  const emptyGame = {
+    id: 0,
+    title: {
+      usa: '',
+      eu: '',
+      jap: '',
+      world: '',
+      other: '',
+    },
+    screenscraper_id: 0,
+    img: '',
+    year: 0,
+    system: '',
+    developer: '',
+    genre: '',
+    time_to_beat: 0,
+  } as Game;
+
+  const getCurrentGame = () =>
+    gamePool && gamePool.length > 0 ? gamePool[currentIndex] : emptyGame;
 
   const getNextGame = () => {
     setCurrentIndex((currentIndex + 1) % gamePool.length);
@@ -36,20 +55,14 @@ export default function App() {
     getNextGame();
   };
 
-  const onImageLoaded = () => {
-    console.log('image loading fired');
-    setImgLoaded(imgElement.current.complete);
-  };
+  const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
   React.useEffect(() => {
-    console.log('setting up image event listener', imgElement.current);
     if (imgElement.current) {
-      console.log('setup');
       imgElement.current.addEventListener('load', onImageLoaded);
       return () => {
         imgElement.current.removeEventListener('load', onImageLoaded);
       };
     }
-    console.log('no image reference');
   }, [imgElement]);
 
   const shuffle = (inputArray) => {
@@ -67,19 +80,19 @@ export default function App() {
     }
     let newPool: Game[] = [];
     if (includeGotmRunnerUp) {
-      newPool = newPool.concat(gotmRunnerUp.filter((x) => x.img));
+      newPool = newPool.concat(gotmRunnerUp);
     }
     if (includeGotmWinners) {
-      newPool = newPool.concat(gotmWinners.filter((x) => x.img));
+      newPool = newPool.concat(gotmWinners);
     }
     if (includeRetrobits) {
-      newPool = newPool.concat(retrobits.filter((x) => x.img));
+      newPool = newPool.concat(retrobits);
     }
     if (includeRpgRunnerUp) {
-      newPool = newPool.concat(rpgRunnerUp.filter((x) => x.img));
+      newPool = newPool.concat(rpgRunnerUp);
     }
     if (includeRpgWinners) {
-      newPool = newPool.concat(rpgWinners.filter((x) => x.img));
+      newPool = newPool.concat(rpgWinners);
     }
     setGamePool(shuffle(newPool));
     setCurrentIndex(0);
@@ -121,14 +134,6 @@ export default function App() {
       });
     }
   };
-
-  if (gamePool.length < 1) {
-    return (
-      <>
-        <div>Database Initializing...</div>
-      </>
-    );
-  }
 
   return (
     <div>
@@ -237,14 +242,11 @@ export default function App() {
         className="loader"
         style={{ display: imgLoaded ? 'none' : 'block' }}
       ></div>
-      <p className="has-text-centered">{`${currentIndex}, ${
-        getCurrentGame().id
-      }`}</p>
       <img
         ref={imgElement}
         src={getCurrentGame().img}
         style={{
-          display: !!getCurrentGame().img && imgLoaded ? 'block' : 'none',
+          display: !!getCurrentGame()?.img && imgLoaded ? 'block' : 'none',
           margin: 'auto',
         }}
       />
