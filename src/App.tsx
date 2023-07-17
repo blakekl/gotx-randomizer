@@ -2,57 +2,68 @@ import { toast } from 'bulma-toast';
 import classNames = require('classnames');
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { GameData } from './models/gameData.model';
-import { gotmRunnerUp } from './resources/gotmRunnerUp';
-import { gotmWinners } from './resources/gotmWinners';
-import { retrobits } from './resources/retrobits';
-import { rpgRunnerUp } from './resources/rpgRunnerUp';
-import { rpgWinner } from './resources/rpgWinners';
-import SheetsStore from './stores/SheetsStore';
 import './style.css';
+import { useData } from './hooks/useData';
+import { Game } from './models/game';
 
 export default function App() {
-  const imgEl = React.useRef<HTMLImageElement>(null);
+  const {
+    isDbReady,
+    gotmWinners,
+    gotmRunnerUp,
+    retrobits,
+    rpgWinners,
+    rpgRunnerUp,
+  } = useData();
+  const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  const [filterError, setFilterError] = React.useState(false);
   const [showSettings, setShowSettings] = React.useState(true);
-  const [loaded, setLoaded] = React.useState(false);
+  const [imgLoaded, setImgLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
   const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
   const [includeRetrobits, setIncludeRetrobits] = React.useState(false);
   const [includeRpgWinners, setIncludeRpgWinners] = React.useState(false);
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(false);
-  const [gamePool, setGamePool] = React.useState(
-    gotmWinners.filter((x) => x.img)
-  );
-  const [currentIndex, setCurrentIndex] = React.useState(
-    Math.floor(Math.random() * gamePool.length)
-  );
+  const [gamePool, setGamePool] = React.useState([]);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const emptyGame = {
+    id: 0,
+    title: {
+      usa: '',
+      eu: '',
+      jap: '',
+      world: '',
+      other: '',
+    },
+    screenscraper_id: 0,
+    img: '',
+    year: 0,
+    system: '',
+    developer: '',
+    genre: '',
+    time_to_beat: 0,
+  } as Game;
 
-  const getNextGame = () =>
+  const getCurrentGame = () =>
+    gamePool && gamePool.length > 0 ? gamePool[currentIndex] : emptyGame;
+
+  const getNextGame = () => {
     setCurrentIndex((currentIndex + 1) % gamePool.length);
-  const [game, setGame] = React.useState(gamePool[currentIndex]);
+    setImgLoaded(false);
+  };
   const handleButtonClick = () => {
-    setLoaded(false);
     getNextGame();
   };
 
+  const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
   React.useEffect(() => {
-    const newGame = gamePool[currentIndex];
-    setGame(newGame);
-  }, [currentIndex]);
-
-  const onImageLoaded = () => setLoaded(imgEl.current.complete);
-  React.useEffect(() => {
-    const imgElCurrent = imgEl.current;
-
-    if (imgElCurrent) {
-      imgElCurrent.addEventListener('load', onImageLoaded);
+    if (imgElement.current) {
+      imgElement.current.addEventListener('load', onImageLoaded);
       return () => {
-        imgElCurrent.removeEventListener('load', onImageLoaded);
+        imgElement.current.removeEventListener('load', onImageLoaded);
       };
     }
-  }, [imgEl]);
+  }, [imgElement]);
 
   const shuffle = (inputArray) => {
     const outputArray = [...inputArray];
@@ -64,28 +75,30 @@ export default function App() {
   };
 
   React.useEffect(() => {
-    let newPool: GameData[] = [];
+    if (!isDbReady) {
+      return;
+    }
+    let newPool: Game[] = [];
     if (includeGotmRunnerUp) {
-      newPool = newPool.concat(gotmRunnerUp.filter((x) => x.img));
+      newPool = newPool.concat(gotmRunnerUp);
     }
     if (includeGotmWinners) {
-      newPool = newPool.concat(gotmWinners.filter((x) => x.img));
+      newPool = newPool.concat(gotmWinners);
     }
     if (includeRetrobits) {
-      newPool = newPool.concat(retrobits.filter((x) => x.img));
+      newPool = newPool.concat(retrobits);
     }
     if (includeRpgRunnerUp) {
-      newPool = newPool.concat(rpgRunnerUp.filter((x) => x.img));
+      newPool = newPool.concat(rpgRunnerUp);
     }
     if (includeRpgWinners) {
-      newPool = newPool.concat(rpgWinner.filter((x) => x.img));
+      newPool = newPool.concat(rpgWinners);
     }
-    const shuffledPool = shuffle(newPool);
-    setGamePool(shuffledPool);
-    setLoaded(false);
+    setGamePool(shuffle(newPool));
     setCurrentIndex(0);
-    setGame(shuffledPool[0]);
+    setImgLoaded(false);
   }, [
+    isDbReady,
     includeGotmRunnerUp,
     includeGotmWinners,
     includeRetrobits,
@@ -110,10 +123,8 @@ export default function App() {
     ];
     filters[item] = value;
     if (filters.some((x) => x)) {
-      setFilterError(false);
       updaters[item](value);
     } else {
-      setFilterError(true);
       toast({
         message: 'You must include a list. Please include something.',
         type: 'is-danger',
@@ -216,11 +227,11 @@ export default function App() {
             'is-fullwidth': isMobile,
             'is-large': !isMobile,
           })}
-          disabled={!loaded}
+          disabled={!imgLoaded}
           onClick={() => handleButtonClick()}
         >
-          {loaded && <span>Reroll</span>}
-          {!loaded && (
+          {imgLoaded && <span>Reroll</span>}
+          {!imgLoaded && (
             <span className="icon is-small">
               <span className="loader"></span>
             </span>
@@ -229,13 +240,13 @@ export default function App() {
       </div>
       <div
         className="loader"
-        style={{ display: loaded ? 'none' : 'block' }}
+        style={{ display: imgLoaded ? 'none' : 'block' }}
       ></div>
       <img
-        ref={imgEl}
-        src={game.img}
+        ref={imgElement}
+        src={getCurrentGame().img}
         style={{
-          display: !!game.img && loaded ? 'block' : 'none',
+          display: !!getCurrentGame()?.img && imgLoaded ? 'block' : 'none',
           margin: 'auto',
         }}
       />
@@ -243,11 +254,11 @@ export default function App() {
         <h1 className="title has-text-centered">
           🎮{' '}
           {[
-            game.title.usa,
-            game.title.world,
-            game.title.eu,
-            game.title.jap,
-            game.title.other,
+            getCurrentGame().title.usa,
+            getCurrentGame().title.world,
+            getCurrentGame().title.eu,
+            getCurrentGame().title.jap,
+            getCurrentGame().title.other,
           ]
             .filter((x) => x)
             .join(' / ')}
@@ -258,7 +269,7 @@ export default function App() {
               <p className="subtitle is-hidden-mobile">🗓️</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🗓️</span>
-                <span>{game.year}</span>
+                <span>{getCurrentGame().year}</span>
               </p>
             </div>
           </div>
@@ -267,7 +278,7 @@ export default function App() {
               <p className="subtitle is-hidden-mobile">🕹️</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🕹️</span>
-                <span>{game.system}</span>
+                <span>{getCurrentGame().system}</span>
               </p>
             </div>
           </div>
@@ -276,7 +287,7 @@ export default function App() {
               <p className="subtitle is-hidden-mobile">🏢</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🏢</span>
-                <span>{game.developer}</span>
+                <span>{getCurrentGame().developer}</span>
               </p>
             </div>
           </div>
@@ -286,15 +297,15 @@ export default function App() {
               <p className="subtitle">
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
-                  {game.timeToBeat < Number.MAX_SAFE_INTEGER
-                    ? `~${game.timeToBeat} hours`
+                  {getCurrentGame().timeToBeat < Number.MAX_SAFE_INTEGER
+                    ? `~${getCurrentGame().timeToBeat} hours`
                     : 'No data'}
                 </span>
               </p>
             </div>
           </div>
         </div>
-        <blockquote>{game.description}</blockquote>
+        <blockquote>{getCurrentGame().description}</blockquote>
       </section>
     </div>
   );
