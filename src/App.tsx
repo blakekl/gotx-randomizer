@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import './style.css';
 import { useData } from './hooks/useData';
 import { Game } from './models/game';
+import ReactSlider from 'react-slider';
 
 export default function App() {
   const {
@@ -26,6 +27,10 @@ export default function App() {
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(true);
   const [gamePool, setGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [ttbMin, setTtbMin] = React.useState(0);
+  const [ttbMax, setTtbMax] = React.useState(0);
+  const [ttbMinValue, setTtbMinValue] = React.useState(0);
+  const [ttbMaxValue, setTtbMaxValue] = React.useState(0);
   const emptyGame = {
     id: 0,
     title: {
@@ -94,6 +99,21 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinners);
     }
+    const minTime = newPool
+      .map((x) => x.time_to_beat)
+      .filter((x) => x > 0)
+      .reduce(
+        (accumulator, current) => Math.min(accumulator, current),
+        Number.MAX_SAFE_INTEGER
+      );
+    console.log('minTime: ', minTime);
+    setTtbMin(minTime);
+    const maxTime = newPool
+      .map((x) => x.time_to_beat)
+      .filter((x) => x > 0)
+      .reduce((accumulator, current) => Math.max(accumulator, current), 0);
+    console.log('maxTime: ', maxTime);
+    setTtbMax(maxTime);
     setGamePool(shuffle(newPool));
     setCurrentIndex(0);
     setImgLoaded(false);
@@ -214,6 +234,26 @@ export default function App() {
               ></input>
               RPGotQ Runner Ups
             </label>
+            <div className="field">
+              <label className="label">Time to Beat filter</label>
+              <div className="control">
+                <ReactSlider
+                  className="horizontal-slider"
+                  thumbClassName="example-thumb"
+                  trackClassName="example-track"
+                  defaultValue={[ttbMin, ttbMax]}
+                  min={ttbMin}
+                  max={ttbMax}
+                  ariaLabel={['Lower thumb', 'Upper thumb']}
+                  ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+                  renderThumb={(props, state) => (
+                    <div {...props}>{state.valueNow}</div>
+                  )}
+                  pearling
+                  minDistance={1}
+                ></ReactSlider>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -272,7 +312,9 @@ export default function App() {
           ]
             .filter((x) => x.length > 5)
             .slice(1)
-            .map(title => <div>{title}</div>)}
+            .map((title) => (
+              <div>{title}</div>
+            ))}
         </h2>
         <div className="level">
           <div className="level-item has-text-centered">
