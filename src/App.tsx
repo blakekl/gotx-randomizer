@@ -9,8 +9,6 @@ import { Game } from './models/game';
 export default function App() {
   const {
     isDbReady,
-    nominators,
-    nominations,
     gotmWinners,
     gotmRunnerUp,
     retrobits,
@@ -20,7 +18,7 @@ export default function App() {
   const imgEl = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
-  const [loaded, setLoaded] = React.useState(false);
+  const [imgLoaded, setImgLoaded] = React.useState(true);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
   const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
   const [includeRetrobits, setIncludeRetrobits] = React.useState(false);
@@ -35,18 +33,20 @@ export default function App() {
   const getNextGame = () =>
     setCurrentIndex((currentIndex + 1) % gamePool.length);
   const handleButtonClick = () => {
-    setLoaded(false);
     getNextGame();
   };
 
-  const onImageLoaded = () => setLoaded(imgEl.current.complete);
+  const onImageLoaded = () => setImgLoaded(imgEl.current.complete);
+  const onImageChange = () => setImgLoaded(imgEl.current.complete);
   React.useEffect(() => {
     const imgElCurrent = imgEl.current;
 
     if (imgElCurrent) {
       imgElCurrent.addEventListener('load', onImageLoaded);
+      imgElCurrent.addEventListener('change', onImageChange);
       return () => {
         imgElCurrent.removeEventListener('load', onImageLoaded);
+        imgElCurrent.removeEventListener('change', onImageChange);
       };
     }
   }, [imgEl]);
@@ -80,9 +80,9 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinners.filter((x) => x.img));
     }
-    const shuffledPool = shuffle(newPool);
-    setGamePool(shuffledPool);
-    setLoaded(false);
+    // const shuffledPool = shuffle(newPool);
+    // setGamePool(shuffledPool);
+    setGamePool(newPool);
     setCurrentIndex(0);
   }, [
     isDbReady,
@@ -222,11 +222,11 @@ export default function App() {
             'is-fullwidth': isMobile,
             'is-large': !isMobile,
           })}
-          disabled={!loaded}
+          disabled={!imgLoaded}
           onClick={() => handleButtonClick()}
         >
-          {loaded && <span>Reroll</span>}
-          {!loaded && (
+          {imgLoaded && <span>Reroll</span>}
+          {!imgLoaded && (
             <span className="icon is-small">
               <span className="loader"></span>
             </span>
@@ -235,13 +235,13 @@ export default function App() {
       </div>
       <div
         className="loader"
-        style={{ display: loaded ? 'none' : 'block' }}
+        style={{ display: imgLoaded ? 'none' : 'block' }}
       ></div>
       <img
         ref={imgEl}
         src={getCurrentGame().img}
         style={{
-          display: !!getCurrentGame().img && loaded ? 'block' : 'none',
+          display: !!getCurrentGame().img && imgLoaded ? 'block' : 'none',
           margin: 'auto',
         }}
       />
