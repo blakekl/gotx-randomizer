@@ -30,23 +30,22 @@ export default function App() {
   );
   const getCurrentGame = () => gamePool[currentIndex];
 
-  const getNextGame = () =>
+  const getNextGame = () => {
     setCurrentIndex((currentIndex + 1) % gamePool.length);
+    setImgLoaded(false);
+  };
   const handleButtonClick = () => {
     getNextGame();
   };
 
   const onImageLoaded = () => setImgLoaded(imgEl.current.complete);
-  const onImageChange = () => setImgLoaded(imgEl.current.complete);
   React.useEffect(() => {
     const imgElCurrent = imgEl.current;
 
     if (imgElCurrent) {
       imgElCurrent.addEventListener('load', onImageLoaded);
-      imgElCurrent.addEventListener('change', onImageChange);
       return () => {
         imgElCurrent.removeEventListener('load', onImageLoaded);
-        imgElCurrent.removeEventListener('change', onImageChange);
       };
     }
   }, [imgEl]);
@@ -84,6 +83,7 @@ export default function App() {
     // setGamePool(shuffledPool);
     setGamePool(newPool);
     setCurrentIndex(0);
+    setImgLoaded(false);
   }, [
     isDbReady,
     includeGotmRunnerUp,
