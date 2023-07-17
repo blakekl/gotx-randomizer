@@ -39,7 +39,33 @@ ORDER BY
 LIMIT 10;`;
 
 export const getRetrobits = `SELECT
-  * FROM retrobits
+  * FROM retrobits;
+`;
+
+export const getRpgRunnerup = `SELECT 
+  *  FROM rpg_games 
+  WHERE id NOT IN (
+    SELECT rpg_games.id FROM rpg_games
+    INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
+    INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id);`;
+
+export const getWinningRpg = `SELECT 
+  rpg_games.id, 
+  rpg_games.screenscraper_id, 
+  rpg_games.img, 
+  rpg_games.year, 
+  rpg_games.system, 
+  rpg_games.developer, 
+  rpg_games.genre, 
+  rpg_games.time_to_beat, 
+  rpg_games.title_usa, 
+  rpg_games.title_eu, 
+  rpg_games.title_jap, 
+  rpg_games.title_world, 
+  rpg_games.title_other 
+FROM rpg_games 
+INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
+INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id;
 `;
 
 export const getGotmRunnerup = `SELECT 
@@ -116,6 +142,34 @@ CREATE TABLE [retrobits] (
   [title_world] NVARCHAR NULL,
   [title_other] NVARCHAR NULL,
   [description] NVARCHAR NULL
+);
+CREATE TABLE [rpg_games] ( 
+  [id] INTEGER NULL,
+  [screenscraper_id] INTEGER NULL,
+  [img] TEXT NULL,
+  [year] TEXT NOT NULL,
+  [system] TEXT NOT NULL,
+  [developer] TEXT NOT NULL,
+  [genre] TEXT NOT NULL,
+  [time_to_beat] REAL NULL,
+  [title_usa] TEXT NULL,
+  [title_eu] TEXT NULL,
+  [title_jap] TEXT NULL,
+  [title_world] TEXT NULL,
+  [title_other] TEXT NULL,
+   PRIMARY KEY ([id])
+);
+CREATE TABLE [rpg_nominations] ( 
+  [id] INTEGER NULL,
+  [game_id] INTEGER NOT NULL,
+  [date] TEXT NOT NULL,
+  [description] TEXT NULL,
+   PRIMARY KEY ([id])
+);
+CREATE TABLE [rpg_winners] ( 
+  [id] INTEGER NULL,
+  [nomination_id] INTEGER NOT NULL,
+   PRIMARY KEY ([id])
 );
 INSERT INTO [gotm_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (1, 2623, 'https://screenscraper.fr/image.php?gameid=2623&media=ss&maxwidth=640&maxheight=480&region=wor', 1993, 'Super Nintendo', 'Nintendo', 'Flight Simulator', '', 'Turn and Burn: No-Fly Zone', '', '', '', '');
 INSERT INTO [gotm_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (2, 2612, 'https://screenscraper.fr/image.php?gameid=2612&media=ss&maxwidth=640&maxheight=480&region=wor', 1992, 'Super Nintendo', 'Koei', 'Simulation', 4, 'Aerobiz Supersonic', '', '', '', '');
@@ -2128,4 +2182,25 @@ INSERT INTO [retrobits] ([id], [img], [year], [system], [developer], [genre], [t
 INSERT INTO [retrobits] ([id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other], [description]) VALUES ('67', 'https://cdn.discordapp.com/attachments/957342297270415480/1124854628849287310/Retro_Bits_67_-_Psychic_Force.gif', '1996', 'Arcade, PS1', 'Taito', 'Fighting', '2', 'Psychic Force', '', '', '', '', 'In this unique fighter, control a fighter flying within a 3D psychic field. Fly around to dodge psychic blasts and answer with attacks of your own, or dash in and get up close and personal with combo attacks!');
 INSERT INTO [retrobits] ([id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other], [description]) VALUES ('68', 'https://cdn.discordapp.com/attachments/957342297270415480/1127388695138414723/Retro_Bits_68_-_Bulk_Slash.gif', '1997', 'Sega Saturn', 'CAProduction', 'Action', '2', '', '', 'Bulk Slash', '', '', 'Pilot a mech that can transform into a fighter jet in this unique 3D action game. Hidden across each level is a navigator who will guide you to your mission objectives and provide support, as well as alter your ending!');
 INSERT INTO [retrobits] ([id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other], [description]) VALUES ('69', 'https://cdn.discordapp.com/attachments/957342297270415480/1129925439104753724/Retro_Bits_69_-_Kid_Klown_in_Night_Mayor_World.gif', '1992', 'NES', 'Kemco', 'Platformer', '2', 'Kid Klown in Night Mayor World', '', 'Mickey Mouse III: Yume Fuusen', '', '', 'Part of the notoriously reskinned Crazy Castle series, join Kid Klown in an effort to defeat the evil Night Mayor after he klownnaps your family! Use balloons as projectiles and to assist you in platforming challenges.');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (1, 22044, 'https://screenscraper.fr/image.php?gameid=22044&media=ss&region=us&maxwidth=640&maxheight=480', '2009', 'PS2, PSP', 'Atlus', 'RPG', 66, 'Persona 3', '', '', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (2, 5744, 'https://screenscraper.fr/image.php?gameid=5744&media=ss&region=wor&maxwidth=640&maxheight=480', '2010', 'Nintendo DS', 'Game Freak', 'RPG', 32.5, 'Pokémon Black and White', '', '', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (3, 5971, 'https://screenscraper.fr/image.php?gameid=5971&media=ss&region=wor&maxwidth=640&maxheight=480', '2009', 'Nintendo DS', 'Platinum Games Inc.', 'Strategy RPG', 46.5, 'Infinite Space', '', '', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (4, 19403, 'https://screenscraper.fr/image.php?gameid=19403&media=ss&region=wor&maxwidth=640&maxheight=480', '2000', 'Playstation', 'BEC', 'Mystery Dungeon', 66, 'Digimon World 2', '', '', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (5, 2789, 'https://screenscraper.fr/image.php?gameid=2789&media=ss&region=wor&maxwidth=640&maxheight=480', '1993', 'SNES, PS1', 'Winkysoft', 'TRPG', 31, '', '', 'Dai-3-ji Super Robot Taisen', '', 'Super Robot Wars 3');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (6, 5791, 'https://screenscraper.fr/image.php?gameid=5791&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480', '2007', 'Nintendo DS', 'Sqaure Enix', 'TRPG', 49, 'Final Fantasy Tactics A2: Grimoire of the Rift', '', '', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (7, 19513, 'https://screenscraper.fr/image.php?gameid=19513&media=ss&region=wor&maxwidth=640&maxheight=480', '1999', 'PS1', 'MediaVision, Contrail', 'JRPG', 42, 'Wild Arms 2', '', '', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (8, 117305, 'https://screenscraper.fr/image.php?gameid=117305&media=ss&region=jp&maxwidth=640&maxheight=480', '1999', 'PS1', 'Square', 'Racing RPG', 32, '', '', 'Racing Lagoon', '', '');
+INSERT INTO [rpg_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (9, 19292, 'https://screenscraper.fr/image.php?gameid=19292&media=ss&region=wor&num=&version=&maxwidth=640&maxheight=480', '1999', 'PS1', 'tri-ace', 'JRPG', 31, 'Valkyrie Profile', '', '', '', '');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (1, 1, '2023-01-01', 'Things have taken a strange turn in Iwatodai. A weird 25th hour occurs just after midnight and only a few can experience it. When you are faced with a limited amount of time, who ill you spend it with? Memento Mori.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (2, 2, '2023-04-01', 'The first game in the fifth generation of the beloved franchise, Black and White see Pokémon Trainers travelling across the Unova region, capturing Pokémon to train them and be Pokémon Masters.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (3, 3, '2023-04-01', '');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (4, 4, '2023-04-01', 'When wild Digimon begin attacking towns, it''s up to the guard teams to maintain peace. As Akira, join one of three guard teams, raise Digimon, and battle them 3-on-3, leveling and Digivolving.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (5, 5, '2023-04-01', 'Taking place after the second Super Robot Wars, take control of a number of popular mecha from Banpresto''s Gundam, Getter Robo, Mazinger series and more as you engage in tactical battle.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (6, 6, '2023-07-01', 'The third (and so far, final) Tactics spin off for the Final Fantasy series. This time, control Luso and his clan as he is magically transported to Ivalice seeking a way to return home.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (7, 7, '2023-07-01', 'When a terrorist organization called Odessa tries to conquer the world, take control of an international anti-terrorist group called ARMS to combat them.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (8, 8, '2023-07-01', 'Take to the streets in this unique racing RPG, which focuses on eam Bay Lagoon Racing''s newest recruit, Sho Akasaki, who is determined to learn the truth behind the fabled Fastest Legend race.');
+INSERT INTO [rpg_nominations] ([id], [game_id], [date], [description]) VALUES (9, 9, '2023-07-01', 'Inspired by Norse mythology control Lenneth, as she travels through Midgard, collecting souls of slain heroes to serve her either as einherjar, or her personal companions.');
+INSERT INTO [rpg_winners] ([id], [nomination_id]) VALUES (1, 1);
+INSERT INTO [rpg_winners] ([id], [nomination_id]) VALUES (2, 2);
+INSERT INTO [rpg_winners] ([id], [nomination_id]) VALUES (3, 9);
 `;

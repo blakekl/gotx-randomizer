@@ -4,7 +4,9 @@ import {
   creationCommand,
   getGotmRunnerup,
   getRetrobits,
+  getRpgRunnerup,
   getWinningGotm,
+  getWinningRpg,
 } from '../data/DbCommands';
 import {
   Game,
@@ -35,14 +37,18 @@ export const useData = () => {
       setDb(db);
       db.run(creationCommand);
       const result = db.exec(
-        `${getGotmRunnerup} ${getWinningGotm} ${getRetrobits}`
+        `${getGotmRunnerup} ${getWinningGotm} ${getRetrobits} ${getRpgRunnerup} ${getWinningRpg}`
       );
       const gotmRunnerup = result[0].values.map((x) => gameDto(x));
       const gotmWinners = result[1].values.map((x) => gameDto(x));
       const retrobits = result[2].values.map((x) => retrobitsGameDto(x));
+      const rpgRunnerUp = result[3].values.map((x) => gameDto(x));
+      const rpgWinner = result[4].values.map((x) => gameDto(x));
       setGotmRunnerUp(gotmRunnerup);
       setGotmWinners(gotmWinners);
       setRetrobits(retrobits);
+      setRpgRunnerUp(rpgRunnerUp);
+      setRpgWinners(rpgWinner);
       setIsDbReady(true);
     } catch (e) {
       console.error(e);
