@@ -69,5 +69,6 @@ export const gameDto = (data: any[]) => {
       world: data[11],
       other: data[12],
     } as Title,
+    description: data[13],
   } as Game;
 };
