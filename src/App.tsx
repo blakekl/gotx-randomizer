@@ -30,7 +30,7 @@ export default function App() {
 
   const getNextGame = () => {
     setCurrentIndex((currentIndex + 1) % gamePool.length);
-    setImgLoaded(true);
+    setImgLoaded(false);
   };
   const handleButtonClick = () => {
     getNextGame();
@@ -82,9 +82,8 @@ export default function App() {
       newPool = newPool.concat(rpgWinners.filter((x) => x.img));
     }
     setGamePool(shuffle(newPool));
-    setGamePool(newPool);
-    setCurrentIndex(93);
-    setImgLoaded(true);
+    setCurrentIndex(0);
+    setImgLoaded(false);
   }, [
     isDbReady,
     includeGotmRunnerUp,
