@@ -20,10 +20,10 @@ export default function App() {
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
-  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
-  const [includeRetrobits, setIncludeRetrobits] = React.useState(false);
-  const [includeRpgWinners, setIncludeRpgWinners] = React.useState(false);
-  const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(false);
+  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(true);
+  const [includeRetrobits, setIncludeRetrobits] = React.useState(true);
+  const [includeRpgWinners, setIncludeRpgWinners] = React.useState(true);
+  const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(true);
   const [gamePool, setGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const emptyGame = {
