@@ -19,20 +19,18 @@ export default function App() {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(true);
-  const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
-  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
+  const [includeGotmWinners, setIncludeGotmWinners] = React.useState(false);
+  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(true);
   const [includeRetrobits, setIncludeRetrobits] = React.useState(false);
   const [includeRpgWinners, setIncludeRpgWinners] = React.useState(false);
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(false);
   const [gamePool, setGamePool] = React.useState([]);
-  const [currentIndex, setCurrentIndex] = React.useState(
-    Math.floor(Math.random() * gamePool.length)
-  );
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const getCurrentGame = () => gamePool[currentIndex];
 
   const getNextGame = () => {
     setCurrentIndex((currentIndex + 1) % gamePool.length);
-    setImgLoaded(false);
+    setImgLoaded(true);
   };
   const handleButtonClick = () => {
     getNextGame();
@@ -82,8 +80,8 @@ export default function App() {
     // const shuffledPool = shuffle(newPool);
     // setGamePool(shuffledPool);
     setGamePool(newPool);
-    setCurrentIndex(0);
-    setImgLoaded(false);
+    setCurrentIndex(614);
+    setImgLoaded(true);
   }, [
     isDbReady,
     includeGotmRunnerUp,
@@ -237,6 +235,9 @@ export default function App() {
         className="loader"
         style={{ display: imgLoaded ? 'none' : 'block' }}
       ></div>
+      <p className="has-text-centered">{`${currentIndex}, ${
+        getCurrentGame().id
+      }`}</p>
       <img
         ref={imgEl}
         src={getCurrentGame().img}
