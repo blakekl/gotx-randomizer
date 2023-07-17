@@ -18,7 +18,7 @@ export default function App() {
   } = useData();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
-  const [imgLoaded, setImgLoaded] = React.useState(true);
+  const [imgLoaded, setImgLoaded] = React.useState(false);
   const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
   const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
   const [includeRetrobits, setIncludeRetrobits] = React.useState(false);
