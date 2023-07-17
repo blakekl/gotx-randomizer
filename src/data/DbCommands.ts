@@ -43,8 +43,23 @@ export const getRetrobits = `SELECT
 `;
 
 export const getRpgRunnerup = `SELECT 
-  *  FROM rpg_games 
-  WHERE id NOT IN (
+    rpg_games.id, 
+    rpg_games.screenscraper_id, 
+    rpg_games.img, 
+    rpg_games.year, 
+    rpg_games.system, 
+    rpg_games.developer, 
+    rpg_games.genre, 
+    rpg_games.time_to_beat, 
+    rpg_games.title_usa, 
+    rpg_games.title_eu, 
+    rpg_games.title_jap, 
+    rpg_games.title_world, 
+    rpg_games.title_other,
+    rpg_nominations.description
+  FROM rpg_games 
+  INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id
+  WHERE rpg_games.id NOT IN (
     SELECT rpg_games.id FROM rpg_games
     INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
     INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id);`;
@@ -62,7 +77,8 @@ export const getWinningRpg = `SELECT
   rpg_games.title_eu, 
   rpg_games.title_jap, 
   rpg_games.title_world, 
-  rpg_games.title_other 
+  rpg_games.title_other,
+  rpg_nominations.description
 FROM rpg_games 
 INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
 INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id;
