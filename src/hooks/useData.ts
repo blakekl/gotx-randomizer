@@ -39,16 +39,11 @@ export const useData = () => {
       const result = db.exec(
         `${getGotmRunnerup} ${getWinningGotm} ${getRetrobits} ${getRpgRunnerup} ${getWinningRpg}`
       );
-      const gotmRunnerup = result[0].values.map((x) => gameDto(x));
-      const gotmWinners = result[1].values.map((x) => gameDto(x));
-      const retrobits = result[2].values.map((x) => retrobitsGameDto(x));
-      const rpgRunnerUp = result[3].values.map((x) => gameDto(x));
-      const rpgWinner = result[4].values.map((x) => gameDto(x));
-      setGotmRunnerUp(gotmRunnerup);
-      setGotmWinners(gotmWinners);
-      setRetrobits(retrobits);
-      setRpgRunnerUp(rpgRunnerUp);
-      setRpgWinners(rpgWinner);
+      setGotmRunnerUp(result[0].values.map((x) => gameDto(x)));
+      setGotmWinners(result[1].values.map((x) => gameDto(x)));
+      setRetrobits(result[2].values.map((x) => retrobitsGameDto(x)));
+      setRpgRunnerUp(result[3].values.map((x) => gameDto(x)));
+      setRpgWinners(result[4].values.map((x) => gameDto(x)));
       setIsDbReady(true);
     } catch (e) {
       console.error(e);

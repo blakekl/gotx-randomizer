@@ -19,8 +19,8 @@ export default function App() {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(true);
-  const [includeGotmWinners, setIncludeGotmWinners] = React.useState(false);
-  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(true);
+  const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
+  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(false);
   const [includeRetrobits, setIncludeRetrobits] = React.useState(false);
   const [includeRpgWinners, setIncludeRpgWinners] = React.useState(false);
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(false);
@@ -82,7 +82,8 @@ export default function App() {
       newPool = newPool.concat(rpgWinners.filter((x) => x.img));
     }
     setGamePool(shuffle(newPool));
-    setCurrentIndex(0);
+    setGamePool(newPool);
+    setCurrentIndex(93);
     setImgLoaded(true);
   }, [
     isDbReady,
@@ -237,6 +238,9 @@ export default function App() {
         className="loader"
         style={{ display: imgLoaded ? 'none' : 'block' }}
       ></div>
+      <p className="has-text-centered">{`${currentIndex}, ${
+        getCurrentGame().id
+      }`}</p>
       <img
         ref={imgElement}
         src={getCurrentGame().img}
