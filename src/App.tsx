@@ -4,8 +4,19 @@ import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './style.css';
 import { useData } from './hooks/useData';
+import { Game } from './models/game';
 
 export default function App() {
+  const {
+    isDbReady,
+    nominators,
+    nominations,
+    gotmWinners,
+    gotmRunnerUp,
+    retrobits,
+    rpgWinners,
+    rpgRunnerUp,
+  } = useData();
   const imgEl = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
@@ -19,13 +30,278 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = React.useState(
     Math.floor(Math.random() * gamePool.length)
   );
-  const {
-    nominators,
-    nominations,
-    gotmWinners,
-    gotmRunnerUp,
-    retrobits,
-    rpgWinners,
-    rpgRunnerUp,
-  } = useData();
+  const getCurrentGame = () => gamePool[currentIndex];
+
+  const getNextGame = () =>
+    setCurrentIndex((currentIndex + 1) % gamePool.length);
+  const handleButtonClick = () => {
+    setLoaded(false);
+    getNextGame();
+  };
+
+  const onImageLoaded = () => setLoaded(imgEl.current.complete);
+  React.useEffect(() => {
+    const imgElCurrent = imgEl.current;
+
+    if (imgElCurrent) {
+      imgElCurrent.addEventListener('load', onImageLoaded);
+      return () => {
+        imgElCurrent.removeEventListener('load', onImageLoaded);
+      };
+    }
+  }, [imgEl]);
+
+  const shuffle = (inputArray) => {
+    const outputArray = [...inputArray];
+    for (let i = outputArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
+    }
+    return outputArray;
+  };
+
+  React.useEffect(() => {
+    if (!isDbReady) {
+      return;
+    }
+    let newPool: Game[] = [];
+    if (includeGotmRunnerUp) {
+      newPool = newPool.concat(gotmRunnerUp.filter((x) => x.img));
+    }
+    if (includeGotmWinners) {
+      newPool = newPool.concat(gotmWinners.filter((x) => x.img));
+    }
+    if (includeRetrobits) {
+      newPool = newPool.concat(retrobits.filter((x) => x.img));
+    }
+    if (includeRpgRunnerUp) {
+      newPool = newPool.concat(rpgRunnerUp.filter((x) => x.img));
+    }
+    if (includeRpgWinners) {
+      newPool = newPool.concat(rpgWinners.filter((x) => x.img));
+    }
+    const shuffledPool = shuffle(newPool);
+    setGamePool(shuffledPool);
+    setLoaded(false);
+    setCurrentIndex(0);
+  }, [
+    isDbReady,
+    includeGotmRunnerUp,
+    includeGotmWinners,
+    includeRetrobits,
+    includeRpgRunnerUp,
+    includeRpgWinners,
+  ]);
+
+  const handleFilterChange = (item: number, value: boolean) => {
+    const updaters = [
+      setIncludeGotmRunnerUp,
+      setIncludeGotmWinners,
+      setIncludeRetrobits,
+      setIncludeRpgRunnerUp,
+      setIncludeRpgWinners,
+    ];
+    const filters = [
+      includeGotmRunnerUp,
+      includeGotmWinners,
+      includeRetrobits,
+      includeRpgRunnerUp,
+      includeRpgWinners,
+    ];
+    filters[item] = value;
+    if (filters.some((x) => x)) {
+      updaters[item](value);
+    } else {
+      toast({
+        message: 'You must include a list. Please include something.',
+        type: 'is-danger',
+        dismissible: true,
+        pauseOnHover: true,
+        animate: { in: 'fadeIn', out: 'fadeOut' },
+      });
+    }
+  };
+
+  if (gamePool.length < 1) {
+    return (
+      <>
+        <div>Database Initializing...</div>
+      </>
+    );
+  }
+
+  return (
+    <div>
+      <div
+        className={classNames({
+          dropdown: true,
+          'is-active': showSettings,
+        })}
+      >
+        <div className="dropdown-trigger">
+          <button
+            className={classNames({
+              button: true,
+              'is-large': !isMobile,
+            })}
+            aria-haspopup="true"
+            aria-controls="dropdown-menu"
+            onClick={() => setShowSettings(!showSettings)}
+          >
+            <span>Settings</span>
+            <span className="icon is-small">
+              <span
+                className={classNames({
+                  fas: true,
+                  'fa-angle-down': !showSettings,
+                  'fa-angle-up': showSettings,
+                })}
+                aria-hidden="true"
+              ></span>
+            </span>
+          </button>
+        </div>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeGotmWinners}
+                onChange={() => handleFilterChange(1, !includeGotmWinners)}
+              ></input>
+              GotM Winners
+            </label>{' '}
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                name="GotM Runner Ups"
+                checked={includeGotmRunnerUp}
+                onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
+              ></input>
+              GotM Runner Ups
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRetrobits}
+                onChange={() => handleFilterChange(2, !includeRetrobits)}
+              ></input>
+              Retrobits
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRpgWinners}
+                onChange={() => handleFilterChange(4, !includeRpgWinners)}
+              ></input>
+              RPGotQ Winners
+            </label>
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox"
+                checked={includeRpgRunnerUp}
+                onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
+              ></input>
+              RPGotQ Runner Ups
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className="has-text-centered">
+        <button
+          className={classNames({
+            button: true,
+            'is-primary': true,
+            rollBtn: true,
+            'is-fullwidth': isMobile,
+            'is-large': !isMobile,
+          })}
+          disabled={!loaded}
+          onClick={() => handleButtonClick()}
+        >
+          {loaded && <span>Reroll</span>}
+          {!loaded && (
+            <span className="icon is-small">
+              <span className="loader"></span>
+            </span>
+          )}
+        </button>
+      </div>
+      <div
+        className="loader"
+        style={{ display: loaded ? 'none' : 'block' }}
+      ></div>
+      <img
+        ref={imgEl}
+        src={getCurrentGame().img}
+        style={{
+          display: !!getCurrentGame().img && loaded ? 'block' : 'none',
+          margin: 'auto',
+        }}
+      />
+      <section className="section">
+        <h1 className="title has-text-centered">
+          🎮{' '}
+          {[
+            getCurrentGame().title.usa,
+            getCurrentGame().title.world,
+            getCurrentGame().title.eu,
+            getCurrentGame().title.jap,
+            getCurrentGame().title.other,
+          ]
+            .filter((x) => x)
+            .join(' / ')}
+        </h1>
+        <div className="level">
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🗓️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🗓️</span>
+                <span>{getCurrentGame().year}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🕹️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🕹️</span>
+                <span>{getCurrentGame().system}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">🏢</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">🏢</span>
+                <span>{getCurrentGame().developer}</span>
+              </p>
+            </div>
+          </div>
+          <div className="level-item has-text-centered">
+            <div>
+              <p className="subtitle is-hidden-mobile">⏱️</p>
+              <p className="subtitle">
+                <span className="is-hidden-tablet">⏱️</span>
+                <span>
+                  {getCurrentGame().timeToBeat < Number.MAX_SAFE_INTEGER
+                    ? `~${getCurrentGame().timeToBeat} hours`
+                    : 'No data'}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <blockquote>{getCurrentGame().description}</blockquote>
+      </section>
+    </div>
+  );
 }

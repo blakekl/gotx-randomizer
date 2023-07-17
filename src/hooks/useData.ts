@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import initSqlJs = require('sql.js');
 import {
   creationCommand,
-  getAllGotmGames,
   getGotmRunnerup,
   getWinningGotm,
 } from '../data/DbCommands';
 import { Game, gameDto, Nomination, Nominator } from '../models/game';
 
 export const useData = () => {
+  const [isDbReady, setIsDbReady] = useState(false);
   const [db, setDb] = useState(null);
   const [nominators, setNominators] = useState(new Array<Nominator>());
   const [nominations, setNominations] = useState(new Array<Nomination>());
@@ -33,6 +33,7 @@ export const useData = () => {
       console.log(gotmRunnerup);
       setGotmRunnerUp(gotmRunnerup);
       setGotmWinners(gotWinners);
+      setIsDbReady(true);
     } catch (e) {
       console.error(e);
     }
@@ -43,6 +44,7 @@ export const useData = () => {
   }, []);
 
   return {
+    isDbReady,
     nominators,
     nominations,
     gotmWinners,
