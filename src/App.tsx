@@ -252,17 +252,28 @@ export default function App() {
       />
       <section className="section">
         <h1 className="title has-text-centered">
-          🎮{' '}
-          {[
-            getCurrentGame().title.usa,
-            getCurrentGame().title.world,
-            getCurrentGame().title.eu,
-            getCurrentGame().title.jap,
-            getCurrentGame().title.other,
-          ]
-            .filter((x) => x)
-            .join(' / ')}
+          {
+            [
+              `🇺🇸 ${getCurrentGame().title.usa}`,
+              `🌎 ${getCurrentGame().title.world}`,
+              `🇪🇺 ${getCurrentGame().title.eu}`,
+              `🇯🇵 ${getCurrentGame().title.jap}`,
+              `🏳️ ${getCurrentGame().title.other}`,
+            ].filter((x) => x.length > 5)[0]
+          }
         </h1>
+        <h2 className="subtitle has-text-centered">
+          {[
+            `🇺🇸 ${getCurrentGame().title.usa}`,
+            `🌎 ${getCurrentGame().title.world}`,
+            `🇪🇺 ${getCurrentGame().title.eu}`,
+            `🇯🇵 ${getCurrentGame().title.jap}`,
+            `🏳️ ${getCurrentGame().title.other}`,
+          ]
+            .filter((x) => x.length > 5)
+            .slice(1)
+            .map(title => <div>{title}</div>)}
+        </h2>
         <div className="level">
           <div className="level-item has-text-centered">
             <div>
