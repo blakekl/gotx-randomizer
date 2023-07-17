@@ -7,6 +7,7 @@ import { useData } from './hooks/useData';
 import { Game } from './models/game';
 
 export default function App() {
+  const imgElement = React.useRef<HTMLImageElement>(null);
   const {
     isDbReady,
     gotmWinners,
@@ -15,7 +16,6 @@ export default function App() {
     rpgWinners,
     rpgRunnerUp,
   } = useData();
-  const imgEl = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(true);
@@ -36,17 +36,21 @@ export default function App() {
     getNextGame();
   };
 
-  const onImageLoaded = () => setImgLoaded(imgEl.current.complete);
+  const onImageLoaded = () => {
+    console.log('image loading fired');
+    setImgLoaded(imgElement.current.complete);
+  };
   React.useEffect(() => {
-    const imgElCurrent = imgEl.current;
-
-    if (imgElCurrent) {
-      imgElCurrent.addEventListener('load', onImageLoaded);
+    console.log('setting up image event listener', imgElement.current);
+    if (imgElement.current) {
+      console.log('setup');
+      imgElement.current.addEventListener('load', onImageLoaded);
       return () => {
-        imgElCurrent.removeEventListener('load', onImageLoaded);
+        imgElement.current.removeEventListener('load', onImageLoaded);
       };
     }
-  }, [imgEl]);
+    console.log('no image reference');
+  }, [imgElement]);
 
   const shuffle = (inputArray) => {
     const outputArray = [...inputArray];
@@ -77,10 +81,8 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinners.filter((x) => x.img));
     }
-    // const shuffledPool = shuffle(newPool);
-    // setGamePool(shuffledPool);
-    setGamePool(newPool);
-    setCurrentIndex(614);
+    setGamePool(shuffle(newPool));
+    setCurrentIndex(0);
     setImgLoaded(true);
   }, [
     isDbReady,
@@ -235,11 +237,8 @@ export default function App() {
         className="loader"
         style={{ display: imgLoaded ? 'none' : 'block' }}
       ></div>
-      <p className="has-text-centered">{`${currentIndex}, ${
-        getCurrentGame().id
-      }`}</p>
       <img
-        ref={imgEl}
+        ref={imgElement}
         src={getCurrentGame().img}
         style={{
           display: !!getCurrentGame().img && imgLoaded ? 'block' : 'none',

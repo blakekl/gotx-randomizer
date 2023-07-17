@@ -22,7 +22,7 @@ export interface Title {
 export interface Game {
   title: Title;
   id: number;
-  screenscapre_id: number;
+  screenscraper_id?: number;
   img: string;
   year: number;
   system: string;
@@ -32,10 +32,30 @@ export interface Game {
   description?: string;
 }
 
+export const retrobitsGameDto = (data: any[]) => {
+  return {
+    id: data[0],
+    img: data[1],
+    year: data[2],
+    system: data[3],
+    developer: data[4],
+    genre: data[5],
+    time_to_beat: data[6],
+    title: {
+      usa: data[7],
+      eu: data[8],
+      jap: data[9],
+      world: data[10],
+      other: data[11],
+    } as Title,
+    description: data[12],
+  } as Game;
+};
+
 export const gameDto = (data: any[]) => {
   return {
     id: data[0],
-    screenscapre_id: data[1],
+    screenscraper_id: data[1],
     img: data[2],
     year: data[3],
     system: data[4],
