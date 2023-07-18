@@ -1,3 +1,24 @@
+.experimentalFont {
+  font-family: 'Press Start 2P', sans-serif;
+  font-family: 'VT323', monospace;
+}
+
+.title,
+.subtitle,
+blockquote {
+  font-family: 'Press Start 2P', sans-serif;
+  font-family: 'VT323', monospace;
+  font-weight: 600;
+}
+blockquote {
+  font-weight: 400;
+}
+
+*.level .level-item .subtitle {
+  font-family: 'VT323', monospace;
+  font-weight: 600;
+}
+
 div.loader {
   height: 100px;
   width: 100px;
@@ -24,12 +45,19 @@ label input {
   margin-inline: 10px;
 }
 
+.dropdown-menu {
+  width: 50%;
+  max-width: 450px;
+  min-width: 300px;
+}
+
 .horizontal-slider {
   width: 80%;
   height: 50px;
   margin: auto;
   margin-top: -15px;
 }
+
 .example-thumb {
   cursor: pointer;
   position: absolute;

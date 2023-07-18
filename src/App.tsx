@@ -225,57 +225,65 @@ export default function App() {
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
             <div className="field">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeGotmWinners}
-                  onChange={() => handleFilterChange(1, !includeGotmWinners)}
-                ></input>
-                GotM Winners
-              </label>{' '}
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  name="GotM Runner Ups"
-                  checked={includeGotmRunnerUp}
-                  onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
-                ></input>
-                GotM Runner Ups
-              </label>
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeRetrobits}
-                  onChange={() => handleFilterChange(2, !includeRetrobits)}
-                ></input>
-                Retrobits
-              </label>
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeRpgWinners}
-                  onChange={() => handleFilterChange(4, !includeRpgWinners)}
-                ></input>
-                RPGotQ Winners
-              </label>
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={includeRpgRunnerUp}
-                  onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
-                ></input>
-                RPGotQ Runner Ups
-              </label>
+              <div className="control">
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={includeGotmWinners}
+                    onChange={() => handleFilterChange(1, !includeGotmWinners)}
+                  ></input>
+                  GotM Winners
+                </label>
+              </div>
+              <div className="control">
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="GotM Runner Ups"
+                    checked={includeGotmRunnerUp}
+                    onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
+                  ></input>
+                  GotM Runner Ups
+                </label>
+              </div>
+              <div className="control">
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={includeRetrobits}
+                    onChange={() => handleFilterChange(2, !includeRetrobits)}
+                  ></input>
+                  Retrobits
+                </label>
+              </div>
+              <div className="control">
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={includeRpgWinners}
+                    onChange={() => handleFilterChange(4, !includeRpgWinners)}
+                  ></input>
+                  RPGotQ Winners
+                </label>
+              </div>
+              <div className="control">
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={includeRpgRunnerUp}
+                    onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
+                  ></input>
+                  RPGotQ Runner Ups
+                </label>
+              </div>
             </div>
             <div className="field">
-              <label className="label has-text-centered">
-                Time to Beat filter
-              </label>
+              <label className="label has-text-centered">Time to Beat</label>
               <div className="control">
                 <ReactSlider
                   className="horizontal-slider"
@@ -395,14 +403,16 @@ export default function App() {
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
                   {getCurrentGame().time_to_beat > 0
-                    ? `~${getCurrentGame().time_to_beat} hours`
+                    ? `${getCurrentGame().time_to_beat} hours`
                     : 'No data'}
                 </span>
               </p>
             </div>
           </div>
         </div>
-        <blockquote>{getCurrentGame().description}</blockquote>
+        <blockquote className="is-size-4 has-text-justified">
+          {getCurrentGame().description}
+        </blockquote>
       </section>
     </div>
   );
