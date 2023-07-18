@@ -224,54 +224,58 @@ export default function App() {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeGotmWinners}
-                onChange={() => handleFilterChange(1, !includeGotmWinners)}
-              ></input>
-              GotM Winners
-            </label>{' '}
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                name="GotM Runner Ups"
-                checked={includeGotmRunnerUp}
-                onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
-              ></input>
-              GotM Runner Ups
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeRetrobits}
-                onChange={() => handleFilterChange(2, !includeRetrobits)}
-              ></input>
-              Retrobits
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeRpgWinners}
-                onChange={() => handleFilterChange(4, !includeRpgWinners)}
-              ></input>
-              RPGotQ Winners
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeRpgRunnerUp}
-                onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
-              ></input>
-              RPGotQ Runner Ups
-            </label>
             <div className="field">
-              <label className="label">Time to Beat filter</label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeGotmWinners}
+                  onChange={() => handleFilterChange(1, !includeGotmWinners)}
+                ></input>
+                GotM Winners
+              </label>{' '}
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  name="GotM Runner Ups"
+                  checked={includeGotmRunnerUp}
+                  onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
+                ></input>
+                GotM Runner Ups
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeRetrobits}
+                  onChange={() => handleFilterChange(2, !includeRetrobits)}
+                ></input>
+                Retrobits
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeRpgWinners}
+                  onChange={() => handleFilterChange(4, !includeRpgWinners)}
+                ></input>
+                RPGotQ Winners
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeRpgRunnerUp}
+                  onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
+                ></input>
+                RPGotQ Runner Ups
+              </label>
+            </div>
+            <div className="field">
+              <label className="label has-text-centered">
+                Time to Beat filter
+              </label>
               <div className="control">
                 <ReactSlider
                   className="horizontal-slider"
