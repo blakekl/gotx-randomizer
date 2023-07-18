@@ -30,7 +30,10 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [ttbMin, setTtbMin] = React.useState(0);
   const [ttbMax, setTtbMax] = React.useState(0);
-  const [ttbFilter, setTtbFilter] = React.useState([0, 0]);
+  const [ttbFilter, setTtbFilter] = React.useState([
+    0,
+    Number.MAX_SAFE_INTEGER,
+  ]);
   const emptyGame = {
     id: 0,
     title: {
@@ -119,7 +122,11 @@ export default function App() {
     );
     setTtbMax(maxTime);
     setGamePool(shuffle(newPool));
-    setTtbFilter([minTime, maxTime]);
+    if (ttbFilter[0] < minTime || ttbFilter[1] > maxTime) {
+      setTtbFilter([minTime, maxTime]);
+    } else {
+      setTtbFilter([...ttbFilter]);
+    }
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
@@ -161,13 +168,23 @@ export default function App() {
   };
 
   React.useEffect(() => {
-    setFilteredGamePool(
-      gamePool.filter(
+    let filtered;
+    if (ttbFilter[0] === ttbMin && ttbFilter[1] === ttbMax) {
+      filtered = gamePool.filter(
         (x) =>
           x.time_to_beat < 0 ||
           (x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1])
-      )
+      );
+    } else {
+      filtered = gamePool.filter(
+        (x) => x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1]
+      );
+    }
+    console.log(
+      'filtered: ',
+      filtered.map((x) => x.time_to_beat)
     );
+    setFilteredGamePool(filtered);
   }, [ttbFilter]);
 
   const handleTtbFilterChange = (newValue, thumbIndex) => {
@@ -373,8 +390,8 @@ export default function App() {
               <p className="subtitle">
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
-                  {getCurrentGame().timeToBeat > 0
-                    ? `~${getCurrentGame().timeToBeat} hours`
+                  {getCurrentGame().time_to_beat > 0
+                    ? `~${getCurrentGame().time_to_beat} hours`
                     : 'No data'}
                 </span>
               </p>
