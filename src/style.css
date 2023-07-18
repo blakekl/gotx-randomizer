@@ -23,3 +23,42 @@ label input {
 .level-item .subtitle .is-hidden-tablet {
   margin-inline: 10px;
 }
+
+.horizontal-slider {
+  width: 80%;
+  height: 50px;
+  margin: auto;
+  margin-top: -15px;
+}
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  background: #ffffff;
+  border: 5px solid #0075ff;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+}
+.example-thumb.active {
+  background-color: grey;
+}
+.example-track {
+  position: relative;
+  background: #ddd;
+}
+.example-track.example-track-0,
+.example-track.example-track-2 {
+  background: #0075ff;
+}
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 4px;
+}
+.horizontal-slider .example-thumb {
+  top: 17px;
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
+}

@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import './style.css';
 import { useData } from './hooks/useData';
 import { Game } from './models/game';
+import ReactSlider from 'react-slider';
 
 export default function App() {
   const {
@@ -25,7 +26,14 @@ export default function App() {
   const [includeRpgWinners, setIncludeRpgWinners] = React.useState(true);
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(true);
   const [gamePool, setGamePool] = React.useState([]);
+  const [filteredGamePool, setFilteredGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [ttbMin, setTtbMin] = React.useState(0);
+  const [ttbMax, setTtbMax] = React.useState(0);
+  const [ttbFilter, setTtbFilter] = React.useState([
+    0,
+    Number.MAX_SAFE_INTEGER,
+  ]);
   const emptyGame = {
     id: 0,
     title: {
@@ -45,10 +53,12 @@ export default function App() {
   } as Game;
 
   const getCurrentGame = () =>
-    gamePool && gamePool.length > 0 ? gamePool[currentIndex] : emptyGame;
+    gamePool && filteredGamePool.length > 0
+      ? filteredGamePool[currentIndex]
+      : emptyGame;
 
   const getNextGame = () => {
-    setCurrentIndex((currentIndex + 1) % gamePool.length);
+    setCurrentIndex((currentIndex + 1) % filteredGamePool.length);
     setImgLoaded(false);
   };
   const handleButtonClick = () => {
@@ -94,7 +104,29 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinners);
     }
+    const minTime = Math.floor(
+      newPool
+        .map((x) => x.time_to_beat)
+        .filter((x) => x > 0)
+        .reduce(
+          (accumulator, current) => Math.min(accumulator, current),
+          Number.MAX_SAFE_INTEGER
+        )
+    );
+    setTtbMin(minTime);
+    const maxTime = Math.ceil(
+      newPool
+        .map((x) => x.time_to_beat)
+        .filter((x) => x > 0)
+        .reduce((accumulator, current) => Math.max(accumulator, current), 0)
+    );
+    setTtbMax(maxTime);
     setGamePool(shuffle(newPool));
+    if (ttbFilter[0] < minTime || ttbFilter[1] > maxTime) {
+      setTtbFilter([minTime, maxTime]);
+    } else {
+      setTtbFilter([...ttbFilter]);
+    }
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
@@ -135,6 +167,30 @@ export default function App() {
     }
   };
 
+  React.useEffect(() => {
+    let filtered;
+    if (ttbFilter[0] === ttbMin && ttbFilter[1] === ttbMax) {
+      filtered = gamePool.filter(
+        (x) =>
+          x.time_to_beat < 0 ||
+          (x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1])
+      );
+    } else {
+      filtered = gamePool.filter(
+        (x) => x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1]
+      );
+    }
+    console.log(
+      'filtered: ',
+      filtered.map((x) => x.time_to_beat)
+    );
+    setFilteredGamePool(filtered);
+  }, [ttbFilter]);
+
+  const handleTtbFilterChange = (newValue, thumbIndex) => {
+    setTtbFilter(newValue);
+  };
+
   return (
     <div>
       <div
@@ -168,52 +224,80 @@ export default function App() {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeGotmWinners}
-                onChange={() => handleFilterChange(1, !includeGotmWinners)}
-              ></input>
-              GotM Winners
-            </label>{' '}
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                name="GotM Runner Ups"
-                checked={includeGotmRunnerUp}
-                onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
-              ></input>
-              GotM Runner Ups
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeRetrobits}
-                onChange={() => handleFilterChange(2, !includeRetrobits)}
-              ></input>
-              Retrobits
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeRpgWinners}
-                onChange={() => handleFilterChange(4, !includeRpgWinners)}
-              ></input>
-              RPGotQ Winners
-            </label>
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                className="checkbox"
-                checked={includeRpgRunnerUp}
-                onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
-              ></input>
-              RPGotQ Runner Ups
-            </label>
+            <div className="field">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeGotmWinners}
+                  onChange={() => handleFilterChange(1, !includeGotmWinners)}
+                ></input>
+                GotM Winners
+              </label>{' '}
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  name="GotM Runner Ups"
+                  checked={includeGotmRunnerUp}
+                  onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
+                ></input>
+                GotM Runner Ups
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeRetrobits}
+                  onChange={() => handleFilterChange(2, !includeRetrobits)}
+                ></input>
+                Retrobits
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeRpgWinners}
+                  onChange={() => handleFilterChange(4, !includeRpgWinners)}
+                ></input>
+                RPGotQ Winners
+              </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={includeRpgRunnerUp}
+                  onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
+                ></input>
+                RPGotQ Runner Ups
+              </label>
+            </div>
+            <div className="field">
+              <label className="label has-text-centered">
+                Time to Beat filter
+              </label>
+              <div className="control">
+                <ReactSlider
+                  className="horizontal-slider"
+                  thumbClassName="example-thumb"
+                  trackClassName="example-track"
+                  defaultValue={[ttbMin, ttbMax]}
+                  onAfterChange={(newValues, thumbIndex) =>
+                    handleTtbFilterChange(newValues, thumbIndex)
+                  }
+                  min={ttbMin}
+                  max={ttbMax}
+                  value={ttbFilter}
+                  ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
+                  ariaValuetext={(state) => `Filter value ${state.valueNow}`}
+                  renderThumb={(props, state) => (
+                    <div {...props}>{state.valueNow}</div>
+                  )}
+                  pearling
+                  minDistance={1}
+                ></ReactSlider>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -272,7 +356,9 @@ export default function App() {
           ]
             .filter((x) => x.length > 5)
             .slice(1)
-            .map(title => <div>{title}</div>)}
+            .map((title) => (
+              <div>{title}</div>
+            ))}
         </h2>
         <div className="level">
           <div className="level-item has-text-centered">
@@ -308,8 +394,8 @@ export default function App() {
               <p className="subtitle">
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
-                  {getCurrentGame().timeToBeat < Number.MAX_SAFE_INTEGER
-                    ? `~${getCurrentGame().timeToBeat} hours`
+                  {getCurrentGame().time_to_beat > 0
+                    ? `~${getCurrentGame().time_to_beat} hours`
                     : 'No data'}
                 </span>
               </p>
