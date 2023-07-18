@@ -1,3 +1,9 @@
+export enum GameType {
+  gotm,
+  retrobit,
+  rpg,
+}
+
 export interface Nominator {
   id: number;
   name: string;
@@ -20,6 +26,7 @@ export interface Title {
 }
 
 export interface Game {
+  type: GameType;
   title: Title;
   id: number;
   screenscraper_id?: number;
@@ -34,6 +41,7 @@ export interface Game {
 
 export const retrobitsGameDto = (data: any[]) => {
   return {
+    type: GameType.retrobit,
     id: data[0],
     img: data[1],
     year: data[2],
@@ -52,8 +60,9 @@ export const retrobitsGameDto = (data: any[]) => {
   } as Game;
 };
 
-export const gameDto = (data: any[]) => {
+export const gameDto = (data: any[], type: GameType) => {
   return {
+    type,
     id: data[0],
     screenscraper_id: data[1],
     img: data[2],

@@ -11,6 +11,7 @@ import {
 import {
   Game,
   gameDto,
+  GameType,
   Nomination,
   Nominator,
   retrobitsGameDto,
@@ -39,11 +40,11 @@ export const useData = () => {
       const result = db.exec(
         `${getGotmRunnerup} ${getWinningGotm} ${getRetrobits} ${getRpgRunnerup} ${getWinningRpg}`
       );
-      setGotmRunnerUp(result[0].values.map((x) => gameDto(x)));
-      setGotmWinners(result[1].values.map((x) => gameDto(x)));
+      setGotmRunnerUp(result[0].values.map((x) => gameDto(x, GameType.gotm)));
+      setGotmWinners(result[1].values.map((x) => gameDto(x, GameType.gotm)));
       setRetrobits(result[2].values.map((x) => retrobitsGameDto(x)));
-      setRpgRunnerUp(result[3].values.map((x) => gameDto(x)));
-      setRpgWinners(result[4].values.map((x) => gameDto(x)));
+      setRpgRunnerUp(result[3].values.map((x) => gameDto(x, GameType.rpg)));
+      setRpgWinners(result[4].values.map((x) => gameDto(x, GameType.rpg)));
       setIsDbReady(true);
     } catch (e) {
       console.error(e);
