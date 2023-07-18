@@ -26,11 +26,11 @@ export default function App() {
   const [includeRpgWinners, setIncludeRpgWinners] = React.useState(true);
   const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(true);
   const [gamePool, setGamePool] = React.useState([]);
+  const [filteredGamePool, setFilteredGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [ttbMin, setTtbMin] = React.useState(0);
   const [ttbMax, setTtbMax] = React.useState(0);
-  const [ttbMinValue, setTtbMinValue] = React.useState(0);
-  const [ttbMaxValue, setTtbMaxValue] = React.useState(0);
+  const [ttbFilter, setTtbFilter] = React.useState([0, 0]);
   const emptyGame = {
     id: 0,
     title: {
@@ -50,10 +50,12 @@ export default function App() {
   } as Game;
 
   const getCurrentGame = () =>
-    gamePool && gamePool.length > 0 ? gamePool[currentIndex] : emptyGame;
+    gamePool && filteredGamePool.length > 0
+      ? filteredGamePool[currentIndex]
+      : emptyGame;
 
   const getNextGame = () => {
-    setCurrentIndex((currentIndex + 1) % gamePool.length);
+    setCurrentIndex((currentIndex + 1) % filteredGamePool.length);
     setImgLoaded(false);
   };
   const handleButtonClick = () => {
@@ -99,22 +101,25 @@ export default function App() {
     if (includeRpgWinners) {
       newPool = newPool.concat(rpgWinners);
     }
-    const minTime = newPool
-      .map((x) => x.time_to_beat)
-      .filter((x) => x > 0)
-      .reduce(
-        (accumulator, current) => Math.min(accumulator, current),
-        Number.MAX_SAFE_INTEGER
-      );
-    console.log('minTime: ', minTime);
+    const minTime = Math.floor(
+      newPool
+        .map((x) => x.time_to_beat)
+        .filter((x) => x > 0)
+        .reduce(
+          (accumulator, current) => Math.min(accumulator, current),
+          Number.MAX_SAFE_INTEGER
+        )
+    );
     setTtbMin(minTime);
-    const maxTime = newPool
-      .map((x) => x.time_to_beat)
-      .filter((x) => x > 0)
-      .reduce((accumulator, current) => Math.max(accumulator, current), 0);
-    console.log('maxTime: ', maxTime);
+    const maxTime = Math.ceil(
+      newPool
+        .map((x) => x.time_to_beat)
+        .filter((x) => x > 0)
+        .reduce((accumulator, current) => Math.max(accumulator, current), 0)
+    );
     setTtbMax(maxTime);
     setGamePool(shuffle(newPool));
+    setTtbFilter([minTime, maxTime]);
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
@@ -153,6 +158,20 @@ export default function App() {
         animate: { in: 'fadeIn', out: 'fadeOut' },
       });
     }
+  };
+
+  React.useEffect(() => {
+    setFilteredGamePool(
+      gamePool.filter(
+        (x) =>
+          x.time_to_beat < 0 ||
+          (x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1])
+      )
+    );
+  }, [ttbFilter]);
+
+  const handleTtbFilterChange = (newValue, thumbIndex) => {
+    setTtbFilter(newValue);
   };
 
   return (
@@ -242,10 +261,14 @@ export default function App() {
                   thumbClassName="example-thumb"
                   trackClassName="example-track"
                   defaultValue={[ttbMin, ttbMax]}
+                  onAfterChange={(newValues, thumbIndex) =>
+                    handleTtbFilterChange(newValues, thumbIndex)
+                  }
                   min={ttbMin}
                   max={ttbMax}
-                  ariaLabel={['Lower thumb', 'Upper thumb']}
-                  ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+                  value={ttbFilter}
+                  ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
+                  ariaValuetext={(state) => `Filter value ${state.valueNow}`}
                   renderThumb={(props, state) => (
                     <div {...props}>{state.valueNow}</div>
                   )}
@@ -350,7 +373,7 @@ export default function App() {
               <p className="subtitle">
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
-                  {getCurrentGame().timeToBeat < Number.MAX_SAFE_INTEGER
+                  {getCurrentGame().timeToBeat > 0
                     ? `~${getCurrentGame().timeToBeat} hours`
                     : 'No data'}
                 </span>
