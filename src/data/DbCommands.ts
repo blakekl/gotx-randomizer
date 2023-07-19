@@ -1,15 +1,23 @@
 export const totalNomsBeforeWinByGame = `SELECT
-    COUNT(*) AS nominations
-  , gotm_games.title_usa
-  , gotm_games.title_jap
-  , gotm_games.title_other
-FROM gotm_nominations
-INNER JOIN gotm_games ON gotm_games.id = gotm_nominations.game_id
-WHERE gotm_nominations.game_id IN (SELECT gotm_nominations.game_id FROM gotm_winners INNER JOIN gotm_nominations ON gotm_nominations.id = gotm_winners.nomination_id)
+  COUNT(*) AS nominations,
+  gotm_games.title_usa,
+  gotm_games.title_jap,
+  gotm_games.title_other
+FROM
+  gotm_nominations
+  INNER JOIN gotm_games ON gotm_games.id = gotm_nominations.game_id
+WHERE
+  gotm_nominations.game_id IN (
+    SELECT
+      gotm_nominations.game_id
+    FROM
+      gotm_winners
+    INNER JOIN gotm_nominations ON gotm_nominations.id = gotm_winners.nomination_id
+  )
 GROUP BY
-    gotm_nominations.game_id
+  gotm_nominations.game_id
 ORDER BY
-    nominations DESC;
+  nominations DESC;
 `;
 
 export const topTenNominators = `SELECT
@@ -25,18 +33,21 @@ ORDER BY
 LIMIT 10;
 `;
 
-export const topTenNominatedGames = `SELECT
-    COUNT(*) AS nominations
-  , gotm_games.title_usa
-  , gotm_games.title_jap
-  , gotm_games.title_other
-FROM gotm_games
-INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id
+export const nominationsByGame = `SELECT
+  COUNT(*) AS nominations,
+  gotm_games.id,
+  gotm_games.title_usa,
+  gotm_games.title_world,
+  gotm_games.title_other,
+  gotm_games.title_eu,
+  gotm_games.title_jap
+FROM
+  gotm_nominations
+  INNER JOIN gotm_games ON gotm_nominations.game_id = gotm_games.id
 GROUP BY
-    gotm_nominations.game_id
+  game_id
 ORDER BY
-    nominations DESC
-LIMIT 10;`;
+  nominations DESC;`;
 
 export const getRetrobits = `SELECT
   * FROM retrobits;
