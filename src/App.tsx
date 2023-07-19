@@ -5,19 +5,10 @@ import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
 import classNames = require('classnames');
 import './style.css';
-import { useData } from './hooks/useData';
 import { Game } from './models/game';
 import { useStores } from './stores/useStores';
 
 const App = observer(() => {
-  const {
-    isDbReady,
-    gotmWinners,
-    gotmRunnerUp,
-    retrobits,
-    rpgWinners,
-    rpgRunnerUp,
-  } = useData();
   const { databaseStore } = useStores();
   const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
@@ -88,24 +79,24 @@ const App = observer(() => {
   };
 
   React.useEffect(() => {
-    if (!isDbReady) {
+    if (databaseStore.isLoading) {
       return;
     }
     let newPool: Game[] = [];
     if (includeGotmRunnerUp) {
-      newPool = newPool.concat(gotmRunnerUp);
+      newPool = newPool.concat(databaseStore.gotmRunnerUp);
     }
     if (includeGotmWinners) {
-      newPool = newPool.concat(gotmWinners);
+      newPool = newPool.concat(databaseStore.gotmWinners);
     }
     if (includeRetrobits) {
-      newPool = newPool.concat(retrobits);
+      newPool = newPool.concat(databaseStore.retrobits);
     }
     if (includeRpgRunnerUp) {
-      newPool = newPool.concat(rpgRunnerUp);
+      newPool = newPool.concat(databaseStore.rpgRunnerUp);
     }
     if (includeRpgWinners) {
-      newPool = newPool.concat(rpgWinners);
+      newPool = newPool.concat(databaseStore.rpgWinners);
     }
     const minTime = Math.floor(
       newPool
@@ -133,7 +124,7 @@ const App = observer(() => {
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
-    isDbReady,
+    databaseStore.isLoading,
     includeGotmRunnerUp,
     includeGotmWinners,
     includeRetrobits,
@@ -183,10 +174,6 @@ const App = observer(() => {
         (x) => x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1]
       );
     }
-    console.log(
-      'filtered: ',
-      filtered.map((x) => x.time_to_beat)
-    );
     setFilteredGamePool(filtered);
   }, [ttbFilter]);
 
