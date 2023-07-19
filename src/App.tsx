@@ -73,19 +73,31 @@ const App = observer(() => {
       return;
     }
     let newPool: Game[] = [];
-    if (settingsStore.includeGotmRunnerUp) {
+    if (
+      settingsStore.includeGotmRunnerUp &&
+      databaseStore.gotmRunnerUp.length > 0
+    ) {
       newPool = newPool.concat(databaseStore.gotmRunnerUp);
     }
-    if (settingsStore.includeGotmWinners) {
+    if (
+      settingsStore.includeGotmWinners &&
+      databaseStore.gotmWinners.length > 0
+    ) {
       newPool = newPool.concat(databaseStore.gotmWinners);
     }
-    if (settingsStore.includeRetrobits) {
+    if (settingsStore.includeRetrobits && databaseStore.retrobits.length > 0) {
       newPool = newPool.concat(databaseStore.retrobits);
     }
-    if (settingsStore.includeRpgRunnerUp) {
+    if (
+      settingsStore.includeRpgRunnerUp &&
+      databaseStore.rpgRunnerUp.length > 0
+    ) {
       newPool = newPool.concat(databaseStore.rpgRunnerUp);
     }
-    if (settingsStore.includeRpgWinners) {
+    if (
+      settingsStore.includeRpgWinners &&
+      databaseStore.rpgWinners.length > 0
+    ) {
       newPool = newPool.concat(databaseStore.rpgWinners);
     }
     const minTime = Math.floor(
@@ -111,8 +123,6 @@ const App = observer(() => {
       settingsStore.ttbFilter[1] > maxTime
     ) {
       settingsStore.setTtbFilter([minTime, maxTime]);
-    } else {
-      settingsStore.setTtbFilter([...settingsStore.ttbFilter]);
     }
     setCurrentIndex(0);
     setImgLoaded(false);
@@ -363,8 +373,8 @@ const App = observer(() => {
           ]
             .filter((x) => x.length > 5)
             .slice(1)
-            .map((title) => (
-              <div>{title}</div>
+            .map((title, index) => (
+              <div key={index}>{title}</div>
             ))}
         </h2>
         <div className="level">
