@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx';
-import { makeAutoObservable } from 'mobx/dist/internal';
+import { makeAutoObservable } from 'mobx';
 
 class SettingsStore {
   includeGotmRunnerUp = true;
