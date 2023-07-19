@@ -37,16 +37,11 @@ const App = observer(() => {
   } as Game;
 
   const getCurrentGame = () =>
-    gamePool && filteredGamePool.length > 0
-      ? filteredGamePool[currentIndex]
-      : emptyGame;
+    filteredGamePool?.length > 0 ? filteredGamePool[currentIndex] : emptyGame;
 
-  const getNextGame = () => {
+  const handleButtonClick = () => {
     setCurrentIndex((currentIndex + 1) % filteredGamePool.length);
     setImgLoaded(false);
-  };
-  const handleButtonClick = () => {
-    getNextGame();
   };
 
   const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
