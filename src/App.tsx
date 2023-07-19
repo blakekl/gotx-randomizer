@@ -170,7 +170,7 @@ const App = observer(() => {
       settingsStore.ttbFilter[0] === settingsStore.ttbMin &&
       settingsStore.ttbFilter[1] === settingsStore.ttbMax
     ) {
-      filtered = [...gamePool];
+      filtered = gamePool;
     } else {
       filtered = gamePool.filter(
         (x) =>
@@ -182,7 +182,7 @@ const App = observer(() => {
   }, [gamePool, settingsStore.ttbFilter]);
 
   const handleTtbFilterChange = (newValue, thumbIndex) => {
-    settingsStore.setTtbFilter([...newValue]);
+    settingsStore.setTtbFilter(newValue);
   };
 
   return (
