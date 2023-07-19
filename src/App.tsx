@@ -1,13 +1,15 @@
-import { toast } from 'bulma-toast';
-import classNames = require('classnames');
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { observer } from 'mobx-react-lite/dist/observer';
+import { toast } from 'bulma-toast';
+import ReactSlider from 'react-slider';
+import classNames = require('classnames');
 import './style.css';
 import { useData } from './hooks/useData';
 import { Game } from './models/game';
-import ReactSlider from 'react-slider';
+import { useStores } from './stores/useStores';
 
-export default function App() {
+const App = observer(() => {
   const {
     isDbReady,
     gotmWinners,
@@ -16,6 +18,7 @@ export default function App() {
     rpgWinners,
     rpgRunnerUp,
   } = useData();
+  const { databaseStore } = useStores();
   const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
@@ -416,4 +419,6 @@ export default function App() {
       </section>
     </div>
   );
-}
+});
+
+export default App;
