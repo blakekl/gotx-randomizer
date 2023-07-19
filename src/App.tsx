@@ -165,17 +165,12 @@ const App = observer(() => {
   };
 
   React.useEffect(() => {
-    let filtered;
+    let filtered: Game[];
     if (
       settingsStore.ttbFilter[0] === settingsStore.ttbMin &&
       settingsStore.ttbFilter[1] === settingsStore.ttbMax
     ) {
-      filtered = gamePool.filter(
-        (x) =>
-          x.time_to_beat < 0 ||
-          (x.time_to_beat >= settingsStore.ttbFilter[0] &&
-            x.time_to_beat <= settingsStore.ttbFilter[1])
-      );
+      filtered = gamePool;
     } else {
       filtered = gamePool.filter(
         (x) =>
@@ -184,7 +179,7 @@ const App = observer(() => {
       );
     }
     setFilteredGamePool(filtered);
-  }, [settingsStore.ttbFilter]);
+  }, [gamePool, settingsStore.ttbFilter]);
 
   const handleTtbFilterChange = (newValue, thumbIndex) => {
     settingsStore.setTtbFilter(newValue);
