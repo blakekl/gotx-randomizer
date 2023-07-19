@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { observer } from 'mobx-react-lite/dist/observer';
+import { observer } from 'mobx-react-lite';
 import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
 import classNames = require('classnames');
