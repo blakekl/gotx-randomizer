@@ -9,25 +9,15 @@ import { Game } from './models/game';
 import { useStores } from './stores/useStores';
 
 const App = observer(() => {
-  const { databaseStore } = useStores();
+  const { databaseStore, settingsStore } = useStores();
   const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(false);
-  const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
-  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(true);
-  const [includeRetrobits, setIncludeRetrobits] = React.useState(true);
-  const [includeRpgWinners, setIncludeRpgWinners] = React.useState(true);
-  const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(true);
   const [gamePool, setGamePool] = React.useState([]);
   const [filteredGamePool, setFilteredGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [ttbMin, setTtbMin] = React.useState(0);
-  const [ttbMax, setTtbMax] = React.useState(0);
-  const [ttbFilter, setTtbFilter] = React.useState([
-    0,
-    Number.MAX_SAFE_INTEGER,
-  ]);
+
   const emptyGame = {
     id: 0,
     title: {
@@ -83,19 +73,19 @@ const App = observer(() => {
       return;
     }
     let newPool: Game[] = [];
-    if (includeGotmRunnerUp) {
+    if (settingsStore.includeGotmRunnerUp) {
       newPool = newPool.concat(databaseStore.gotmRunnerUp);
     }
-    if (includeGotmWinners) {
+    if (settingsStore.includeGotmWinners) {
       newPool = newPool.concat(databaseStore.gotmWinners);
     }
-    if (includeRetrobits) {
+    if (settingsStore.includeRetrobits) {
       newPool = newPool.concat(databaseStore.retrobits);
     }
-    if (includeRpgRunnerUp) {
+    if (settingsStore.includeRpgRunnerUp) {
       newPool = newPool.concat(databaseStore.rpgRunnerUp);
     }
-    if (includeRpgWinners) {
+    if (settingsStore.includeRpgWinners) {
       newPool = newPool.concat(databaseStore.rpgWinners);
     }
     const minTime = Math.floor(
@@ -107,45 +97,48 @@ const App = observer(() => {
           Number.MAX_SAFE_INTEGER
         )
     );
-    setTtbMin(minTime);
+    settingsStore.setTtbMin(minTime);
     const maxTime = Math.ceil(
       newPool
         .map((x) => x.time_to_beat)
         .filter((x) => x > 0)
         .reduce((accumulator, current) => Math.max(accumulator, current), 0)
     );
-    setTtbMax(maxTime);
+    settingsStore.setTtbMax(maxTime);
     setGamePool(shuffle(newPool));
-    if (ttbFilter[0] < minTime || ttbFilter[1] > maxTime) {
-      setTtbFilter([minTime, maxTime]);
+    if (
+      settingsStore.ttbFilter[0] < minTime ||
+      settingsStore.ttbFilter[1] > maxTime
+    ) {
+      settingsStore.setTtbFilter([minTime, maxTime]);
     } else {
-      setTtbFilter([...ttbFilter]);
+      settingsStore.setTtbFilter([...settingsStore.ttbFilter]);
     }
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
     databaseStore.isLoading,
-    includeGotmRunnerUp,
-    includeGotmWinners,
-    includeRetrobits,
-    includeRpgRunnerUp,
-    includeRpgWinners,
+    settingsStore.includeGotmRunnerUp,
+    settingsStore.includeGotmWinners,
+    settingsStore.includeRetrobits,
+    settingsStore.includeRpgRunnerUp,
+    settingsStore.includeRpgWinners,
   ]);
 
   const handleFilterChange = (item: number, value: boolean) => {
     const updaters = [
-      setIncludeGotmRunnerUp,
-      setIncludeGotmWinners,
-      setIncludeRetrobits,
-      setIncludeRpgRunnerUp,
-      setIncludeRpgWinners,
+      settingsStore.setIncludeGotmRunnerUp,
+      settingsStore.setIncludeGotmWinners,
+      settingsStore.setIncludeRetrobits,
+      settingsStore.setIncludeRpgRunnerUp,
+      settingsStore.setIncludeRpgWinners,
     ];
     const filters = [
-      includeGotmRunnerUp,
-      includeGotmWinners,
-      includeRetrobits,
-      includeRpgRunnerUp,
-      includeRpgWinners,
+      settingsStore.includeGotmRunnerUp,
+      settingsStore.includeGotmWinners,
+      settingsStore.includeRetrobits,
+      settingsStore.includeRpgRunnerUp,
+      settingsStore.includeRpgWinners,
     ];
     filters[item] = value;
     if (filters.some((x) => x)) {
@@ -163,22 +156,28 @@ const App = observer(() => {
 
   React.useEffect(() => {
     let filtered;
-    if (ttbFilter[0] === ttbMin && ttbFilter[1] === ttbMax) {
+    if (
+      settingsStore.ttbFilter[0] === settingsStore.ttbMin &&
+      settingsStore.ttbFilter[1] === settingsStore.ttbMax
+    ) {
       filtered = gamePool.filter(
         (x) =>
           x.time_to_beat < 0 ||
-          (x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1])
+          (x.time_to_beat >= settingsStore.ttbFilter[0] &&
+            x.time_to_beat <= settingsStore.ttbFilter[1])
       );
     } else {
       filtered = gamePool.filter(
-        (x) => x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1]
+        (x) =>
+          x.time_to_beat >= settingsStore.ttbFilter[0] &&
+          x.time_to_beat <= settingsStore.ttbFilter[1]
       );
     }
     setFilteredGamePool(filtered);
-  }, [ttbFilter]);
+  }, [settingsStore.ttbFilter]);
 
   const handleTtbFilterChange = (newValue, thumbIndex) => {
-    setTtbFilter(newValue);
+    settingsStore.setTtbFilter(newValue);
   };
 
   return (
@@ -220,8 +219,10 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeGotmWinners}
-                    onChange={() => handleFilterChange(1, !includeGotmWinners)}
+                    checked={settingsStore.includeGotmWinners}
+                    onChange={() =>
+                      handleFilterChange(1, !settingsStore.includeGotmWinners)
+                    }
                   ></input>
                   GotM Winners
                 </label>
@@ -232,8 +233,10 @@ const App = observer(() => {
                     type="checkbox"
                     className="checkbox"
                     name="GotM Runner Ups"
-                    checked={includeGotmRunnerUp}
-                    onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
+                    checked={settingsStore.includeGotmRunnerUp}
+                    onChange={() =>
+                      handleFilterChange(0, !settingsStore.includeGotmRunnerUp)
+                    }
                   ></input>
                   GotM Runner Ups
                 </label>
@@ -243,8 +246,10 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeRetrobits}
-                    onChange={() => handleFilterChange(2, !includeRetrobits)}
+                    checked={settingsStore.includeRetrobits}
+                    onChange={() =>
+                      handleFilterChange(2, !settingsStore.includeRetrobits)
+                    }
                   ></input>
                   Retrobits
                 </label>
@@ -254,8 +259,10 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeRpgWinners}
-                    onChange={() => handleFilterChange(4, !includeRpgWinners)}
+                    checked={settingsStore.includeRpgWinners}
+                    onChange={() =>
+                      handleFilterChange(4, !settingsStore.includeRpgWinners)
+                    }
                   ></input>
                   RPGotQ Winners
                 </label>
@@ -265,8 +272,10 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeRpgRunnerUp}
-                    onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
+                    checked={settingsStore.includeRpgRunnerUp}
+                    onChange={() =>
+                      handleFilterChange(3, !settingsStore.includeRpgRunnerUp)
+                    }
                   ></input>
                   RPGotQ Runner Ups
                 </label>
@@ -279,13 +288,13 @@ const App = observer(() => {
                   className="horizontal-slider"
                   thumbClassName="example-thumb"
                   trackClassName="example-track"
-                  defaultValue={[ttbMin, ttbMax]}
+                  defaultValue={[settingsStore.ttbMin, settingsStore.ttbMax]}
                   onAfterChange={(newValues, thumbIndex) =>
                     handleTtbFilterChange(newValues, thumbIndex)
                   }
-                  min={ttbMin}
-                  max={ttbMax}
-                  value={ttbFilter}
+                  min={settingsStore.ttbMin}
+                  max={settingsStore.ttbMax}
+                  value={settingsStore.ttbFilter}
                   ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
                   ariaValuetext={(state) => `Filter value ${state.valueNow}`}
                   renderThumb={(props, state) => (
