@@ -17,7 +17,7 @@ const App = observer(() => {
   const [gamePool, setGamePool] = React.useState([]);
   const [filteredGamePool, setFilteredGamePool] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
-
+  databaseStore.loadData();
   const emptyGame = {
     id: 0,
     title: {
@@ -36,8 +36,11 @@ const App = observer(() => {
     time_to_beat: 0,
   } as Game;
 
-  const getCurrentGame = () =>
-    filteredGamePool?.length > 0 ? filteredGamePool[currentIndex] : emptyGame;
+  const getCurrentGame = () => {
+    return filteredGamePool?.length > 0
+      ? filteredGamePool[currentIndex]
+      : emptyGame;
+  };
 
   const handleButtonClick = () => {
     setCurrentIndex((currentIndex + 1) % filteredGamePool.length);
@@ -64,80 +67,61 @@ const App = observer(() => {
   };
 
   React.useEffect(() => {
-    if (databaseStore.isLoading) {
-      return;
-    }
     let newPool: Game[] = [];
-    if (
-      settingsStore.includeGotmRunnerUp &&
-      databaseStore.gotmRunnerUp.length > 0
-    ) {
+    if (settingsStore.includeGotmRunnerUp) {
       newPool = newPool.concat(databaseStore.gotmRunnerUp);
     }
-    if (
-      settingsStore.includeGotmWinners &&
-      databaseStore.gotmWinners.length > 0
-    ) {
+    if (settingsStore.includeGotmWinners) {
       newPool = newPool.concat(databaseStore.gotmWinners);
     }
-    if (settingsStore.includeRetrobits && databaseStore.retrobits.length > 0) {
+    if (settingsStore.includeRetrobits) {
       newPool = newPool.concat(databaseStore.retrobits);
     }
-    if (
-      settingsStore.includeRpgRunnerUp &&
-      databaseStore.rpgRunnerUp.length > 0
-    ) {
+    if (settingsStore.includeRpgRunnerUp) {
       newPool = newPool.concat(databaseStore.rpgRunnerUp);
     }
-    if (
-      settingsStore.includeRpgWinners &&
-      databaseStore.rpgWinners.length > 0
-    ) {
+    if (settingsStore.includeRpgWinners) {
       newPool = newPool.concat(databaseStore.rpgWinners);
     }
-    const minTime = Math.floor(
-      newPool
-        .map((x) => x.time_to_beat)
-        .filter((x) => x > 0)
-        .reduce(
-          (accumulator, current) => Math.min(accumulator, current),
-          Number.MAX_SAFE_INTEGER
-        )
-    );
-    settingsStore.setTtbMin(minTime);
-    const maxTime = Math.ceil(
-      newPool
-        .map((x) => x.time_to_beat)
-        .filter((x) => x > 0)
-        .reduce((accumulator, current) => Math.max(accumulator, current), 0)
-    );
-    settingsStore.setTtbMax(maxTime);
-    setGamePool(shuffle(newPool));
-    if (
-      settingsStore.ttbFilter[0] < minTime ||
-      settingsStore.ttbFilter[1] > maxTime
-    ) {
-      settingsStore.setTtbFilter([minTime, maxTime]);
+
+    // update time filter values.
+    if (newPool.length > 0) {
+      const minTime = Math.floor(
+        newPool
+          .map((x) => x.time_to_beat)
+          .filter((x) => x > 0)
+          .reduce(
+            (accumulator, current) => Math.min(accumulator, current),
+            Number.MAX_SAFE_INTEGER
+          )
+      );
+      settingsStore.setTtbMin(minTime);
+
+      const maxTime = Math.ceil(
+        newPool
+          .map((x) => x.time_to_beat)
+          .filter((x) => x > 0)
+          .reduce((accumulator, current) => Math.max(accumulator, current), 0)
+      );
+      settingsStore.setTtbMax(maxTime);
     }
+    setGamePool(shuffle(newPool));
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
-    databaseStore.isLoading,
     settingsStore.includeGotmRunnerUp,
     settingsStore.includeGotmWinners,
     settingsStore.includeRetrobits,
     settingsStore.includeRpgRunnerUp,
     settingsStore.includeRpgWinners,
+    databaseStore.gotmRunnerUp,
+    databaseStore.gotmWinners,
+    databaseStore.retrobits,
+    databaseStore.rpgRunnerUp,
+    databaseStore.rpgWinners,
   ]);
 
   const handleFilterChange = (item: number, value: boolean) => {
-    const updaters = [
-      settingsStore.setIncludeGotmRunnerUp,
-      settingsStore.setIncludeGotmWinners,
-      settingsStore.setIncludeRetrobits,
-      settingsStore.setIncludeRpgRunnerUp,
-      settingsStore.setIncludeRpgWinners,
-    ];
     const filters = [
       settingsStore.includeGotmRunnerUp,
       settingsStore.includeGotmWinners,
@@ -147,7 +131,23 @@ const App = observer(() => {
     ];
     filters[item] = value;
     if (filters.some((x) => x)) {
-      updaters[item](value);
+      switch (item) {
+        case 0:
+          settingsStore.setIncludeGotmRunnerUp(value);
+          break;
+        case 1:
+          settingsStore.setIncludeGotmWinners(value);
+          break;
+        case 2:
+          settingsStore.setIncludeRetrobits(value);
+          break;
+        case 3:
+          settingsStore.setIncludeRpgRunnerUp(value);
+          break;
+        case 4:
+          settingsStore.setIncludeRpgWinners(value);
+          break;
+      }
     } else {
       toast({
         message: 'You must include a list. Please include something.',
@@ -288,10 +288,10 @@ const App = observer(() => {
                   className="horizontal-slider"
                   thumbClassName="example-thumb"
                   trackClassName="example-track"
-                  defaultValue={[settingsStore.ttbMin, settingsStore.ttbMax]}
                   onAfterChange={(newValues, thumbIndex) =>
                     handleTtbFilterChange(newValues, thumbIndex)
                   }
+                  defaultValue={[0, Number.MAX_SAFE_INTEGER]}
                   min={settingsStore.ttbMin}
                   max={settingsStore.ttbMax}
                   value={settingsStore.ttbFilter}
