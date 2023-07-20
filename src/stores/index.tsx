@@ -1,9 +1,8 @@
 import { createContext } from 'react';
 import DatabaseStore from './DatabaseStore';
-import RandomizerStore from './RandomizerStore';
+import SettingsStore from './SettingsStore';
 
-const databaseStore = new DatabaseStore();
 export default createContext({
-  databaseStore,
-  settingsStore: new RandomizerStore(databaseStore),
+  databaseStore: new DatabaseStore(),
+  settingsStore: new SettingsStore(),
 });
