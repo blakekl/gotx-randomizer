@@ -9,7 +9,7 @@ import { Game } from './models/game';
 import { useStores } from './stores/useStores';
 
 const App = observer(() => {
-  const { databaseStore, settingsStore } = useStores();
+  const { databaseStore, randomizerStore } = useStores();
   const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
@@ -68,19 +68,19 @@ const App = observer(() => {
 
   React.useEffect(() => {
     let newPool: Game[] = [];
-    if (settingsStore.includeGotmRunnerUp) {
+    if (randomizerStore.includeGotmRunnerUp) {
       newPool = newPool.concat(databaseStore.gotmRunnerUp);
     }
-    if (settingsStore.includeGotmWinners) {
+    if (randomizerStore.includeGotmWinners) {
       newPool = newPool.concat(databaseStore.gotmWinners);
     }
-    if (settingsStore.includeRetrobits) {
+    if (randomizerStore.includeRetrobits) {
       newPool = newPool.concat(databaseStore.retrobits);
     }
-    if (settingsStore.includeRpgRunnerUp) {
+    if (randomizerStore.includeRpgRunnerUp) {
       newPool = newPool.concat(databaseStore.rpgRunnerUp);
     }
-    if (settingsStore.includeRpgWinners) {
+    if (randomizerStore.includeRpgWinners) {
       newPool = newPool.concat(databaseStore.rpgWinners);
     }
 
@@ -95,7 +95,7 @@ const App = observer(() => {
             Number.MAX_SAFE_INTEGER
           )
       );
-      settingsStore.setTtbMin(minTime);
+      randomizerStore.setTtbMin(minTime);
 
       const maxTime = Math.ceil(
         newPool
@@ -103,17 +103,17 @@ const App = observer(() => {
           .filter((x) => x > 0)
           .reduce((accumulator, current) => Math.max(accumulator, current), 0)
       );
-      settingsStore.setTtbMax(maxTime);
+      randomizerStore.setTtbMax(maxTime);
     }
     setGamePool(shuffle(newPool));
     setCurrentIndex(0);
     setImgLoaded(false);
   }, [
-    settingsStore.includeGotmRunnerUp,
-    settingsStore.includeGotmWinners,
-    settingsStore.includeRetrobits,
-    settingsStore.includeRpgRunnerUp,
-    settingsStore.includeRpgWinners,
+    randomizerStore.includeGotmRunnerUp,
+    randomizerStore.includeGotmWinners,
+    randomizerStore.includeRetrobits,
+    randomizerStore.includeRpgRunnerUp,
+    randomizerStore.includeRpgWinners,
     databaseStore.gotmRunnerUp,
     databaseStore.gotmWinners,
     databaseStore.retrobits,
@@ -123,29 +123,29 @@ const App = observer(() => {
 
   const handleFilterChange = (item: number, value: boolean) => {
     const filters = [
-      settingsStore.includeGotmRunnerUp,
-      settingsStore.includeGotmWinners,
-      settingsStore.includeRetrobits,
-      settingsStore.includeRpgRunnerUp,
-      settingsStore.includeRpgWinners,
+      randomizerStore.includeGotmRunnerUp,
+      randomizerStore.includeGotmWinners,
+      randomizerStore.includeRetrobits,
+      randomizerStore.includeRpgRunnerUp,
+      randomizerStore.includeRpgWinners,
     ];
     filters[item] = value;
     if (filters.some((x) => x)) {
       switch (item) {
         case 0:
-          settingsStore.setIncludeGotmRunnerUp(value);
+          randomizerStore.setIncludeGotmRunnerUp(value);
           break;
         case 1:
-          settingsStore.setIncludeGotmWinners(value);
+          randomizerStore.setIncludeGotmWinners(value);
           break;
         case 2:
-          settingsStore.setIncludeRetrobits(value);
+          randomizerStore.setIncludeRetrobits(value);
           break;
         case 3:
-          settingsStore.setIncludeRpgRunnerUp(value);
+          randomizerStore.setIncludeRpgRunnerUp(value);
           break;
         case 4:
-          settingsStore.setIncludeRpgWinners(value);
+          randomizerStore.setIncludeRpgWinners(value);
           break;
       }
     } else {
@@ -162,22 +162,22 @@ const App = observer(() => {
   React.useEffect(() => {
     let filtered: Game[];
     if (
-      settingsStore.ttbFilter[0] === settingsStore.ttbMin &&
-      settingsStore.ttbFilter[1] === settingsStore.ttbMax
+      randomizerStore.ttbFilter[0] === randomizerStore.ttbMin &&
+      randomizerStore.ttbFilter[1] === randomizerStore.ttbMax
     ) {
       filtered = gamePool;
     } else {
       filtered = gamePool.filter(
         (x) =>
-          x.time_to_beat >= settingsStore.ttbFilter[0] &&
-          x.time_to_beat <= settingsStore.ttbFilter[1]
+          x.time_to_beat >= randomizerStore.ttbFilter[0] &&
+          x.time_to_beat <= randomizerStore.ttbFilter[1]
       );
     }
     setFilteredGamePool(filtered);
-  }, [gamePool, settingsStore.ttbFilter]);
+  }, [gamePool, randomizerStore.ttbFilter]);
 
   const handleTtbFilterChange = (newValue, thumbIndex) => {
-    settingsStore.setTtbFilter(newValue);
+    randomizerStore.setTtbFilter(newValue);
   };
 
   return (
@@ -219,9 +219,9 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={settingsStore.includeGotmWinners}
+                    checked={randomizerStore.includeGotmWinners}
                     onChange={() =>
-                      handleFilterChange(1, !settingsStore.includeGotmWinners)
+                      handleFilterChange(1, !randomizerStore.includeGotmWinners)
                     }
                   ></input>
                   GotM Winners
@@ -233,9 +233,12 @@ const App = observer(() => {
                     type="checkbox"
                     className="checkbox"
                     name="GotM Runner Ups"
-                    checked={settingsStore.includeGotmRunnerUp}
+                    checked={randomizerStore.includeGotmRunnerUp}
                     onChange={() =>
-                      handleFilterChange(0, !settingsStore.includeGotmRunnerUp)
+                      handleFilterChange(
+                        0,
+                        !randomizerStore.includeGotmRunnerUp
+                      )
                     }
                   ></input>
                   GotM Runner Ups
@@ -246,9 +249,9 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={settingsStore.includeRetrobits}
+                    checked={randomizerStore.includeRetrobits}
                     onChange={() =>
-                      handleFilterChange(2, !settingsStore.includeRetrobits)
+                      handleFilterChange(2, !randomizerStore.includeRetrobits)
                     }
                   ></input>
                   Retrobits
@@ -259,9 +262,9 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={settingsStore.includeRpgWinners}
+                    checked={randomizerStore.includeRpgWinners}
                     onChange={() =>
-                      handleFilterChange(4, !settingsStore.includeRpgWinners)
+                      handleFilterChange(4, !randomizerStore.includeRpgWinners)
                     }
                   ></input>
                   RPGotQ Winners
@@ -272,9 +275,9 @@ const App = observer(() => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={settingsStore.includeRpgRunnerUp}
+                    checked={randomizerStore.includeRpgRunnerUp}
                     onChange={() =>
-                      handleFilterChange(3, !settingsStore.includeRpgRunnerUp)
+                      handleFilterChange(3, !randomizerStore.includeRpgRunnerUp)
                     }
                   ></input>
                   RPGotQ Runner Ups
@@ -292,9 +295,9 @@ const App = observer(() => {
                     handleTtbFilterChange(newValues, thumbIndex)
                   }
                   defaultValue={[0, Number.MAX_SAFE_INTEGER]}
-                  min={settingsStore.ttbMin}
-                  max={settingsStore.ttbMax}
-                  value={settingsStore.ttbFilter}
+                  min={randomizerStore.ttbMin}
+                  max={randomizerStore.ttbMax}
+                  value={randomizerStore.ttbFilter}
                   ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
                   ariaValuetext={(state) => `Filter value ${state.valueNow}`}
                   renderThumb={(props, state) => (

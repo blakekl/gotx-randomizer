@@ -1,7 +1,12 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { makeAutoObservable } from 'mobx';
+import { Game } from '../models/game';
+import dbClient from '../data';
+import { runInAction } from 'mobx';
 
-class SettingsStore {
+class RandomizerStore {
+  gamePool: Game[] = [];
+  currentGameIndex = 0;
   includeGotmRunnerUp = true;
   includeGotmWinners = true;
   includeRetrobits = true;
@@ -21,7 +26,13 @@ class SettingsStore {
       ttbFilter: observable,
       ttbMax: observable,
       ttbMin: observable,
+      currentGameIndex: observable,
+      gamePool: observable,
 
+      filteredGamePool: computed,
+      currentGame: computed,
+
+      nextGame: action,
       setIncludeGotmRunnerUp: action,
       setIncludeGotmWinners: action,
       setIncludeRetrobits: action,
@@ -30,7 +41,53 @@ class SettingsStore {
       setTtbFilter: action,
       setTtbMax: action,
       setTtbMin: action,
+      setGamePool: action,
     });
+
+    (async () => {
+      const gotmRunnerUp = await dbClient.getGotmRunnerup();
+      const gotmWinners = await dbClient.getGotmWinners();
+      const retrobits = await dbClient.getRetrobits();
+      const rpgRunnerUp = await dbClient.getRpgRunnerup();
+      const rpgWinners = await dbClient.getRpgRunnerup();
+      runInAction(() =>
+        this.setGamePool([
+          ...gotmRunnerUp,
+          ...gotmWinners,
+          ...retrobits,
+          ...rpgRunnerUp,
+          ...rpgWinners,
+        ])
+      );
+    })();
+  }
+
+  setGamePool(value: Game[]) {
+    this.gamePool = value;
+  }
+
+  get filteredGamePool(): Game[] {
+    if (
+      this.ttbFilter[0] === this.ttbMin &&
+      this.ttbFilter[1] === this.ttbMax
+    ) {
+      return this.gamePool;
+    } else {
+      return this.gamePool.filter(
+        (x) =>
+          x.time_to_beat >= this.ttbFilter[0] &&
+          x.time_to_beat <= this.ttbFilter[1]
+      );
+    }
+  }
+
+  get currentGame(): Game {
+    return this.filteredGamePool[this.currentGameIndex];
+  }
+
+  nextGame() {
+    this.currentGameIndex =
+      (this.currentGameIndex + 1) % this.filteredGamePool.length;
   }
 
   setIncludeGotmRunnerUp(value: boolean) {
@@ -72,4 +129,4 @@ class SettingsStore {
   }
 }
 
-export default SettingsStore;
+export default RandomizerStore;
