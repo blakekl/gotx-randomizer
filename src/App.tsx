@@ -7,6 +7,7 @@ import classNames = require('classnames');
 import './style.css';
 import { Game } from './models/game';
 import { useStores } from './stores/useStores';
+import RandomizerStore from './stores/RandomizerStore';
 
 const App = observer(() => {
   const { databaseStore, randomizerStore } = useStores();
@@ -14,36 +15,9 @@ const App = observer(() => {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(false);
-  const [gamePool, setGamePool] = React.useState([]);
-  const [filteredGamePool, setFilteredGamePool] = React.useState([]);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  databaseStore.loadData();
-  const emptyGame = {
-    id: 0,
-    title: {
-      usa: '',
-      eu: '',
-      jap: '',
-      world: '',
-      other: '',
-    },
-    screenscraper_id: 0,
-    img: '',
-    year: 0,
-    system: '',
-    developer: '',
-    genre: '',
-    time_to_beat: 0,
-  } as Game;
-
-  const getCurrentGame = () => {
-    return filteredGamePool?.length > 0
-      ? filteredGamePool[currentIndex]
-      : emptyGame;
-  };
 
   const handleButtonClick = () => {
-    setCurrentIndex((currentIndex + 1) % filteredGamePool.length);
+    randomizerStore.nextGame();
     setImgLoaded(false);
   };
 
@@ -57,56 +31,7 @@ const App = observer(() => {
     }
   }, [imgElement]);
 
-  const shuffle = (inputArray) => {
-    const outputArray = [...inputArray];
-    for (let i = outputArray.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
-    }
-    return outputArray;
-  };
-
   React.useEffect(() => {
-    let newPool: Game[] = [];
-    if (randomizerStore.includeGotmRunnerUp) {
-      newPool = newPool.concat(databaseStore.gotmRunnerUp);
-    }
-    if (randomizerStore.includeGotmWinners) {
-      newPool = newPool.concat(databaseStore.gotmWinners);
-    }
-    if (randomizerStore.includeRetrobits) {
-      newPool = newPool.concat(databaseStore.retrobits);
-    }
-    if (randomizerStore.includeRpgRunnerUp) {
-      newPool = newPool.concat(databaseStore.rpgRunnerUp);
-    }
-    if (randomizerStore.includeRpgWinners) {
-      newPool = newPool.concat(databaseStore.rpgWinners);
-    }
-
-    // update time filter values.
-    if (newPool.length > 0) {
-      const minTime = Math.floor(
-        newPool
-          .map((x) => x.time_to_beat)
-          .filter((x) => x > 0)
-          .reduce(
-            (accumulator, current) => Math.min(accumulator, current),
-            Number.MAX_SAFE_INTEGER
-          )
-      );
-      randomizerStore.setTtbMin(minTime);
-
-      const maxTime = Math.ceil(
-        newPool
-          .map((x) => x.time_to_beat)
-          .filter((x) => x > 0)
-          .reduce((accumulator, current) => Math.max(accumulator, current), 0)
-      );
-      randomizerStore.setTtbMax(maxTime);
-    }
-    setGamePool(shuffle(newPool));
-    setCurrentIndex(0);
     setImgLoaded(false);
   }, [
     randomizerStore.includeGotmRunnerUp,
@@ -114,11 +39,6 @@ const App = observer(() => {
     randomizerStore.includeRetrobits,
     randomizerStore.includeRpgRunnerUp,
     randomizerStore.includeRpgWinners,
-    databaseStore.gotmRunnerUp,
-    databaseStore.gotmWinners,
-    databaseStore.retrobits,
-    databaseStore.rpgRunnerUp,
-    databaseStore.rpgWinners,
   ]);
 
   const handleFilterChange = (item: number, value: boolean) => {
@@ -158,23 +78,6 @@ const App = observer(() => {
       });
     }
   };
-
-  React.useEffect(() => {
-    let filtered: Game[];
-    if (
-      randomizerStore.ttbFilter[0] === randomizerStore.ttbMin &&
-      randomizerStore.ttbFilter[1] === randomizerStore.ttbMax
-    ) {
-      filtered = gamePool;
-    } else {
-      filtered = gamePool.filter(
-        (x) =>
-          x.time_to_beat >= randomizerStore.ttbFilter[0] &&
-          x.time_to_beat <= randomizerStore.ttbFilter[1]
-      );
-    }
-    setFilteredGamePool(filtered);
-  }, [gamePool, randomizerStore.ttbFilter]);
 
   const handleTtbFilterChange = (newValue, thumbIndex) => {
     randomizerStore.setTtbFilter(newValue);
@@ -338,9 +241,10 @@ const App = observer(() => {
       ></div>
       <img
         ref={imgElement}
-        src={getCurrentGame().img}
+        src={randomizerStore.currentGame.img}
         style={{
-          display: !!getCurrentGame()?.img && imgLoaded ? 'block' : 'none',
+          display:
+            !!randomizerStore.currentGame?.img && imgLoaded ? 'block' : 'none',
           margin: 'auto',
         }}
       />
@@ -348,21 +252,21 @@ const App = observer(() => {
         <h1 className="title has-text-centered">
           {
             [
-              `🇺🇸 ${getCurrentGame().title.usa}`,
-              `🌎 ${getCurrentGame().title.world}`,
-              `🇪🇺 ${getCurrentGame().title.eu}`,
-              `🇯🇵 ${getCurrentGame().title.jap}`,
-              `🏳️ ${getCurrentGame().title.other}`,
+              `🇺🇸 ${randomizerStore.currentGame.title.usa}`,
+              `🌎 ${randomizerStore.currentGame.title.world}`,
+              `🇪🇺 ${randomizerStore.currentGame.title.eu}`,
+              `🇯🇵 ${randomizerStore.currentGame.title.jap}`,
+              `🏳️ ${randomizerStore.currentGame.title.other}`,
             ].filter((x) => x.length > 5)[0]
           }
         </h1>
         <h2 className="subtitle has-text-centered">
           {[
-            `🇺🇸 ${getCurrentGame().title.usa}`,
-            `🌎 ${getCurrentGame().title.world}`,
-            `🇪🇺 ${getCurrentGame().title.eu}`,
-            `🇯🇵 ${getCurrentGame().title.jap}`,
-            `🏳️ ${getCurrentGame().title.other}`,
+            `🇺🇸 ${randomizerStore.currentGame.title.usa}`,
+            `🌎 ${randomizerStore.currentGame.title.world}`,
+            `🇪🇺 ${randomizerStore.currentGame.title.eu}`,
+            `🇯🇵 ${randomizerStore.currentGame.title.jap}`,
+            `🏳️ ${randomizerStore.currentGame.title.other}`,
           ]
             .filter((x) => x.length > 5)
             .slice(1)
@@ -376,7 +280,7 @@ const App = observer(() => {
               <p className="subtitle is-hidden-mobile">🗓️</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🗓️</span>
-                <span>{getCurrentGame().year}</span>
+                <span>{randomizerStore.currentGame.year}</span>
               </p>
             </div>
           </div>
@@ -385,7 +289,7 @@ const App = observer(() => {
               <p className="subtitle is-hidden-mobile">🕹️</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🕹️</span>
-                <span>{getCurrentGame().system}</span>
+                <span>{randomizerStore.currentGame.system}</span>
               </p>
             </div>
           </div>
@@ -394,7 +298,7 @@ const App = observer(() => {
               <p className="subtitle is-hidden-mobile">🏢</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🏢</span>
-                <span>{getCurrentGame().developer}</span>
+                <span>{randomizerStore.currentGame.developer}</span>
               </p>
             </div>
           </div>
@@ -404,8 +308,8 @@ const App = observer(() => {
               <p className="subtitle">
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
-                  {getCurrentGame().time_to_beat > 0
-                    ? `${getCurrentGame().time_to_beat} hours`
+                  {randomizerStore.currentGame.time_to_beat > 0
+                    ? `${randomizerStore.currentGame.time_to_beat} hours`
                     : 'No data'}
                 </span>
               </p>
@@ -413,7 +317,7 @@ const App = observer(() => {
           </div>
         </div>
         <blockquote className="is-size-4 has-text-justified">
-          {getCurrentGame().description}
+          {randomizerStore.currentGame.description}
         </blockquote>
       </section>
     </div>

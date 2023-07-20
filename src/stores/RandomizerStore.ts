@@ -4,17 +4,46 @@ import { Game } from '../models/game';
 import dbClient from '../data';
 import { runInAction } from 'mobx';
 
+interface GameCollection {
+  gotmRunnerUp: Game[];
+  gotmWinners: Game[];
+  retrobits: Game[];
+  rpgRunnerUp: Game[];
+  rpgWinners: Game[];
+}
+
 class RandomizerStore {
-  gamePool: Game[] = [];
+  allGames: GameCollection = {
+    gotmRunnerUp: [],
+    gotmWinners: [],
+    retrobits: [],
+    rpgRunnerUp: [],
+    rpgWinners: [],
+  } as GameCollection;
   currentGameIndex = 0;
   includeGotmRunnerUp = true;
   includeGotmWinners = true;
   includeRetrobits = true;
   includeRpgRunnerUp = true;
   includeRpgWinners = true;
-  ttbMax = Number.MAX_SAFE_INTEGER;
-  ttbMin = 0;
-  ttbFilter: number[] = [this.ttbMin, this.ttbMax];
+  ttbFilter: number[] = [0, Number.MAX_SAFE_INTEGER];
+  emptyGame = {
+    id: 0,
+    title: {
+      usa: '',
+      eu: '',
+      jap: '',
+      world: '',
+      other: '',
+    },
+    screenscraper_id: 0,
+    img: '',
+    year: 0,
+    system: '',
+    developer: '',
+    genre: '',
+    time_to_beat: 0,
+  } as Game;
 
   constructor() {
     makeAutoObservable(this, {
@@ -24,13 +53,13 @@ class RandomizerStore {
       includeRpgRunnerUp: observable,
       includeRpgWinners: observable,
       ttbFilter: observable,
-      ttbMax: observable,
-      ttbMin: observable,
       currentGameIndex: observable,
-      gamePool: observable,
+      allGames: observable,
 
       filteredGamePool: computed,
       currentGame: computed,
+      ttbMin: computed,
+      ttbMax: computed,
 
       nextGame: action,
       setIncludeGotmRunnerUp: action,
@@ -39,9 +68,7 @@ class RandomizerStore {
       setIncludeRpgRunnerUp: action,
       setIncludeRpgWinners: action,
       setTtbFilter: action,
-      setTtbMax: action,
-      setTtbMin: action,
-      setGamePool: action,
+      setAllGames: action,
     });
 
     (async () => {
@@ -51,38 +78,98 @@ class RandomizerStore {
       const rpgRunnerUp = await dbClient.getRpgRunnerup();
       const rpgWinners = await dbClient.getRpgRunnerup();
       runInAction(() =>
-        this.setGamePool([
-          ...gotmRunnerUp,
-          ...gotmWinners,
-          ...retrobits,
-          ...rpgRunnerUp,
-          ...rpgWinners,
-        ])
+        this.setAllGames({
+          gotmRunnerUp,
+          gotmWinners,
+          retrobits,
+          rpgRunnerUp,
+          rpgWinners,
+        })
       );
     })();
   }
 
-  setGamePool(value: Game[]) {
-    this.gamePool = value;
+  shuffle(inputArray: Game[]): Game[] {
+    const outputArray = [...inputArray];
+    for (let i = outputArray.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
+    }
+    return outputArray;
+  }
+
+  setAllGames(value: GameCollection) {
+    this.allGames = value;
   }
 
   get filteredGamePool(): Game[] {
-    if (
-      this.ttbFilter[0] === this.ttbMin &&
-      this.ttbFilter[1] === this.ttbMax
-    ) {
-      return this.gamePool;
-    } else {
-      return this.gamePool.filter(
-        (x) =>
-          x.time_to_beat >= this.ttbFilter[0] &&
-          x.time_to_beat <= this.ttbFilter[1]
-      );
-    }
+    let pool: Game[] = [];
+    pool = this.includeGotmRunnerUp
+      ? pool.concat(this.allGames.gotmRunnerUp)
+      : pool;
+    pool = this.includeGotmWinners
+      ? pool.concat(this.allGames.gotmWinners)
+      : pool;
+    pool = this.includeRetrobits ? pool.concat(this.allGames.retrobits) : pool;
+    pool = this.includeRpgRunnerUp
+      ? pool.concat(this.allGames.rpgRunnerUp)
+      : pool;
+    pool = this.includeRpgWinners
+      ? pool.concat(this.allGames.rpgWinners)
+      : pool;
+    pool = this.shuffle(pool);
+    pool = pool.filter(
+      (x) =>
+        x.time_to_beat >= this.ttbFilter[0] &&
+        x.time_to_beat <= this.ttbFilter[1]
+    );
+    return this.shuffle(pool);
   }
 
   get currentGame(): Game {
-    return this.filteredGamePool[this.currentGameIndex];
+    if (this.filteredGamePool.length > 0) {
+      return this.filteredGamePool[this.currentGameIndex];
+    }
+    return this.emptyGame;
+  }
+
+  get ttbMin(): number {
+    const allList = [
+      ...this.allGames.gotmRunnerUp,
+      ...this.allGames.gotmWinners,
+      ...this.allGames.retrobits,
+      ...this.allGames.rpgRunnerUp,
+      ...this.allGames.rpgWinners,
+    ];
+    if (allList.length > 0) {
+      const newMin = allList
+        .map((x) => x.time_to_beat)
+        .filter((x) => !isNaN(x))
+        .filter((x) => x > -1)
+        .reduce(
+          (aggregate, current) => Math.min(aggregate, Math.round(current)),
+          Number.MAX_SAFE_INTEGER
+        );
+      console.log('newMin: ', newMin);
+      return newMin;
+    }
+    return 0;
+  }
+
+  get ttbMax(): number {
+    const allList = [
+      ...this.allGames.gotmRunnerUp,
+      ...this.allGames.gotmWinners,
+      ...this.allGames.retrobits,
+      ...this.allGames.rpgRunnerUp,
+      ...this.allGames.rpgWinners,
+    ];
+    if (allList.length > 0) {
+      return allList
+        .map((x) => x.time_to_beat)
+        .reduce((aggregate, current) => Math.max(aggregate, current), 0);
+    }
+    return Number.MAX_SAFE_INTEGER;
   }
 
   nextGame() {
@@ -108,20 +195,6 @@ class RandomizerStore {
 
   setIncludeRpgWinners(value: boolean) {
     this.includeRpgWinners = value;
-  }
-
-  setTtbMax(value: number) {
-    this.ttbMax = value;
-    if (this.ttbFilter[1] > this.ttbMax) {
-      this.setTtbFilter([this.ttbFilter[0], this.ttbMax]);
-    }
-  }
-
-  setTtbMin(value: number) {
-    this.ttbMin = value;
-    if (this.ttbFilter[0] < this.ttbMin) {
-      this.setTtbFilter([this.ttbMin, this.ttbFilter[1]]);
-    }
   }
 
   setTtbFilter(value: number[]) {
