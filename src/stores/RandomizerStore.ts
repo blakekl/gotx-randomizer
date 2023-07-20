@@ -1,7 +1,9 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { makeAutoObservable } from 'mobx';
+import { Game } from '../models/game';
+import DatabaseStore from './DatabaseStore';
 
-class SettingsStore {
+class RandomizerStore {
   includeGotmRunnerUp = true;
   includeGotmWinners = true;
   includeRetrobits = true;
@@ -10,8 +12,10 @@ class SettingsStore {
   ttbMax = Number.MAX_SAFE_INTEGER;
   ttbMin = 0;
   ttbFilter = [this.ttbMin, this.ttbMax];
+  currentIndex = 0;
 
-  constructor() {
+  private readonly databaseStore: DatabaseStore;
+  constructor(databaseStore: DatabaseStore) {
     makeAutoObservable(this, {
       includeGotmRunnerUp: observable,
       includeGotmWinners: observable,
@@ -21,6 +25,9 @@ class SettingsStore {
       ttbMax: observable,
       ttbMin: observable,
       ttbFilter: observable,
+      currentIndex: observable,
+      gamePool: computed,
+      filteredGamePool: computed,
 
       setIncludeGotmRunnerUp: action,
       setIncludeGotmWinners: action,
@@ -30,6 +37,7 @@ class SettingsStore {
       setTtbMax: action,
       setTtbMin: action,
       setTtbFilter: action,
+      nextGame: action,
     });
   }
 
@@ -64,6 +72,40 @@ class SettingsStore {
   setTtbFilter(value: number[]) {
     this.ttbFilter = value;
   }
+
+  nextGame() {
+    this.currentIndex = (this.currentIndex + 1) % this.filteredGamePool.length;
+  }
+
+  get gamePool(): Game[] {
+    let gamePool = [];
+
+    gamePool = this.includeGotmRunnerUp
+      ? gamePool.concat(this.databaseStore.gotmRunnerUp)
+      : gamePool;
+    gamePool = this.includeGotmRunnerUp
+      ? gamePool.concat(this.databaseStore.gotmWinners)
+      : gamePool;
+    gamePool = this.includeGotmRunnerUp
+      ? gamePool.concat(this.databaseStore.retrobits)
+      : gamePool;
+    gamePool = this.includeGotmRunnerUp
+      ? gamePool.concat(this.databaseStore.rpgRunnerUp)
+      : gamePool;
+    gamePool = this.includeGotmRunnerUp
+      ? gamePool.concat(this.databaseStore.rpgWinners)
+      : gamePool;
+
+    return gamePool;
+  }
+
+  get filteredGamePool(): Game[] {
+    return this.gamePool.filter(
+      (x) =>
+        x.time_to_beat <= this.ttbFilter[0] &&
+        x.time_to_beat >= this.ttbFilter[1]
+    );
+  }
 }
 
-export default SettingsStore;
+export default RandomizerStore;
