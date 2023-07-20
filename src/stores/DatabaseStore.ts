@@ -56,7 +56,7 @@ class DatabaseStore {
       this.setGotmRunnerUp(
         result[0].values.map((x) => gameDto(x, GameType.gotm))
       );
-      this.setGotmRunnerUp(
+      this.setGotmWinners(
         result[1].values.map((x) => gameDto(x, GameType.gotm))
       );
       this.setRetrobits(result[2].values.map((x) => retrobitsGameDto(x)));
