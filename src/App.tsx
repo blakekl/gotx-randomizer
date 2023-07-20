@@ -5,12 +5,10 @@ import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
 import classNames = require('classnames');
 import './style.css';
-import { Game } from './models/game';
 import { useStores } from './stores/useStores';
-import RandomizerStore from './stores/RandomizerStore';
 
 const App = observer(() => {
-  const { databaseStore, randomizerStore } = useStores();
+  const { randomizerStore } = useStores();
   const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);

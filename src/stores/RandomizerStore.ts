@@ -142,7 +142,7 @@ class RandomizerStore {
       ...this.allGames.rpgWinners,
     ];
     if (allList.length > 0) {
-      const newMin = allList
+      return allList
         .map((x) => x.time_to_beat)
         .filter((x) => !isNaN(x))
         .filter((x) => x > -1)
@@ -150,8 +150,6 @@ class RandomizerStore {
           (aggregate, current) => Math.min(aggregate, Math.round(current)),
           Number.MAX_SAFE_INTEGER
         );
-      console.log('newMin: ', newMin);
-      return newMin;
     }
     return 0;
   }
