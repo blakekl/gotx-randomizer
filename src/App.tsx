@@ -1,68 +1,22 @@
-import { toast } from 'bulma-toast';
-import classNames = require('classnames');
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import './style.css';
-import { useData } from './hooks/useData';
-import { Game } from './models/game';
+import { observer } from 'mobx-react-lite';
+import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
+import classNames = require('classnames');
+import './style.css';
+import { useStores } from './stores/useStores';
 
-export default function App() {
-  const {
-    isDbReady,
-    gotmWinners,
-    gotmRunnerUp,
-    retrobits,
-    rpgWinners,
-    rpgRunnerUp,
-  } = useData();
+const App = observer(() => {
+  const { randomizerStore } = useStores();
   const imgElement = React.useRef<HTMLImageElement>(null);
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = React.useState(true);
   const [imgLoaded, setImgLoaded] = React.useState(false);
-  const [includeGotmWinners, setIncludeGotmWinners] = React.useState(true);
-  const [includeGotmRunnerUp, setIncludeGotmRunnerUp] = React.useState(true);
-  const [includeRetrobits, setIncludeRetrobits] = React.useState(true);
-  const [includeRpgWinners, setIncludeRpgWinners] = React.useState(true);
-  const [includeRpgRunnerUp, setIncludeRpgRunnerUp] = React.useState(true);
-  const [gamePool, setGamePool] = React.useState([]);
-  const [filteredGamePool, setFilteredGamePool] = React.useState([]);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [ttbMin, setTtbMin] = React.useState(0);
-  const [ttbMax, setTtbMax] = React.useState(0);
-  const [ttbFilter, setTtbFilter] = React.useState([
-    0,
-    Number.MAX_SAFE_INTEGER,
-  ]);
-  const emptyGame = {
-    id: 0,
-    title: {
-      usa: '',
-      eu: '',
-      jap: '',
-      world: '',
-      other: '',
-    },
-    screenscraper_id: 0,
-    img: '',
-    year: 0,
-    system: '',
-    developer: '',
-    genre: '',
-    time_to_beat: 0,
-  } as Game;
 
-  const getCurrentGame = () =>
-    gamePool && filteredGamePool.length > 0
-      ? filteredGamePool[currentIndex]
-      : emptyGame;
-
-  const getNextGame = () => {
-    setCurrentIndex((currentIndex + 1) % filteredGamePool.length);
-    setImgLoaded(false);
-  };
   const handleButtonClick = () => {
-    getNextGame();
+    randomizerStore.nextGame();
+    setImgLoaded(false);
   };
 
   const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
@@ -75,87 +29,43 @@ export default function App() {
     }
   }, [imgElement]);
 
-  const shuffle = (inputArray) => {
-    const outputArray = [...inputArray];
-    for (let i = outputArray.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
-    }
-    return outputArray;
-  };
-
   React.useEffect(() => {
-    if (!isDbReady) {
-      return;
-    }
-    let newPool: Game[] = [];
-    if (includeGotmRunnerUp) {
-      newPool = newPool.concat(gotmRunnerUp);
-    }
-    if (includeGotmWinners) {
-      newPool = newPool.concat(gotmWinners);
-    }
-    if (includeRetrobits) {
-      newPool = newPool.concat(retrobits);
-    }
-    if (includeRpgRunnerUp) {
-      newPool = newPool.concat(rpgRunnerUp);
-    }
-    if (includeRpgWinners) {
-      newPool = newPool.concat(rpgWinners);
-    }
-    const minTime = Math.floor(
-      newPool
-        .map((x) => x.time_to_beat)
-        .filter((x) => x > 0)
-        .reduce(
-          (accumulator, current) => Math.min(accumulator, current),
-          Number.MAX_SAFE_INTEGER
-        )
-    );
-    setTtbMin(minTime);
-    const maxTime = Math.ceil(
-      newPool
-        .map((x) => x.time_to_beat)
-        .filter((x) => x > 0)
-        .reduce((accumulator, current) => Math.max(accumulator, current), 0)
-    );
-    setTtbMax(maxTime);
-    setGamePool(shuffle(newPool));
-    if (ttbFilter[0] < minTime || ttbFilter[1] > maxTime) {
-      setTtbFilter([minTime, maxTime]);
-    } else {
-      setTtbFilter([...ttbFilter]);
-    }
-    setCurrentIndex(0);
     setImgLoaded(false);
   }, [
-    isDbReady,
-    includeGotmRunnerUp,
-    includeGotmWinners,
-    includeRetrobits,
-    includeRpgRunnerUp,
-    includeRpgWinners,
+    randomizerStore.includeGotmRunnerUp,
+    randomizerStore.includeGotmWinners,
+    randomizerStore.includeRetrobits,
+    randomizerStore.includeRpgRunnerUp,
+    randomizerStore.includeRpgWinners,
   ]);
 
   const handleFilterChange = (item: number, value: boolean) => {
-    const updaters = [
-      setIncludeGotmRunnerUp,
-      setIncludeGotmWinners,
-      setIncludeRetrobits,
-      setIncludeRpgRunnerUp,
-      setIncludeRpgWinners,
-    ];
     const filters = [
-      includeGotmRunnerUp,
-      includeGotmWinners,
-      includeRetrobits,
-      includeRpgRunnerUp,
-      includeRpgWinners,
+      randomizerStore.includeGotmRunnerUp,
+      randomizerStore.includeGotmWinners,
+      randomizerStore.includeRetrobits,
+      randomizerStore.includeRpgRunnerUp,
+      randomizerStore.includeRpgWinners,
     ];
     filters[item] = value;
     if (filters.some((x) => x)) {
-      updaters[item](value);
+      switch (item) {
+        case 0:
+          randomizerStore.setIncludeGotmRunnerUp(value);
+          break;
+        case 1:
+          randomizerStore.setIncludeGotmWinners(value);
+          break;
+        case 2:
+          randomizerStore.setIncludeRetrobits(value);
+          break;
+        case 3:
+          randomizerStore.setIncludeRpgRunnerUp(value);
+          break;
+        case 4:
+          randomizerStore.setIncludeRpgWinners(value);
+          break;
+      }
     } else {
       toast({
         message: 'You must include a list. Please include something.',
@@ -167,28 +77,8 @@ export default function App() {
     }
   };
 
-  React.useEffect(() => {
-    let filtered;
-    if (ttbFilter[0] === ttbMin && ttbFilter[1] === ttbMax) {
-      filtered = gamePool.filter(
-        (x) =>
-          x.time_to_beat < 0 ||
-          (x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1])
-      );
-    } else {
-      filtered = gamePool.filter(
-        (x) => x.time_to_beat >= ttbFilter[0] && x.time_to_beat <= ttbFilter[1]
-      );
-    }
-    console.log(
-      'filtered: ',
-      filtered.map((x) => x.time_to_beat)
-    );
-    setFilteredGamePool(filtered);
-  }, [ttbFilter]);
-
   const handleTtbFilterChange = (newValue, thumbIndex) => {
-    setTtbFilter(newValue);
+    randomizerStore.setTtbFilter(newValue);
   };
 
   return (
@@ -230,8 +120,10 @@ export default function App() {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeGotmWinners}
-                    onChange={() => handleFilterChange(1, !includeGotmWinners)}
+                    checked={randomizerStore.includeGotmWinners}
+                    onChange={() =>
+                      handleFilterChange(1, !randomizerStore.includeGotmWinners)
+                    }
                   ></input>
                   GotM Winners
                 </label>
@@ -242,8 +134,13 @@ export default function App() {
                     type="checkbox"
                     className="checkbox"
                     name="GotM Runner Ups"
-                    checked={includeGotmRunnerUp}
-                    onChange={() => handleFilterChange(0, !includeGotmRunnerUp)}
+                    checked={randomizerStore.includeGotmRunnerUp}
+                    onChange={() =>
+                      handleFilterChange(
+                        0,
+                        !randomizerStore.includeGotmRunnerUp
+                      )
+                    }
                   ></input>
                   GotM Runner Ups
                 </label>
@@ -253,8 +150,10 @@ export default function App() {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeRetrobits}
-                    onChange={() => handleFilterChange(2, !includeRetrobits)}
+                    checked={randomizerStore.includeRetrobits}
+                    onChange={() =>
+                      handleFilterChange(2, !randomizerStore.includeRetrobits)
+                    }
                   ></input>
                   Retrobits
                 </label>
@@ -264,8 +163,10 @@ export default function App() {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeRpgWinners}
-                    onChange={() => handleFilterChange(4, !includeRpgWinners)}
+                    checked={randomizerStore.includeRpgWinners}
+                    onChange={() =>
+                      handleFilterChange(4, !randomizerStore.includeRpgWinners)
+                    }
                   ></input>
                   RPGotQ Winners
                 </label>
@@ -275,8 +176,10 @@ export default function App() {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={includeRpgRunnerUp}
-                    onChange={() => handleFilterChange(3, !includeRpgRunnerUp)}
+                    checked={randomizerStore.includeRpgRunnerUp}
+                    onChange={() =>
+                      handleFilterChange(3, !randomizerStore.includeRpgRunnerUp)
+                    }
                   ></input>
                   RPGotQ Runner Ups
                 </label>
@@ -289,13 +192,13 @@ export default function App() {
                   className="horizontal-slider"
                   thumbClassName="example-thumb"
                   trackClassName="example-track"
-                  defaultValue={[ttbMin, ttbMax]}
                   onAfterChange={(newValues, thumbIndex) =>
                     handleTtbFilterChange(newValues, thumbIndex)
                   }
-                  min={ttbMin}
-                  max={ttbMax}
-                  value={ttbFilter}
+                  defaultValue={[0, Number.MAX_SAFE_INTEGER]}
+                  min={randomizerStore.ttbMin}
+                  max={randomizerStore.ttbMax}
+                  value={randomizerStore.ttbFilter}
                   ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
                   ariaValuetext={(state) => `Filter value ${state.valueNow}`}
                   renderThumb={(props, state) => (
@@ -336,9 +239,10 @@ export default function App() {
       ></div>
       <img
         ref={imgElement}
-        src={getCurrentGame().img}
+        src={randomizerStore.currentGame.img}
         style={{
-          display: !!getCurrentGame()?.img && imgLoaded ? 'block' : 'none',
+          display:
+            !!randomizerStore.currentGame?.img && imgLoaded ? 'block' : 'none',
           margin: 'auto',
         }}
       />
@@ -346,26 +250,26 @@ export default function App() {
         <h1 className="title has-text-centered">
           {
             [
-              `🇺🇸 ${getCurrentGame().title.usa}`,
-              `🌎 ${getCurrentGame().title.world}`,
-              `🇪🇺 ${getCurrentGame().title.eu}`,
-              `🇯🇵 ${getCurrentGame().title.jap}`,
-              `🏳️ ${getCurrentGame().title.other}`,
+              `🇺🇸 ${randomizerStore.currentGame.title.usa}`,
+              `🌎 ${randomizerStore.currentGame.title.world}`,
+              `🇪🇺 ${randomizerStore.currentGame.title.eu}`,
+              `🇯🇵 ${randomizerStore.currentGame.title.jap}`,
+              `🏳️ ${randomizerStore.currentGame.title.other}`,
             ].filter((x) => x.length > 5)[0]
           }
         </h1>
         <h2 className="subtitle has-text-centered">
           {[
-            `🇺🇸 ${getCurrentGame().title.usa}`,
-            `🌎 ${getCurrentGame().title.world}`,
-            `🇪🇺 ${getCurrentGame().title.eu}`,
-            `🇯🇵 ${getCurrentGame().title.jap}`,
-            `🏳️ ${getCurrentGame().title.other}`,
+            `🇺🇸 ${randomizerStore.currentGame.title.usa}`,
+            `🌎 ${randomizerStore.currentGame.title.world}`,
+            `🇪🇺 ${randomizerStore.currentGame.title.eu}`,
+            `🇯🇵 ${randomizerStore.currentGame.title.jap}`,
+            `🏳️ ${randomizerStore.currentGame.title.other}`,
           ]
             .filter((x) => x.length > 5)
             .slice(1)
-            .map((title) => (
-              <div>{title}</div>
+            .map((title, index) => (
+              <div key={index}>{title}</div>
             ))}
         </h2>
         <div className="level">
@@ -374,7 +278,7 @@ export default function App() {
               <p className="subtitle is-hidden-mobile">🗓️</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🗓️</span>
-                <span>{getCurrentGame().year}</span>
+                <span>{randomizerStore.currentGame.year}</span>
               </p>
             </div>
           </div>
@@ -383,7 +287,7 @@ export default function App() {
               <p className="subtitle is-hidden-mobile">🕹️</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🕹️</span>
-                <span>{getCurrentGame().system}</span>
+                <span>{randomizerStore.currentGame.system}</span>
               </p>
             </div>
           </div>
@@ -392,7 +296,7 @@ export default function App() {
               <p className="subtitle is-hidden-mobile">🏢</p>
               <p className="subtitle">
                 <span className="is-hidden-tablet">🏢</span>
-                <span>{getCurrentGame().developer}</span>
+                <span>{randomizerStore.currentGame.developer}</span>
               </p>
             </div>
           </div>
@@ -402,8 +306,8 @@ export default function App() {
               <p className="subtitle">
                 <span className="is-hidden-tablet">⏱️</span>
                 <span>
-                  {getCurrentGame().time_to_beat > 0
-                    ? `${getCurrentGame().time_to_beat} hours`
+                  {randomizerStore.currentGame.time_to_beat > 0
+                    ? `${randomizerStore.currentGame.time_to_beat} hours`
                     : 'No data'}
                 </span>
               </p>
@@ -411,9 +315,11 @@ export default function App() {
           </div>
         </div>
         <blockquote className="is-size-4 has-text-justified">
-          {getCurrentGame().description}
+          {randomizerStore.currentGame.description}
         </blockquote>
       </section>
     </div>
   );
-}
+});
+
+export default App;

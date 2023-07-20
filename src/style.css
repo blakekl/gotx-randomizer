@@ -63,7 +63,7 @@ label input {
   position: absolute;
   z-index: 100;
   background: #ffffff;
-  border: 5px solid #0075ff;
+  border: 10px solid #0075ff;
   border-radius: 100%;
   display: block;
   box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
@@ -75,8 +75,7 @@ label input {
   position: relative;
   background: #ddd;
 }
-.example-track.example-track-0,
-.example-track.example-track-2 {
+.example-track.example-track-1 {
   background: #0075ff;
 }
 .horizontal-slider .example-track {
@@ -84,7 +83,7 @@ label input {
   height: 4px;
 }
 .horizontal-slider .example-thumb {
-  top: 17px;
+  top: 12px;
   width: 10px;
   outline: none;
   height: 10px;
