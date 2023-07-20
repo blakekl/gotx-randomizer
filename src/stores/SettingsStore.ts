@@ -9,7 +9,7 @@ class SettingsStore {
   includeRpgWinners = true;
   ttbMax = Number.MAX_SAFE_INTEGER;
   ttbMin = 0;
-  ttbFilter = [this.ttbMin, this.ttbMax];
+  ttbFilter: number[] = [this.ttbMin, this.ttbMax];
 
   constructor() {
     makeAutoObservable(this, {
@@ -18,18 +18,18 @@ class SettingsStore {
       includeRetrobits: observable,
       includeRpgRunnerUp: observable,
       includeRpgWinners: observable,
+      ttbFilter: observable,
       ttbMax: observable,
       ttbMin: observable,
-      ttbFilter: observable,
 
       setIncludeGotmRunnerUp: action,
       setIncludeGotmWinners: action,
       setIncludeRetrobits: action,
       setIncludeRpgRunnerUp: action,
       setIncludeRpgWinners: action,
+      setTtbFilter: action,
       setTtbMax: action,
       setTtbMin: action,
-      setTtbFilter: action,
     });
   }
 
@@ -55,10 +55,16 @@ class SettingsStore {
 
   setTtbMax(value: number) {
     this.ttbMax = value;
+    if (this.ttbFilter[1] > this.ttbMax) {
+      this.setTtbFilter([this.ttbFilter[0], this.ttbMax]);
+    }
   }
 
   setTtbMin(value: number) {
     this.ttbMin = value;
+    if (this.ttbFilter[0] < this.ttbMin) {
+      this.setTtbFilter([this.ttbMin, this.ttbFilter[1]]);
+    }
   }
 
   setTtbFilter(value: number[]) {

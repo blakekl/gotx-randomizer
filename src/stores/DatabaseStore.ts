@@ -1,94 +1,71 @@
-import { action, makeAutoObservable, observable, runInAction } from 'mobx';
-import initSqlJs = require('sql.js');
-import {
-  creationCommand,
-  getGotmRunnerup,
-  getRetrobits,
-  getRpgRunnerup,
-  getWinningGotm,
-  getWinningRpg,
-} from '../data/DbCommands';
-import { Game, gameDto, GameType, retrobitsGameDto } from '../models/game';
+import { action, makeAutoObservable, observable } from 'mobx';
+import { Game } from '../models/game';
+import dbClient from '../data';
+import { runInAction } from 'mobx';
 
 class DatabaseStore {
-  isLoading = true;
-  gotmWinners: Array<Game> = [];
-  gotmRunnerUp: Array<Game> = [];
-  retrobits: Array<Game> = [];
-  rpgWinners: Array<Game> = [];
-  rpgRunnerUp: Array<Game> = [];
+  gotmWinners: Game[] = [];
+  gotmRunnerUp: Game[] = [];
+  retrobits: Game[] = [];
+  rpgWinners: Game[] = [];
+  rpgRunnerUp: Game[] = [];
 
   constructor() {
     makeAutoObservable(this, {
-      isLoading: observable,
       gotmWinners: observable,
       gotmRunnerUp: observable,
       retrobits: observable,
       rpgWinners: observable,
       rpgRunnerUp: observable,
 
-      setupDatabase: action,
-      setIsLoading: action,
-      setGotmRunnerUp: action,
-      setRetrobits: action,
-      setRpgRunnerUp: action,
-      setRpgWinners: action,
+      getGotmRunnerUp: action,
+      getRetrobits: action,
+      getRpgRunnerUp: action,
+      getRpgWinners: action,
     });
-
-    runInAction(() => this.setupDatabase());
   }
 
-  setIsLoading(isLoading = true) {
-    this.isLoading = isLoading;
+  async loadData() {
+    await this.getGotmRunnerUp();
+    await this.getGotmWinners();
+    await this.getRetrobits();
+    await this.getRpgRunnerUp();
+    await this.getRpgWinners();
   }
 
-  async setupDatabase() {
-    try {
-      const SQL = await initSqlJs({
-        locateFile: (file) =>
-          `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm`,
-      });
-      const db = new SQL.Database();
-      db.run(creationCommand);
-      const result = db.exec(
-        `${getGotmRunnerup} ${getWinningGotm} ${getRetrobits} ${getRpgRunnerup} ${getWinningRpg}`
-      );
-      this.setGotmRunnerUp(
-        result[0].values.map((x) => gameDto(x, GameType.gotm))
-      );
-      this.setGotmWinners(
-        result[1].values.map((x) => gameDto(x, GameType.gotm))
-      );
-      this.setRetrobits(result[2].values.map((x) => retrobitsGameDto(x)));
-      this.setRpgRunnerUp(
-        result[3].values.map((x) => gameDto(x, GameType.rpg))
-      );
-      this.setRpgWinners(result[4].values.map((x) => gameDto(x, GameType.rpg)));
-
-      this.setIsLoading(false);
-    } catch (e) {
-      console.error(e);
+  async getGotmRunnerUp() {
+    if (this.gotmRunnerUp.length <= 0) {
+      const result = await dbClient.getGotmRunnerup();
+      runInAction(() => (this.gotmRunnerUp = result));
     }
   }
 
-  setGotmRunnerUp(values: Game[]) {
-    this.gotmRunnerUp = values;
+  async getGotmWinners() {
+    if (this.gotmWinners.length <= 0) {
+      const result = await dbClient.getGotmWinners();
+      runInAction(() => (this.gotmWinners = result));
+    }
   }
 
-  setGotmWinners(values: Game[]) {
-    this.gotmWinners = values;
+  async getRetrobits() {
+    if (this.retrobits.length <= 0) {
+      const result = await dbClient.getRetrobits();
+      runInAction(() => (this.retrobits = result));
+    }
   }
 
-  setRetrobits(values: Game[]) {
-    this.retrobits = values;
+  async getRpgRunnerUp() {
+    if (this.rpgRunnerUp.length <= 0) {
+      const result = await dbClient.getRpgRunnerup();
+      runInAction(() => (this.rpgRunnerUp = result));
+    }
   }
 
-  setRpgRunnerUp(values: Game[]) {
-    this.rpgRunnerUp = values;
-  }
-
-  setRpgWinners(values: Game[]) {
-    this.rpgWinners = values;
+  async getRpgWinners() {
+    if (this.rpgWinners.length <= 0) {
+      const result = await dbClient.getRpgWinners();
+      runInAction(() => (this.rpgWinners = result));
+    }
   }
 }
 
