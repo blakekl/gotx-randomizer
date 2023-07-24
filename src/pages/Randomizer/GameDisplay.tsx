@@ -11,7 +11,8 @@ const GameDisplay = observer(
   ({ imgLoaded, setImgLoaded }: GameDisplayProps) => {
     const { randomizerStore } = useStores();
     const imgElement = React.useRef<HTMLImageElement>(null);
-
+    const [mainTitle, setMainTitle] = React.useState('');
+    const [subtitles, setSubtitles] = React.useState([]);
     const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
     React.useEffect(() => {
       if (imgElement.current) {
@@ -32,6 +33,31 @@ const GameDisplay = observer(
       randomizerStore.includeRpgWinners,
     ]);
 
+    React.useEffect(() => {
+      if (randomizerStore.currentGame) {
+        const titles = randomizerStore.currentGame.title;
+        const flaggedTitles = [
+          titles.usa !== null
+            ? `🇺🇸 ${randomizerStore.currentGame.title.usa}`
+            : null,
+          titles.world !== null
+            ? `🌎 ${randomizerStore.currentGame.title.world}`
+            : null,
+          titles.eu !== null
+            ? `🇪🇺 ${randomizerStore.currentGame.title.eu}`
+            : null,
+          titles.jap !== null
+            ? `🇯🇵 ${randomizerStore.currentGame.title.jap}`
+            : null,
+          titles.other !== null
+            ? `🏳️ ${randomizerStore.currentGame.title.other}`
+            : null,
+        ];
+        setMainTitle(flaggedTitles.filter((x) => x)[0]);
+        setSubtitles(flaggedTitles.filter((x) => x).slice(1));
+      }
+    }, [randomizerStore.currentGame]);
+
     return (
       <>
         <div
@@ -50,31 +76,14 @@ const GameDisplay = observer(
           }}
         />
         <section className="section">
-          <h1 className="title has-text-centered">
-            {
-              [
-                `🇺🇸 ${randomizerStore.currentGame.title.usa}`,
-                `🌎 ${randomizerStore.currentGame.title.world}`,
-                `🇪🇺 ${randomizerStore.currentGame.title.eu}`,
-                `🇯🇵 ${randomizerStore.currentGame.title.jap}`,
-                `🏳️ ${randomizerStore.currentGame.title.other}`,
-              ].filter((x) => x.length > 5)[0]
-            }
-          </h1>
-          <h2 className="subtitle has-text-centered">
-            {[
-              `🇺🇸 ${randomizerStore.currentGame.title.usa}`,
-              `🌎 ${randomizerStore.currentGame.title.world}`,
-              `🇪🇺 ${randomizerStore.currentGame.title.eu}`,
-              `🇯🇵 ${randomizerStore.currentGame.title.jap}`,
-              `🏳️ ${randomizerStore.currentGame.title.other}`,
-            ]
-              .filter((x) => x.length > 5)
-              .slice(1)
-              .map((title, index) => (
-                <div key={index}>{title}</div>
+          <h1 className="title has-text-centered"> {mainTitle}</h1>
+          {subtitles.length > 0 && (
+            <h2 className="subtitle has-text-centered">
+              {subtitles.map((x, index) => (
+                <div key={index}>{x}</div>
               ))}
-          </h2>
+            </h2>
+          )}
           <div className="level">
             <div className="level-item has-text-centered">
               <div>
