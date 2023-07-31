@@ -46,7 +46,7 @@ CREATE TABLE [gotm_nominations] (
   [theme_id] INT NULL,
    PRIMARY KEY ([id]),
    FOREIGN KEY ([nominator_id]) REFERENCES [gotm_nominators] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT,
-   FOREIGN KEY ([game_id]) REFERENCES [gotm_games] ([id]) ON DELETE CASCADE ON UPDATE CASCADE,
+   FOREIGN KEY ([game_id]) REFERENCES [gotm_games] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT,
    FOREIGN KEY ([theme_id]) REFERENCES [gotm_themes] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 CREATE TABLE [gotm_winners] ( 
