@@ -2,14 +2,14 @@ import initSqlJs = require('sql.js');
 import { Database } from 'sql.js';
 
 import {
-  creationCommand,
   getGotmRunnerup,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
   getWinningRpg,
-} from '../data/DbCommands';
+} from '../data/Queries';
 import { Game, gameDto, GameType, retrobitsGameDto } from '../models/game';
+import { initialize } from './DbInitialize';
 
 const initDbClient = () => {
   let SQL: initSqlJs.SqlJsStatic;
@@ -22,7 +22,7 @@ const initDbClient = () => {
           `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm`,
       });
       db = new SQL.Database();
-      db.run(creationCommand);
+      db.run(initialize);
     } catch (e) {
       console.error(e);
     }
