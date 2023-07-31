@@ -137,6 +137,34 @@ export const getWinningGotm = `SELECT
   INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id;
 `;
 
+export const top10LongestMonthsByWinnerAvgTime = `
+SELECT 
+    gotm_themes.creation_date,
+    gotm_themes.title,
+    AVG(time_to_beat) AS 'average'
+FROM gotm_games 
+INNER JOIN gotm_nominations on gotm_games.id = gotm_nominations.game_id 
+INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id 
+INNER JOIN gotm_themes ON gotm_themes.id = gotm_nominations.theme_id
+WHERE gotm_themes.id <> '36'
+GROUP BY gotm_nominations.theme_id
+ORDER BY average DESC
+LIMIT 10`;
+
+export const top10ShortestMonthsByWinnerAvgTime = `
+SELECT 
+    gotm_themes.creation_date,
+    gotm_themes.title,
+    AVG(time_to_beat) AS 'average'
+FROM gotm_games 
+INNER JOIN gotm_nominations on gotm_games.id = gotm_nominations.game_id 
+INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id 
+INNER JOIN gotm_themes ON gotm_themes.id = gotm_nominations.theme_id
+WHERE gotm_themes.id <> '36'
+GROUP BY gotm_nominations.theme_id
+ORDER BY average ASC
+LIMIT 10`;
+
 export const creationCommand = `DROP TABLE IF EXISTS gotm_winners;
 DROP TABLE IF EXISTS gotm_nominations;
 DROP TABLE IF EXISTS gotm_nominators;
