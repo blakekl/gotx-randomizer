@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "commit-msg": ["prettier"],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -12,13 +11,17 @@
     "prettier-check": "prettier . --check",
     "prettier": "prettier . --write"
   },
+  "pre-commit": [
+    "prettier"
+  ],
   "dependencies": {
     "@babel/runtime": "^7.22.10",
+
     "bulma-toast": "^2.4.2",
     "classnames": "^2.3.2",
     "mobx": "^6.10.0",
-    "mobx-react-lite": "^4.0.3",
-    "react": "^18.2.0",
+
+    "mobx-react-lite": "^4.0.3","react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.2",
     "react-slider": "^2.0.6",
@@ -35,6 +38,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "pre-commit": "^1.2.2",
     "prettier": "3.0.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
