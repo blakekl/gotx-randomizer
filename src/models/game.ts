@@ -70,7 +70,7 @@ export const gameDto = (data: any[], type: GameType) => {
     system: data[4],
     developer: data[5],
     genre: data[6],
-    time_to_beat: data[7] !== '' ? data[7] : -1,
+    time_to_beat: data[7] !== "" ? data[7] : -1,
     title: {
       usa: data[8],
       eu: data[9],

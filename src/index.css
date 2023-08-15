@@ -1,13 +1,13 @@
 .experimentalFont {
-  font-family: 'Press Start 2P', sans-serif;
-  font-family: 'VT323', monospace;
+  font-family: "Press Start 2P", sans-serif;
+  font-family: "VT323", monospace;
 }
 
 .title,
 .subtitle,
 blockquote {
-  font-family: 'Press Start 2P', sans-serif;
-  font-family: 'VT323', monospace;
+  font-family: "Press Start 2P", sans-serif;
+  font-family: "VT323", monospace;
   font-weight: 600;
 }
 blockquote {
@@ -15,7 +15,7 @@ blockquote {
 }
 
 *.level .level-item .subtitle {
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
   font-weight: 600;
 }
 

@@ -1,6 +1,6 @@
-import { observer } from 'mobx-react-lite';
-import * as React from 'react';
-import { useStores } from '../../stores/useStores';
+import { observer } from "mobx-react-lite";
+import * as React from "react";
+import { useStores } from "../../stores/useStores";
 
 interface GameDisplayProps {
   imgLoaded: boolean;
@@ -11,14 +11,15 @@ const GameDisplay = observer(
   ({ imgLoaded, setImgLoaded }: GameDisplayProps) => {
     const { randomizerStore } = useStores();
     const imgElement = React.useRef<HTMLImageElement>(null);
-    const [mainTitle, setMainTitle] = React.useState('');
+    const [mainTitle, setMainTitle] = React.useState("");
     const [subtitles, setSubtitles] = React.useState(new Array<string>());
-    const onImageLoaded = () => setImgLoaded(imgElement.current?.complete || false);
+    const onImageLoaded = () =>
+      setImgLoaded(imgElement.current?.complete || false);
     React.useEffect(() => {
       if (imgElement.current) {
-        imgElement.current?.addEventListener('load', onImageLoaded);
+        imgElement.current?.addEventListener("load", onImageLoaded);
         return () => {
-          imgElement?.current?.removeEventListener('load', onImageLoaded);
+          imgElement?.current?.removeEventListener("load", onImageLoaded);
         };
       }
     }, [imgElement]);
@@ -47,13 +48,13 @@ const GameDisplay = observer(
           flaggedTitles.push(`🇪🇺 ${randomizerStore.currentGame.title.eu}`);
         }
         if (titles.jap !== null) {
-          flaggedTitles.push(`🇯🇵 ${randomizerStore.currentGame.title.jap}`)
+          flaggedTitles.push(`🇯🇵 ${randomizerStore.currentGame.title.jap}`);
         }
-        if (titles.other !==null) {
+        if (titles.other !== null) {
           flaggedTitles.push(`🏳️ ${randomizerStore.currentGame.title.other}`);
         }
 
-        setMainTitle(flaggedTitles[0] || '');
+        setMainTitle(flaggedTitles[0] || "");
         setSubtitles(flaggedTitles.slice(1));
       }
     }, [randomizerStore.currentGame]);
@@ -62,7 +63,7 @@ const GameDisplay = observer(
       <>
         <div
           className="loader"
-          style={{ display: imgLoaded ? 'none' : 'block' }}
+          style={{ display: imgLoaded ? "none" : "block" }}
         ></div>
         <img
           ref={imgElement}
@@ -70,9 +71,9 @@ const GameDisplay = observer(
           style={{
             display:
               !!randomizerStore.currentGame?.img && imgLoaded
-                ? 'block'
-                : 'none',
-            margin: 'auto',
+                ? "block"
+                : "none",
+            margin: "auto",
           }}
         />
         <section className="section">
@@ -120,7 +121,7 @@ const GameDisplay = observer(
                   <span>
                     {randomizerStore.currentGame.time_to_beat > 0
                       ? `${randomizerStore.currentGame.time_to_beat} hours`
-                      : 'No data'}
+                      : "No data"}
                   </span>
                 </p>
               </div>
@@ -132,7 +133,7 @@ const GameDisplay = observer(
         </section>
       </>
     );
-  }
+  },
 );
 
 export default GameDisplay;

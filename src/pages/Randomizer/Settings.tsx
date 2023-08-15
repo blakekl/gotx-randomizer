@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { observer } from 'mobx-react-lite';
-import { toast } from 'bulma-toast';
-import ReactSlider from 'react-slider';
-import classNames from 'classnames';
-import { useStores } from '../../stores/useStores';
-import { JSX } from 'react/jsx-runtime';
+import * as React from "react";
+import { useMediaQuery } from "react-responsive";
+import { observer } from "mobx-react-lite";
+import { toast } from "bulma-toast";
+import ReactSlider from "react-slider";
+import classNames from "classnames";
+import { useStores } from "../../stores/useStores";
+import { JSX } from "react/jsx-runtime";
 
 const Settings = observer(() => {
   const { randomizerStore } = useStores();
@@ -41,11 +41,11 @@ const Settings = observer(() => {
       }
     } else {
       toast({
-        message: 'You must include a list. Please include something.',
-        type: 'is-danger',
+        message: "You must include a list. Please include something.",
+        type: "is-danger",
         dismissible: true,
         pauseOnHover: true,
-        animate: { in: 'fadeIn', out: 'fadeOut' },
+        animate: { in: "fadeIn", out: "fadeOut" },
       });
     }
   };
@@ -58,14 +58,14 @@ const Settings = observer(() => {
     <div
       className={classNames({
         dropdown: true,
-        'is-active': showSettings,
+        "is-active": showSettings,
       })}
     >
       <div className="dropdown-trigger">
         <button
           className={classNames({
             button: true,
-            'is-large': !isMobile,
+            "is-large": !isMobile,
           })}
           aria-haspopup="true"
           aria-controls="dropdown-menu"
@@ -76,8 +76,8 @@ const Settings = observer(() => {
             <span
               className={classNames({
                 fas: true,
-                'fa-angle-down': !showSettings,
-                'fa-angle-up': showSettings,
+                "fa-angle-down": !showSettings,
+                "fa-angle-up": showSettings,
               })}
               aria-hidden="true"
             ></span>
@@ -168,11 +168,29 @@ const Settings = observer(() => {
                 min={randomizerStore.ttbMin}
                 max={randomizerStore.ttbMax}
                 value={randomizerStore.ttbFilter}
-                ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
-                ariaValuetext={(state: { valueNow: any; }) => `Filter value ${state.valueNow}`}
-                renderThumb={(props: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>, state: { valueNow: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) => (
-                  <div {...props}>{state.valueNow}</div>
-                )}
+                ariaLabel={["Minimum time to beat", "Maximum time to beat"]}
+                ariaValuetext={(state: { valueNow: any }) =>
+                  `Filter value ${state.valueNow}`
+                }
+                renderThumb={(
+                  props: JSX.IntrinsicAttributes &
+                    React.ClassAttributes<HTMLDivElement> &
+                    React.HTMLAttributes<HTMLDivElement>,
+                  state: {
+                    valueNow:
+                      | string
+                      | number
+                      | boolean
+                      | React.ReactElement<
+                          any,
+                          string | React.JSXElementConstructor<any>
+                        >
+                      | Iterable<React.ReactNode>
+                      | React.ReactPortal
+                      | null
+                      | undefined;
+                  },
+                ) => <div {...props}>{state.valueNow}</div>}
                 pearling
                 minDistance={1}
               ></ReactSlider>

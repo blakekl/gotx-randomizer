@@ -1,8 +1,8 @@
-import { action, computed, observable } from 'mobx';
-import { makeAutoObservable } from 'mobx';
-import { Game } from '../models/game';
-import dbClient from '../data';
-import { runInAction } from 'mobx';
+import { action, computed, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
+import { Game } from "../models/game";
+import dbClient from "../data";
+import { runInAction } from "mobx";
 
 interface GameCollection {
   gotmRunnerUp: Game[];
@@ -30,18 +30,18 @@ class RandomizerStore {
   emptyGame = {
     id: 0,
     title: {
-      usa: '',
-      eu: '',
-      jap: '',
-      world: '',
-      other: '',
+      usa: "",
+      eu: "",
+      jap: "",
+      world: "",
+      other: "",
     },
     screenscraper_id: 0,
-    img: '',
+    img: "",
     year: 0,
-    system: '',
-    developer: '',
-    genre: '',
+    system: "",
+    developer: "",
+    genre: "",
     time_to_beat: 0,
   } as Game;
 
@@ -84,7 +84,7 @@ class RandomizerStore {
           retrobits,
           rpgRunnerUp,
           rpgWinners,
-        })
+        }),
       );
     })();
   }
@@ -121,7 +121,7 @@ class RandomizerStore {
     pool = pool.filter(
       (x) =>
         x.time_to_beat >= this.ttbFilter[0] &&
-        x.time_to_beat <= this.ttbFilter[1]
+        x.time_to_beat <= this.ttbFilter[1],
     );
     return this.shuffle(pool);
   }
@@ -148,7 +148,7 @@ class RandomizerStore {
         .filter((x) => x > -1)
         .reduce(
           (aggregate, current) => Math.min(aggregate, Math.round(current)),
-          Number.MAX_SAFE_INTEGER
+          Number.MAX_SAFE_INTEGER,
         );
     }
     return 0;

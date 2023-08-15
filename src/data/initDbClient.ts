@@ -1,5 +1,5 @@
-import initSqlJs from 'sql.js';
-import { Database } from 'sql.js';
+import initSqlJs from "sql.js";
+import { Database } from "sql.js";
 
 import {
   getGotmRunnerup,
@@ -7,9 +7,9 @@ import {
   getRpgRunnerup,
   getWinningGotm,
   getWinningRpg,
-} from '../data/Queries';
-import { gameDto, GameType, retrobitsGameDto } from '../models/game';
-import { initialize } from './DbInitialize';
+} from "../data/Queries";
+import { gameDto, GameType, retrobitsGameDto } from "../models/game";
+import { initialize } from "./DbInitialize";
 
 const initDbClient = () => {
   let SQL: initSqlJs.SqlJsStatic;

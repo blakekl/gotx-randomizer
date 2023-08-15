@@ -1,4 +1,4 @@
-import Randomizer from './pages/Randomizer/Randomizer';
+import Randomizer from "./pages/Randomizer/Randomizer";
 
 const App = () => {
   return <Randomizer />;
