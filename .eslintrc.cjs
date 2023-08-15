@@ -4,6 +4,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    // 'plugin:@typescript-eslint/strict-type-checked',
     "plugin:react-hooks/recommended",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
@@ -14,5 +15,12 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    // "@typescript-eslint/no-unnecessary-condition": "error"
+  },
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
   },
 };
