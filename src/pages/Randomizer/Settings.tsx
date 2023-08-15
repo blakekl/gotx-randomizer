@@ -69,15 +69,14 @@ const Settings = observer(() => {
           })}
           aria-haspopup="true"
           aria-controls="dropdown-menu"
-          onClick={() => setShowSettings(!showSettings)}
+          onClick={() => { setShowSettings(!showSettings); }}
         >
           <span>Settings</span>
           <span className="icon is-small">
             <span
               className={classNames({
                 fas: true,
-                "fa-angle-down": !showSettings,
-                "fa-angle-up": showSettings,
+                "fa-sliders": true,
               })}
               aria-hidden="true"
             ></span>
@@ -94,7 +93,7 @@ const Settings = observer(() => {
                   className="checkbox"
                   checked={randomizerStore.includeGotmWinners}
                   onChange={() =>
-                    handleFilterChange(1, !randomizerStore.includeGotmWinners)
+                    { handleFilterChange(1, !randomizerStore.includeGotmWinners); }
                   }
                 ></input>
                 GotM Winners
@@ -108,7 +107,7 @@ const Settings = observer(() => {
                   name="GotM Runner Ups"
                   checked={randomizerStore.includeGotmRunnerUp}
                   onChange={() =>
-                    handleFilterChange(0, !randomizerStore.includeGotmRunnerUp)
+                    { handleFilterChange(0, !randomizerStore.includeGotmRunnerUp); }
                   }
                 ></input>
                 GotM Runner Ups
@@ -121,7 +120,7 @@ const Settings = observer(() => {
                   className="checkbox"
                   checked={randomizerStore.includeRetrobits}
                   onChange={() =>
-                    handleFilterChange(2, !randomizerStore.includeRetrobits)
+                    { handleFilterChange(2, !randomizerStore.includeRetrobits); }
                   }
                 ></input>
                 Retrobits
@@ -134,7 +133,7 @@ const Settings = observer(() => {
                   className="checkbox"
                   checked={randomizerStore.includeRpgWinners}
                   onChange={() =>
-                    handleFilterChange(4, !randomizerStore.includeRpgWinners)
+                    { handleFilterChange(4, !randomizerStore.includeRpgWinners); }
                   }
                 ></input>
                 RPGotQ Winners
@@ -147,7 +146,7 @@ const Settings = observer(() => {
                   className="checkbox"
                   checked={randomizerStore.includeRpgRunnerUp}
                   onChange={() =>
-                    handleFilterChange(3, !randomizerStore.includeRpgRunnerUp)
+                    { handleFilterChange(3, !randomizerStore.includeRpgRunnerUp); }
                   }
                 ></input>
                 RPGotQ Runner Ups
@@ -162,14 +161,14 @@ const Settings = observer(() => {
                 thumbClassName="example-thumb"
                 trackClassName="example-track"
                 onAfterChange={(newValues: number[]) =>
-                  handleTtbFilterChange(newValues)
+                  { handleTtbFilterChange(newValues); }
                 }
                 defaultValue={[0, Number.MAX_SAFE_INTEGER]}
                 min={randomizerStore.ttbMin}
                 max={randomizerStore.ttbMax}
                 value={randomizerStore.ttbFilter}
                 ariaLabel={["Minimum time to beat", "Maximum time to beat"]}
-                ariaValuetext={(state: { valueNow: any }) =>
+                ariaValuetext={(state: { valueNow: number }) =>
                   `Filter value ${state.valueNow}`
                 }
                 renderThumb={(
@@ -181,10 +180,7 @@ const Settings = observer(() => {
                       | string
                       | number
                       | boolean
-                      | React.ReactElement<
-                          any,
-                          string | React.JSXElementConstructor<any>
-                        >
+                      | React.ReactElement
                       | Iterable<React.ReactNode>
                       | React.ReactPortal
                       | null
