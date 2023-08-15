@@ -12,8 +12,8 @@ const GameDisplay = observer(
     const { randomizerStore } = useStores();
     const imgElement = React.useRef<HTMLImageElement>(null);
     const [mainTitle, setMainTitle] = React.useState('');
-    const [subtitles, setSubtitles] = React.useState([]);
-    const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
+    const [subtitles, setSubtitles] = React.useState(new Array<string>());
+    const onImageLoaded = () => setImgLoaded(imgElement.current?.complete || false);
     React.useEffect(() => {
       if (imgElement.current) {
         imgElement.current?.addEventListener('load', onImageLoaded);
@@ -36,25 +36,25 @@ const GameDisplay = observer(
     React.useEffect(() => {
       if (randomizerStore.currentGame) {
         const titles = randomizerStore.currentGame.title;
-        const flaggedTitles = [
-          titles.usa !== null
-            ? `🇺🇸 ${randomizerStore.currentGame.title.usa}`
-            : null,
-          titles.world !== null
-            ? `🌎 ${randomizerStore.currentGame.title.world}`
-            : null,
-          titles.eu !== null
-            ? `🇪🇺 ${randomizerStore.currentGame.title.eu}`
-            : null,
-          titles.jap !== null
-            ? `🇯🇵 ${randomizerStore.currentGame.title.jap}`
-            : null,
-          titles.other !== null
-            ? `🏳️ ${randomizerStore.currentGame.title.other}`
-            : null,
-        ];
-        setMainTitle(flaggedTitles.filter((x) => x)[0]);
-        setSubtitles(flaggedTitles.filter((x) => x).slice(1));
+        const flaggedTitles: string[] = [];
+        if (titles.usa !== null) {
+          flaggedTitles.push(`🇺🇸 ${randomizerStore.currentGame.title.usa}`);
+        }
+        if (titles.world !== null) {
+          flaggedTitles.push(`🌎 ${randomizerStore.currentGame.title.world}`);
+        }
+        if (titles.eu !== null) {
+          flaggedTitles.push(`🇪🇺 ${randomizerStore.currentGame.title.eu}`);
+        }
+        if (titles.jap !== null) {
+          flaggedTitles.push(`🇯🇵 ${randomizerStore.currentGame.title.jap}`)
+        }
+        if (titles.other !==null) {
+          flaggedTitles.push(`🏳️ ${randomizerStore.currentGame.title.other}`);
+        }
+
+        setMainTitle(flaggedTitles[0] || '');
+        setSubtitles(flaggedTitles.slice(1));
       }
     }, [randomizerStore.currentGame]);
 

@@ -1,4 +1,4 @@
-import initSqlJs = require('sql.js');
+import initSqlJs from 'sql.js';
 import { Database } from 'sql.js';
 
 import {
@@ -8,7 +8,7 @@ import {
   getWinningGotm,
   getWinningRpg,
 } from '../data/Queries';
-import { Game, gameDto, GameType, retrobitsGameDto } from '../models/game';
+import { gameDto, GameType, retrobitsGameDto } from '../models/game';
 import { initialize } from './DbInitialize';
 
 const initDbClient = () => {
@@ -19,7 +19,7 @@ const initDbClient = () => {
     try {
       SQL = await initSqlJs({
         locateFile: (file) =>
-          `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.wasm`,
+          `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`,
       });
       db = new SQL.Database();
       db.run(initialize);

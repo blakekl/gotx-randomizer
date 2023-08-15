@@ -3,8 +3,9 @@ import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
 import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
-import classNames = require('classnames');
+import classNames from 'classnames';
 import { useStores } from '../../stores/useStores';
+import { JSX } from 'react/jsx-runtime';
 
 const Settings = observer(() => {
   const { randomizerStore } = useStores();
@@ -49,7 +50,7 @@ const Settings = observer(() => {
     }
   };
 
-  const handleTtbFilterChange = (newValue, thumbIndex) => {
+  const handleTtbFilterChange = (newValue: number[]) => {
     randomizerStore.setTtbFilter(newValue);
   };
 
@@ -160,16 +161,16 @@ const Settings = observer(() => {
                 className="horizontal-slider"
                 thumbClassName="example-thumb"
                 trackClassName="example-track"
-                onAfterChange={(newValues, thumbIndex) =>
-                  handleTtbFilterChange(newValues, thumbIndex)
+                onAfterChange={(newValues: number[]) =>
+                  handleTtbFilterChange(newValues)
                 }
                 defaultValue={[0, Number.MAX_SAFE_INTEGER]}
                 min={randomizerStore.ttbMin}
                 max={randomizerStore.ttbMax}
                 value={randomizerStore.ttbFilter}
                 ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
-                ariaValuetext={(state) => `Filter value ${state.valueNow}`}
-                renderThumb={(props, state) => (
+                ariaValuetext={(state: { valueNow: any; }) => `Filter value ${state.valueNow}`}
+                renderThumb={(props: JSX.IntrinsicAttributes & React.ClassAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement>, state: { valueNow: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }) => (
                   <div {...props}>{state.valueNow}</div>
                 )}
                 pearling

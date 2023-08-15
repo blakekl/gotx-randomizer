@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
-import classNames = require('classnames');
+import classNames from 'classnames';
 import Settings from './Settings';
 import GameDisplay from './GameDisplay';
 import { useStores } from '../../stores/useStores';
