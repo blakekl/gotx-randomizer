@@ -3,6 +3,10 @@
   font-family: "VT323", monospace;
 }
 
+.navbar-item img {
+  min-height: 28px;
+}
+
 .title,
 .subtitle,
 blockquote {

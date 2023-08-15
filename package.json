@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --base=/randomizer",
+    "deploy": "node deploy.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prettier-check": "prettier . --check",
@@ -25,6 +26,7 @@
     "sql.js": "^1.8.0"
   },
   "devDependencies": {
+    "@types/rclone.js": "^0.6.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-slider": "^1.3.1",
@@ -39,6 +41,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "3.0.2",
+    "rclone.js": "^0.6.6",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-tsconfig-paths": "^4.2.0"

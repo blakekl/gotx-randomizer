@@ -28,8 +28,7 @@ const Randomizer = observer(() => {
             "is-fullwidth": isMobile,
             "is-large": !isMobile,
           })}
-          disabled={!imgLoaded}
-          onClick={() => handleButtonClick()}
+          onClick={() => { handleButtonClick(); }}
         >
           {imgLoaded && <span>Reroll</span>}
           {!imgLoaded && (
