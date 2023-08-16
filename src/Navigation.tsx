@@ -1,15 +1,18 @@
 import classnames from 'classnames';
 import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const isDark = useMediaQuery({query: '(prefers-color-scheme: dark)'});
 
+  console.log('isDark: ', isDark);
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img
-            src="https://retrohandhelds.gg/wp-content/uploads/2023/08/rh_logo_white.svg"
+            src={`https://retrohandhelds.gg/wp-content/uploads/2023/08/rh_logo_${isDark ? 'white' : 'black'}.svg`}
             alt="retro handhelds logo"
             height="28"
           />
