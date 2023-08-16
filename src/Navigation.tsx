@@ -8,7 +8,11 @@ const Navigation = () => {
 
   console.log('isDark: ', isDark);
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      className="main-nav navbar"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img
