@@ -1,4 +1,4 @@
-import initDbClient from "./initDbClient";
+import initDbClient from './initDbClient';
 
 const dbClient = initDbClient();
 

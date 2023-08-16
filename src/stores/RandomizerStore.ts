@@ -1,8 +1,8 @@
-import { action, computed, observable } from "mobx";
-import { makeAutoObservable } from "mobx";
-import { Game } from "../models/game";
-import dbClient from "../data";
-import { runInAction } from "mobx";
+import { action, computed, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
+import { Game } from '../models/game';
+import dbClient from '../data';
+import { runInAction } from 'mobx';
 
 interface GameCollection {
   gotmRunnerUp: Game[];
@@ -30,18 +30,18 @@ class RandomizerStore {
   emptyGame = {
     id: 0,
     title: {
-      usa: "",
-      eu: "",
-      jap: "",
-      world: "",
-      other: "",
+      usa: '',
+      eu: '',
+      jap: '',
+      world: '',
+      other: '',
     },
     screenscraper_id: 0,
-    img: "",
+    img: '',
     year: 0,
-    system: "",
-    developer: "",
-    genre: "",
+    system: '',
+    developer: '',
+    genre: '',
     time_to_beat: 0,
   } as Game;
 
@@ -70,13 +70,14 @@ class RandomizerStore {
       setTtbFilter: action,
       setAllGames: action,
     });
+  }
 
-    (async () => {
-      const gotmRunnerUp = await dbClient.getGotmRunnerup();
-      const gotmWinners = await dbClient.getGotmWinners();
-      const retrobits = await dbClient.getRetrobits();
-      const rpgRunnerUp = await dbClient.getRpgRunnerup();
-      const rpgWinners = await dbClient.getRpgWinners();
+  async componentDidMount() {
+    const gotmRunnerUp = await dbClient.getGotmRunnerup() || [];
+      const gotmWinners = await dbClient.getGotmWinners() || [];
+      const retrobits = await dbClient.getRetrobits() || [];
+      const rpgRunnerUp = await dbClient.getRpgRunnerup() || [];
+      const rpgWinners = await dbClient.getRpgWinners() || [];
       runInAction(() =>
         this.setAllGames({
           gotmRunnerUp,
@@ -86,13 +87,12 @@ class RandomizerStore {
           rpgWinners,
         }),
       );
-    })();
   }
 
   shuffle(inputArray: Game[]): Game[] {
     const outputArray = [...inputArray];
     for (let i = outputArray.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1));
       [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
     }
     return outputArray;

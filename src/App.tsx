@@ -1,7 +1,17 @@
-import Randomizer from "./pages/Randomizer/Randomizer";
+import Navigation from './Navigation';
+import Randomizer from './pages/Randomizer/Randomizer';
 
 const App = () => {
-  return <Randomizer />;
+  return (
+    <>
+      <Navigation />
+      <main className="section">
+        <div className="container">
+          <Randomizer />
+        </div>
+      </main>
+    </>
+  );
 };
 
 export default App;

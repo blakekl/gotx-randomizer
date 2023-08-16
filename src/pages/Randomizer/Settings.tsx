@@ -1,11 +1,11 @@
-import * as React from "react";
-import { useMediaQuery } from "react-responsive";
-import { observer } from "mobx-react-lite";
-import { toast } from "bulma-toast";
-import ReactSlider from "react-slider";
-import classNames from "classnames";
-import { useStores } from "../../stores/useStores";
-import { JSX } from "react/jsx-runtime";
+import * as React from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { observer } from 'mobx-react-lite';
+import { toast } from 'bulma-toast';
+import ReactSlider from 'react-slider';
+import classNames from 'classnames';
+import { useStores } from '../../stores/useStores';
+import { JSX } from 'react/jsx-runtime';
 
 const Settings = observer(() => {
   const { randomizerStore } = useStores();
@@ -41,11 +41,11 @@ const Settings = observer(() => {
       }
     } else {
       toast({
-        message: "You must include a list. Please include something.",
-        type: "is-danger",
+        message: 'You must include a list. Please include something.',
+        type: 'is-danger',
         dismissible: true,
         pauseOnHover: true,
-        animate: { in: "fadeIn", out: "fadeOut" },
+        animate: { in: 'fadeIn', out: 'fadeOut' },
       });
     }
   };
@@ -58,25 +58,27 @@ const Settings = observer(() => {
     <div
       className={classNames({
         dropdown: true,
-        "is-active": showSettings,
+        'is-active': showSettings,
       })}
     >
       <div className="dropdown-trigger">
         <button
           className={classNames({
             button: true,
-            "is-large": !isMobile,
+            'is-large': !isMobile,
           })}
           aria-haspopup="true"
           aria-controls="dropdown-menu"
-          onClick={() => { setShowSettings(!showSettings); }}
+          onClick={() => {
+            setShowSettings(!showSettings);
+          }}
         >
           <span>Settings</span>
           <span className="icon is-small">
             <span
               className={classNames({
                 fas: true,
-                "fa-sliders": true,
+                'fa-sliders': true,
               })}
               aria-hidden="true"
             ></span>
@@ -92,9 +94,9 @@ const Settings = observer(() => {
                   type="checkbox"
                   className="checkbox"
                   checked={randomizerStore.includeGotmWinners}
-                  onChange={() =>
-                    { handleFilterChange(1, !randomizerStore.includeGotmWinners); }
-                  }
+                  onChange={() => {
+                    handleFilterChange(1, !randomizerStore.includeGotmWinners);
+                  }}
                 ></input>
                 GotM Winners
               </label>
@@ -106,9 +108,9 @@ const Settings = observer(() => {
                   className="checkbox"
                   name="GotM Runner Ups"
                   checked={randomizerStore.includeGotmRunnerUp}
-                  onChange={() =>
-                    { handleFilterChange(0, !randomizerStore.includeGotmRunnerUp); }
-                  }
+                  onChange={() => {
+                    handleFilterChange(0, !randomizerStore.includeGotmRunnerUp);
+                  }}
                 ></input>
                 GotM Runner Ups
               </label>
@@ -119,9 +121,9 @@ const Settings = observer(() => {
                   type="checkbox"
                   className="checkbox"
                   checked={randomizerStore.includeRetrobits}
-                  onChange={() =>
-                    { handleFilterChange(2, !randomizerStore.includeRetrobits); }
-                  }
+                  onChange={() => {
+                    handleFilterChange(2, !randomizerStore.includeRetrobits);
+                  }}
                 ></input>
                 Retrobits
               </label>
@@ -132,9 +134,9 @@ const Settings = observer(() => {
                   type="checkbox"
                   className="checkbox"
                   checked={randomizerStore.includeRpgWinners}
-                  onChange={() =>
-                    { handleFilterChange(4, !randomizerStore.includeRpgWinners); }
-                  }
+                  onChange={() => {
+                    handleFilterChange(4, !randomizerStore.includeRpgWinners);
+                  }}
                 ></input>
                 RPGotQ Winners
               </label>
@@ -145,9 +147,9 @@ const Settings = observer(() => {
                   type="checkbox"
                   className="checkbox"
                   checked={randomizerStore.includeRpgRunnerUp}
-                  onChange={() =>
-                    { handleFilterChange(3, !randomizerStore.includeRpgRunnerUp); }
-                  }
+                  onChange={() => {
+                    handleFilterChange(3, !randomizerStore.includeRpgRunnerUp);
+                  }}
                 ></input>
                 RPGotQ Runner Ups
               </label>
@@ -160,14 +162,14 @@ const Settings = observer(() => {
                 className="horizontal-slider"
                 thumbClassName="example-thumb"
                 trackClassName="example-track"
-                onAfterChange={(newValues: number[]) =>
-                  { handleTtbFilterChange(newValues); }
-                }
+                onAfterChange={(newValues: number[]) => {
+                  handleTtbFilterChange(newValues);
+                }}
                 defaultValue={[0, Number.MAX_SAFE_INTEGER]}
                 min={randomizerStore.ttbMin}
                 max={randomizerStore.ttbMax}
                 value={randomizerStore.ttbFilter}
-                ariaLabel={["Minimum time to beat", "Maximum time to beat"]}
+                ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
                 ariaValuetext={(state: { valueNow: number }) =>
                   `Filter value ${state.valueNow}`
                 }
