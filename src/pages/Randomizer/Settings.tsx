@@ -172,10 +172,9 @@ const Settings = observer(() => {
                 ariaValuetext={(state: { valueNow: number }) =>
                   `Filter value ${state.valueNow}`
                 }
-                renderThumb={(
-                  props,
-                  state,
-                ) => <div {...props}>{state.valueNow}</div>}
+                renderThumb={(props, state) => (
+                  <div {...props}>{state.valueNow}</div>
+                )}
                 pearling
                 minDistance={1}
               ></ReactSlider>

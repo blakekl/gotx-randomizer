@@ -70,7 +70,7 @@ class RandomizerStore {
       setAllGames: action,
     });
 
-    const initialize = async() => {
+    const initialize = async () => {
       const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
       const gotmWinners = (await dbClient.getGotmWinners()) || [];
       const retrobits = (await dbClient.getRetrobits()) || [];
@@ -86,7 +86,7 @@ class RandomizerStore {
           rpgWinners,
         });
       });
-    }
+    };
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     initialize();
