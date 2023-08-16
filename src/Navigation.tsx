@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const isDark = useMediaQuery({query: '(prefers-color-scheme: dark)'});
+  const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
   console.log('isDark: ', isDark);
   return (
@@ -12,7 +12,9 @@ const Navigation = () => {
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           <img
-            src={`https://retrohandhelds.gg/wp-content/uploads/2023/08/rh_logo_${isDark ? 'white' : 'black'}.svg`}
+            src={`https://retrohandhelds.gg/wp-content/uploads/2023/08/rh_logo_${
+              isDark ? 'white' : 'black'
+            }.svg`}
             alt="retro handhelds logo"
             height="28"
           />
