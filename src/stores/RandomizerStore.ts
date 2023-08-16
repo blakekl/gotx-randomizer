@@ -73,20 +73,20 @@ class RandomizerStore {
   }
 
   async componentDidMount() {
-    const gotmRunnerUp = await dbClient.getGotmRunnerup() || [];
-      const gotmWinners = await dbClient.getGotmWinners() || [];
-      const retrobits = await dbClient.getRetrobits() || [];
-      const rpgRunnerUp = await dbClient.getRpgRunnerup() || [];
-      const rpgWinners = await dbClient.getRpgWinners() || [];
-      runInAction(() =>
-        this.setAllGames({
-          gotmRunnerUp,
-          gotmWinners,
-          retrobits,
-          rpgRunnerUp,
-          rpgWinners,
-        }),
-      );
+    const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
+    const gotmWinners = (await dbClient.getGotmWinners()) || [];
+    const retrobits = (await dbClient.getRetrobits()) || [];
+    const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
+    const rpgWinners = (await dbClient.getRpgWinners()) || [];
+    runInAction(() =>
+      this.setAllGames({
+        gotmRunnerUp,
+        gotmWinners,
+        retrobits,
+        rpgRunnerUp,
+        rpgWinners,
+      }),
+    );
   }
 
   shuffle(inputArray: Game[]): Game[] {

@@ -16,7 +16,7 @@ const initDbClient = () => {
   let db: Database | null;
 
   const getDb = async () => {
-    if (db){
+    if (db) {
       try {
         SQL = await initSqlJs({
           locateFile: (file) =>
@@ -34,27 +34,32 @@ const initDbClient = () => {
   return {
     getGotmRunnerup: async () => {
       const db = await getDb();
-      return db?.exec(`${getGotmRunnerup}`)[0]
+      return db
+        ?.exec(`${getGotmRunnerup}`)[0]
         .values.map((x) => gameDto(x, GameType.gotm));
     },
     getGotmWinners: async () => {
       const db = await getDb();
-      return db?.exec(`${getWinningGotm}`)[0]
+      return db
+        ?.exec(`${getWinningGotm}`)[0]
         .values.map((x) => gameDto(x, GameType.gotm));
     },
     getRetrobits: async () => {
-        const db = await getDb();
-      return db?.exec(`${getRetrobits}`)[0]
+      const db = await getDb();
+      return db
+        ?.exec(`${getRetrobits}`)[0]
         .values.map((x) => retrobitsGameDto(x));
     },
     getRpgRunnerup: async () => {
-        const db = await getDb();
-      return db?.exec(`${getRpgRunnerup}`)[0]
+      const db = await getDb();
+      return db
+        ?.exec(`${getRpgRunnerup}`)[0]
         .values.map((x) => gameDto(x, GameType.rpg));
     },
     getRpgWinners: async () => {
-        const db = await getDb();
-      return db?.exec(`${getWinningRpg}`)[0]
+      const db = await getDb();
+      return db
+        ?.exec(`${getWinningRpg}`)[0]
         .values.map((x) => gameDto(x, GameType.rpg));
     },
   };

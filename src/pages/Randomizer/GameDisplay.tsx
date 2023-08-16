@@ -4,7 +4,7 @@ import { useStores } from '../../stores/useStores';
 
 interface GameDisplayProps {
   imgLoaded: boolean;
-  setImgLoaded: (loaded: boolean) => void
+  setImgLoaded: (loaded: boolean) => void;
 }
 
 const GameDisplay = observer(
@@ -14,7 +14,8 @@ const GameDisplay = observer(
     const [mainTitle, setMainTitle] = React.useState('');
     const [subtitles, setSubtitles] = React.useState(new Array<string>());
     React.useEffect(() => {
-      const onImageLoaded = () => setImgLoaded(imgElement.current?.complete || false);
+      const onImageLoaded = () =>
+        setImgLoaded(imgElement.current?.complete || false);
       const element = imgElement.current;
       if (element) {
         imgElement.current?.addEventListener('load', onImageLoaded);
@@ -36,26 +37,26 @@ const GameDisplay = observer(
     ]);
 
     React.useEffect(() => {
-        const titles = randomizerStore.currentGame.title;
-        const flaggedTitles: string[] = [];
-        if (titles.usa !== '') {
-          flaggedTitles.push(`🇺🇸 ${randomizerStore.currentGame.title.usa}`);
-        }
-        if (titles.world !== '') {
-          flaggedTitles.push(`🌎 ${randomizerStore.currentGame.title.world}`);
-        }
-        if (titles.eu !== '') {
-          flaggedTitles.push(`🇪🇺 ${randomizerStore.currentGame.title.eu}`);
-        }
-        if (titles.jap !== '') {
-          flaggedTitles.push(`🇯🇵 ${randomizerStore.currentGame.title.jap}`);
-        }
-        if (titles.other !== '') {
-          flaggedTitles.push(`🏳️ ${randomizerStore.currentGame.title.other}`);
-        }
+      const titles = randomizerStore.currentGame.title;
+      const flaggedTitles: string[] = [];
+      if (titles.usa !== '') {
+        flaggedTitles.push(`🇺🇸 ${randomizerStore.currentGame.title.usa}`);
+      }
+      if (titles.world !== '') {
+        flaggedTitles.push(`🌎 ${randomizerStore.currentGame.title.world}`);
+      }
+      if (titles.eu !== '') {
+        flaggedTitles.push(`🇪🇺 ${randomizerStore.currentGame.title.eu}`);
+      }
+      if (titles.jap !== '') {
+        flaggedTitles.push(`🇯🇵 ${randomizerStore.currentGame.title.jap}`);
+      }
+      if (titles.other !== '') {
+        flaggedTitles.push(`🏳️ ${randomizerStore.currentGame.title.other}`);
+      }
 
-        setMainTitle(flaggedTitles[0] || '');
-        setSubtitles(flaggedTitles.slice(1));
+      setMainTitle(flaggedTitles[0] || '');
+      setSubtitles(flaggedTitles.slice(1));
     }, [randomizerStore.currentGame]);
 
     return (
