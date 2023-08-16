@@ -39,21 +39,11 @@ const GameDisplay = observer(
     useEffect(() => {
       const titles = randomizerStore.currentGame.title;
       const flaggedTitles: string[] = [];
-      if (titles.usa !== '') {
-        flaggedTitles.push(`🇺🇸 ${randomizerStore.currentGame.title.usa}`);
-      }
-      if (titles.world !== '') {
-        flaggedTitles.push(`🌎 ${randomizerStore.currentGame.title.world}`);
-      }
-      if (titles.eu !== '') {
-        flaggedTitles.push(`🇪🇺 ${randomizerStore.currentGame.title.eu}`);
-      }
-      if (titles.jap !== '') {
-        flaggedTitles.push(`🇯🇵 ${randomizerStore.currentGame.title.jap}`);
-      }
-      if (titles.other !== '') {
-        flaggedTitles.push(`🏳️ ${randomizerStore.currentGame.title.other}`);
-      }
+      titles.usa !== '' && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
+      titles.world !== '' && flaggedTitles.push(`🌎 ${titles.world}`);
+      titles.eu !== '' && flaggedTitles.push(`🇪🇺 ${titles.eu}`);
+      titles.jap !== '' && flaggedTitles.push(`🇯🇵 ${titles.jap}`);
+      titles.other !== '' && flaggedTitles.push(`🏳️ ${titles.other}`);
 
       setMainTitle(flaggedTitles[0] || '');
       setSubtitles(flaggedTitles.slice(1));

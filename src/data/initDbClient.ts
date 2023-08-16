@@ -16,7 +16,7 @@ const initDbClient = () => {
   let db: Database | null;
 
   const getDb = async () => {
-    if (db) {
+    if (!db) {
       try {
         SQL = await initSqlJs({
           locateFile: (file) =>
@@ -46,6 +46,7 @@ const initDbClient = () => {
     },
     getRetrobits: async () => {
       const db = await getDb();
+      console.log('db: ', db);
       return db
         ?.exec(`${getRetrobits}`)[0]
         .values.map((x) => retrobitsGameDto(x));

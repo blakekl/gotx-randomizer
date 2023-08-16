@@ -1,5 +1,4 @@
-import { action, computed, observable } from 'mobx';
-import { makeAutoObservable } from 'mobx';
+import { action, computed, makeAutoObservable, observable } from 'mobx';
 import { Game } from '../models/game';
 import dbClient from '../data';
 import { runInAction } from 'mobx';
@@ -70,23 +69,27 @@ class RandomizerStore {
       setTtbFilter: action,
       setAllGames: action,
     });
-  }
 
-  async componentDidMount() {
-    const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
-    const gotmWinners = (await dbClient.getGotmWinners()) || [];
-    const retrobits = (await dbClient.getRetrobits()) || [];
-    const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
-    const rpgWinners = (await dbClient.getRpgWinners()) || [];
-    runInAction(() =>
-      this.setAllGames({
-        gotmRunnerUp,
-        gotmWinners,
-        retrobits,
-        rpgRunnerUp,
-        rpgWinners,
-      }),
-    );
+    const initialize = async() => {
+      const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
+      const gotmWinners = (await dbClient.getGotmWinners()) || [];
+      const retrobits = (await dbClient.getRetrobits()) || [];
+      const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
+      const rpgWinners = (await dbClient.getRpgWinners()) || [];
+      runInAction(() => {
+        console.log('retrobits: ', retrobits);
+        this.setAllGames({
+          gotmRunnerUp,
+          gotmWinners,
+          retrobits,
+          rpgRunnerUp,
+          rpgWinners,
+        });
+      });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    initialize();
   }
 
   shuffle(inputArray: Game[]): Game[] {

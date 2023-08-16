@@ -1,16 +1,15 @@
-import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
 import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
 import classNames from 'classnames';
 import { useStores } from '../../stores/useStores';
-import { JSX } from 'react/jsx-runtime';
+import { useState } from 'react';
 
 const Settings = observer(() => {
   const { randomizerStore } = useStores();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  const [showSettings, setShowSettings] = React.useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleFilterChange = (item: number, value: boolean) => {
     const filters = [
@@ -174,20 +173,8 @@ const Settings = observer(() => {
                   `Filter value ${state.valueNow}`
                 }
                 renderThumb={(
-                  props: JSX.IntrinsicAttributes &
-                    React.ClassAttributes<HTMLDivElement> &
-                    React.HTMLAttributes<HTMLDivElement>,
-                  state: {
-                    valueNow:
-                      | string
-                      | number
-                      | boolean
-                      | React.ReactElement
-                      | Iterable<React.ReactNode>
-                      | React.ReactPortal
-                      | null
-                      | undefined;
-                  },
+                  props,
+                  state,
                 ) => <div {...props}>{state.valueNow}</div>}
                 pearling
                 minDistance={1}

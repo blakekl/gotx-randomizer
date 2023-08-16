@@ -52,11 +52,11 @@ export const retrobitsGameDto = (data: any[]) => {
     genre: data[5],
     time_to_beat: data[6],
     title: {
-      usa: data[7],
-      eu: data[8],
-      jap: data[9],
-      world: data[10],
-      other: data[11],
+      usa: data[7] || '',
+      eu: data[8] || '',
+      jap: data[9] || '',
+      world: data[10] || '',
+      other: data[11] || '',
     } as Title,
     description: data[12],
   } as Game;
@@ -74,11 +74,11 @@ export const gameDto = (data: any[], type: GameType) => {
     genre: data[6],
     time_to_beat: data[7] !== '' ? data[7] : -1,
     title: {
-      usa: data[8],
-      eu: data[9],
-      jap: data[10],
-      world: data[11],
-      other: data[12],
+      usa: data[8] || '',
+      eu: data[9] || '',
+      jap: data[10] || '',
+      world: data[11] || '',
+      other: data[12] || '',
     } as Title,
     description: data[13],
   } as Game;
