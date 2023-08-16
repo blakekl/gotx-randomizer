@@ -1,6 +1,6 @@
 import rclone from 'rclone.js';
 const source = './dist/';
-const dest = 'ftp-retrohandhelds:randomizer';
+const dest = 'ftp-retrohandhelds:randomizer.retrohandhelds.gg';
 
 (async () => {
   try {
