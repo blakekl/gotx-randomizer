@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import * as React from 'react';
 import { useStores } from '../../stores/useStores';
+import { useEffect, useRef, useState } from 'react';
 
 interface GameDisplayProps {
   imgLoaded: boolean;
@@ -10,10 +10,10 @@ interface GameDisplayProps {
 const GameDisplay = observer(
   ({ imgLoaded, setImgLoaded }: GameDisplayProps) => {
     const { randomizerStore } = useStores();
-    const imgElement = React.useRef<HTMLImageElement>(null);
-    const [mainTitle, setMainTitle] = React.useState('');
-    const [subtitles, setSubtitles] = React.useState(new Array<string>());
-    React.useEffect(() => {
+    const imgElement = useRef<HTMLImageElement>(null);
+    const [mainTitle, setMainTitle] = useState('');
+    const [subtitles, setSubtitles] = useState(new Array<string>());
+    useEffect(() => {
       const onImageLoaded = () =>
         setImgLoaded(imgElement.current?.complete || false);
       const element = imgElement.current;
@@ -25,7 +25,7 @@ const GameDisplay = observer(
       }
     }, [imgElement, setImgLoaded]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       setImgLoaded(false);
     }, [
       randomizerStore.includeGotmRunnerUp,
@@ -36,7 +36,7 @@ const GameDisplay = observer(
       setImgLoaded,
     ]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       const titles = randomizerStore.currentGame.title;
       const flaggedTitles: string[] = [];
       if (titles.usa !== '') {
