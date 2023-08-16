@@ -77,7 +77,6 @@ class RandomizerStore {
       const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
       const rpgWinners = (await dbClient.getRpgWinners()) || [];
       runInAction(() => {
-        console.log('retrobits: ', retrobits);
         this.setAllGames({
           gotmRunnerUp,
           gotmWinners,

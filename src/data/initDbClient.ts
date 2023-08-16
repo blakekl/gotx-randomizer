@@ -46,7 +46,6 @@ const initDbClient = () => {
     },
     getRetrobits: async () => {
       const db = await getDb();
-      console.log('db: ', db);
       return db
         ?.exec(`${getRetrobits}`)[0]
         .values.map((x) => retrobitsGameDto(x));
