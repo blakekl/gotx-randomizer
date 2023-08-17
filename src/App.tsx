@@ -1,3 +1,4 @@
+import Footer from './Footer';
 import Navigation from './Navigation';
 import Randomizer from './pages/Randomizer/Randomizer';
 
@@ -10,6 +11,7 @@ const App = () => {
           <Randomizer />
         </div>
       </main>
+      <Footer />
     </>
   );
 };
