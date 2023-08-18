@@ -25,9 +25,9 @@ export const topTenNominators = `SELECT
   , COUNT(*) AS wins
 FROM gotm_winners
 INNER JOIN gotm_nominations ON gotm_winners.nomination_id = gotm_nominations.id
-INNER JOIN gotm_nominators ON gotm_nominators.id = gotm_nominations.nominator_id
+INNER JOIN gotm_nominators ON gotm_nominators.id = gotm_nominations.user_id
 GROUP BY
-    gotm_nominations.nominator_id
+    gotm_nominations.user_id
 ORDER BY
     wins DESC
 LIMIT 10;

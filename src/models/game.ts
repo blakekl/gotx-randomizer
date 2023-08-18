@@ -14,7 +14,7 @@ export interface Nominator {
 export interface Nomination {
   id: number;
   game_id: number;
-  nominator_id: number;
+  user_id: number;
   description: string;
   theme_id: number;
 }
