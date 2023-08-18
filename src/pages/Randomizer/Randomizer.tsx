@@ -1,15 +1,15 @@
-import * as React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
-import classNames = require('classnames');
+import classNames from 'classnames';
 import Settings from './Settings';
 import GameDisplay from './GameDisplay';
 import { useStores } from '../../stores/useStores';
+import { useState } from 'react';
 
 const Randomizer = observer(() => {
   const { randomizerStore } = useStores();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  const [imgLoaded, setImgLoaded] = React.useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const handleButtonClick = () => {
     setImgLoaded(false);
@@ -28,8 +28,9 @@ const Randomizer = observer(() => {
             'is-fullwidth': isMobile,
             'is-large': !isMobile,
           })}
-          disabled={!imgLoaded}
-          onClick={() => handleButtonClick()}
+          onClick={() => {
+            handleButtonClick();
+          }}
         >
           {imgLoaded && <span>Reroll</span>}
           {!imgLoaded && (

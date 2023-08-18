@@ -3,6 +3,16 @@
   font-family: 'VT323', monospace;
 }
 
+.navbar-item img {
+  min-height: 28px;
+}
+
+@media (prefers-color-scheme: light) {
+  .navbar {
+    border-bottom: 2px solid;
+  }
+}
+
 .title,
 .subtitle,
 blockquote {
