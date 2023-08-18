@@ -1,5 +1,4 @@
-import { action, computed, observable } from 'mobx';
-import { makeAutoObservable } from 'mobx';
+import { action, computed, makeAutoObservable, observable } from 'mobx';
 import { Game } from '../models/game';
 import dbClient from '../data';
 import { runInAction } from 'mobx';
@@ -71,28 +70,31 @@ class RandomizerStore {
       setAllGames: action,
     });
 
-    (async () => {
-      const gotmRunnerUp = await dbClient.getGotmRunnerup();
-      const gotmWinners = await dbClient.getGotmWinners();
-      const retrobits = await dbClient.getRetrobits();
-      const rpgRunnerUp = await dbClient.getRpgRunnerup();
-      const rpgWinners = await dbClient.getRpgWinners();
-      runInAction(() =>
+    const initialize = async () => {
+      const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
+      const gotmWinners = (await dbClient.getGotmWinners()) || [];
+      const retrobits = (await dbClient.getRetrobits()) || [];
+      const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
+      const rpgWinners = (await dbClient.getRpgWinners()) || [];
+      runInAction(() => {
         this.setAllGames({
           gotmRunnerUp,
           gotmWinners,
           retrobits,
           rpgRunnerUp,
           rpgWinners,
-        })
-      );
-    })();
+        });
+      });
+    };
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    initialize();
   }
 
   shuffle(inputArray: Game[]): Game[] {
     const outputArray = [...inputArray];
     for (let i = outputArray.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1));
       [outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
     }
     return outputArray;
@@ -121,7 +123,7 @@ class RandomizerStore {
     pool = pool.filter(
       (x) =>
         x.time_to_beat >= this.ttbFilter[0] &&
-        x.time_to_beat <= this.ttbFilter[1]
+        x.time_to_beat <= this.ttbFilter[1],
     );
     return this.shuffle(pool);
   }
@@ -148,7 +150,7 @@ class RandomizerStore {
         .filter((x) => x > -1)
         .reduce(
           (aggregate, current) => Math.min(aggregate, Math.round(current)),
-          Number.MAX_SAFE_INTEGER
+          Number.MAX_SAFE_INTEGER,
         );
     }
     return 0;

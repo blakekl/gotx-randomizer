@@ -1,29 +1,31 @@
 import { observer } from 'mobx-react-lite';
-import * as React from 'react';
 import { useStores } from '../../stores/useStores';
+import { useEffect, useRef, useState } from 'react';
 
 interface GameDisplayProps {
   imgLoaded: boolean;
-  setImgLoaded: Function;
+  setImgLoaded: (loaded: boolean) => void;
 }
 
 const GameDisplay = observer(
   ({ imgLoaded, setImgLoaded }: GameDisplayProps) => {
     const { randomizerStore } = useStores();
-    const imgElement = React.useRef<HTMLImageElement>(null);
-    const [mainTitle, setMainTitle] = React.useState('');
-    const [subtitles, setSubtitles] = React.useState([]);
-    const onImageLoaded = () => setImgLoaded(imgElement.current.complete);
-    React.useEffect(() => {
-      if (imgElement.current) {
+    const imgElement = useRef<HTMLImageElement>(null);
+    const [mainTitle, setMainTitle] = useState('');
+    const [subtitles, setSubtitles] = useState(new Array<string>());
+    useEffect(() => {
+      const onImageLoaded = () =>
+        setImgLoaded(imgElement.current?.complete || false);
+      const element = imgElement.current;
+      if (element) {
         imgElement.current?.addEventListener('load', onImageLoaded);
         return () => {
-          imgElement?.current?.removeEventListener('load', onImageLoaded);
+          element.removeEventListener('load', onImageLoaded);
         };
       }
-    }, [imgElement]);
+    }, [imgElement, setImgLoaded]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       setImgLoaded(false);
     }, [
       randomizerStore.includeGotmRunnerUp,
@@ -31,31 +33,20 @@ const GameDisplay = observer(
       randomizerStore.includeRetrobits,
       randomizerStore.includeRpgRunnerUp,
       randomizerStore.includeRpgWinners,
+      setImgLoaded,
     ]);
 
-    React.useEffect(() => {
-      if (randomizerStore.currentGame) {
-        const titles = randomizerStore.currentGame.title;
-        const flaggedTitles = [
-          titles.usa !== null
-            ? `🇺🇸 ${randomizerStore.currentGame.title.usa}`
-            : null,
-          titles.world !== null
-            ? `🌎 ${randomizerStore.currentGame.title.world}`
-            : null,
-          titles.eu !== null
-            ? `🇪🇺 ${randomizerStore.currentGame.title.eu}`
-            : null,
-          titles.jap !== null
-            ? `🇯🇵 ${randomizerStore.currentGame.title.jap}`
-            : null,
-          titles.other !== null
-            ? `🏳️ ${randomizerStore.currentGame.title.other}`
-            : null,
-        ];
-        setMainTitle(flaggedTitles.filter((x) => x)[0]);
-        setSubtitles(flaggedTitles.filter((x) => x).slice(1));
-      }
+    useEffect(() => {
+      const titles = randomizerStore.currentGame.title;
+      const flaggedTitles: string[] = [];
+      titles.usa !== '' && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
+      titles.world !== '' && flaggedTitles.push(`🌎 ${titles.world}`);
+      titles.eu !== '' && flaggedTitles.push(`🇪🇺 ${titles.eu}`);
+      titles.jap !== '' && flaggedTitles.push(`🇯🇵 ${titles.jap}`);
+      titles.other !== '' && flaggedTitles.push(`🏳️ ${titles.other}`);
+
+      setMainTitle(flaggedTitles[0] || '');
+      setSubtitles(flaggedTitles.slice(1));
     }, [randomizerStore.currentGame]);
 
     return (
@@ -132,7 +123,7 @@ const GameDisplay = observer(
         </section>
       </>
     );
-  }
+  },
 );
 
 export default GameDisplay;

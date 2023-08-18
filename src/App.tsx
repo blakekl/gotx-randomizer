@@ -1,9 +1,19 @@
-import * as React from 'react';
+import Footer from './Footer';
+import Navigation from './Navigation';
 import Randomizer from './pages/Randomizer/Randomizer';
-import './style.css';
 
 const App = () => {
-  return <Randomizer />;
+  return (
+    <>
+      <Navigation />
+      <main className="section">
+        <div className="container">
+          <Randomizer />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default App;
