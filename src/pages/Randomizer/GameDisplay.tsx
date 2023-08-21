@@ -37,13 +37,14 @@ const GameDisplay = observer(
     ]);
 
     useEffect(() => {
-      const titles = randomizerStore.currentGame.title;
+      const game = randomizerStore.currentGame;
+      const titles = {usa: game.title_usa, world: game.title_world, eu: game.title_eu, jap: game.title_jap, other: game.title_other};
       const flaggedTitles: string[] = [];
-      titles.usa !== '' && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
-      titles.world !== '' && flaggedTitles.push(`🌎 ${titles.world}`);
-      titles.eu !== '' && flaggedTitles.push(`🇪🇺 ${titles.eu}`);
-      titles.jap !== '' && flaggedTitles.push(`🇯🇵 ${titles.jap}`);
-      titles.other !== '' && flaggedTitles.push(`🏳️ ${titles.other}`);
+      titles.usa && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
+      titles.world && flaggedTitles.push(`🌎 ${titles.world}`);
+      titles.eu && flaggedTitles.push(`🇪🇺 ${titles.eu}`);
+      titles.jap && flaggedTitles.push(`🇯🇵 ${titles.jap}`);
+      titles.other && flaggedTitles.push(`🏳️ ${titles.other}`);
 
       setMainTitle(flaggedTitles[0] || '');
       setSubtitles(flaggedTitles.slice(1));
@@ -117,10 +118,28 @@ const GameDisplay = observer(
               </div>
             </div>
           </div>
-          <blockquote className="is-size-4 has-text-justified">
-            {randomizerStore.currentGame.description}
-          </blockquote>
         </section>
+
+        <table className='table is-striped is-fullwidth'>
+          <thead>
+            <tr>
+              <th>Nominator</th>
+              <th>Theme Date</th>
+              <th>Theme Title</th>
+              <th>Theme Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            { randomizerStore.nominations.map((nomination, index) => 
+              <tr key={index}>
+                <td>{nomination.display_name}</td>
+                <td>{new Date(nomination.date)?.toLocaleDateString()}</td>
+                <td>{nomination.title}</td>
+                <td>{nomination.game_description}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </>
     );
   },

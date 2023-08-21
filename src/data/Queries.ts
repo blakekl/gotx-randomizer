@@ -1,3 +1,46 @@
+/**
+ * Get game list queries.
+ */
+export const getRetrobits = `SELECT
+  * FROM games WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);
+`;
+
+export const getRpgRunnerup = `SELECT 
+    * FROM games
+WHERE id in (
+  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 0
+);`
+
+export const getWinningRpg = `SELECT 
+* FROM games
+WHERE id in (
+SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
+);`
+
+export const getGotmRunnerup = `SELECT * 
+FROM games
+WHERE id in (
+  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 0
+);`
+
+export const getWinningGotm = `SELECT * 
+FROM games
+WHERE id in (
+  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
+);`
+
+export const getNominationData = (game_id: number) => {
+return `SELECT 
+  users.display_name, 
+  nominations.description as game_description, 
+  themes.title, themes.description, 
+  themes.creation_date as 'date' 
+FROM nominations 
+INNER JOIN users on users.id = nominations.user_id 
+INNER JOIN themes ON nominations.theme_id = themes.id 
+WHERE game_id = ${game_id};`
+};
+
 export const totalNomsBeforeWinByGame = `SELECT
   COUNT(*) AS nominations,
   gotm_games.title_usa,
@@ -48,94 +91,6 @@ GROUP BY
   game_id
 ORDER BY
   nominations DESC;`;
-
-export const getRetrobits = `SELECT
-  * FROM retrobits;
-`;
-
-export const getRpgRunnerup = `SELECT 
-    rpg_games.id, 
-    rpg_games.screenscraper_id, 
-    rpg_games.img, 
-    rpg_games.year, 
-    rpg_games.system, 
-    rpg_games.developer, 
-    rpg_games.genre, 
-    rpg_games.time_to_beat, 
-    rpg_games.title_usa, 
-    rpg_games.title_eu, 
-    rpg_games.title_jap, 
-    rpg_games.title_world, 
-    rpg_games.title_other,
-    rpg_nominations.description
-  FROM rpg_games 
-  INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id
-  WHERE rpg_games.id NOT IN (
-    SELECT rpg_games.id FROM rpg_games
-    INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
-    INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id);`;
-
-export const getWinningRpg = `SELECT 
-  rpg_games.id, 
-  rpg_games.screenscraper_id, 
-  rpg_games.img, 
-  rpg_games.year, 
-  rpg_games.system, 
-  rpg_games.developer, 
-  rpg_games.genre, 
-  rpg_games.time_to_beat, 
-  rpg_games.title_usa, 
-  rpg_games.title_eu, 
-  rpg_games.title_jap, 
-  rpg_games.title_world, 
-  rpg_games.title_other,
-  rpg_nominations.description
-FROM rpg_games 
-INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
-INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id;
-`;
-
-export const getGotmRunnerup = `SELECT 
-  gotm_games.id, 
-  gotm_games.screenscraper_id, 
-  gotm_games.img, 
-  gotm_games.year, 
-  gotm_games.system, 
-  gotm_games.developer, 
-  gotm_games.genre, 
-  gotm_games.time_to_beat, 
-  gotm_games.title_usa, 
-  gotm_games.title_eu, 
-  gotm_games.title_jap, 
-  gotm_games.title_world, 
-  gotm_games.title_other,
-  gotm_nominations.description
-FROM gotm_games 
-INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id
-WHERE gotm_games.id NOT IN (
-  SELECT gotm_games.id FROM gotm_games
-  INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id 
-  INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id);`;
-
-export const getWinningGotm = `SELECT 
-    gotm_games.id, 
-    gotm_games.screenscraper_id, 
-    gotm_games.img, 
-    gotm_games.year, 
-    gotm_games.system, 
-    gotm_games.developer, 
-    gotm_games.genre, 
-    gotm_games.time_to_beat, 
-    gotm_games.title_usa, 
-    gotm_games.title_eu, 
-    gotm_games.title_jap, 
-    gotm_games.title_world, 
-    gotm_games.title_other,
-    gotm_nominations.description
-  FROM gotm_games 
-  INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id 
-  INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id;
-`;
 
 export const top10LongestMonthsByWinnerAvgTime = `
 SELECT 
