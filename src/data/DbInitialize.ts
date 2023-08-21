@@ -28,9 +28,9 @@ CREATE TABLE [gotm_games] (
 
 CREATE TABLE [users] ( 
   [id] INT NOT NULL,
-  [discord_name_original] TEXT NULL,
+  [discord_name_original] TEXT NULL UNIQUE,
   [display_name] TEXT NOT NULL,
-  [discord_name] TEXT NULL,
+  [discord_name] TEXT NULL UNIQUE,
    PRIMARY KEY ([id])
 );
 
@@ -49,15 +49,15 @@ CREATE TABLE [gotm_nominations] (
   [description] TEXT NULL,
   [theme_id] INT NOT NULL,
    PRIMARY KEY ([id]),
-   FOREIGN KEY ([user_id]) REFERENCES [users] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT,
-   FOREIGN KEY ([game_id]) REFERENCES [gotm_games] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT,
-   FOREIGN KEY ([theme_id]) REFERENCES [gotm_themes] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT
+   FOREIGN KEY ([user_id]) REFERENCES [users] ([id]) ON DELETE CASCADE ON UPDATE CASCADE,
+   FOREIGN KEY ([game_id]) REFERENCES [gotm_games] ([id]) ON DELETE CASCADE ON UPDATE CASCADE,
+   FOREIGN KEY ([theme_id]) REFERENCES [gotm_themes] ([id]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE [gotm_winners] ( 
   [id] INT NOT NULL,
   [nomination_id] INT NOT NULL,
    PRIMARY KEY ([id]),
-   FOREIGN KEY ([nomination_id]) REFERENCES [gotm_nominations] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT
+   FOREIGN KEY ([nomination_id]) REFERENCES [gotm_nominations] ([id]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE [retrobits] ( 
   [id] INT NOT NULL,
@@ -98,13 +98,13 @@ CREATE TABLE [rpg_nominations] (
   [creation_date] TEXT NOT NULL,
   [description] TEXT NULL,
    PRIMARY KEY ([id]),
-   FOREIGN KEY ([game_id]) REFERENCES [rpg_games] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT
+   FOREIGN KEY ([game_id]) REFERENCES [rpg_games] ([id]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE [rpg_winners] ( 
   [id] INTEGER NULL,
   [nomination_id] INTEGER NOT NULL,
    PRIMARY KEY ([id]),
-   FOREIGN KEY ([nomination_id]) REFERENCES [rpg_nominations] ([id]) ON DELETE RESTRICT ON UPDATE RESTRICT
+   FOREIGN KEY ([nomination_id]) REFERENCES [rpg_nominations] ([id]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO [gotm_games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (1, 2623, 'https://screenscraper.fr/image.php?gameid=2623&media=ss&maxwidth=640&maxheight=480&region=wor', 1993, 'Super Nintendo', 'Nintendo', 'Flight Simulator', NULL, 'Turn and Burn: No-Fly Zone', NULL, NULL, NULL, NULL);
@@ -876,7 +876,7 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (2, 'FlatFootFox (He/Him)#5297', 'FlatFootFox', 'flatfootfox');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (3, 'Whitty#2502', 'Whitty', 'whitt_3');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (4, 'BasicTrips#0228', 'BasicTrips', 'basictrips');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (5, NULL, 'Thor!', 'thor9438');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (5, 'Thor!#9438', 'Thor!', 'thor9438');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (6, 'LiquidDivide#1982', 'LiquidDivide', 'liquiddivide');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (7, 'eems#0001', 'eems', 'eems');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (8, 'RaycePenguin#3715', 'RaycePenguin', 'raycepenguin');
@@ -886,7 +886,7 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (12, 'Rapid99#9203', 'Rapid99', 'rapid99');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (13, 'choosh#0347', 'Choosh', NULL);
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (14, 'tastelessone#8534', 'tastelessone', NULL);
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (15, 'PrismPak.EXE#0784', 'PrismPak.EXE', 'prismpak');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (15, 'PrismPak.EXE🌸#0784', '🌸PrismPak.EXE🌸', 'prismpak');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (16, 'Pradyumna#5258', 'Pradyumna', '.pradyumna');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (17, 'moved accounts#1816', 'moved accounts', 'movedaccountslol');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (18, 'kewlpinguino#5918', 'kewlpinguino', 'kewlpinguino');
@@ -908,7 +908,7 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (34, 'Nate The Great#3557', 'Nate The Great', 'natethegreat_');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (35, 'Crazydave#7945', 'Crazydave', 'crazydave7945');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (36, 'dollerbill#9615', 'rpgbill', 'dollerbill');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (37, 'Transcience8985#4838', 'Transcience8985', 'transience8985');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (37, 'Transience8985#4838', 'Transcience8985', 'transience8985');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (38, 'Voxel Villager#6567', 'Voxel Villager', NULL);
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (39, 'TheRomGnome#5950', 'TheRomGnome', 'theromgnome');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (40, 'Cebion#2797', 'Cebion', '.cebion');
@@ -951,11 +951,11 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (77, 'cbee#3229', 'cbee', 'cbee63');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (78, 'Tricto#3916', 'Tricto', 'tricto');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (79, NULL, 'Hallan', 'hallan');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (80, NULL, 'Red.', 'redsusernameissounique');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (80, 'Red.#6180', 'Red.', 'redsusernameissounique');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (81, 'mddk#4504', 'mddk', 'mddk');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (82, 'Boomaga#2081', 'Boomaga', 'akaboomaga');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (83, 'nimbus#3137', 'nimbus', 'nimbus__');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (84, NULL, 'PocketEleri', 'pocketeleri');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (84, 'PocketEleri#9363', 'PocketEleri', 'pocketeleri');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (85, 'Supergrom#0921', 'jtothebell', 'supergrom');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (86, 'psobloke#1048', 'psobloke', 'psobloke');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (87, 'SnarkyJay#3056', 'SnarkyJay', 'snarkyjay');
@@ -964,21 +964,21 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (90, 'Javier A.#3351', 'Javier', 'javier.a');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (91, 'yakk#8747', 'yarkie', 'yakk8747');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (92, 'Tardigrade#2464', 'Tardigrade', 'tardigrade2464');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (93, 'W#5535', 'Dan W', 'p_dan_tic');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (93, 'Dan W#5535', 'Dan W', 'p_dan_tic');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (94, 'Espasol#5444', 'Espasol', '.espasol');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (95, 'Lumus#4421', 'Lumus', 'lumus28');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (96, 'Asayanami#4837', 'Asayanami', 'asayanami');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (98, 'KingArcturus_#0847', 'Frankly Retro', 'kingarcturus_');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (99, 'TooManyFish∞#3391', 'toomanyfish', 'toomanyfish');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (100, '][ntamin22#9617', '][ntamin22', 'hazmat0');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (101, NULL, 'Skald', 'grm0');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (102, NULL, 'Oudeis', '.oudeis');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (101, 'Skald#5500', 'Skald', 'grm0');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (102, 'Oudeis#0467', 'Oudeis', '.oudeis');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (103, 'RyanPlugs#0687', 'RyanPlugs', 'ryanplugs');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (104, 'Zeey#5614', 'Zeey', 'zshaan6493');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (105, 'Noel ÒᵧÓ#7847', 'Noel ÒᵧÓ', 'noel_rez');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (106, 'Rusty Dusty#7412', 'Rusty Dusty', 'rusty.dusty');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (107, 'BlackSad#6396', 'BlackSad', '_blacksad');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (108, 'Nackmatholn#3854', 'Nackmathlon', 'nackmatholn');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (108, 'Nackmatholn#3854', 'Nackmatholn', 'nackmatholn');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (109, 'smith &#9990', 'smith &', 'smith_ampersand');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (110, 'Joss#4962', 'Mecha Month is Every Month', 'hertman789');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (111, 'HERO#4217', 'HERO', 'jake.hero');
@@ -1023,7 +1023,7 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (153, 'MirrorB#6969', 'MirrorB', 'mirrorb');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (154, 'bespu#4049', 'bespu', 'bespu');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (155, 'At0MiC#7777', 'At0MiC', 'at0mic');
-INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (156, NULL, 'thriveinhere', 'thriveinhere');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (156, 'thriveinhere#9899', 'thriveinhere', 'thriveinhere');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (157, 'Blazer7285#2294', 'Blazer7285', NULL);
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (158, 'ICee#3946', 'HardWaffle', 'hardwaffle');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (159, 'ryan86me#6373', 'Ryan86Me', 'ryan86me');
@@ -1035,6 +1035,120 @@ INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_nam
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (166, 'STEAK [STEAKandGAMES]#1484', 'STEAK [STEAKandGAMES]', 'steakandgames');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (167, 'TerriblePerson#7247', 'TerriblePerson', 'terribleperson7');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (168, 'DAN#0589', 'AladDan', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (169, 'xarasu#9817', 'Sage', 'xarasu');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (170, 'Doorhinge#4424', 'Doorhinge', 'crowball');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (171, 'Timmy Stardust#9580', 'Timmy Stardust', 'timmystardust');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (172, 'RedSideOfTheMoon#8575', 'RedSideOfTheMoon', 'redsideofthemoon');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (173, 'dashdot3#5279', 'dashdot3', 'dashdot3');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (174, 'Ghost1069#3525', 'Ghost1069', 'ghost1069');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (175, 'ReiddMaxwell#1694', 'ReiddMaxwell', 'reiddmaxwell');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (176, 'GforceUK#9358', 'GforceUK', 'gforceuk');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (177, 'ocho2188#1156', 'Ocho', 'ocho2188');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (178, 'M4R5E#8052', 'M4R5E', 'm4r5e');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (179, 'maochan86#4308', 'maochan86', 'maochan86');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (180, 'patty#8889', 'patty', 'patty85');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (181, 'SupaSoCola#8570', 'SupaSoCola', 'supasocola');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (182, 'aldresai#3029', 'aldresai', 'aldresai');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (183, 'pxlnic#6768', 'pxlnic', 'pxlnic');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (184, 'duhdudedoe#2761', 'duhdudedoe', 'duhdudedoe');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (185, 'djjuxtapose#3961', 'djjuxtapose', 'djjuxtapose');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (186, 'SkullTownJelly#4750', 'SkullTownJelly', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (187, 'OmegaZero#0053', 'OmegaZero', 'omegazer0180');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (188, 'LosingButNotWrong#6536', 'LosingButNotWrong', 'losingbutnotwrong');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (189, 'Stevo406#7639', 'Steve H', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (190, 'brady#1378', 'fraggle', 'partypoison109');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (191, '🌸Subspace.EXE🌸#0784', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (192, '1MayoRice1#6500', '1MayoRice1', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (193, 'Akios#1304', 'Aki', 'akios');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (194, 'AliceVie#3332', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (195, 'anderbubble#8484', 'anderbubble', 'anderbubble');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (196, 'Ashvita#6335', 'Ash', 'ashvita');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (197, 'axelrider#1116', 'axelrider', 'axelrider');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (198, 'balearicwaves#9255', 'balearicwaves', 'balearicwaves');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (199, 'Benzo#5740', 'Benzo', 'benzo1985');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (200, 'BMXW#7527', 'BMXW', 'bmxw');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (201, 'boss566y#2353', 'boss566y', 'boss566y');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (202, 'Che Chou#5438', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (203, 'ChristianBeaird#2782', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (204, 'chthonox#0956', 'chthonox', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (205, 'Clem Dustpaw#3798', 'Clem Dustpaw', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (206, 'Crid#4192', 'Crid', '_crid_');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (207, 'dafunk5446#7843', 'dafunk5446', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (208, 'daloia_music#4178', 'daloia_music', 'daloia_music');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (209, 'Dan The LoOOOong Giraffe#0589', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (210, 'Dar_Kalim#0421', 'Dar_Kalim', 'dar_kalim');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (211, 'dbunke#3115', 'dbunke', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (212, 'DeeeConrad#2344', 'DeeeConrad', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (213, 'denbowski#5628', 'denbowski', 'denbowski');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (214, 'dmac#0001', 'dmac', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (215, 'Draga#1564', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (216, 'drainboy#0432', 'drain', 'drainboy');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (217, 'DrunkenLlama#6666', 'DrunkenLlama', 'drunkenllama74');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (218, 'Emvee#0012', '𝕾𝖍𝖆𝖓𝖔𝖆', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (219, 'feralghoul#4600', 'Feralghoul', 'feralghoul');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (220, 'Feron#4252', 'Feron', 'feronthal');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (221, 'ferry#4337', 'ferry', 'ferry.rascal');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (222, 'gfcpinto#2672', 'gfcpinto', 'gfcpinto');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (223, 'H3ll!#4439', 'H3ll!', 'h3ll4439');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (224, 'Håv4rd#1697', 'Håv4rd', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (225, 'Jake#2672', 'Jake', 'jqui');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (226, 'JayTea92#2155', 'JayTea', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (227, 'JCRJr#5882', 'JCRJr', 'jcrjr');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (228, 'JN2002#1299', 'JUSTIN', 'jn2002.');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (229, 'kalamer#5399', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (230, 'Kamogli#7245', 'Kamogli', 'kamogli');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (231, 'kenedy#6925', 'kenedy', '.kenedy');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (232, 'KnuKLz#0210', 'KnuKLz', 'knuklz');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (233, 'krvkz#5134', 'krvkz', 'horkrvkz');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (234, 'Ladut#4608', 'Ladut', 'ladut');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (235, 'LBRapid#6490', 'LBRapid', 'lbrapid');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (236, 'lopsided bunny#1398', 'lopsided bunny', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (237, 'losd#7920', 'losd', 'losd');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (238, 'MaxPower78#2468', 'Max Power', 'maxpower78');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (239, 'mrCunningham#8438', 'mrCunningham', 'mrcunningham');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (240, 'mrpuff#2269', 'mrpuff', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (241, 'N0sSyndrome#4052', 'N0sSyndrom', 'n0ssyndrome');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (242, 'NAPALM#3137', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (243, 'Nintencats#0491', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (244, 'notlikethesoup#0606', 'notlikethesoup', 'notlikethesoup');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (245, 'oimaya#5824', 'oimaya', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (248, 'PeterPan#9771', 'PeterPan', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (249, 'phillip#5134', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (250, 'PleaseSandwich#3304', 'PleaseSandwich', 'pleasesandwich');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (254, 'pzonee#3534', 'pzonee', 'pzonee');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (255, 'Rei#1647', 'Rei', 'kaorurei');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (256, 'Residual Heat#7116', 'Residual Heat', 'residualheat');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (257, 'Sanelessone#3318', 'Sanelessone', 'sanelessone');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (258, 'Seraphgrim#1600', 'Seraphgrim', 'seraphgrim');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (259, 'Shedimus#1986', 'Shedimus', 'shedimus');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (260, 'sizzleweet#4931', 'sizzleweet', 'sizzleweet');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (261, 'sorcererer#6783', 'sorcererer', 'sorcererer');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (262, 'sqpete#4413', 'sqpete', 'sqpete');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (263, 'SteezeTrain#1337', 'SteezeTrain', 'steezetrain');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (264, 'T1DSoldier#2179', 'T1DSoldier', 't1dsoldier');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (265, 'talkstoaliens#7971', 'talkstoaliens', 'talkstoaliens');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (266, 'thefakejoshua#0130', 'thefakejoshua', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (267, 'TheRetroTechDad#0938', 'Retro Tech Dad', 'theretrotechdad');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (269, 'tigno#3123', 'tigno', '3tigno');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (270, 'tony#5959', 'tony', 'greenshrt');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (271, 'townimbecile#6173', '', NULL);
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (273, 'wesaj#4923', 'wesaj', 'wesaj');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (274, 'wonkysharks#5296', 'Dan Shark', 'danwis');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (275, 'Wriv#8562', 'Wriv', '.wriv.');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (276, 'Zach944#1520', 'Zach944', 'zach944');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (277, 'ZCGonzo#7092', 'Gnozo', 'zcgonzo');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (278, 'zzeerroo#7264', 'zzeerroo ⚡⚡', 'zzeerroo');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (279, NULL, 'drox', 'androxima');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (280, NULL, 'bdub', 'bdub7653');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (281, NULL, 'Clover', 'clover_q');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (282, NULL, 'guts', 'gutsu7');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (284, NULL, 'humanbydefinition', 'humanbydefinition');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (285, NULL, 'RedSpy', 'iamtheredspy');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (286, NULL, 'RetroMateo', 'mangomateo');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (287, NULL, 'newbie tooby chicken booby', 'newbietoobychickenbooby');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (288, NULL, 'Jack (Nihilspire)', 'nihilspire');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (289, NULL, 'Seedy', 'seedyz');
+INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (292, NULL, 'Zer0', 'zer0_impedance');
 INSERT INTO [gotm_themes] ([id], [creation_date], [title], [description]) VALUES (1, '2020-08-01', 'No theme', NULL);
 INSERT INTO [gotm_themes] ([id], [creation_date], [title], [description]) VALUES (2, '2020-09-01', 'No theme', NULL);
 INSERT INTO [gotm_themes] ([id], [creation_date], [title], [description]) VALUES (3, '2020-10-01', 'Spooky', NULL);
