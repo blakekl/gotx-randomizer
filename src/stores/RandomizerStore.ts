@@ -1,5 +1,5 @@
 import { action, computed, makeAutoObservable, observable } from 'mobx';
-import { Game, NominationData } from '../models/game';
+import { Game } from '../models/game';
 import dbClient from '../data';
 import { runInAction } from 'mobx';
 
@@ -26,7 +26,6 @@ class RandomizerStore {
   includeRpgRunnerUp = true;
   includeRpgWinners = true;
   ttbFilter: number[] = [0, Number.MAX_SAFE_INTEGER];
-  nominations: NominationData[] = [];
 
   emptyGame = {
     id: 0,
@@ -56,10 +55,10 @@ class RandomizerStore {
       ttbFilter: observable,
       currentGameIndex: observable,
       allGames: observable,
-      nominations: observable,
 
       filteredGamePool: computed,
       currentGame: computed,
+      nominations: computed,
       ttbMin: computed,
       ttbMax: computed,
 
@@ -71,7 +70,6 @@ class RandomizerStore {
       setIncludeRpgWinners: action,
       setTtbFilter: action,
       setAllGames: action,
-      setNominations: action,
     });
 
     const initialize = () => {
@@ -174,7 +172,6 @@ class RandomizerStore {
   nextGame() {
     this.currentGameIndex =
       (this.currentGameIndex + 1) % this.filteredGamePool.length;
-    void this.setNominations(this.filteredGamePool[this.currentGameIndex].id);
   }
 
   setIncludeGotmRunnerUp(value: boolean) {
@@ -201,11 +198,8 @@ class RandomizerStore {
     this.ttbFilter = value;
   }
 
-  setNominations(game_id: number) {
-    const newData = dbClient.getNominationData(game_id);
-    runInAction(() => {
-      this.nominations = newData || [];
-    });
+  get nominations() {
+    return dbClient.getNominationData(this.currentGame.id);
   }
 }
 
