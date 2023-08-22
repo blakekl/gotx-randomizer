@@ -3,65 +3,59 @@ import { Database } from 'sql.js';
 
 import {
   getGotmRunnerup,
+  getNominationData,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
   getWinningRpg,
 } from '../data/Queries';
-import { gameDto, GameType, retrobitsGameDto } from '../models/game';
+import { gameDto, nominationDataDto } from '../models/game';
 import { initialize } from './DbInitialize';
 
-const initDbClient = () => {
+const initDbClient = async () => {
   let SQL: initSqlJs.SqlJsStatic;
   let db: Database | null;
-
-  const getDb = async () => {
-    if (!db) {
-      try {
-        SQL = await initSqlJs({
-          locateFile: (file) =>
-            `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`,
-        });
-        db = new SQL.Database();
-        db.run(initialize);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    return db;
-  };
+  try {
+    SQL = await initSqlJs({
+      locateFile: (file) =>
+        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`,
+    });
+    db = new SQL.Database();
+    db.run(initialize);
+  } catch (e) {
+    console.error(e);
+  }
 
   return {
-    getGotmRunnerup: async () => {
-      const db = await getDb();
+    getGotmRunnerup: () => {
       return db
         ?.exec(`${getGotmRunnerup}`)[0]
-        .values.map((x) => gameDto(x, GameType.gotm));
+        .values.map((x) => gameDto(x));
     },
-    getGotmWinners: async () => {
-      const db = await getDb();
+    getGotmWinners: () => {
       return db
         ?.exec(`${getWinningGotm}`)[0]
-        .values.map((x) => gameDto(x, GameType.gotm));
+        .values.map((x) => gameDto(x));
     },
-    getRetrobits: async () => {
-      const db = await getDb();
+    getRetrobits: () => {
       return db
         ?.exec(`${getRetrobits}`)[0]
-        .values.map((x) => retrobitsGameDto(x));
+        .values.map((x) => gameDto(x));
     },
-    getRpgRunnerup: async () => {
-      const db = await getDb();
+    getRpgRunnerup: () => {
       return db
         ?.exec(`${getRpgRunnerup}`)[0]
-        .values.map((x) => gameDto(x, GameType.rpg));
+        .values.map((x) => gameDto(x));
     },
-    getRpgWinners: async () => {
-      const db = await getDb();
+    getRpgWinners: () => {
       return db
         ?.exec(`${getWinningRpg}`)[0]
-        .values.map((x) => gameDto(x, GameType.rpg));
+        .values.map((x) => gameDto(x));
     },
+    getNominationData: (game_id: number) => {
+      const result = db?.exec(`${getNominationData(game_id)}`)[0];
+      return result?.values.map(x => nominationDataDto(x)) || [];
+    }
   };
 };
 
