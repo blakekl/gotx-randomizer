@@ -74,12 +74,12 @@ class RandomizerStore {
       setNominations: action,
     });
 
-    const initialize = async () => {
-      const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
-      const gotmWinners = (await dbClient.getGotmWinners()) || [];
-      const retrobits = (await dbClient.getRetrobits()) || [];
-      const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
-      const rpgWinners = (await dbClient.getRpgWinners()) || [];
+    const initialize = () => {
+      const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
+      const gotmWinners = dbClient.getGotmWinners() || [];
+      const retrobits = dbClient.getRetrobits() || [];
+      const rpgRunnerUp = dbClient.getRpgRunnerup() || [];
+      const rpgWinners = dbClient.getRpgWinners() || [];
       runInAction(() => {
         this.setAllGames({
           gotmRunnerUp,
@@ -126,8 +126,9 @@ class RandomizerStore {
     pool = this.shuffle(pool);
     pool = pool.filter(
       (x) =>
-        x.time_to_beat >= this.ttbFilter[0] &&
-        x.time_to_beat <= this.ttbFilter[1],
+        x.time_to_beat 
+        && x.time_to_beat >= this.ttbFilter[0] 
+        && x.time_to_beat <= this.ttbFilter[1],
     );
     return this.shuffle(pool);
   }
@@ -147,17 +148,14 @@ class RandomizerStore {
       ...this.allGames.rpgRunnerUp,
       ...this.allGames.rpgWinners,
     ];
-    if (allList.length > 0) {
-      return allList
-        .map((x) => x.time_to_beat)
-        .filter((x) => !isNaN(x))
-        .filter((x) => x > -1)
-        .reduce(
-          (aggregate, current) => Math.min(aggregate, Math.round(current)),
-          Number.MAX_SAFE_INTEGER,
-        );
-    }
-    return 0;
+    return allList
+      .map((x) => x.time_to_beat)
+      .filter((x) => x ||  x === 0)
+      .filter((x) => x && x> -1)
+      .reduce(
+        (aggregate: number, current) => Math.min(aggregate, Math.round(current || 0)),
+        Number.MAX_SAFE_INTEGER,
+      ) || 0;
   }
 
   get ttbMax(): number {
@@ -168,12 +166,9 @@ class RandomizerStore {
       ...this.allGames.rpgRunnerUp,
       ...this.allGames.rpgWinners,
     ];
-    if (allList.length > 0) {
-      return allList
-        .map((x) => x.time_to_beat)
-        .reduce((aggregate, current) => Math.max(aggregate, current), 0);
-    }
-    return Number.MAX_SAFE_INTEGER;
+    return allList
+      .map((x) => x.time_to_beat)
+      .reduce((aggregate: number, current) => Math.max(aggregate, current || 0), 0) || Number.MAX_SAFE_INTEGER;
   }
 
   nextGame() {
@@ -206,8 +201,8 @@ class RandomizerStore {
     this.ttbFilter = value;
   }
 
-  async setNominations(game_id: number) {
-    const newData = await dbClient.getNominationData(game_id);
+  setNominations(game_id: number) {
+    const newData = dbClient.getNominationData(game_id);
     runInAction(() => {
       this.nominations = newData || [];
     });
