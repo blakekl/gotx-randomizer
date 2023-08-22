@@ -14,12 +14,6 @@ export interface User {
   theme_id: number;
 }
 
-export interface Theme {
-  id: number;
-  creation_date: Date;
-  title: string;
-}
-
 export interface Game {
   id: number;
   screenscraper_id: number;
@@ -52,7 +46,7 @@ export interface Theme {
   description: string;
 }
 
-export interface NominationData {
+export interface UserNomination {
   display_name: string;
   game_description: string;
   title: string;
@@ -127,7 +121,7 @@ export const user = (data: any[]): User => {
   } as User;
 };
 
-export const nominationDataDto = (data: any[]): NominationData => {
+export const userNominationDto = (data: any[]): UserNomination => {
   const [display_name, game_description, title, description, date] = data;
 
   return {
@@ -136,5 +130,5 @@ export const nominationDataDto = (data: any[]): NominationData => {
     title,
     description,
     date,
-  } as NominationData;
+  } as UserNomination;
 };

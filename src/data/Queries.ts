@@ -29,7 +29,7 @@ WHERE id in (
   SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
 );`;
 
-export const getNominationData = (game_id: number) => {
+export const getUserNominations = (game_id: number) => {
   return `SELECT 
   users.display_name, 
   nominations.description as game_description, 

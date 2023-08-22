@@ -3,13 +3,13 @@ import { Database } from 'sql.js';
 
 import {
   getGotmRunnerup,
-  getNominationData,
+  getUserNominations,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
   getWinningRpg,
 } from '../data/Queries';
-import { gameDto, nominationDataDto } from '../models/game';
+import { gameDto, userNominationDto } from '../models/game';
 import { initialize } from './DbInitialize';
 
 const initDbClient = async () => {
@@ -44,8 +44,8 @@ const initDbClient = async () => {
       return db?.exec(`${getWinningRpg}`)[0].values.map((x) => gameDto(x));
     },
     getNominationData: (game_id: number) => {
-      const result = db?.exec(`${getNominationData(game_id)}`)[0];
-      return result?.values.map((x) => nominationDataDto(x)) || [];
+      const userNominations = db?.exec(`${getUserNominations(game_id)}`)[0];
+      return userNominations?.values.map((x) => userNominationDto(x)) || [];
     },
   };
 };
