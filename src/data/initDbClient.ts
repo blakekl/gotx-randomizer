@@ -15,6 +15,7 @@ import { initialize } from './DbInitialize';
 const initDbClient = async () => {
   let SQL: initSqlJs.SqlJsStatic;
   let db: Database | null;
+  
   try {
     SQL = await initSqlJs({
       locateFile: (file) =>

@@ -110,7 +110,7 @@ const GameDisplay = observer(
                 <p className="subtitle">
                   <span className="is-hidden-tablet">⏱️</span>
                   <span>
-                    {randomizerStore.currentGame.time_to_beat > 0
+                    {randomizerStore.currentGame.time_to_beat || 0 > 0
                       ? `${randomizerStore.currentGame.time_to_beat} hours`
                       : 'No data'}
                   </span>
@@ -120,6 +120,7 @@ const GameDisplay = observer(
           </div>
         </section>
 
+        {randomizerStore.nominations.length > 0 &&
         <table className='table is-striped is-fullwidth'>
           <thead>
             <tr>
@@ -139,7 +140,7 @@ const GameDisplay = observer(
               </tr>
             )}
           </tbody>
-        </table>
+        </table>}
       </>
     );
   },

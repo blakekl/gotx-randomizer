@@ -9,6 +9,13 @@ export interface User {
   discord_name_original: string,
   display_name: string,
   discord_name: string,
+  theme_id: number;
+}
+
+export interface Theme {
+  id: number;
+  creation_date: Date;
+  title: string;
 }
 
 export interface Game {
