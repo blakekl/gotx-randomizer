@@ -15,7 +15,7 @@ import { initialize } from './DbInitialize';
 const initDbClient = async () => {
   let SQL: initSqlJs.SqlJsStatic;
   let db: Database | null;
-  
+
   try {
     SQL = await initSqlJs({
       locateFile: (file) =>
@@ -29,34 +29,24 @@ const initDbClient = async () => {
 
   return {
     getGotmRunnerup: () => {
-      return db
-        ?.exec(`${getGotmRunnerup}`)[0]
-        .values.map((x) => gameDto(x));
+      return db?.exec(`${getGotmRunnerup}`)[0].values.map((x) => gameDto(x));
     },
     getGotmWinners: () => {
-      return db
-        ?.exec(`${getWinningGotm}`)[0]
-        .values.map((x) => gameDto(x));
+      return db?.exec(`${getWinningGotm}`)[0].values.map((x) => gameDto(x));
     },
     getRetrobits: () => {
-      return db
-        ?.exec(`${getRetrobits}`)[0]
-        .values.map((x) => gameDto(x));
+      return db?.exec(`${getRetrobits}`)[0].values.map((x) => gameDto(x));
     },
     getRpgRunnerup: () => {
-      return db
-        ?.exec(`${getRpgRunnerup}`)[0]
-        .values.map((x) => gameDto(x));
+      return db?.exec(`${getRpgRunnerup}`)[0].values.map((x) => gameDto(x));
     },
     getRpgWinners: () => {
-      return db
-        ?.exec(`${getWinningRpg}`)[0]
-        .values.map((x) => gameDto(x));
+      return db?.exec(`${getWinningRpg}`)[0].values.map((x) => gameDto(x));
     },
     getNominationData: (game_id: number) => {
       const result = db?.exec(`${getNominationData(game_id)}`)[0];
-      return result?.values.map(x => nominationDataDto(x)) || [];
-    }
+      return result?.values.map((x) => nominationDataDto(x)) || [];
+    },
   };
 };
 

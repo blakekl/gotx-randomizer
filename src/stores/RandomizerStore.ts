@@ -124,9 +124,9 @@ class RandomizerStore {
     pool = this.shuffle(pool);
     pool = pool.filter(
       (x) =>
-        x.time_to_beat 
-        && x.time_to_beat >= this.ttbFilter[0] 
-        && x.time_to_beat <= this.ttbFilter[1],
+        x.time_to_beat &&
+        x.time_to_beat >= this.ttbFilter[0] &&
+        x.time_to_beat <= this.ttbFilter[1],
     );
     return this.shuffle(pool);
   }
@@ -146,14 +146,17 @@ class RandomizerStore {
       ...this.allGames.rpgRunnerUp,
       ...this.allGames.rpgWinners,
     ];
-    return allList
-      .map((x) => x.time_to_beat)
-      .filter((x) => x ||  x === 0)
-      .filter((x) => x && x> -1)
-      .reduce(
-        (aggregate: number, current) => Math.min(aggregate, Math.round(current || 0)),
-        Number.MAX_SAFE_INTEGER,
-      ) || 0;
+    return (
+      allList
+        .map((x) => x.time_to_beat)
+        .filter((x) => x || x === 0)
+        .filter((x) => x && x > -1)
+        .reduce(
+          (aggregate: number, current) =>
+            Math.min(aggregate, Math.round(current || 0)),
+          Number.MAX_SAFE_INTEGER,
+        ) || 0
+    );
   }
 
   get ttbMax(): number {
@@ -164,9 +167,14 @@ class RandomizerStore {
       ...this.allGames.rpgRunnerUp,
       ...this.allGames.rpgWinners,
     ];
-    return allList
-      .map((x) => x.time_to_beat)
-      .reduce((aggregate: number, current) => Math.max(aggregate, current || 0), 0) || Number.MAX_SAFE_INTEGER;
+    return (
+      allList
+        .map((x) => x.time_to_beat)
+        .reduce(
+          (aggregate: number, current) => Math.max(aggregate, current || 0),
+          0,
+        ) || Number.MAX_SAFE_INTEGER
+    );
   }
 
   nextGame() {

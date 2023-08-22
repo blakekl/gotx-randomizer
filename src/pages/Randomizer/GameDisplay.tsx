@@ -38,7 +38,13 @@ const GameDisplay = observer(
 
     useEffect(() => {
       const game = randomizerStore.currentGame;
-      const titles = {usa: game.title_usa, world: game.title_world, eu: game.title_eu, jap: game.title_jap, other: game.title_other};
+      const titles = {
+        usa: game.title_usa,
+        world: game.title_world,
+        eu: game.title_eu,
+        jap: game.title_jap,
+        other: game.title_other,
+      };
       const flaggedTitles: string[] = [];
       titles.usa && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
       titles.world && flaggedTitles.push(`🌎 ${titles.world}`);
@@ -120,27 +126,28 @@ const GameDisplay = observer(
           </div>
         </section>
 
-        {randomizerStore.nominations.length > 0 &&
-        <table className='table is-striped is-fullwidth'>
-          <thead>
-            <tr>
-              <th>Nominator</th>
-              <th>Theme Date</th>
-              <th>Theme Title</th>
-              <th>Theme Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            { randomizerStore.nominations.map((nomination, index) => 
-              <tr key={index}>
-                <td>{nomination.display_name}</td>
-                <td>{new Date(nomination.date)?.toLocaleDateString()}</td>
-                <td>{nomination.title}</td>
-                <td>{nomination.game_description}</td>
+        {randomizerStore.nominations.length > 0 && (
+          <table className="table is-striped is-fullwidth">
+            <thead>
+              <tr>
+                <th>Nominator</th>
+                <th>Theme Date</th>
+                <th>Theme Title</th>
+                <th>Theme Description</th>
               </tr>
-            )}
-          </tbody>
-        </table>}
+            </thead>
+            <tbody>
+              {randomizerStore.nominations.map((nomination, index) => (
+                <tr key={index}>
+                  <td>{nomination.display_name}</td>
+                  <td>{new Date(nomination.date)?.toLocaleDateString()}</td>
+                  <td>{nomination.title}</td>
+                  <td>{nomination.game_description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </>
     );
   },

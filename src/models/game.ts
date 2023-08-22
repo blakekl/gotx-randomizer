@@ -1,14 +1,16 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 /* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 export enum NominationType {
-  gotm, retrobit, rpg
+  gotm,
+  retrobit,
+  rpg,
 }
 
 export interface User {
   id: number;
-  discord_name_original: string,
-  display_name: string,
-  discord_name: string,
+  discord_name_original: string;
+  display_name: string;
+  discord_name: string;
   theme_id: number;
 }
 
@@ -40,7 +42,7 @@ export interface Nomination {
   game_id: number;
   user_id?: number;
   theme_id?: number;
-  is_winner: boolean
+  is_winner: boolean;
 }
 
 export interface Theme {
@@ -51,11 +53,11 @@ export interface Theme {
 }
 
 export interface NominationData {
-  display_name: string,
-  game_description: string,
-  title: string,
-  description: string,
-  date: string,
+  display_name: string;
+  game_description: string;
+  title: string;
+  description: string;
+  date: string;
 }
 
 export const gameDto = (data: any[]): Game => {
@@ -92,47 +94,30 @@ export const gameDto = (data: any[]): Game => {
 };
 
 export const nominationDto = (data: any[]): Nomination => {
-  const [
-    id,
-  nomination_type,
-  game_id,
-  user_id,
-  theme_id,
-  is_winner
-] = data;
+  const [id, nomination_type, game_id, user_id, theme_id, is_winner] = data;
 
   return {
     id,
-  nomination_type,
-  game_id,
-  user_id,
-  theme_id,
-  is_winner
+    nomination_type,
+    game_id,
+    user_id,
+    theme_id,
+    is_winner,
   } as Nomination;
 };
 
 export const themeDto = (data: any[]): Theme => {
- const [
-  id,
-  creation_date,
-  title,
-  description,
- ] = data;
- return {
-  id,
-  creation_date,
-  title,
-  description, 
- }
+  const [id, creation_date, title, description] = data;
+  return {
+    id,
+    creation_date,
+    title,
+    description,
+  };
 };
 
 export const user = (data: any[]): User => {
-  const [
-    id,
-    discord_name_original,
-    display_name,
-    discord_name,
-  ] = data;
+  const [id, discord_name_original, display_name, discord_name] = data;
 
   return {
     id,
@@ -143,14 +128,8 @@ export const user = (data: any[]): User => {
 };
 
 export const nominationDataDto = (data: any[]): NominationData => {
-  const [
-    display_name,
-    game_description,
-    title,
-    description,
-    date,
-  ] = data;
-  
+  const [display_name, game_description, title, description, date] = data;
+
   return {
     display_name,
     game_description,

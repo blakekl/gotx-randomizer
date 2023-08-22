@@ -9,28 +9,28 @@ export const getRpgRunnerup = `SELECT
     * FROM games
 WHERE id in (
   SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 0
-);`
+);`;
 
 export const getWinningRpg = `SELECT 
 * FROM games
 WHERE id in (
 SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
-);`
+);`;
 
 export const getGotmRunnerup = `SELECT * 
 FROM games
 WHERE id in (
   SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 0
-);`
+);`;
 
 export const getWinningGotm = `SELECT * 
 FROM games
 WHERE id in (
   SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
-);`
+);`;
 
 export const getNominationData = (game_id: number) => {
-return `SELECT 
+  return `SELECT 
   users.display_name, 
   nominations.description as game_description, 
   themes.title, themes.description, 
@@ -38,9 +38,8 @@ return `SELECT
 FROM nominations 
 INNER JOIN users on users.id = nominations.user_id 
 INNER JOIN themes ON nominations.theme_id = themes.id 
-WHERE game_id = ${game_id};`
+WHERE game_id = ${game_id};`;
 };
-
 
 /**
  * Statistical queries.
