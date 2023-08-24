@@ -56,6 +56,7 @@ export interface UserNomination {
   theme_description: string;
   theme_title: string;
   user_name: string;
+  is_winner: boolean;
 }
 
 export const gameDto = (data: any[]): Game => {
@@ -125,9 +126,6 @@ export const userDto = (data: any[]): User => {
   } as User;
 };
 
-const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
-const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
-
 export const userNominationDto = (data: any[]): UserNomination => {
   const [
     nomination_type,
@@ -137,6 +135,7 @@ export const userNominationDto = (data: any[]): UserNomination => {
     theme_title,
     theme_description,
     date,
+    is_winner,
   ] = data;
 
   return {
@@ -147,9 +146,12 @@ export const userNominationDto = (data: any[]): UserNomination => {
     theme_description,
     theme_title,
     user_name,
+    is_winner: is_winner === 1,
   } as UserNomination;
 };
 
+const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
+const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
 export const convertDate = (nomination: UserNomination, index: number) => {
   switch (nomination.nomination_type) {
     case NominationType.retrobit:

@@ -54,7 +54,8 @@ export const getNominationData = `SELECT
   nominations.description as game_description, 
   themes.title as theme_title,
   themes.description as them_description, 
-  themes.creation_date as 'date' 
+  themes.creation_date as 'date',
+  is_winner
 FROM nominations 
 LEFT JOIN users on users.id = nominations.user_id 
 LEFT JOIN themes ON nominations.theme_id = themes.id;`;
