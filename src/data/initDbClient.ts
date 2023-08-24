@@ -3,14 +3,26 @@ import { Database } from 'sql.js';
 
 import {
   getGotmRunnerup,
-  getUserNominations,
+  getNominationData,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
   getWinningRpg,
 } from '../data/Queries';
-import { gameDto, userNominationDto } from '../models/game';
-import { createTables, insertCompletions, insertGames, insertNominations, insertThemes, insertUsers } from './DbInitialize';
+import {
+  NominationType,
+  convertDate,
+  gameDto,
+  userNominationDto,
+} from '../models/game';
+import {
+  createTables,
+  insertCompletions,
+  insertGames,
+  insertNominations,
+  insertThemes,
+  insertUsers,
+} from './DbInitialize';
 
 const initDbClient = async () => {
   let SQL: initSqlJs.SqlJsStatic;
@@ -49,8 +61,49 @@ const initDbClient = async () => {
       return db?.exec(`${getWinningRpg}`)[0].values.map((x) => gameDto(x));
     },
     getNominationData: (game_id: number) => {
-      const userNominations = db?.exec(`${getUserNominations(game_id)}`)[0];
-      return userNominations?.values.map((x) => userNominationDto(x)) || [];
+      const nominations =
+        db
+          ?.exec(getNominationData)
+          .flatMap((x) => x.values)
+          .flatMap(userNominationDto) || [];
+      const gameNoms = nominations.filter((x) => x.game_id === game_id);
+      const retrobitIndexes = nominations
+        .filter((x) => x.nomination_type === NominationType.retrobit)
+        .reduce((aggregate, current, index) => {
+          if (current.game_id === game_id) {
+            aggregate.push(index);
+            return [...aggregate, index];
+          }
+          return aggregate;
+        }, new Array<number>());
+
+      const rpgIndexes = nominations
+        .filter((x) => x.nomination_type === NominationType.rpg)
+        .reduce((aggregate, current, index) => {
+          if (current.game_id === game_id) {
+            aggregate.push(index);
+            return [...aggregate, index];
+          }
+          return aggregate;
+        }, new Array<number>());
+
+      gameNoms.map((x) => {
+        if (x.nomination_type === NominationType.gotm) {
+          return x;
+        } else if (x.nomination_type === NominationType.retrobit) {
+          return;
+        }
+      });
+      return gameNoms.map((x) => {
+        switch (x.nomination_type) {
+          case NominationType.retrobit:
+            return convertDate(x, retrobitIndexes.shift() || 0);
+          case NominationType.rpg:
+            return convertDate(x, rpgIndexes.shift() || 0);
+          default:
+            return x;
+        }
+      });
     },
   };
 };

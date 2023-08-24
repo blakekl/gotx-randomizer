@@ -126,28 +126,23 @@ const GameDisplay = observer(
           </div>
         </section>
 
-        {randomizerStore.nominations.length > 0 && (
-          <table className="table is-striped is-fullwidth">
-            <thead>
-              <tr>
-                <th>Nominator</th>
-                <th>Theme Date</th>
-                <th>Theme Title</th>
-                <th>Theme Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {randomizerStore.nominations.map((nomination, index) => (
-                <tr key={index}>
-                  <td>{nomination.display_name}</td>
-                  <td>{new Date(nomination.date)?.toLocaleDateString()}</td>
-                  <td>{nomination.title}</td>
-                  <td>{nomination.game_description}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+        {randomizerStore.nominations.map((nomination, index) => (
+          <article className="media" key={index}>
+            <div className="media-content">
+              <div className="content">
+                <blockquote>
+                  <p>
+                    <strong>Nominator: {nomination.user_name}</strong>
+                    <br />
+                    <small>{nomination.date}</small> -{' '}
+                    <small>{nomination.theme_title}</small>
+                  </p>
+                  <p>{nomination.game_description}</p>
+                </blockquote>
+              </div>
+            </div>
+          </article>
+        ))}
       </>
     );
   },

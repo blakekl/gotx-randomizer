@@ -2,8 +2,7 @@
  * Get game list queries.
  */
 export const getRetrobits = `SELECT
-  * FROM games WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);
-`;
+  * FROM games WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);`;
 
 export const getRpgRunnerup = `SELECT 
     * FROM games
@@ -29,7 +28,38 @@ WHERE id in (
   SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
 );`;
 
-export const getUserNominations = (game_id: number) => {
+export const getUserById = (id: number) => `SELECT * 
+FROM users
+WHERE id = '${id}';`;
+
+export const getNominations = `SELECT *
+FROM nominations;`;
+
+export const getGotmNominations = `SELECT * 
+FROM nominations
+WHERE nomination_type = 0;`;
+
+export const getRetrobitNominations = `SELECT * 
+FROM nominations
+WHERE nomination_type = 1;`;
+
+export const getRpgNominations = `SELECT * 
+FROM nominations
+WHERE nomination_type = 2;`;
+
+export const getNominationData = `SELECT
+  nomination_type,
+  game_id,
+  users.display_name as user_name, 
+  nominations.description as game_description, 
+  themes.title as theme_title,
+  themes.description as them_description, 
+  themes.creation_date as 'date' 
+FROM nominations 
+LEFT JOIN users on users.id = nominations.user_id 
+LEFT JOIN themes ON nominations.theme_id = themes.id;`;
+
+export const getNominationDataByGameId = (game_id: number) => {
   return `SELECT 
   users.display_name, 
   nominations.description as game_description, 
@@ -75,8 +105,7 @@ FROM nominations
 INNER JOIN users ON nominations.user_id = users.id
 WHERE nomination_type = 0 AND is_winner = 1 AND user_id > 1
 GROUP BY nominations.user_id
-ORDER BY wins DESC
-`;
+ORDER BY wins DESC;`;
 
 export const mostNominatedGames = `SELECT
   COUNT(*) AS nominations,
@@ -101,7 +130,7 @@ INNER JOIN nominations on games.id = nominations.game_id
 INNER JOIN themes ON themes.id = nominations.theme_id
 WHERE nominations.is_winner = 1 AND nomination_type = 0
 GROUP BY nominations.theme_id
-ORDER BY average DESC`;
+ORDER BY average DESC;`;
 
 export const shortestMonthsByAvgTimeToBeat = `SELECT 
   themes.creation_date,
@@ -112,7 +141,7 @@ INNER JOIN nominations on games.id = nominations.game_id
 INNER JOIN themes ON themes.id = nominations.theme_id
 WHERE nominations.is_winner = 1 AND nomination_type = 0
 GROUP BY nominations.theme_id
-ORDER BY average ASC`;
+ORDER BY average ASC;`;
 
 export const mostNominatedGamesByUser = `SELECT
   users.id,
@@ -124,4 +153,4 @@ FROM nominations
 INNER JOIN users ON nominations.user_id = users.id
 WHERE game_id IN (SELECT game_id FROM nominations WHERE nominations.nomination_type = 0) AND user_id > 1
 GROUP BY nominations.user_id
-ORDER BY nominations DESC`;
+ORDER BY nominations DESC;`;
