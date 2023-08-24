@@ -6,7 +6,6 @@ const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
   const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
-  console.log('isDark: ', isDark);
   return (
     <nav
       className="main-nav navbar"
@@ -14,7 +13,7 @@ const Navigation = () => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="/">
+        <a className="navbar-item" href="https://retrohandhelds.gg">
           <img
             src={`https://retrohandhelds.gg/wp-content/uploads/2023/08/rh_logo_${
               isDark ? 'white' : 'black'

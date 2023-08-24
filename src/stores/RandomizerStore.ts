@@ -26,6 +26,7 @@ class RandomizerStore {
   includeRpgRunnerUp = true;
   includeRpgWinners = true;
   ttbFilter: number[] = [0, Number.MAX_SAFE_INTEGER];
+
   emptyGame = {
     id: 0,
     title: {
@@ -57,6 +58,7 @@ class RandomizerStore {
 
       filteredGamePool: computed,
       currentGame: computed,
+      nominations: computed,
       ttbMin: computed,
       ttbMax: computed,
 
@@ -70,12 +72,12 @@ class RandomizerStore {
       setAllGames: action,
     });
 
-    const initialize = async () => {
-      const gotmRunnerUp = (await dbClient.getGotmRunnerup()) || [];
-      const gotmWinners = (await dbClient.getGotmWinners()) || [];
-      const retrobits = (await dbClient.getRetrobits()) || [];
-      const rpgRunnerUp = (await dbClient.getRpgRunnerup()) || [];
-      const rpgWinners = (await dbClient.getRpgWinners()) || [];
+    const initialize = () => {
+      const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
+      const gotmWinners = dbClient.getGotmWinners() || [];
+      const retrobits = dbClient.getRetrobits() || [];
+      const rpgRunnerUp = dbClient.getRpgRunnerup() || [];
+      const rpgWinners = dbClient.getRpgWinners() || [];
       runInAction(() => {
         this.setAllGames({
           gotmRunnerUp,
@@ -122,6 +124,7 @@ class RandomizerStore {
     pool = this.shuffle(pool);
     pool = pool.filter(
       (x) =>
+        x.time_to_beat &&
         x.time_to_beat >= this.ttbFilter[0] &&
         x.time_to_beat <= this.ttbFilter[1],
     );
@@ -143,17 +146,17 @@ class RandomizerStore {
       ...this.allGames.rpgRunnerUp,
       ...this.allGames.rpgWinners,
     ];
-    if (allList.length > 0) {
-      return allList
+    return (
+      allList
         .map((x) => x.time_to_beat)
-        .filter((x) => !isNaN(x))
-        .filter((x) => x > -1)
+        .filter((x) => x || x === 0)
+        .filter((x) => x && x > -1)
         .reduce(
-          (aggregate, current) => Math.min(aggregate, Math.round(current)),
+          (aggregate: number, current) =>
+            Math.min(aggregate, Math.round(current || 0)),
           Number.MAX_SAFE_INTEGER,
-        );
-    }
-    return 0;
+        ) || 0
+    );
   }
 
   get ttbMax(): number {
@@ -164,12 +167,14 @@ class RandomizerStore {
       ...this.allGames.rpgRunnerUp,
       ...this.allGames.rpgWinners,
     ];
-    if (allList.length > 0) {
-      return allList
+    return (
+      allList
         .map((x) => x.time_to_beat)
-        .reduce((aggregate, current) => Math.max(aggregate, current), 0);
-    }
-    return Number.MAX_SAFE_INTEGER;
+        .reduce(
+          (aggregate: number, current) => Math.max(aggregate, current || 0),
+          0,
+        ) || Number.MAX_SAFE_INTEGER
+    );
   }
 
   nextGame() {
@@ -199,6 +204,10 @@ class RandomizerStore {
 
   setTtbFilter(value: number[]) {
     this.ttbFilter = value;
+  }
+
+  get nominations() {
+    return dbClient.getNominationData(this.currentGame.id);
   }
 }
 

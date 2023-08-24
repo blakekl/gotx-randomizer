@@ -1,166 +1,157 @@
-export const totalNomsBeforeWinByGame = `SELECT
-  COUNT(*) AS nominations,
-  gotm_games.title_usa,
-  gotm_games.title_jap,
-  gotm_games.title_other
-FROM
-  gotm_nominations
-  INNER JOIN gotm_games ON gotm_games.id = gotm_nominations.game_id
-WHERE
-  gotm_nominations.game_id IN (
-    SELECT
-      gotm_nominations.game_id
-    FROM
-      gotm_winners
-    INNER JOIN gotm_nominations ON gotm_nominations.id = gotm_winners.nomination_id
-  )
-GROUP BY
-  gotm_nominations.game_id
-ORDER BY
-  nominations DESC;
-`;
-
-export const topTenNominators = `SELECT
-    gotm_nominators.name
-  , COUNT(*) AS wins
-FROM gotm_winners
-INNER JOIN gotm_nominations ON gotm_winners.nomination_id = gotm_nominations.id
-INNER JOIN gotm_nominators ON gotm_nominators.id = gotm_nominations.nominator_id
-GROUP BY
-    gotm_nominations.nominator_id
-ORDER BY
-    wins DESC
-LIMIT 10;
-`;
-
-export const nominationsByGame = `SELECT
-  COUNT(*) AS nominations,
-  gotm_games.id,
-  gotm_games.title_usa,
-  gotm_games.title_world,
-  gotm_games.title_other,
-  gotm_games.title_eu,
-  gotm_games.title_jap
-FROM
-  gotm_nominations
-  INNER JOIN gotm_games ON gotm_nominations.game_id = gotm_games.id
-GROUP BY
-  game_id
-ORDER BY
-  nominations DESC;`;
-
+/**
+ * Get game list queries.
+ */
 export const getRetrobits = `SELECT
-  * FROM retrobits;
-`;
+  * FROM games WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);`;
 
 export const getRpgRunnerup = `SELECT 
-    rpg_games.id, 
-    rpg_games.screenscraper_id, 
-    rpg_games.img, 
-    rpg_games.year, 
-    rpg_games.system, 
-    rpg_games.developer, 
-    rpg_games.genre, 
-    rpg_games.time_to_beat, 
-    rpg_games.title_usa, 
-    rpg_games.title_eu, 
-    rpg_games.title_jap, 
-    rpg_games.title_world, 
-    rpg_games.title_other,
-    rpg_nominations.description
-  FROM rpg_games 
-  INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id
-  WHERE rpg_games.id NOT IN (
-    SELECT rpg_games.id FROM rpg_games
-    INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
-    INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id);`;
+    * FROM games
+WHERE id in (
+  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 0
+);`;
 
 export const getWinningRpg = `SELECT 
-  rpg_games.id, 
-  rpg_games.screenscraper_id, 
-  rpg_games.img, 
-  rpg_games.year, 
-  rpg_games.system, 
-  rpg_games.developer, 
-  rpg_games.genre, 
-  rpg_games.time_to_beat, 
-  rpg_games.title_usa, 
-  rpg_games.title_eu, 
-  rpg_games.title_jap, 
-  rpg_games.title_world, 
-  rpg_games.title_other,
-  rpg_nominations.description
-FROM rpg_games 
-INNER JOIN rpg_nominations ON rpg_games.id = rpg_nominations.game_id 
-INNER JOIN rpg_winners ON rpg_nominations.id = rpg_winners.nomination_id;
-`;
+* FROM games
+WHERE id in (
+SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
+);`;
 
-export const getGotmRunnerup = `SELECT 
-  gotm_games.id, 
-  gotm_games.screenscraper_id, 
-  gotm_games.img, 
-  gotm_games.year, 
-  gotm_games.system, 
-  gotm_games.developer, 
-  gotm_games.genre, 
-  gotm_games.time_to_beat, 
-  gotm_games.title_usa, 
-  gotm_games.title_eu, 
-  gotm_games.title_jap, 
-  gotm_games.title_world, 
-  gotm_games.title_other,
-  gotm_nominations.description
-FROM gotm_games 
-INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id
-WHERE gotm_games.id NOT IN (
-  SELECT gotm_games.id FROM gotm_games
-  INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id 
-  INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id);`;
+export const getGotmRunnerup = `SELECT * 
+FROM games
+WHERE id in (
+  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 0
+);`;
 
-export const getWinningGotm = `SELECT 
-    gotm_games.id, 
-    gotm_games.screenscraper_id, 
-    gotm_games.img, 
-    gotm_games.year, 
-    gotm_games.system, 
-    gotm_games.developer, 
-    gotm_games.genre, 
-    gotm_games.time_to_beat, 
-    gotm_games.title_usa, 
-    gotm_games.title_eu, 
-    gotm_games.title_jap, 
-    gotm_games.title_world, 
-    gotm_games.title_other,
-    gotm_nominations.description
-  FROM gotm_games 
-  INNER JOIN gotm_nominations ON gotm_games.id = gotm_nominations.game_id 
-  INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id;
-`;
+export const getWinningGotm = `SELECT * 
+FROM games
+WHERE id in (
+  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
+);`;
 
-export const top10LongestMonthsByWinnerAvgTime = `
-SELECT 
-    gotm_themes.creation_date,
-    gotm_themes.title,
+export const getUserById = (id: number) => `SELECT * 
+FROM users
+WHERE id = '${id}';`;
+
+export const getNominations = `SELECT *
+FROM nominations;`;
+
+export const getGotmNominations = `SELECT * 
+FROM nominations
+WHERE nomination_type = 0;`;
+
+export const getRetrobitNominations = `SELECT * 
+FROM nominations
+WHERE nomination_type = 1;`;
+
+export const getRpgNominations = `SELECT * 
+FROM nominations
+WHERE nomination_type = 2;`;
+
+export const getNominationData = `SELECT
+  nomination_type,
+  game_id,
+  users.display_name as user_name, 
+  nominations.description as game_description, 
+  themes.title as theme_title,
+  themes.description as them_description, 
+  themes.creation_date as 'date',
+  is_winner
+FROM nominations 
+LEFT JOIN users on users.id = nominations.user_id 
+LEFT JOIN themes ON nominations.theme_id = themes.id;`;
+
+export const getNominationDataByGameId = (game_id: number) => {
+  return `SELECT 
+  users.display_name, 
+  nominations.description as game_description, 
+  themes.title, themes.description, 
+  themes.creation_date as 'date' 
+FROM nominations 
+INNER JOIN users on users.id = nominations.user_id 
+INNER JOIN themes ON nominations.theme_id = themes.id 
+WHERE game_id = ${game_id};`;
+};
+
+/**
+ * Statistical queries.
+ */
+export const mostCompletedGames = `SELECT 
+  COUNT(*) as completions, games.title_world, games.title_usa, games.title_eu, games.title_jap 
+FROM games 
+INNER JOIN nominations on nominations.game_id = games.id
+INNER JOIN completions on completions.nomination_id = nominations.id 
+GROUP BY nomination_id 
+ORDER BY completions DESC;`;
+
+export const totalNomsBeforeWinByGame = `SELECT
+  COUNT(*) AS total,
+  title_world,
+  title_usa,
+  title_eu,
+  title_jap,
+  title_other
+FROM nominations
+INNER JOIN games on game_id = games.id
+WHERE game_id IN (SELECT game_id FROM nominations WHERE nominations.is_winner = 1 AND nominations.nomination_type = 0)
+GROUP BY nominations.game_id
+ORDER BY total DESC;`;
+
+export const topNominationWinsByUser = `SELECT
+  users.id,
+  users.discord_name_original,
+  users.discord_name,
+  users.display_name,
+  COUNT(*) AS wins
+FROM nominations
+INNER JOIN users ON nominations.user_id = users.id
+WHERE nomination_type = 0 AND is_winner = 1 AND user_id > 1
+GROUP BY nominations.user_id
+ORDER BY wins DESC;`;
+
+export const mostNominatedGames = `SELECT
+  COUNT(*) AS nominations,
+  games.id,
+  games.title_world,
+  games.title_usa,
+  games.title_other,
+  games.title_eu,
+  games.title_jap
+FROM nominations
+INNER JOIN games ON nominations.game_id = games.id
+WHERE nominations.nomination_type = 0
+GROUP BY game_id
+ORDER BY nominations DESC;`;
+
+export const longestMonthsByAvgTimeToBeat = `SELECT 
+    themes.creation_date,
+    themes.title,
     AVG(time_to_beat) AS 'average'
-FROM gotm_games 
-INNER JOIN gotm_nominations on gotm_games.id = gotm_nominations.game_id 
-INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id 
-INNER JOIN gotm_themes ON gotm_themes.id = gotm_nominations.theme_id
-WHERE gotm_themes.id <> '36'
-GROUP BY gotm_nominations.theme_id
-ORDER BY average DESC
-LIMIT 10`;
+FROM games 
+INNER JOIN nominations on games.id = nominations.game_id
+INNER JOIN themes ON themes.id = nominations.theme_id
+WHERE nominations.is_winner = 1 AND nomination_type = 0
+GROUP BY nominations.theme_id
+ORDER BY average DESC;`;
 
-export const top10ShortestMonthsByWinnerAvgTime = `
-SELECT 
-    gotm_themes.creation_date,
-    gotm_themes.title,
-    AVG(time_to_beat) AS 'average'
-FROM gotm_games 
-INNER JOIN gotm_nominations on gotm_games.id = gotm_nominations.game_id 
-INNER JOIN gotm_winners ON gotm_nominations.id = gotm_winners.nomination_id 
-INNER JOIN gotm_themes ON gotm_themes.id = gotm_nominations.theme_id
-WHERE gotm_themes.id <> '36'
-GROUP BY gotm_nominations.theme_id
-ORDER BY average ASC
-LIMIT 10`;
+export const shortestMonthsByAvgTimeToBeat = `SELECT 
+  themes.creation_date,
+  themes.title,
+  AVG(time_to_beat) AS 'average'
+FROM games 
+INNER JOIN nominations on games.id = nominations.game_id
+INNER JOIN themes ON themes.id = nominations.theme_id
+WHERE nominations.is_winner = 1 AND nomination_type = 0
+GROUP BY nominations.theme_id
+ORDER BY average ASC;`;
+
+export const mostNominatedGamesByUser = `SELECT
+  users.id,
+  users.discord_name_original,
+  users.discord_name,
+  users.display_name,
+  COUNT(*) AS nominations
+FROM nominations
+INNER JOIN users ON nominations.user_id = users.id
+WHERE game_id IN (SELECT game_id FROM nominations WHERE nominations.nomination_type = 0) AND user_id > 1
+GROUP BY nominations.user_id
+ORDER BY nominations DESC;`;

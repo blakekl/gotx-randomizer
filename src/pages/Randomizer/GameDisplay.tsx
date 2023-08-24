@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useStores } from '../../stores/useStores';
 import { useEffect, useRef, useState } from 'react';
+import { NominationType } from '../../models/game';
+import classNames from 'classnames';
 
 interface GameDisplayProps {
   imgLoaded: boolean;
@@ -37,13 +39,20 @@ const GameDisplay = observer(
     ]);
 
     useEffect(() => {
-      const titles = randomizerStore.currentGame.title;
+      const game = randomizerStore.currentGame;
+      const titles = {
+        usa: game.title_usa,
+        world: game.title_world,
+        eu: game.title_eu,
+        jap: game.title_jap,
+        other: game.title_other,
+      };
       const flaggedTitles: string[] = [];
-      titles.usa !== '' && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
-      titles.world !== '' && flaggedTitles.push(`🌎 ${titles.world}`);
-      titles.eu !== '' && flaggedTitles.push(`🇪🇺 ${titles.eu}`);
-      titles.jap !== '' && flaggedTitles.push(`🇯🇵 ${titles.jap}`);
-      titles.other !== '' && flaggedTitles.push(`🏳️ ${titles.other}`);
+      titles.usa && flaggedTitles.push(`🇺🇸 ${titles.usa}`);
+      titles.world && flaggedTitles.push(`🌎 ${titles.world}`);
+      titles.eu && flaggedTitles.push(`🇪🇺 ${titles.eu}`);
+      titles.jap && flaggedTitles.push(`🇯🇵 ${titles.jap}`);
+      titles.other && flaggedTitles.push(`🏳️ ${titles.other}`);
 
       setMainTitle(flaggedTitles[0] || '');
       setSubtitles(flaggedTitles.slice(1));
@@ -109,7 +118,7 @@ const GameDisplay = observer(
                 <p className="subtitle">
                   <span className="is-hidden-tablet">⏱️</span>
                   <span>
-                    {randomizerStore.currentGame.time_to_beat > 0
+                    {randomizerStore.currentGame.time_to_beat || 0 > 0
                       ? `${randomizerStore.currentGame.time_to_beat} hours`
                       : 'No data'}
                   </span>
@@ -117,10 +126,84 @@ const GameDisplay = observer(
               </div>
             </div>
           </div>
-          <blockquote className="is-size-4 has-text-justified">
-            {randomizerStore.currentGame.description}
-          </blockquote>
         </section>
+
+        {randomizerStore.nominations.map((nomination, index) => (
+          <article className="media" key={index}>
+            <div className="media-content">
+              <div className="content">
+                <blockquote
+                  className={classNames({
+                    'has-background-primary': nomination.is_winner,
+                    'has-text-white': nomination.is_winner,
+                  })}
+                >
+                  <div className="level">
+                    {nomination.user_name && (
+                      <div className="level-item">
+                        <span
+                          className={classNames({
+                            subtitle: true,
+                            'has-text-white': nomination.is_winner,
+                          })}
+                        >
+                          Nominator: {nomination.user_name}{' '}
+                          {nomination.is_winner && '👑'}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="level-item">
+                      <span
+                        className={classNames({
+                          subtitle: true,
+                          'has-text-white': nomination.is_winner,
+                        })}
+                      >
+                        {nomination.date}
+                      </span>
+                    </div>
+
+                    <div className="level-item">
+                      {nomination.theme_title && (
+                        <span
+                          className={classNames({
+                            subtitle: true,
+                            'has-text-white': nomination.is_winner,
+                          })}
+                        >
+                          Theme: {nomination.theme_title}
+                        </span>
+                      )}
+                      {nomination.nomination_type ===
+                        NominationType.retrobit && (
+                        <span
+                          className={classNames({
+                            subtitle: true,
+                            'has-text-white': nomination.is_winner,
+                          })}
+                        >
+                          Theme: Retrobits
+                        </span>
+                      )}
+                      {nomination.nomination_type === NominationType.rpg && (
+                        <span
+                          className={classNames({
+                            subtitle: true,
+                            'has-text-white': nomination.is_winner,
+                          })}
+                        >
+                          Theme: RPG of the Quarter
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <p>{nomination.game_description}</p>
+                </blockquote>
+              </div>
+            </div>
+          </article>
+        ))}
       </>
     );
   },
