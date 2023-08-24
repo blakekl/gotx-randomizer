@@ -57,7 +57,7 @@ CREATE TABLE [completions] (
   FOREIGN KEY ([user_id]) REFERENCES [users] ([id]) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY ([nomination_id]) REFERENCES [nominations] ([id]) ON DELETE CASCADE ON UPDATE CASCADE  
 );
-`
+`;
 export const insertGames = `INSERT INTO [games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (1, 2623, 'https://screenscraper.fr/image.php?gameid=2623&media=ss&maxwidth=640&maxheight=480&region=wor', 1993, 'Super Nintendo', 'Nintendo', 'Flight Simulator', NULL, 'Turn and Burn: No-Fly Zone', NULL, NULL, NULL, NULL);
 INSERT INTO [games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (2, 2612, 'https://screenscraper.fr/image.php?gameid=2612&media=ss&maxwidth=640&maxheight=480&region=wor', 1992, 'Super Nintendo', 'Koei', 'Simulation', 4, 'Aerobiz Supersonic', NULL, 'Air Management II: Koukuu Ou o Mezase', NULL, NULL);
 INSERT INTO [games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (3, 2143, 'https://screenscraper.fr/image.php?gameid=2143&media=ss&maxwidth=640&maxheight=480&region=wor', 1995, 'Super Nintendo', 'Square', 'JRPG', 23, NULL, NULL, NULL, 'Chrono Trigger', NULL);
@@ -908,7 +908,7 @@ INSERT INTO [games] ([id], [screenscraper_id], [img], [year], [system], [develop
 INSERT INTO [games] ([id], [screenscraper_id], [img], [year], [system], [developer], [genre], [time_to_beat], [title_usa], [title_eu], [title_jap], [title_world], [title_other]) VALUES (848, NULL, 'https://cdn.discordapp.com/attachments/957342297270415480/1142609051734249513/Retro_Bits_74_-_Double_Dare.png', 1990, 'NES, DOS, C64', 'Rare', 'Mini-Games', 0.5, NULL, NULL, NULL, 'Double Dare', NULL);
 `;
 
-export const insertUsers=`
+export const insertUsers = `
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (1, 'DELETED', 'Unknown', 'DELETED');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (2, 'FlatFootFox (He/Him)#5297', 'FlatFootFox', 'flatfootfox');
 INSERT INTO [users] ([id], [discord_name_original], [display_name], [discord_name]) VALUES (3, 'Whitty#2502', 'Whitty', 'whitt_3');
@@ -1248,8 +1248,7 @@ INSERT INTO [themes] ([id], [creation_date], [title], [description]) VALUES (34,
 INSERT INTO [themes] ([id], [creation_date], [title], [description]) VALUES (35, '2023-07-01', 'Joyful July', 'The game you wish to nominate must either make you happy when you play it, thanks to its upbeat tone, or otherwise have a happy ending that gives you that warm-fuzzy feeling.');
 INSERT INTO [themes] ([id], [creation_date], [title], [description]) VALUES (36, '2023-08-01', 'Ambitious August', 'The game you wish to nominate must explore multiple genres!');`;
 
-export const insertNominations =`
-INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1, 0, 1, 155, NULL, 1, 0);
+export const insertNominations = `INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1, 0, 1, 155, NULL, 1, 0);
 INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (2, 0, 2, 13, NULL, 1, 0);
 INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (3, 0, 3, 1, NULL, 1, 1);
 INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (4, 0, 4, 1, NULL, 1, 0);
@@ -2323,7 +2322,8 @@ INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [descr
 INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1072, 2, 845, NULL, 'When a terrorist organization called Odessa tries to conquer the world, take control of an international anti-terrorist group called ARMS to combat them.', NULL, 0);
 INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1073, 2, 846, NULL, 'Take to the streets in this unique racing RPG, which focuses on eam Bay Lagoon Racing''s newest recruit, Sho Akasaki, who is determined to learn the truth behind the fabled Fastest Legend race.', NULL, 0);
 INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1074, 2, 847, NULL, 'Inspired by Norse mythology control Lenneth, as she travels through Midgard, collecting souls of slain heroes to serve her either as einherjar, or her personal companions.', NULL, 1);
-INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1075, 1, 848, NULL, 'Based on the hit 1986 game show of the same name, Double Dare has players competing in a plethora of physical challenges and answering trivia questions in an effort to challenge the Double Dare obstacle course and win big prizes!', NULL, 1);`;
+INSERT INTO [nominations] ([id], [nomination_type], [game_id], [user_id], [description], [theme_id], [is_winner]) VALUES (1075, 1, 347, NULL, 'Based on the hit 1986 game show of the same name, Double Dare has players competing in a plethora of physical challenges and answering trivia questions in an effort to challenge the Double Dare obstacle course and win big prizes!', NULL, 1);
+`;
 
 export const insertCompletions = `
 INSERT INTO [completions] ([id], [user_id], [nomination_id], [points], [cheevos_points]) VALUES (1, 12, 59, 1, 0);

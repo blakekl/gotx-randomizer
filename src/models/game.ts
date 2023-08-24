@@ -1,4 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
+
+import dayjs from 'dayjs';
+
 /* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 export enum NominationType {
   gotm,
@@ -7,51 +10,53 @@ export enum NominationType {
 }
 
 export interface User {
-  id: number;
   discord_name_original: string;
-  display_name: string;
   discord_name: string;
-  theme_id: number;
+  display_name: string;
+  id: number;
 }
 
 export interface Game {
-  id: number;
-  screenscraper_id: number;
-  img: string;
-  year: number;
-  system: string;
   developer: string;
   genre: string;
+  id: number;
+  img: string;
+  screenscraper_id: number;
+  system: string;
   time_to_beat?: number;
-  title_usa?: string;
   title_eu?: string;
   title_jap?: string;
-  title_world?: string;
   title_other?: string;
+  title_usa?: string;
+  title_world?: string;
+  year: number;
 }
 
 export interface Nomination {
-  id: number;
-  nomination_type: NominationType;
   game_id: number;
-  user_id?: number;
-  theme_id?: number;
+  id: number;
   is_winner: boolean;
+  nomination_type: NominationType;
+  theme_id?: number;
+  user_id?: number;
 }
 
 export interface Theme {
-  id: number;
   creation_date: string;
-  title: string;
   description: string;
+  id: number;
+  title: string;
 }
 
 export interface UserNomination {
-  display_name: string;
-  game_description: string;
-  title: string;
-  description: string;
   date: string;
+  game_description: string;
+  game_id: number;
+  nomination_type: NominationType;
+  theme_description: string;
+  theme_title: string;
+  user_name: string;
+  is_winner: boolean;
 }
 
 export const gameDto = (data: any[]): Game => {
@@ -110,7 +115,7 @@ export const themeDto = (data: any[]): Theme => {
   };
 };
 
-export const user = (data: any[]): User => {
+export const userDto = (data: any[]): User => {
   const [id, discord_name_original, display_name, discord_name] = data;
 
   return {
@@ -122,13 +127,50 @@ export const user = (data: any[]): User => {
 };
 
 export const userNominationDto = (data: any[]): UserNomination => {
-  const [display_name, game_description, title, description, date] = data;
+  const [
+    nomination_type,
+    game_id,
+    user_name,
+    game_description,
+    theme_title,
+    theme_description,
+    date,
+    is_winner,
+  ] = data;
 
   return {
-    display_name,
+    date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
     game_description,
-    title,
-    description,
-    date,
+    game_id,
+    nomination_type,
+    theme_description,
+    theme_title,
+    user_name,
+    is_winner: is_winner === 1,
   } as UserNomination;
+};
+
+const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
+const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
+export const convertDate = (nomination: UserNomination, index: number) => {
+  switch (nomination.nomination_type) {
+    case NominationType.retrobit:
+      return {
+        ...nomination,
+        date: firstRetrobitDate
+          .add(7 * index, 'days')
+          .toDate()
+          .toLocaleDateString(),
+      };
+    case NominationType.rpg:
+      return {
+        ...nomination,
+        date: firstRpgDate
+          .add(3 * index, 'months')
+          .toDate()
+          .toLocaleDateString(),
+      };
+    default:
+      return nomination;
+  }
 };

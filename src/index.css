@@ -14,14 +14,10 @@
 }
 
 .title,
-.subtitle,
-blockquote {
+.subtitle {
   font-family: 'Press Start 2P', sans-serif;
   font-family: 'VT323', monospace;
   font-weight: 600;
-}
-blockquote {
-  font-weight: 400;
 }
 
 *.level .level-item .subtitle {
