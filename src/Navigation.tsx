@@ -6,7 +6,6 @@ const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
   const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
-  console.log('isDark: ', isDark);
   return (
     <nav
       className="main-nav navbar"

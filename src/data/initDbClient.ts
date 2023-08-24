@@ -10,7 +10,7 @@ import {
   getWinningRpg,
 } from '../data/Queries';
 import { gameDto, userNominationDto } from '../models/game';
-import { initialize } from './DbInitialize';
+import { createTables, insertCompletions, insertGames, insertNominations, insertThemes, insertUsers } from './DbInitialize';
 
 const initDbClient = async () => {
   let SQL: initSqlJs.SqlJsStatic;
@@ -22,7 +22,12 @@ const initDbClient = async () => {
         `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`,
     });
     db = new SQL.Database();
-    db.run(initialize);
+    db.run(createTables);
+    db.run(insertGames);
+    db.run(insertUsers);
+    db.run(insertThemes);
+    db.run(insertNominations);
+    db.run(insertCompletions);
   } catch (e) {
     console.error(e);
   }

@@ -73,7 +73,7 @@ export const topNominationWinsByUser = `SELECT
   COUNT(*) AS wins
 FROM nominations
 INNER JOIN users ON nominations.user_id = users.id
-WHERE game_id IN (SELECT game_id FROM nominations WHERE nominations.is_winner = 1 AND nominations.nomination_type = 0) AND user_id > 1
+WHERE nomination_type = 0 AND is_winner = 1 AND user_id > 1
 GROUP BY nominations.user_id
 ORDER BY wins DESC
 `;
