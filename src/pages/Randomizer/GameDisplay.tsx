@@ -131,12 +131,23 @@ const GameDisplay = observer(
             <div className="media-content">
               <div className="content">
                 <blockquote>
-                  <p>
-                    <strong>Nominator: {nomination.user_name}</strong>
-                    <br />
-                    <small>{nomination.date}</small> -{' '}
-                    <small>{nomination.theme_title}</small>
-                  </p>
+                  <div className="level">
+                    {nomination.user_name && (
+                      <div className="level-item">
+                        <strong>Nominator: {nomination.user_name}</strong>
+                      </div>
+                    )}
+
+                    <div className="level-item">
+                      <strong>{nomination.date}</strong>
+                    </div>
+
+                    {nomination.theme_title && (
+                      <div className="level-item">
+                        <strong>Theme: {nomination.theme_title}</strong>
+                      </div>
+                    )}
+                  </div>
                   <p>{nomination.game_description}</p>
                 </blockquote>
               </div>
