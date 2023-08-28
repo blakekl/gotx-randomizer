@@ -1,44 +1,44 @@
-import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
 import classNames from 'classnames';
 import Settings from './Settings';
-import GameDisplay from './GameDisplay';
+import GameDisplay from './GameDisplay/GameDisplay';
 import { useStores } from '../../stores/useStores';
 import { useState } from 'react';
 
 const Randomizer = observer(() => {
   const { randomizerStore } = useStores();
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  const handleButtonClick = () => {
+  const rollButtonClick = () => {
     setImgLoaded(false);
     randomizerStore.nextGame();
   };
 
+  const handleHideClick = () => {
+    randomizerStore.hideCurrentGame();
+    rollButtonClick();
+  }
+
   return (
     <>
       <Settings />
-      <div className="has-text-centered">
+      <div className="mt-4 buttons is-centered has-addons is-fullwidth">
         <button
           className={classNames({
             button: true,
             'is-primary': true,
             rollBtn: true,
-            'is-fullwidth': isMobile,
-            'is-large': !isMobile,
           })}
-          onClick={() => {
-            handleButtonClick();
-          }}
+          onClick={rollButtonClick}
         >
-          {imgLoaded && <span>Reroll</span>}
+          <span>Reroll</span>
           {!imgLoaded && (
             <span className="icon is-small">
               <span className="loader"></span>
             </span>
           )}
         </button>
+        <button className="button is-danger" onClick={handleHideClick}>Hide Game</button>
       </div>
       <GameDisplay imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} />
     </>

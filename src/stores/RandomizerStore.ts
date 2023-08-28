@@ -26,16 +26,17 @@ class RandomizerStore {
   includeRpgRunnerUp = true;
   includeRpgWinners = true;
   ttbFilter: number[] = [0, Number.MAX_SAFE_INTEGER];
+  completedGames: number[] = JSON.parse(
+    localStorage?.getItem('completed') || '[]',
+  ) as number[];
 
   emptyGame = {
     id: 0,
-    title: {
-      usa: '',
-      eu: '',
-      jap: '',
-      world: '',
-      other: '',
-    },
+    title_usa: '',
+    title_eu: '',
+    title_jap: '',
+    title_world: '',
+    title_other: '',
     screenscraper_id: 0,
     img: '',
     year: 0,
@@ -55,6 +56,7 @@ class RandomizerStore {
       ttbFilter: observable,
       currentGameIndex: observable,
       allGames: observable,
+      completedGames: observable,
 
       filteredGamePool: computed,
       currentGame: computed,
@@ -70,6 +72,7 @@ class RandomizerStore {
       setIncludeRpgWinners: action,
       setTtbFilter: action,
       setAllGames: action,
+      hideCurrentGame: action,
     });
 
     const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
@@ -122,6 +125,9 @@ class RandomizerStore {
         x.time_to_beat &&
         x.time_to_beat >= this.ttbFilter[0] &&
         x.time_to_beat <= this.ttbFilter[1],
+    );
+    pool = pool.filter(
+      (x) => this.completedGames.some((y) => x.id === y) === false,
     );
     return this.shuffle(pool);
   }
@@ -199,6 +205,13 @@ class RandomizerStore {
 
   setTtbFilter(value: number[]) {
     this.ttbFilter = value;
+  }
+
+  hideCurrentGame() {
+    if (this.currentGame.id > 0) {
+      this.completedGames = [...this.completedGames, this.currentGame.id];
+      localStorage?.setItem('completed', JSON.stringify(this.completedGames));
+    }
   }
 
   get nominations() {

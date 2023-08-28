@@ -1,4 +1,3 @@
-import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
 import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
@@ -8,7 +7,6 @@ import { useState } from 'react';
 
 const Settings = observer(() => {
   const { randomizerStore } = useStores();
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = useState(false);
 
   const handleFilterChange = (item: number, value: boolean) => {
@@ -64,7 +62,6 @@ const Settings = observer(() => {
         <button
           className={classNames({
             button: true,
-            'is-large': !isMobile,
           })}
           aria-haspopup="true"
           aria-controls="dropdown-menu"
