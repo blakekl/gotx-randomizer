@@ -72,25 +72,20 @@ class RandomizerStore {
       setAllGames: action,
     });
 
-    const initialize = () => {
-      const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
-      const gotmWinners = dbClient.getGotmWinners() || [];
-      const retrobits = dbClient.getRetrobits() || [];
-      const rpgRunnerUp = dbClient.getRpgRunnerup() || [];
-      const rpgWinners = dbClient.getRpgWinners() || [];
-      runInAction(() => {
-        this.setAllGames({
-          gotmRunnerUp,
-          gotmWinners,
-          retrobits,
-          rpgRunnerUp,
-          rpgWinners,
-        });
+    const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
+    const gotmWinners = dbClient.getGotmWinners() || [];
+    const retrobits = dbClient.getRetrobits() || [];
+    const rpgRunnerUp = dbClient.getRpgRunnerup() || [];
+    const rpgWinners = dbClient.getRpgWinners() || [];
+    runInAction(() => {
+      this.setAllGames({
+        gotmRunnerUp,
+        gotmWinners,
+        retrobits,
+        rpgRunnerUp,
+        rpgWinners,
       });
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    initialize();
+    });
   }
 
   shuffle(inputArray: Game[]): Game[] {
