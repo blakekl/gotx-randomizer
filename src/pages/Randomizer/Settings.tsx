@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
 import classNames from 'classnames';
 import { useStores } from '../../stores/useStores';
@@ -10,40 +9,22 @@ const Settings = observer(() => {
   const [showSettings, setShowSettings] = useState(false);
 
   const handleFilterChange = (item: number, value: boolean) => {
-    const filters = [
-      randomizerStore.includeGotmRunnerUp,
-      randomizerStore.includeGotmWinners,
-      randomizerStore.includeRetrobits,
-      randomizerStore.includeRpgRunnerUp,
-      randomizerStore.includeRpgWinners,
-    ];
-    filters[item] = value;
-    if (filters.some((x) => x)) {
-      switch (item) {
-        case 0:
-          randomizerStore.setIncludeGotmRunnerUp(value);
-          break;
-        case 1:
-          randomizerStore.setIncludeGotmWinners(value);
-          break;
-        case 2:
-          randomizerStore.setIncludeRetrobits(value);
-          break;
-        case 3:
-          randomizerStore.setIncludeRpgRunnerUp(value);
-          break;
-        case 4:
-          randomizerStore.setIncludeRpgWinners(value);
-          break;
-      }
-    } else {
-      toast({
-        message: 'You must include a list. Please include something.',
-        type: 'is-danger',
-        dismissible: true,
-        pauseOnHover: true,
-        animate: { in: 'fadeIn', out: 'fadeOut' },
-      });
+    switch (item) {
+      case 0:
+        randomizerStore.setIncludeGotmRunnerUp(value);
+        break;
+      case 1:
+        randomizerStore.setIncludeGotmWinners(value);
+        break;
+      case 2:
+        randomizerStore.setIncludeRetrobits(value);
+        break;
+      case 3:
+        randomizerStore.setIncludeRpgRunnerUp(value);
+        break;
+      case 4:
+        randomizerStore.setIncludeRpgWinners(value);
+        break;
     }
   };
 

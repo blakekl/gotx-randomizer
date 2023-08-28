@@ -17,12 +17,22 @@ const Randomizer = observer(() => {
   const handleHideClick = () => {
     randomizerStore.hideCurrentGame();
     rollButtonClick();
-  }
+  };
 
-  return (
+  const noGame = (
     <>
       <Settings />
-      <div className="mt-4 buttons is-centered has-addons is-fullwidth">
+      <div className="notification mt-4 has-text-centered">
+        There are no games left in the pool. They have either all been hidden, or
+        you have removed all game types in settings. Please check settings and try again.
+      </div>
+    </>
+  );
+  
+  const hasGame = (
+    <>
+      <Settings />
+      <div className="mt-4 buttons has-addons is-centered">
         <button
           className={classNames({
             button: true,
@@ -38,11 +48,19 @@ const Randomizer = observer(() => {
             </span>
           )}
         </button>
-        <button className="button is-danger" onClick={handleHideClick}>Hide Game</button>
+        <button className="button is-danger" onClick={handleHideClick}>
+          Hide Game
+        </button>
       </div>
       <GameDisplay imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} />
     </>
   );
+
+  if (randomizerStore.currentGame.id > 0) {
+    return hasGame;
+  } else {
+    return noGame;
+  }
 });
 
 export default Randomizer;
