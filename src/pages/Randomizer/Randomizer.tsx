@@ -22,7 +22,7 @@ const Randomizer = observer(() => {
   const noGame = (
     <>
       <Settings />
-      <div className="notification mt-4 has-text-centered">
+      <div className="notification mt-6 has-text-centered">
         There are no games left in the pool. They have either all been hidden, or
         you have removed all game types in settings. Please check settings and try again.
       </div>
