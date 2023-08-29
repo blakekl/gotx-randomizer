@@ -2,24 +2,29 @@
  * Get game list queries.
  */
 export const getRetrobits = `SELECT
-  * FROM games WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);`;
+  * 
+FROM games 
+WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);`;
 
 export const getRpgRunnerup = `SELECT 
-    * FROM games
-WHERE id in (
-  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 0
-);`;
+* 
+FROM games
+WHERE id IN(SELECT game_id FROM nominations WHERE nomination_type = 2) AND id NOT IN (
+  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
+);`; 
 
 export const getWinningRpg = `SELECT 
-* FROM games
-WHERE id in (
-SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
-);`;
-
-export const getGotmRunnerup = `SELECT * 
+* 
 FROM games
 WHERE id in (
-  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 0
+  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
+);`;
+
+export const getGotmRunnerup = `SELECT
+*
+FROM games
+WHERE id IN(SELECT game_id FROM nominations WHERE nomination_type = 0) AND id NOT IN (
+  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
 );`;
 
 export const getWinningGotm = `SELECT * 
