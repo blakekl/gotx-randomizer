@@ -14,8 +14,8 @@ const Randomizer = observer(() => {
     randomizerStore.nextGame();
   };
 
-  const handleHideClick = () => {
-    randomizerStore.hideCurrentGame();
+  const handleToggleClick = () => {
+    randomizerStore.toggleGameHidden();
     rollButtonClick();
   };
 
@@ -40,6 +40,7 @@ const Randomizer = observer(() => {
             rollBtn: true,
           })}
           onClick={rollButtonClick}
+          disabled={randomizerStore.filteredGamePool.length < 2}
         >
           <span>Reroll</span>
           {!imgLoaded && (
@@ -48,8 +49,8 @@ const Randomizer = observer(() => {
             </span>
           )}
         </button>
-        <button className="button is-danger" onClick={handleHideClick}>
-          Hide Game
+        <button className="button is-danger" onClick={handleToggleClick}>
+          { randomizerStore.isGameHidden ? 'Unhide Game' : 'Hide Game' }
         </button>
       </div>
       <GameDisplay imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} />

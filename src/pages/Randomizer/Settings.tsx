@@ -25,6 +25,8 @@ const Settings = observer(() => {
       case 4:
         randomizerStore.setIncludeRpgWinners(value);
         break;
+      case 5:
+        randomizerStore.setShowHiddenGames(value);
     }
   };
 
@@ -129,6 +131,19 @@ const Settings = observer(() => {
                   }}
                 ></input>
                 RPGotQ Runner Ups
+              </label>
+            </div>
+            <div className="control">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={randomizerStore.showHiddenGames}
+                  onChange={() => {
+                    handleFilterChange(5, !randomizerStore.showHiddenGames);
+                  }}
+                ></input>
+                Include hidden games
               </label>
             </div>
           </div>
