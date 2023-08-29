@@ -1,5 +1,6 @@
 import initSqlJs from 'sql.js';
 import { Database } from 'sql.js';
+import databaseUrl from '../assets/gotx-randomizer.sqlite?url';
 
 import {
   getGotmRunnerup,
@@ -15,14 +16,6 @@ import {
   gameDto,
   userNominationDto,
 } from '../models/game';
-import {
-  createTables,
-  insertCompletions,
-  insertGames,
-  insertNominations,
-  insertThemes,
-  insertUsers,
-} from './DbInitialize';
 
 const initDbClient = async () => {
   let SQL: initSqlJs.SqlJsStatic;
@@ -33,13 +26,11 @@ const initDbClient = async () => {
       locateFile: (file) =>
         `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`,
     });
-    db = new SQL.Database();
-    db.run(createTables);
-    db.run(insertGames);
-    db.run(insertUsers);
-    db.run(insertThemes);
-    db.run(insertNominations);
-    db.run(insertCompletions);
+    const response = await fetch(databaseUrl);
+    const blob = await response.blob();
+    const arrayBuffer = await new Response(blob).arrayBuffer();
+    const buffer = new Uint8Array(arrayBuffer);
+    db = new SQL.Database(buffer);
   } catch (e) {
     console.error(e);
   }

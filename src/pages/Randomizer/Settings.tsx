@@ -1,6 +1,4 @@
-import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react-lite';
-import { toast } from 'bulma-toast';
 import ReactSlider from 'react-slider';
 import classNames from 'classnames';
 import { useStores } from '../../stores/useStores';
@@ -8,44 +6,27 @@ import { useState } from 'react';
 
 const Settings = observer(() => {
   const { randomizerStore } = useStores();
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   const [showSettings, setShowSettings] = useState(false);
 
   const handleFilterChange = (item: number, value: boolean) => {
-    const filters = [
-      randomizerStore.includeGotmRunnerUp,
-      randomizerStore.includeGotmWinners,
-      randomizerStore.includeRetrobits,
-      randomizerStore.includeRpgRunnerUp,
-      randomizerStore.includeRpgWinners,
-    ];
-    filters[item] = value;
-    if (filters.some((x) => x)) {
-      switch (item) {
-        case 0:
-          randomizerStore.setIncludeGotmRunnerUp(value);
-          break;
-        case 1:
-          randomizerStore.setIncludeGotmWinners(value);
-          break;
-        case 2:
-          randomizerStore.setIncludeRetrobits(value);
-          break;
-        case 3:
-          randomizerStore.setIncludeRpgRunnerUp(value);
-          break;
-        case 4:
-          randomizerStore.setIncludeRpgWinners(value);
-          break;
-      }
-    } else {
-      toast({
-        message: 'You must include a list. Please include something.',
-        type: 'is-danger',
-        dismissible: true,
-        pauseOnHover: true,
-        animate: { in: 'fadeIn', out: 'fadeOut' },
-      });
+    switch (item) {
+      case 0:
+        randomizerStore.setIncludeGotmRunnerUp(value);
+        break;
+      case 1:
+        randomizerStore.setIncludeGotmWinners(value);
+        break;
+      case 2:
+        randomizerStore.setIncludeRetrobits(value);
+        break;
+      case 3:
+        randomizerStore.setIncludeRpgRunnerUp(value);
+        break;
+      case 4:
+        randomizerStore.setIncludeRpgWinners(value);
+        break;
+      case 5:
+        randomizerStore.setShowHiddenGames(value);
     }
   };
 
@@ -64,7 +45,6 @@ const Settings = observer(() => {
         <button
           className={classNames({
             button: true,
-            'is-large': !isMobile,
           })}
           aria-haspopup="true"
           aria-controls="dropdown-menu"
@@ -151,6 +131,19 @@ const Settings = observer(() => {
                   }}
                 ></input>
                 RPGotQ Runner Ups
+              </label>
+            </div>
+            <div className="control">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={randomizerStore.showHiddenGames}
+                  onChange={() => {
+                    handleFilterChange(5, !randomizerStore.showHiddenGames);
+                  }}
+                ></input>
+                Include hidden games
               </label>
             </div>
           </div>

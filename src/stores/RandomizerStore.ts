@@ -25,17 +25,19 @@ class RandomizerStore {
   includeRetrobits = true;
   includeRpgRunnerUp = true;
   includeRpgWinners = true;
+  showHiddenGames = false;
   ttbFilter: number[] = [0, Number.MAX_SAFE_INTEGER];
+  completedGames: number[] = JSON.parse(
+    localStorage?.getItem('completed') || '[]',
+  ) as number[];
 
   emptyGame = {
     id: 0,
-    title: {
-      usa: '',
-      eu: '',
-      jap: '',
-      world: '',
-      other: '',
-    },
+    title_usa: '',
+    title_eu: '',
+    title_jap: '',
+    title_world: '',
+    title_other: '',
     screenscraper_id: 0,
     img: '',
     year: 0,
@@ -47,50 +49,50 @@ class RandomizerStore {
 
   constructor() {
     makeAutoObservable(this, {
+      allGames: observable,
+      completedGames: observable,
+      currentGameIndex: observable,
       includeGotmRunnerUp: observable,
       includeGotmWinners: observable,
       includeRetrobits: observable,
       includeRpgRunnerUp: observable,
       includeRpgWinners: observable,
+      showHiddenGames: observable,
       ttbFilter: observable,
-      currentGameIndex: observable,
-      allGames: observable,
 
-      filteredGamePool: computed,
       currentGame: computed,
+      filteredGamePool: computed,
+      isGameHidden: computed,
       nominations: computed,
-      ttbMin: computed,
       ttbMax: computed,
+      ttbMin: computed,
 
       nextGame: action,
+      setAllGames: action,
       setIncludeGotmRunnerUp: action,
       setIncludeGotmWinners: action,
       setIncludeRetrobits: action,
       setIncludeRpgRunnerUp: action,
       setIncludeRpgWinners: action,
+      setShowHiddenGames: action,
       setTtbFilter: action,
-      setAllGames: action,
+      toggleGameHidden: action,
     });
 
-    const initialize = () => {
-      const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
-      const gotmWinners = dbClient.getGotmWinners() || [];
-      const retrobits = dbClient.getRetrobits() || [];
-      const rpgRunnerUp = dbClient.getRpgRunnerup() || [];
-      const rpgWinners = dbClient.getRpgWinners() || [];
-      runInAction(() => {
-        this.setAllGames({
-          gotmRunnerUp,
-          gotmWinners,
-          retrobits,
-          rpgRunnerUp,
-          rpgWinners,
-        });
+    const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
+    const gotmWinners = dbClient.getGotmWinners() || [];
+    const retrobits = dbClient.getRetrobits() || [];
+    const rpgRunnerUp = dbClient.getRpgRunnerup() || [];
+    const rpgWinners = dbClient.getRpgWinners() || [];
+    runInAction(() => {
+      this.setAllGames({
+        gotmRunnerUp,
+        gotmWinners,
+        retrobits,
+        rpgRunnerUp,
+        rpgWinners,
       });
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    initialize();
+    });
   }
 
   shuffle(inputArray: Game[]): Game[] {
@@ -128,6 +130,11 @@ class RandomizerStore {
         x.time_to_beat >= this.ttbFilter[0] &&
         x.time_to_beat <= this.ttbFilter[1],
     );
+    pool = this.showHiddenGames
+      ? pool
+      : pool.filter(
+          (x) => this.completedGames.some((y) => x.id === y) === false,
+        );
     return this.shuffle(pool);
   }
 
@@ -202,8 +209,33 @@ class RandomizerStore {
     this.includeRpgWinners = value;
   }
 
+  setShowHiddenGames(value: boolean) {
+    this.showHiddenGames = value;
+  }
+
   setTtbFilter(value: number[]) {
     this.ttbFilter = value;
+  }
+
+  toggleGameHidden() {
+    if (this.currentGame.id > 0) {
+      if (this.currentGame.id > 0 && this.isGameHidden) {
+        const hiddenIndex = this.completedGames.findIndex(
+          (x) => x === this.currentGame.id,
+        );
+        this.completedGames = [
+          ...this.completedGames.slice(0, hiddenIndex),
+          ...this.completedGames.slice(hiddenIndex + 1),
+        ];
+      } else {
+        this.completedGames = [...this.completedGames, this.currentGame.id];
+      }
+      localStorage?.setItem('completed', JSON.stringify(this.completedGames));
+    }
+  }
+
+  get isGameHidden() {
+    return this.completedGames.some((x) => x === this.currentGame.id);
   }
 
   get nominations() {
