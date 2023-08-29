@@ -130,9 +130,11 @@ class RandomizerStore {
         x.time_to_beat >= this.ttbFilter[0] &&
         x.time_to_beat <= this.ttbFilter[1],
     );
-    pool = this.showHiddenGames ? pool : pool.filter(
-      (x) => this.completedGames.some((y) => x.id === y) === false,
-    );
+    pool = this.showHiddenGames
+      ? pool
+      : pool.filter(
+          (x) => this.completedGames.some((y) => x.id === y) === false,
+        );
     return this.shuffle(pool);
   }
 
@@ -216,10 +218,15 @@ class RandomizerStore {
   }
 
   toggleGameHidden() {
-    if (this.currentGame.id > 0){
+    if (this.currentGame.id > 0) {
       if (this.currentGame.id > 0 && this.isGameHidden) {
-        const hiddenIndex = this.completedGames.findIndex(x => x === this.currentGame.id);
-        this.completedGames = [...this.completedGames.slice(0, hiddenIndex), ...this.completedGames.slice(hiddenIndex+1)];
+        const hiddenIndex = this.completedGames.findIndex(
+          (x) => x === this.currentGame.id,
+        );
+        this.completedGames = [
+          ...this.completedGames.slice(0, hiddenIndex),
+          ...this.completedGames.slice(hiddenIndex + 1),
+        ];
       } else {
         this.completedGames = [...this.completedGames, this.currentGame.id];
       }
@@ -228,7 +235,7 @@ class RandomizerStore {
   }
 
   get isGameHidden() {
-    return this.completedGames.some(x => x === this.currentGame.id);
+    return this.completedGames.some((x) => x === this.currentGame.id);
   }
 
   get nominations() {

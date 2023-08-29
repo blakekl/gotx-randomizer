@@ -23,12 +23,13 @@ const Randomizer = observer(() => {
     <>
       <Settings />
       <div className="notification mt-6 has-text-centered">
-        There are no games left in the pool. They have either all been hidden, or
-        you have removed all game types in settings. Please check settings and try again.
+        There are no games left in the pool. They have either all been hidden,
+        or you have removed all game types in settings. Please check settings
+        and try again.
       </div>
     </>
   );
-  
+
   const hasGame = (
     <>
       <Settings />
@@ -49,12 +50,15 @@ const Randomizer = observer(() => {
             </span>
           )}
         </button>
-        <button className={classNames({
-            'button': true,
+        <button
+          className={classNames({
+            button: true,
             'is-danger': !randomizerStore.isGameHidden,
-            'is-success': randomizerStore.isGameHidden
-          })} onClick={handleToggleClick}>
-          { randomizerStore.isGameHidden ? 'Unhide Game' : 'Hide Game' }
+            'is-success': randomizerStore.isGameHidden,
+          })}
+          onClick={handleToggleClick}
+        >
+          {randomizerStore.isGameHidden ? 'Unhide Game' : 'Hide Game'}
         </button>
       </div>
       <GameDisplay imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} />
