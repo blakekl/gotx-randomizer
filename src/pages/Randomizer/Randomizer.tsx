@@ -49,7 +49,11 @@ const Randomizer = observer(() => {
             </span>
           )}
         </button>
-        <button className="button is-danger" onClick={handleToggleClick}>
+        <button className={classNames({
+            'button': true,
+            'is-danger': !randomizerStore.isGameHidden,
+            'is-success': randomizerStore.isGameHidden
+          })} onClick={handleToggleClick}>
           { randomizerStore.isGameHidden ? 'Unhide Game' : 'Hide Game' }
         </button>
       </div>
