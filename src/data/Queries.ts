@@ -105,16 +105,14 @@ GROUP BY [public.nominations].game_id
 ORDER BY total DESC;`;
 
 export const topNominationWinsByUser = `SELECT
-  [public.users].id,
-  [public.users].old_discord_name,
-  [public.users].discord_id,
-  [public.users].name,
-  COUNT(*) AS wins
+[public.users].id,
+[public.users].name,
+COUNT(*) AS wins
 FROM [public.nominations]
 INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
 WHERE nomination_type = 'gotm' AND winner = 1 AND user_id > 1
 GROUP BY [public.nominations].user_id
-ORDER BY wins DESC;`;
+ORDER BY wins DESC, [public.users].name ASC;`;
 
 export const mostNominatedGames = `SELECT
   COUNT(*) AS nominations,
@@ -130,6 +128,21 @@ WHERE [public.nominations].nomination_type = 'gotm'
 GROUP BY game_id
 ORDER BY nominations DESC;`;
 
+export const mostNominatedLoserGames = `SELECT
+COUNT(*) AS nominations,
+[public.games].id,
+[public.games].title_world,
+[public.games].title_usa,
+[public.games].title_other,
+[public.games].title_eu,
+[public.games].title_jap
+FROM [public.nominations]
+INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
+WHERE [public.nominations].nomination_type = 'gotm'
+AND [public.nominations].winner = 0
+GROUP BY game_id
+ORDER BY nominations DESC;`;
+
 export const longestMonthsByAvgTimeToBeat = `SELECT 
     [public.themes].creation_date,
     [public.themes].title,
@@ -137,7 +150,7 @@ export const longestMonthsByAvgTimeToBeat = `SELECT
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
-WHERE [public.nominations].winner = 1 AND nomination_type = 'gotm'
+WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
 ORDER BY average DESC;`;
 
@@ -148,18 +161,16 @@ export const shortestMonthsByAvgTimeToBeat = `SELECT
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
-WHERE [public.nominations].winner = 1 AND nomination_type = 'gotm'
+WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
 ORDER BY average ASC;`;
 
 export const mostNominatedGamesByUser = `SELECT
   [public.users].id,
-  [public.users].discord_name_original,
-  [public.users].discord_name,
   [public.users].name,
   COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
 WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].nomination_type = 'gotm') AND user_id > 1
 GROUP BY [public.nominations].user_id
-ORDER BY nominations DESC;`;
+ORDER BY nominations DESC, name;`;
