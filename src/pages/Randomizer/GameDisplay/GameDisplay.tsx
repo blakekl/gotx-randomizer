@@ -65,10 +65,10 @@ const GameDisplay = observer(
         ></div>
         <img
           ref={imgElement}
-          src={randomizerStore.currentGame.img}
+          src={randomizerStore.currentGame.img_url}
           style={{
             display:
-              !!randomizerStore.currentGame?.img && imgLoaded
+              !!randomizerStore.currentGame?.img_url && imgLoaded
                 ? 'block'
                 : 'none',
             margin: 'auto',

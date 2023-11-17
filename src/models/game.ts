@@ -4,157 +4,187 @@ import dayjs from 'dayjs';
 
 /* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 export enum NominationType {
-  gotm,
-  retrobit,
-  rpg,
+  GOTM = 'gotm',
+  RETROBIT = 'retro',
+  RPG = 'rpg',
+  GOTWOTY = 'gotwoty',
+  GOTY = 'goty',
+}
+
+export enum Subscription {
+  SUPPORTER = 'supporter',
+  CHAMPION = 'champion',
+  LEGEND = 'legend',
 }
 
 export interface User {
-  discord_name_original: string;
-  discord_name: string;
-  display_name: string;
   id: number;
+  name: string;
+  discord_id: string;
+  old_discord_name: string;
+  current_points: number;
+  redeemed_points: number;
+  earned_points: number;
+  premium_points: number;
+  created_at: string;
+  updated_at: string;
+  premium_subscriber: Subscription;
 }
 
 export interface Game {
-  developer: string;
-  genre: string;
   id: number;
-  img: string;
-  screenscraper_id: number;
-  system: string;
-  time_to_beat?: number;
+  title_usa?: string;
   title_eu?: string;
   title_jap?: string;
-  title_other?: string;
-  title_usa?: string;
   title_world?: string;
+  title_other?: string;
   year: number;
+  system: string;
+  developer: string;
+  genre: string;
+  img_url: string;
+  time_to_beat?: number;
+  screenscraper_id: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Nomination {
-  game_id: number;
   id: number;
-  is_winner: boolean;
   nomination_type: NominationType;
-  theme_id?: number;
-  user_id?: number;
+  description: string;
+  winner: boolean;
+  game_id: number;
+  user_id: number;
+  theme_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface NominationListItem {
+    nomination_type: NominationType;
+    game_id: number;
+    user_name: string;
+    game_description: string;
+    theme_title: string;
+    theme_description: string;
+    date: string;
+    winner: boolean;
 }
 
 export interface Theme {
-  creation_date: string;
-  description: string;
   id: number;
+  creation_date: string;
   title: string;
-}
-
-export interface UserNomination {
-  date: string;
-  game_description: string;
-  game_id: number;
+  description: string;
+  created_at: string;
+  updated_at: string;
   nomination_type: NominationType;
-  theme_description: string;
-  theme_title: string;
-  user_name: string;
-  is_winner: boolean;
 }
 
 export const gameDto = (data: any[]): Game => {
   const [
     id,
-    screenscraper_id,
-    img,
-    year,
-    system,
-    developer,
-    genre,
-    time_to_beat,
     title_usa,
     title_eu,
     title_jap,
     title_world,
     title_other,
+    year,
+    system,
+    developer,
+    genre,
+    img_url,
+    time_to_beat,
+    screenscraper_id,
+    created_at,
+    updated_at,
   ] = data;
   return {
     id,
-    screenscraper_id,
-    img,
-    year,
-    system,
-    developer,
-    genre,
-    time_to_beat: time_to_beat || 0,
     title_usa,
     title_eu,
     title_jap,
     title_world,
     title_other,
+    year,
+    system,
+    developer,
+    genre,
+    img_url,
+    time_to_beat,
+    screenscraper_id,
+    created_at,
+    updated_at,
   } as Game;
 };
 
 export const nominationDto = (data: any[]): Nomination => {
-  const [id, nomination_type, game_id, user_id, theme_id, is_winner] = data;
+  const [id, nomination_type, description, winner, game_id, user_id, theme_id, created_at, updated_at ] = data;
 
   return {
     id,
     nomination_type,
+    description,
+    winner,
     game_id,
     user_id,
     theme_id,
-    is_winner,
+    created_at,
+    updated_at,
   } as Nomination;
 };
 
 export const themeDto = (data: any[]): Theme => {
-  const [id, creation_date, title, description] = data;
+  const [id, creation_date, title, description, created_at, updated_at, nomination_type] = data;
   return {
     id,
     creation_date,
     title,
     description,
+    created_at,
+    updated_at,
+    nomination_type,
   };
 };
 
 export const userDto = (data: any[]): User => {
-  const [id, discord_name_original, display_name, discord_name] = data;
+  const [id, name, discord_id, old_discord_name, current_points, redeemed_points, earned_points, premium_points, created_at, updated_at, premium_subscriber] = data;
 
   return {
     id,
-    discord_name_original,
-    display_name,
-    discord_name,
+    name,
+    discord_id,
+    old_discord_name,
+    current_points,
+    redeemed_points,
+    earned_points,
+    premium_points,
+    created_at,
+    updated_at,
+    premium_subscriber,
   } as User;
 };
 
-export const userNominationDto = (data: any[]): UserNomination => {
-  const [
-    nomination_type,
-    game_id,
-    user_name,
-    game_description,
-    theme_title,
-    theme_description,
-    date,
-    is_winner,
-  ] = data;
-
+export const nominationListItemDto = (data: any[]): NominationListItem => {
+  const [nomination_type, game_id, user_name, game_description, theme_title, theme_description, date, winner] = data;
   return {
-    date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
-    game_description,
-    game_id,
     nomination_type,
-    theme_description,
-    theme_title,
+    game_id,
     user_name,
-    is_winner: is_winner === 1,
-  } as UserNomination;
+    game_description,
+    theme_title,
+    theme_description,
+    date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
+    winner: winner === 1,
+  } as NominationListItem;
 };
 
 const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
 const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
-export const convertDate = (nomination: UserNomination, index: number) => {
+export const convertDate = (nomination: NominationListItem, index: number) => {
   switch (nomination.nomination_type) {
-    case NominationType.retrobit:
+    case NominationType.RETROBIT:
       return {
         ...nomination,
         date: firstRetrobitDate
@@ -162,7 +192,7 @@ export const convertDate = (nomination: UserNomination, index: number) => {
           .toDate()
           .toLocaleDateString(),
       };
-    case NominationType.rpg:
+    case NominationType.RPG:
       return {
         ...nomination,
         date: firstRpgDate
