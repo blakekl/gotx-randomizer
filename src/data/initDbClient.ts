@@ -14,7 +14,7 @@ import {
   NominationType,
   convertDate,
   gameDto,
-  nominationDto,
+  nominationListItemDto,
 } from '../models/game';
 
 const initDbClient = async () => {
@@ -56,7 +56,7 @@ const initDbClient = async () => {
         db
           ?.exec(getNominationData)
           .flatMap((x) => x.values)
-          .flatMap(nominationDto) || [];
+          .flatMap(nominationListItemDto) || [];
       const gameNoms = nominations.filter((x) => x.game_id === game_id);
       const retrobitIndexes = nominations
         .filter((x) => x.nomination_type === NominationType.RETROBIT)

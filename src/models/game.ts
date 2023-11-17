@@ -61,6 +61,17 @@ export interface Nomination {
   updated_at: string;
 }
 
+export interface NominationListItem {
+    nomination_type: NominationType;
+    game_id: number;
+    user_name: string;
+    game_description: string;
+    theme_title: string;
+    theme_description: string;
+    date: string;
+    winner: boolean;
+}
+
 export interface Theme {
   id: number;
   creation_date: string;
@@ -155,9 +166,23 @@ export const userDto = (data: any[]): User => {
   } as User;
 };
 
+export const nominationListItemDto = (data: any[]): NominationListItem => {
+  const [nomination_type, game_id, user_name, game_description, theme_title, theme_description, date, winner] = data;
+  return {
+    nomination_type,
+    game_id,
+    user_name,
+    game_description,
+    theme_title,
+    theme_description,
+    date,
+    winner: winner === 1,
+  } as NominationListItem;
+};
+
 const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
 const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
-export const convertDate = (nomination: Nomination, index: number) => {
+export const convertDate = (nomination: NominationListItem, index: number) => {
   switch (nomination.nomination_type) {
     case NominationType.RETROBIT:
       return {

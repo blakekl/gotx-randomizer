@@ -53,38 +53,41 @@ FROM [public.nominations]
 WHERE nomination_type = 'rpg';`;
 
 export const getNominationData = `SELECT
-  nomination_type,
-  game_id,
-  users.display_name as user_name, 
-  nominations.description as game_description, 
-  themes.title as theme_title,
-  themes.description as them_description, 
-  themes.creation_date as 'date',
-  winner
+[public.nominations].nomination_type,
+game_id,
+[public.users].name as user_name, 
+[public.nominations].description as game_description, 
+[public.themes].title as theme_title,
+[public.themes].description as theme_description, 
+date([public.themes].creation_date) as 'date',
+winner
 FROM [public.nominations] 
-LEFT JOIN users on users.id = nominations.user_id 
-LEFT JOIN themes ON nominations.theme_id = themes.id;`;
+LEFT JOIN [public.users] on [public.users].id = [public.nominations].user_id 
+LEFT JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
+ORDER BY date([public.themes].creation_date) DESC;`;
 
 export const getNominationDataByGameId = (game_id: number) => {
   return `SELECT 
-  users.display_name, 
-  nominations.description as game_description, 
-  themes.title, themes.description, 
-  themes.creation_date as 'date' 
+  [public.users].name, 
+  [public.nominations].description as game_description, 
+  [public.themes].title,
+  [public.themes].description, 
+  date([public.themes].creation_date) as 'date' 
 FROM [public.nominations] 
-INNER JOIN users on users.id = nominations.user_id 
-INNER JOIN themes ON nominations.theme_id = themes.id 
-WHERE game_id = ${game_id};`;
+INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id 
+INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id 
+WHERE [public.nominations].game_id = ${game_id}
+ORDER BY date([public.themes].creation_date) DESC;`;
 };
 
 /**
  * Statistical queries.
  */
 export const mostCompletedGames = `SELECT 
-  COUNT(*) as completions, games.title_world, games.title_usa, games.title_eu, games.title_jap 
+  COUNT(*) as completions, [public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap 
 FROM [public.games] 
-INNER JOIN nominations on nominations.game_id = games.id
-INNER JOIN completions on completions.nomination_id = nominations.id 
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id 
 GROUP BY nomination_id 
 ORDER BY completions DESC;`;
 
@@ -96,67 +99,67 @@ export const totalNomsBeforeWinByGame = `SELECT
   title_jap,
   title_other
 FROM [public.nominations]
-INNER JOIN games on game_id = games.id
-WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE nominations.winner = 1 AND nominations.nomination_type = 'gotm')
-GROUP BY nominations.game_id
+INNER JOIN [public.games] on game_id = [public.games].id
+WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm')
+GROUP BY [public.nominations].game_id
 ORDER BY total DESC;`;
 
 export const topNominationWinsByUser = `SELECT
-  users.id,
-  users.old_discord_name,
-  users.discord_id,
-  users.name,
+  [public.users].id,
+  [public.users].old_discord_name,
+  [public.users].discord_id,
+  [public.users].name,
   COUNT(*) AS wins
 FROM [public.nominations]
-INNER JOIN users ON nominations.user_id = users.id
+INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
 WHERE nomination_type = 'gotm' AND winner = 1 AND user_id > 1
-GROUP BY nominations.user_id
+GROUP BY [public.nominations].user_id
 ORDER BY wins DESC;`;
 
 export const mostNominatedGames = `SELECT
   COUNT(*) AS nominations,
-  games.id,
-  games.title_world,
-  games.title_usa,
-  games.title_other,
-  games.title_eu,
-  games.title_jap
+  [public.games].id,
+  [public.games].title_world,
+  [public.games].title_usa,
+  [public.games].title_other,
+  [public.games].title_eu,
+  [public.games].title_jap
 FROM [public.nominations]
-INNER JOIN games ON nominations.game_id = games.id
-WHERE nominations.nomination_type = 'gotm'
+INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
+WHERE [public.nominations].nomination_type = 'gotm'
 GROUP BY game_id
 ORDER BY nominations DESC;`;
 
 export const longestMonthsByAvgTimeToBeat = `SELECT 
-    themes.creation_date,
-    themes.title,
+    [public.themes].creation_date,
+    [public.themes].title,
     AVG(time_to_beat) AS 'average'
 FROM [public.games] 
-INNER JOIN nominations on games.id = nominations.game_id
-INNER JOIN themes ON themes.id = nominations.theme_id
-WHERE nominations.winner = 1 AND nomination_type = 'gotm'
-GROUP BY nominations.theme_id
+INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
+INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
+WHERE [public.nominations].winner = 1 AND nomination_type = 'gotm'
+GROUP BY [public.nominations].theme_id
 ORDER BY average DESC;`;
 
 export const shortestMonthsByAvgTimeToBeat = `SELECT 
-  themes.creation_date,
-  themes.title,
+  [public.themes].creation_date,
+  [public.themes].title,
   AVG(time_to_beat) AS 'average'
 FROM [public.games] 
-INNER JOIN nominations on games.id = nominations.game_id
-INNER JOIN themes ON themes.id = nominations.theme_id
-WHERE nominations.winner = 1 AND nomination_type = 'gotm'
-GROUP BY nominations.theme_id
+INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
+INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
+WHERE [public.nominations].winner = 1 AND nomination_type = 'gotm'
+GROUP BY [public.nominations].theme_id
 ORDER BY average ASC;`;
 
 export const mostNominatedGamesByUser = `SELECT
-  users.id,
-  users.discord_name_original,
-  users.discord_name,
-  users.display_name,
+  [public.users].id,
+  [public.users].discord_name_original,
+  [public.users].discord_name,
+  [public.users].name,
   COUNT(*) AS nominations
 FROM [public.nominations]
-INNER JOIN users ON nominations.user_id = users.id
-WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE nominations.nomination_type = 'gotm') AND user_id > 1
-GROUP BY nominations.user_id
+INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
+WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].nomination_type = 'gotm') AND user_id > 1
+GROUP BY [public.nominations].user_id
 ORDER BY nominations DESC;`;

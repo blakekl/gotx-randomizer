@@ -13,21 +13,21 @@ const NominationList = observer(() => {
             <div className="content">
               <blockquote
                 className={classNames({
-                  'has-background-primary': nomination.is_winner,
-                  'has-text-white': nomination.is_winner,
+                  'has-background-primary': nomination.winner,
+                  'has-text-white': nomination.winner,
                 })}
               >
                 <div className="level">
-                  {nomination.user_name && (
+                  {nomination.nomination_type === NominationType.GOTM && (
                     <div className="level-item">
                       <span
                         className={classNames({
                           subtitle: true,
-                          'has-text-white': nomination.is_winner,
+                          'has-text-white': nomination.winner,
                         })}
                       >
                         Nominator: {nomination.user_name}{' '}
-                        {nomination.is_winner && '👑'}
+                        {nomination.winner && '👑'}
                       </span>
                     </div>
                   )}
@@ -36,7 +36,7 @@ const NominationList = observer(() => {
                     <span
                       className={classNames({
                         subtitle: true,
-                        'has-text-white': nomination.is_winner,
+                        'has-text-white': nomination.winner,
                       })}
                     >
                       {nomination.date}
@@ -48,27 +48,27 @@ const NominationList = observer(() => {
                       <span
                         className={classNames({
                           subtitle: true,
-                          'has-text-white': nomination.is_winner,
+                          'has-text-white': nomination.winner,
                         })}
                       >
                         Theme: {nomination.theme_title}
                       </span>
                     )}
-                    {nomination.nomination_type === NominationType.retrobit && (
+                    {nomination.nomination_type === NominationType.RETROBIT && (
                       <span
                         className={classNames({
                           subtitle: true,
-                          'has-text-white': nomination.is_winner,
+                          'has-text-white': nomination.winner,
                         })}
                       >
                         Theme: Retrobits
                       </span>
                     )}
-                    {nomination.nomination_type === NominationType.rpg && (
+                    {nomination.nomination_type === NominationType.RPG && (
                       <span
                         className={classNames({
                           subtitle: true,
-                          'has-text-white': nomination.is_winner,
+                          'has-text-white': nomination.winner,
                         })}
                       >
                         Theme: RPG of the Quarter
