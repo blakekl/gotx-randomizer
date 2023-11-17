@@ -34,17 +34,15 @@ class RandomizerStore {
   emptyGame = {
     id: 0,
     title_usa: '',
-    title_eu: '',
-    title_jap: '',
-    title_world: '',
-    title_other: '',
-    screenscraper_id: 0,
-    img: '',
     year: 0,
     system: '',
     developer: '',
     genre: '',
+    img_url: '',
     time_to_beat: 0,
+    screenscraper_id: 0,
+    created_at: '',
+    updated_at: '',
   } as Game;
 
   constructor() {
