@@ -175,7 +175,7 @@ export const nominationListItemDto = (data: any[]): NominationListItem => {
     game_description,
     theme_title,
     theme_description,
-    date,
+    date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
     winner: winner === 1,
   } as NominationListItem;
 };
