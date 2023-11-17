@@ -3,54 +3,54 @@
  */
 export const getRetrobits = `SELECT
   * 
-FROM games 
-WHERE id in (SELECT game_id FROM nominations WHERE nomination_type = 1);`;
+FROM [public.games] 
+WHERE id in (SELECT game_id FROM [public.nominations] WHERE nomination_type = 'retro');`;
 
 export const getRpgRunnerup = `SELECT 
 * 
-FROM games
-WHERE id IN(SELECT game_id FROM nominations WHERE nomination_type = 2) AND id NOT IN (
-  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
+FROM [public.games]
+WHERE id IN(SELECT game_id FROM [public.nominations] WHERE nomination_type = 'rpg') AND id NOT IN (
+  SELECT game_id FROM [public.nominations] WHERE nomination_type = 'rpg' AND winner = 1
 );`; 
 
 export const getWinningRpg = `SELECT 
 * 
-FROM games
+FROM [public.games]
 WHERE id in (
-  SELECT game_id FROM nominations WHERE nomination_type = 2 AND is_winner = 1
+  SELECT game_id FROM [public.nominations] WHERE nomination_type = 'rpg' AND winner = 1
 );`;
 
 export const getGotmRunnerup = `SELECT
 *
-FROM games
-WHERE id IN(SELECT game_id FROM nominations WHERE nomination_type = 0) AND id NOT IN (
-  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
+FROM [public.games]
+WHERE id IN(SELECT game_id FROM [public.nominations] WHERE nomination_type = 'gotm') AND id NOT IN (
+  SELECT game_id FROM [public.nominations] WHERE nomination_type = 'gotm' AND winner = 1
 );`;
 
 export const getWinningGotm = `SELECT * 
-FROM games
+FROM [public.games]
 WHERE id in (
-  SELECT game_id FROM nominations WHERE nomination_type = 0 AND is_winner = 1
+  SELECT game_id FROM [public.nominations] WHERE nomination_type = 'gotm' AND winner = 1
 );`;
 
 export const getUserById = (id: number) => `SELECT * 
-FROM users
+FROM [public.users]
 WHERE id = '${id}';`;
 
 export const getNominations = `SELECT *
-FROM nominations;`;
+FROM [public.nominations];`;
 
 export const getGotmNominations = `SELECT * 
-FROM nominations
-WHERE nomination_type = 0;`;
+FROM [public.nominations]
+WHERE nomination_type = 'gotm';`;
 
 export const getRetrobitNominations = `SELECT * 
-FROM nominations
-WHERE nomination_type = 1;`;
+FROM [public.nominations]
+WHERE nomination_type = 'retro';`;
 
 export const getRpgNominations = `SELECT * 
-FROM nominations
-WHERE nomination_type = 2;`;
+FROM [public.nominations]
+WHERE nomination_type = 'rpg';`;
 
 export const getNominationData = `SELECT
   nomination_type,
@@ -60,8 +60,8 @@ export const getNominationData = `SELECT
   themes.title as theme_title,
   themes.description as them_description, 
   themes.creation_date as 'date',
-  is_winner
-FROM nominations 
+  winner
+FROM [public.nominations] 
 LEFT JOIN users on users.id = nominations.user_id 
 LEFT JOIN themes ON nominations.theme_id = themes.id;`;
 
@@ -71,7 +71,7 @@ export const getNominationDataByGameId = (game_id: number) => {
   nominations.description as game_description, 
   themes.title, themes.description, 
   themes.creation_date as 'date' 
-FROM nominations 
+FROM [public.nominations] 
 INNER JOIN users on users.id = nominations.user_id 
 INNER JOIN themes ON nominations.theme_id = themes.id 
 WHERE game_id = ${game_id};`;
@@ -82,7 +82,7 @@ WHERE game_id = ${game_id};`;
  */
 export const mostCompletedGames = `SELECT 
   COUNT(*) as completions, games.title_world, games.title_usa, games.title_eu, games.title_jap 
-FROM games 
+FROM [public.games] 
 INNER JOIN nominations on nominations.game_id = games.id
 INNER JOIN completions on completions.nomination_id = nominations.id 
 GROUP BY nomination_id 
@@ -95,21 +95,21 @@ export const totalNomsBeforeWinByGame = `SELECT
   title_eu,
   title_jap,
   title_other
-FROM nominations
+FROM [public.nominations]
 INNER JOIN games on game_id = games.id
-WHERE game_id IN (SELECT game_id FROM nominations WHERE nominations.is_winner = 1 AND nominations.nomination_type = 0)
+WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE nominations.winner = 1 AND nominations.nomination_type = 'gotm')
 GROUP BY nominations.game_id
 ORDER BY total DESC;`;
 
 export const topNominationWinsByUser = `SELECT
   users.id,
-  users.discord_name_original,
-  users.discord_name,
-  users.display_name,
+  users.old_discord_name,
+  users.discord_id,
+  users.name,
   COUNT(*) AS wins
-FROM nominations
+FROM [public.nominations]
 INNER JOIN users ON nominations.user_id = users.id
-WHERE nomination_type = 0 AND is_winner = 1 AND user_id > 1
+WHERE nomination_type = 'gotm' AND winner = 1 AND user_id > 1
 GROUP BY nominations.user_id
 ORDER BY wins DESC;`;
 
@@ -121,9 +121,9 @@ export const mostNominatedGames = `SELECT
   games.title_other,
   games.title_eu,
   games.title_jap
-FROM nominations
+FROM [public.nominations]
 INNER JOIN games ON nominations.game_id = games.id
-WHERE nominations.nomination_type = 0
+WHERE nominations.nomination_type = 'gotm'
 GROUP BY game_id
 ORDER BY nominations DESC;`;
 
@@ -131,10 +131,10 @@ export const longestMonthsByAvgTimeToBeat = `SELECT
     themes.creation_date,
     themes.title,
     AVG(time_to_beat) AS 'average'
-FROM games 
+FROM [public.games] 
 INNER JOIN nominations on games.id = nominations.game_id
 INNER JOIN themes ON themes.id = nominations.theme_id
-WHERE nominations.is_winner = 1 AND nomination_type = 0
+WHERE nominations.winner = 1 AND nomination_type = 'gotm'
 GROUP BY nominations.theme_id
 ORDER BY average DESC;`;
 
@@ -142,10 +142,10 @@ export const shortestMonthsByAvgTimeToBeat = `SELECT
   themes.creation_date,
   themes.title,
   AVG(time_to_beat) AS 'average'
-FROM games 
+FROM [public.games] 
 INNER JOIN nominations on games.id = nominations.game_id
 INNER JOIN themes ON themes.id = nominations.theme_id
-WHERE nominations.is_winner = 1 AND nomination_type = 0
+WHERE nominations.winner = 1 AND nomination_type = 'gotm'
 GROUP BY nominations.theme_id
 ORDER BY average ASC;`;
 
@@ -155,8 +155,8 @@ export const mostNominatedGamesByUser = `SELECT
   users.discord_name,
   users.display_name,
   COUNT(*) AS nominations
-FROM nominations
+FROM [public.nominations]
 INNER JOIN users ON nominations.user_id = users.id
-WHERE game_id IN (SELECT game_id FROM nominations WHERE nominations.nomination_type = 0) AND user_id > 1
+WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE nominations.nomination_type = 'gotm') AND user_id > 1
 GROUP BY nominations.user_id
 ORDER BY nominations DESC;`;

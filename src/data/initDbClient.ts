@@ -1,6 +1,6 @@
 import initSqlJs from 'sql.js';
 import { Database } from 'sql.js';
-import databaseUrl from '../assets/gotx-randomizer.sqlite?url';
+import databaseUrl from '../gotx-randomizer.sqlite?url';
 
 import {
   getGotmRunnerup,
@@ -14,7 +14,7 @@ import {
   NominationType,
   convertDate,
   gameDto,
-  userNominationDto,
+  nominationDto,
 } from '../models/game';
 
 const initDbClient = async () => {
@@ -56,10 +56,10 @@ const initDbClient = async () => {
         db
           ?.exec(getNominationData)
           .flatMap((x) => x.values)
-          .flatMap(userNominationDto) || [];
+          .flatMap(nominationDto) || [];
       const gameNoms = nominations.filter((x) => x.game_id === game_id);
       const retrobitIndexes = nominations
-        .filter((x) => x.nomination_type === NominationType.retrobit)
+        .filter((x) => x.nomination_type === NominationType.RETROBIT)
         .reduce((aggregate, current, index) => {
           if (current.game_id === game_id) {
             aggregate.push(index);
@@ -69,7 +69,7 @@ const initDbClient = async () => {
         }, new Array<number>());
 
       const rpgIndexes = nominations
-        .filter((x) => x.nomination_type === NominationType.rpg)
+        .filter((x) => x.nomination_type === NominationType.RPG)
         .reduce((aggregate, current, index) => {
           if (current.game_id === game_id) {
             aggregate.push(index);
@@ -79,17 +79,17 @@ const initDbClient = async () => {
         }, new Array<number>());
 
       gameNoms.map((x) => {
-        if (x.nomination_type === NominationType.gotm) {
+        if (x.nomination_type === NominationType.GOTM) {
           return x;
-        } else if (x.nomination_type === NominationType.retrobit) {
+        } else if (x.nomination_type === NominationType.RETROBIT) {
           return;
         }
       });
       return gameNoms.map((x) => {
         switch (x.nomination_type) {
-          case NominationType.retrobit:
+          case NominationType.RETROBIT:
             return convertDate(x, retrobitIndexes.shift() || 0);
-          case NominationType.rpg:
+          case NominationType.RPG:
             return convertDate(x, rpgIndexes.shift() || 0);
           default:
             return x;
