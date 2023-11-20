@@ -32,6 +32,7 @@ const Randomizer = observer(() => {
 
   const hasGame = (
     <>
+      <h1 className="title has-text-centered">Randomizer</h1>
       <Settings />
       <div className="mt-4 buttons has-addons is-centered">
         <button

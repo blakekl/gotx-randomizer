@@ -23,6 +23,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.2",
+    "react-router-dom": "^6.19.0",
     "react-slider": "^2.0.6",
     "sql.js": "^1.8.0"
   },

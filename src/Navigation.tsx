@@ -48,6 +48,8 @@ const Navigation = () => {
       >
         <div className="navbar-end">
           {/* future links to go here. Just <a className="navbar-item"> */}
+          <a className="navbar-item" href="/">Randomizer</a>
+          <a className="navbar-item" href="stats">Statistics</a>
         </div>
       </div>
     </nav>
