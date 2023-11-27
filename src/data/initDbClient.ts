@@ -17,6 +17,7 @@ import {
   mostNominatedGames,
   mostNominatedGamesByUser,
   mostNominatedLoserGames,
+  newestCompletions,
   shortestMonthsByAvgTimeToBeat,
   topNominationWinsByUser,
   totalNomsBeforeWinByGame,
@@ -110,6 +111,9 @@ const initDbClient = async () => {
     },
     mostCompletedGames: () => {
       return db?.exec(mostCompletedGames)[0].values.map(x => labeledStatDto(x));
+    },
+    newestCompletions: () => {
+      return db?.exec(newestCompletions)[0].values.map(x => labeledStatDto(x));
     },
     totalNomsBeforeWinByGame: () => {
       return db?.exec(totalNomsBeforeWinByGame)[0].values.map(x => labeledStatDto(x));

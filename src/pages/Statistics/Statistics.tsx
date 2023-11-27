@@ -1,10 +1,9 @@
-import * as Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
-import { LabeledStat } from '../../models/game';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { ChartType } from '../../models/game';
+import Bar from './Bar';
 
 enum Tabs {
     COMPLETIONS,
@@ -15,7 +14,8 @@ enum Tabs {
 const Statistics = observer(() => {
     const [selectedTab, setSelectedTab] = useState(Tabs.NOMINATIONS);
     const {randomizerStore} = useStores();
-    const mostCompletedGames = randomizerStore.getMostCompletedGames()
+    const mostCompletedGames = randomizerStore.getMostCompletedGames();
+    const newestCompletedGames = randomizerStore.getNewestCompletedGames();
     const nominationsBeforeWin = randomizerStore.getTotalNominationsBeforeWinByGame();
     const topNominationWinsByUser = randomizerStore.getTopNominationWinsByUser();
     const mostNominatedGames = randomizerStore.getMostNominatedGames();
@@ -25,75 +25,32 @@ const Statistics = observer(() => {
     const shortestMonthsByAvgTimeToBeat = randomizerStore.getShortestMonthsByAvgTimeToBeat();
     const mostNominatedGamesByUser = randomizerStore.getMostNominatedGamesByUser();
 
-    const generateBarChartOptions = (data: LabeledStat[], title: string, name: string): Highcharts.Options => {
-        return  {
-            title: {
-                text: title,
-            },
-            series: [
-                {
-                    name: name,
-                    type: 'bar',
-                    data: data.map(x => x.value)
-                        .slice(0, 20),
-                }
-            ],
-            xAxis: {
-                categories: data.map(x => x.label),
-            },
-            legend: {
-                enabled: false,
-            }
-        }
-    }
-
     const completions = <>
             <div className="column">
-            <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(mostCompletedGames, 'Most Completed Games', 'Completions')} />
-                <br/>
+                <Bar chartType={ChartType.BAR} data={mostCompletedGames} title='Most Completed Games' name='Completions' />
             </div>
-            <div className="column"></div>
+            <div className="column">
+                <Bar chartType={ChartType.BAR} data={newestCompletedGames} title='Newest Completed Games' name="Completions" />
+            </div>
     </>
     const nominations = <>
             <div className="column">
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(nominationsBeforeWin, 'Most Nominations Before Win', 'Nominations')} />
-                <br/>
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(mostNominatedGames, 'Most Nominated Games', 'Nominations')} />
-                <br/>
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(mostNominatedLosers, 'Most Nominated Games Without a Win', 'Nominations')} />
+                <Bar chartType={ChartType.BAR} data={nominationsBeforeWin} title='Most Nominations Before Win' name='Nominations' />
+                <Bar chartType={ChartType.BAR} data={mostNominatedGames} title='Most Nominated Games' name='Nominations' />
+                <Bar chartType={ChartType.BAR} data={mostNominatedLosers} title='Most Nominated Games Without a Win' name='Nominations' />
             </div>
             <div className="column">
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(mostNominatedGamesByUser, 'Most Nominations by User', 'Nominations')} />
-                <br/>
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(topNominationWinsByUser, 'Most Winning Nominations By User', 'Wins')} />
+                <Bar chartType={ChartType.BAR} data={mostNominatedGamesByUser} title='Most Nominations by User' name='Nominations' />
+                <Bar chartType={ChartType.BAR} data={topNominationWinsByUser} title='Most Winning Nominations by User' name='Wins' />
             </div>
     </>;
     const timeToBeat = <>
             <div className="column">
-            <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(longestMonthsByAvgTimeToBeat, 'Longest Months', 'Avg Time to Beat')} />
-                <br/>
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(avgTimeToBeatByMonth, 'Average Time to Beat by Month', 'Hours')} />
+                <Bar chartType={ChartType.BAR} data={longestMonthsByAvgTimeToBeat} title='Longest Months' name='Avg Time to Beat' />
+                <Bar chartType={ChartType.BAR} data={avgTimeToBeatByMonth} title='Average Time to Beat by Month' name='Hours' />
             </div>
             <div className="column">
-                <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generateBarChartOptions(shortestMonthsByAvgTimeToBeat, 'Shortest Months', 'Avg Time to Beat')} />
+                <Bar chartType={ChartType.BAR} data={shortestMonthsByAvgTimeToBeat} title='Shortest Months' name='Avg Time to Beat' />
             </div>
     </>;
 

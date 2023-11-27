@@ -92,6 +92,15 @@ INNER JOIN [public.completions] on [public.completions].nomination_id = [public.
 GROUP BY nomination_id 
 ORDER BY completions DESC;`;
 
+export const newestCompletions = `SELECT 
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) as completions
+FROM [public.games] 
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id 
+GROUP BY nomination_id 
+ORDER BY [public.nominations].theme_id DESC;`;
+
 export const totalNomsBeforeWinByGame = `SELECT
   COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
   COUNT(*) AS total
@@ -134,8 +143,8 @@ export const mostNominatedLoserGames = `SELECT
   COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
-WHERE [public.nominations].nomination_type = 'gotm'
-  AND [public.nominations].winner = 0
+WHERE [public.nominations].game_id NOT IN (SELECT [public.nominations].game_id FROM [public.nominations] WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm')
+AND [public.nominations].nomination_type = 'gotm'
 GROUP BY game_id
 ORDER BY nominations DESC;`;
 

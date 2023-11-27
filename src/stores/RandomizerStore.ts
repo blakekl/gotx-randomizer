@@ -237,6 +237,10 @@ class RandomizerStore {
   getMostCompletedGames(): LabeledStat[] {
     return dbClient.mostCompletedGames() ?? [];
   }
+
+  getNewestCompletedGames(): LabeledStat[] {
+    return dbClient.newestCompletions() ?? [];
+  }
   
   getTotalNominationsBeforeWinByGame(): LabeledStat[] {
     return dbClient.totalNomsBeforeWinByGame() ?? [];
