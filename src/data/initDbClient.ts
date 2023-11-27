@@ -3,17 +3,29 @@ import { Database } from 'sql.js';
 import databaseUrl from '../gotx-randomizer.sqlite?url';
 
 import {
+  avgNominationsBeforeWin,
+  avgTimeToBeatByMonth,
+  completionsCountByGame,
   getGotmRunnerup,
   getNominationData,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
   getWinningRpg,
+  longestMonthsByAvgTimeToBeat,
+  mostCompletedGames,
+  mostNominatedGames,
+  mostNominatedGamesByUser,
+  mostNominatedLoserGames,
+  shortestMonthsByAvgTimeToBeat,
+  topNominationWinsByUser,
+  totalNomsBeforeWinByGame,
 } from '../data/Queries';
 import {
   NominationType,
   convertDate,
   gameDto,
+  labeledStatDto,
   nominationListItemDto,
 } from '../models/game';
 
@@ -95,6 +107,39 @@ const initDbClient = async () => {
             return x;
         }
       });
+    },
+    mostCompletedGames: () => {
+      return db?.exec(mostCompletedGames)[0].values.map(x => labeledStatDto(x));
+    },
+    totalNomsBeforeWinByGame: () => {
+      return db?.exec(totalNomsBeforeWinByGame)[0].values.map(x => labeledStatDto(x));
+    },
+    avgNominationsBeforeWin: () => {
+      return db?.exec(avgNominationsBeforeWin)[0].values.map(x => Number(x));
+    },
+    topNominationWinsByUser: () => {
+      return db?.exec(topNominationWinsByUser)[0].values.map(x => labeledStatDto(x));
+    },
+    mostNominatedGames: () => {
+      return db?.exec(mostNominatedGames)[0].values.map(x => labeledStatDto(x));
+    },
+    mostNominatedLoserGames: () => {
+      return db?.exec(mostNominatedLoserGames)[0].values.map(x => labeledStatDto(x));
+    },
+    avgTimeToBeatByMonth: () => {
+      return db?.exec(avgTimeToBeatByMonth)[0].values.map(x => labeledStatDto(x));
+    },
+    longestMonthsByAvgTimeToBeat: () => {
+      return db?.exec(longestMonthsByAvgTimeToBeat)[0].values.map(x => labeledStatDto(x));
+    },
+    shortestMonthsByAvgTimeToBeat: () => {
+      return db?.exec(shortestMonthsByAvgTimeToBeat)[0].values.map(x => labeledStatDto(x));
+    },
+    mostNominatedGamesByUser: () => {
+      return db?.exec(mostNominatedGamesByUser)[0].values.map(x => labeledStatDto(x));
+    },
+    completionsCountByGame: () => {
+      return db?.exec(completionsCountByGame)[0].values.map(x => labeledStatDto(x));
     },
   };
 };

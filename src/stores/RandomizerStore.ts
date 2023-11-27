@@ -1,5 +1,5 @@
 import { action, computed, makeAutoObservable, observable } from 'mobx';
-import { Game } from '../models/game';
+import { Game, LabeledStat } from '../models/game';
 import dbClient from '../data';
 import { runInAction } from 'mobx';
 
@@ -75,6 +75,8 @@ class RandomizerStore {
       setShowHiddenGames: action,
       setTtbFilter: action,
       toggleGameHidden: action,
+
+      getMostCompletedGames: action,
     });
 
     const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
@@ -230,6 +232,42 @@ class RandomizerStore {
       }
       localStorage?.setItem('completed', JSON.stringify(this.completedGames));
     }
+  }
+
+  getMostCompletedGames(): LabeledStat[] {
+    return dbClient.mostCompletedGames() ?? [];
+  }
+  
+  getTotalNominationsBeforeWinByGame(): LabeledStat[] {
+    return dbClient.totalNomsBeforeWinByGame() ?? [];
+  }
+
+  getTopNominationWinsByUser(): LabeledStat[] {
+    return dbClient.topNominationWinsByUser() ?? [];
+  }
+
+  getMostNominatedGames(): LabeledStat[] {
+    return dbClient.mostNominatedGames() ?? [];
+  }
+
+  getMostNominatedLoserGames(): LabeledStat[] {
+    return dbClient.mostNominatedLoserGames() ?? [];
+  }
+
+  getAvgTimeToBeatByMonth(): LabeledStat[] {
+    return dbClient.avgTimeToBeatByMonth() ?? [];
+  }
+
+  getLongestMonthsByAvgTimeToBeat(): LabeledStat[] {
+    return dbClient.longestMonthsByAvgTimeToBeat() ?? [];
+  }
+
+  getShortestMonthsByAvgTimeToBeat(): LabeledStat[] {
+    return dbClient.shortestMonthsByAvgTimeToBeat() ?? [];
+  }
+
+  getMostNominatedGamesByUser(): LabeledStat[] {
+    return dbClient.mostNominatedGamesByUser() ?? [];
   }
 
   get isGameHidden() {

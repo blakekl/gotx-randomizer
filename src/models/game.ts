@@ -82,6 +82,11 @@ export interface Theme {
   nomination_type: NominationType;
 }
 
+export interface LabeledStat {
+  label: string;
+  value: number;
+}
+
 export const gameDto = (data: any[]): Game => {
   const [
     id,
@@ -179,6 +184,11 @@ export const nominationListItemDto = (data: any[]): NominationListItem => {
     winner: winner === 1,
   } as NominationListItem;
 };
+
+export const labeledStatDto = (data: any[]): LabeledStat => {
+  const [label, value] = data;
+  return {label, value} as LabeledStat;
+}
 
 const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
 const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');

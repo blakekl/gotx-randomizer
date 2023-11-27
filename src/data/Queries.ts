@@ -84,7 +84,8 @@ ORDER BY date([public.themes].creation_date) DESC;`;
  * Statistical queries.
  */
 export const mostCompletedGames = `SELECT 
-  COUNT(*) as completions, [public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap 
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) as completions
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
 INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id 
@@ -92,22 +93,27 @@ GROUP BY nomination_id
 ORDER BY completions DESC;`;
 
 export const totalNomsBeforeWinByGame = `SELECT
-  COUNT(*) AS total,
-  title_world,
-  title_usa,
-  title_eu,
-  title_jap,
-  title_other
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) AS total
 FROM [public.nominations]
 INNER JOIN [public.games] on game_id = [public.games].id
 WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm')
 GROUP BY [public.nominations].game_id
 ORDER BY total DESC;`;
 
+export const avgNominationsBeforeWin = `
+SELECT AVG(total) AS average FROM (SELECT
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) AS total
+FROM [public.nominations]
+INNER JOIN [public.games] on game_id = [public.games].id
+WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm')
+GROUP BY [public.nominations].game_id
+ORDER BY total DESC);`;
+
 export const topNominationWinsByUser = `SELECT
-[public.users].id,
-[public.users].name,
-COUNT(*) AS wins
+  [public.users].name,
+  COUNT(*) AS wins
 FROM [public.nominations]
 INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
 WHERE nomination_type = 'gotm' AND winner = 1 AND user_id > 1
@@ -115,13 +121,8 @@ GROUP BY [public.nominations].user_id
 ORDER BY wins DESC, [public.users].name ASC;`;
 
 export const mostNominatedGames = `SELECT
-  COUNT(*) AS nominations,
-  [public.games].id,
-  [public.games].title_world,
-  [public.games].title_usa,
-  [public.games].title_other,
-  [public.games].title_eu,
-  [public.games].title_jap
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 WHERE [public.nominations].nomination_type = 'gotm'
@@ -129,24 +130,28 @@ GROUP BY game_id
 ORDER BY nominations DESC;`;
 
 export const mostNominatedLoserGames = `SELECT
-COUNT(*) AS nominations,
-[public.games].id,
-[public.games].title_world,
-[public.games].title_usa,
-[public.games].title_other,
-[public.games].title_eu,
-[public.games].title_jap
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 WHERE [public.nominations].nomination_type = 'gotm'
-AND [public.nominations].winner = 0
+  AND [public.nominations].winner = 0
 GROUP BY game_id
 ORDER BY nominations DESC;`;
 
+export const avgTimeToBeatByMonth = `SELECT 
+  [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
+  AVG(time_to_beat) AS average
+FROM [public.games] 
+INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
+INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
+WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
+GROUP BY [public.nominations].theme_id
+ORDER BY [public.themes].creation_date DESC;`;
+
 export const longestMonthsByAvgTimeToBeat = `SELECT 
-    [public.themes].creation_date,
-    [public.themes].title,
-    AVG(time_to_beat) AS 'average'
+  [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
+  AVG(time_to_beat) AS average
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
@@ -155,9 +160,8 @@ GROUP BY [public.nominations].theme_id
 ORDER BY average DESC;`;
 
 export const shortestMonthsByAvgTimeToBeat = `SELECT 
-  [public.themes].creation_date,
-  [public.themes].title,
-  AVG(time_to_beat) AS 'average'
+  [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
+  AVG(time_to_beat) AS average
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
@@ -166,7 +170,6 @@ GROUP BY [public.nominations].theme_id
 ORDER BY average ASC;`;
 
 export const mostNominatedGamesByUser = `SELECT
-  [public.users].id,
   [public.users].name,
   COUNT(*) AS nominations
 FROM [public.nominations]
@@ -174,3 +177,14 @@ INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
 WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].nomination_type = 'gotm') AND user_id > 1
 GROUP BY [public.nominations].user_id
 ORDER BY nominations DESC, name;`;
+
+export const completionsCountByGame = `SELECT
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COUNT(*) AS completions,
+  [public.nominations].theme_id,
+  [public.nominations].nomination_type
+FROM [public.completions] 
+INNER JOIN [public.nominations] ON [public.nominations].id = [public.completions].nomination_id
+INNER JOIN [public.games] on [public.nominations].game_id = [public.games].id
+GROUP BY [public.completions].nomination_id
+ORDER BY [public.nominations].theme_id DESC, completions DESC;`;
