@@ -15,7 +15,12 @@ const Statistics = observer(() => {
     const [selectedTab, setSelectedTab] = useState(Tabs.NOMINATIONS);
     const {randomizerStore} = useStores();
     const mostCompletedGames = randomizerStore.getMostCompletedGames();
-    const newestCompletedGames = randomizerStore.getNewestCompletedGames();
+    const newestCompletedGames = randomizerStore.getNewestCompletions();
+    const newestGotmCompletions = randomizerStore.getNewestGotmCompletions();
+    const newestGotwotyCompletions = randomizerStore.getNewestGotwotyCompletions();
+    const newestGotyCompletions = randomizerStore.getNewestGotyCompletions();
+    const newestRetrobitCompletions = randomizerStore.getNewestRetrobitCompletions();
+    const newestRpgCompletions = randomizerStore.getNewestRpgCompletions();
     const nominationsBeforeWin = randomizerStore.getTotalNominationsBeforeWinByGame();
     const topNominationWinsByUser = randomizerStore.getTopNominationWinsByUser();
     const mostNominatedGames = randomizerStore.getMostNominatedGames();
@@ -28,9 +33,14 @@ const Statistics = observer(() => {
     const completions = <>
             <div className="column">
                 <Bar chartType={ChartType.BAR} data={mostCompletedGames} title='Most Completed Games' name='Completions' />
+                <Bar chartType={ChartType.BAR} data={newestGotmCompletions} title='Recent GotM Completions' name='Completions' />
+                <Bar chartType={ChartType.BAR} data={newestRpgCompletions} title='Recent RPG Completions' name='Completions' />
+                <Bar chartType={ChartType.BAR} data={newestGotwotyCompletions} title='Recent GotWotY Completions' name='Completions' />
             </div>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={newestCompletedGames} title='Newest Completed Games' name="Completions" />
+                <Bar chartType={ChartType.BAR} data={newestCompletedGames} title='Recently Completed Games' name="Completions" />
+                <Bar chartType={ChartType.BAR} data={newestRetrobitCompletions} title='Recent Retrobit Completions' name="Completions" />
+                <Bar chartType={ChartType.BAR} data={newestGotyCompletions} title='Recent GotY Completions' name="Completions" />
             </div>
     </>
     const nominations = <>

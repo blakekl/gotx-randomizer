@@ -41,25 +41,27 @@ const Bar = observer(({ data, title, name, chartType}: ChartProps) => {
         }
     }), [data, chartType, title, name, dataStart, dataEnd]);
     
-    const allPages = [0, currentPage - 1, currentPage, currentPage + 1, lastPage].filter(x => x >= 0).filter(x => x <= lastPage);
-    const includeFirstEllips = new Set(allPages.slice(0, 2)).size !== 1;
-    const includeLastEllips = new Set(allPages.slice(-2, Number.MAX_SAFE_INTEGER)).size !== 1;
-    const nonDupedPages = new Set(allPages);
-    
     const pageSizeDropdown = possiblePageSizes
         .map((value, index) => <a onClick={() => setPageSize(value)} className="dropdown-item" key={index}>{value}</a>);
-    const pages = Array.from(nonDupedPages)
-        .map((value, index) => <>
-            {index === nonDupedPages.size - 1 && includeLastEllips && <li><span className='pagination-ellipsis'>&hellip;</span></li>}
-            <li key={index}><a className={classNames({'pagination-link': true, 'is-current': value === currentPage})} onClick={() => setCurrentPage(value)}>{value + 1}</a></li>
-            {index === 0 && includeFirstEllips && <li><span className='pagination-ellipsis'>&hellip;</span></li>}
-        </>);
-
+        
+    const allPages = [0, currentPage - 1, currentPage, currentPage + 1, lastPage].filter(x => x >= 0).filter(x => x <= lastPage);
+    const includeFirstEllips = new Set(allPages.slice(0, 2)).size !== 1;
+    const includeLastEllips = new Set(allPages. slice(-2, Number.MAX_SAFE_INTEGER)).size !== 1;
+    const pages = Array.from(new Set(allPages))
+        .map((value, index) => <li key={index}><a className={classNames({'pagination-link': true, 'is-current': value === currentPage})} onClick={() => setCurrentPage(value)}>{value + 1}</a></li>);
+    if(includeFirstEllips) {
+        pages.splice(1,0, <li key={-1}><span className='pagination-ellipsis'>&hellip;</span></li>);
+    }
+    if (includeLastEllips) {
+        pages.splice(-1, 0, <li key={-2}><span className='pagination-ellipsis'>&hellip;</span></li>);
+    }
+    
     return <>
         <div className='my-4'>
             <HighchartsReact
                 highcharts={Highcharts}
                 options={chartOptions} />
+            { data.length > possiblePageSizes[0] && 
             <nav className="pagination is-right my-1" role="navigation" aria-label="pagination">
                 <div className={classNames({'is-active': menuOpen, dropdown: true})}>
                     <div className="dropdown-trigger">
@@ -79,7 +81,8 @@ const Bar = observer(({ data, title, name, chartType}: ChartProps) => {
                 <ul className="pagination-list">
                     {[...pages]}
                 </ul>
-            </nav>
+            </nav> }
+            <hr/>
         </div>
     </>
 });

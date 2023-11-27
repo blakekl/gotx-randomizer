@@ -18,6 +18,11 @@ import {
   mostNominatedGamesByUser,
   mostNominatedLoserGames,
   newestCompletions,
+  newestGotmCompletions,
+  newestGotwotyCompletions,
+  newestGotyCompletions,
+  newestRetrobitCompletions,
+  newestRpgCompletions,
   shortestMonthsByAvgTimeToBeat,
   topNominationWinsByUser,
   totalNomsBeforeWinByGame,
@@ -114,6 +119,21 @@ const initDbClient = async () => {
     },
     newestCompletions: () => {
       return db?.exec(newestCompletions)[0].values.map(x => labeledStatDto(x));
+    },
+    newestRetrobitCompletions: () => {
+      return db?.exec(newestRetrobitCompletions)[0].values.map(x => labeledStatDto(x));
+    },
+    newestGotmCompletions: () => {
+      return db?.exec(newestGotmCompletions)[0].values.map(x => labeledStatDto(x));
+    },
+    newestRpgCompletions: () => {
+      return db?.exec(newestRpgCompletions)[0].values.map(x => labeledStatDto(x));
+    },
+    newestGotyCompletions: () => {
+      return db?.exec(newestGotyCompletions)[0].values.map(x => labeledStatDto(x));
+    },
+    newestGotwotyCompletions: () => {
+      return db?.exec(newestGotwotyCompletions)[0].values.map(x => labeledStatDto(x));
     },
     totalNomsBeforeWinByGame: () => {
       return db?.exec(totalNomsBeforeWinByGame)[0].values.map(x => labeledStatDto(x));
