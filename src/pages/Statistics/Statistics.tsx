@@ -1,8 +1,10 @@
+import * as Highcharts from 'highcharts';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import classNames from 'classnames';
 import Chart from './Chart';
+import { useMediaQuery } from 'react-responsive';
 
 enum Tabs {
     COMPLETIONS,
@@ -28,6 +30,68 @@ const Statistics = observer(() => {
     const longestMonthsByAvgTimeToBeat = randomizerStore.getLongestMonthsByAvgTimeToBeat();
     const shortestMonthsByAvgTimeToBeat = randomizerStore.getShortestMonthsByAvgTimeToBeat();
     const mostNominatedGamesByUser = randomizerStore.getMostNominatedGamesByUser();
+    const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
+
+
+    const theme: Highcharts.Options = {
+        colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
+                 '#FF9655', '#FFF263', '#6AF9C4'],
+        chart: {
+            backgroundColor: '#282F2F',
+        },
+        title: {
+            style: {
+                color: '#FFF',
+            }
+        },
+        subtitle: {
+            style: {
+                color: '#FFF',
+            }
+        },
+        caption: {
+            style: {
+                color: '#FFF'
+            }
+        },
+        xAxis: {
+            labels: {
+                style: {
+                    color: "#FFF"
+                }
+            },
+            gridLineColor: "#444",
+            title: {
+                style: {
+                    color: '#FFF',
+                }
+            }
+        },
+        yAxis: {
+            labels: {
+                style: {
+                    color: "#FFF"
+                }
+            },
+            gridLineColor: "#444",
+            title: {
+                style: {
+                    color: '#FFF',
+                }
+            }
+        },
+        legend: {
+            itemStyle: {
+                color: '#FFF'
+            },
+            itemHoverStyle:{
+                color: '#FFF'
+            }
+        }
+    };
+    if (isDark) {
+        Highcharts.setOptions(theme);
+    }
 
     const completions = <>
             <div className="column">
