@@ -90,7 +90,7 @@ FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
 INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id 
 GROUP BY nomination_id 
-ORDER BY completions DESC;`;
+ORDER BY completions DESC, title;`;
 
 export const newestCompletions = `SELECT 
   COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
@@ -158,7 +158,7 @@ FROM [public.nominations]
 INNER JOIN [public.games] on game_id = [public.games].id
 WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm')
 GROUP BY [public.nominations].game_id
-ORDER BY total DESC;`;
+ORDER BY total DESC, title;`;
 
 export const avgNominationsBeforeWin = `
 SELECT AVG(total) AS average FROM (SELECT
@@ -186,7 +186,7 @@ FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 WHERE [public.nominations].nomination_type = 'gotm'
 GROUP BY game_id
-ORDER BY nominations DESC;`;
+ORDER BY nominations DESC, title;`;
 
 export const mostNominatedLoserGames = `SELECT
   COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
@@ -196,7 +196,7 @@ INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 WHERE [public.nominations].game_id NOT IN (SELECT [public.nominations].game_id FROM [public.nominations] WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm')
 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY game_id
-ORDER BY nominations DESC;`;
+ORDER BY nominations DESC, title;`;
 
 export const avgTimeToBeatByMonth = `SELECT 
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
