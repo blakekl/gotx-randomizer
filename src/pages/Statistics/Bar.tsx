@@ -9,14 +9,15 @@ interface ChartProps {
     data: LabeledStat[],
     title: string,
     name: string,
-    chartType: ChartType
   }  
 
-const Bar = observer(({ data, title, name, chartType}: ChartProps) => {
+const Bar = observer(({ data, title, name}: ChartProps) => {
     const possiblePageSizes = [10, 20, 30, 40, 50, 100]
+    const [chartType, setChartType] = useState(ChartType.BAR);
     const [pageSize, setPageSize] = useState(possiblePageSizes[0]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [chartMenuOpen, setChartMenuOpen] = useState(false);
+    const [pageMenuOpen, setPageMenuOpen] = useState(false);
     const dataStart = useMemo(() => currentPage * pageSize, [currentPage, pageSize]);
     const dataEnd = useMemo(() => dataStart + pageSize, [dataStart, pageSize]);
     const lastPage = data.length % pageSize === 0 ? Math.floor(data.length / pageSize) - 1 : Math.floor(data.length / pageSize);
@@ -41,9 +42,6 @@ const Bar = observer(({ data, title, name, chartType}: ChartProps) => {
         }
     }), [data, chartType, title, name, dataStart, dataEnd]);
     
-    const pageSizeDropdown = possiblePageSizes
-        .map((value, index) => <a onClick={() => setPageSize(value)} className="dropdown-item" key={index}>{value}</a>);
-        
     const allPages = [0, currentPage - 1, currentPage, currentPage + 1, lastPage].filter(x => x >= 0).filter(x => x <= lastPage);
     const includeFirstEllips = new Set(allPages.slice(0, 2)).size !== 1;
     const includeLastEllips = new Set(allPages. slice(-2, Number.MAX_SAFE_INTEGER)).size !== 1;
@@ -58,21 +56,34 @@ const Bar = observer(({ data, title, name, chartType}: ChartProps) => {
     
     return <>
         <div className='my-4'>
+            <div className={classNames({'is-active': chartMenuOpen, dropdown: true, 'my-2': true})}>
+                <div className="dropdown-trigger">
+                    <button onBlur={() => setTimeout(() => setChartMenuOpen(false), 100)} onClick={() => setChartMenuOpen(!chartMenuOpen)} className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <span>Type: {chartType}</span>
+                        <span className="ml-2"><i className="fas fa-angle-down" aria-hidden="true"></i></span>
+                    </button>
+                </div>
+                <div className="dropdown-menu" role="menu">
+                    <div className="dropdown-content">
+                        {[...Object.entries(ChartType).map(([value, index]) => <a onClick={() => setChartType(value.toLowerCase() as ChartType)} className="dropdown-item" key={index}>{value.toLowerCase()}</a>)]}
+                    </div>
+                </div>
+            </div>
             <HighchartsReact
                 highcharts={Highcharts}
                 options={chartOptions} />
             { data.length > possiblePageSizes[0] && 
             <nav className="pagination is-right my-1" role="navigation" aria-label="pagination">
-                <div className={classNames({'is-active': menuOpen, dropdown: true})}>
+                <div className={classNames({'is-active': pageMenuOpen, dropdown: true})}>
                     <div className="dropdown-trigger">
-                        <button onClick={() => setMenuOpen(!menuOpen)} className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <button onBlur={() => setTimeout(() => setPageMenuOpen(false), 100)} onClick={() => setPageMenuOpen(!pageMenuOpen)} className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                             <span>{pageSize}&nbsp;/&nbsp;page</span>
-                            <span><i className="fas fa-angle-down" aria-hidden="true"></i></span>
+                            <span className="ml-2"><i className="fas fa-angle-down" aria-hidden="true"></i></span>
                         </button>
                     </div>
                     <div className="dropdown-menu" role="menu">
                         <div className="dropdown-content">
-                            {[...pageSizeDropdown]}
+                            {[...possiblePageSizes.map((value, index) => <a onClick={() => setPageSize(value)} className="dropdown-item" key={index}>{value}</a>)]}
                         </div>
                     </div>
                 </div>

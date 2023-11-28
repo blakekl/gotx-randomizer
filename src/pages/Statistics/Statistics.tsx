@@ -2,7 +2,6 @@ import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import classNames from 'classnames';
-import { ChartType } from '../../models/game';
 import Bar from './Bar';
 
 enum Tabs {
@@ -32,35 +31,35 @@ const Statistics = observer(() => {
 
     const completions = <>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={mostCompletedGames} title='Most Completed Games' name='Completions' />
-                <Bar chartType={ChartType.BAR} data={newestGotmCompletions} title='Recent GotM Completions' name='Completions' />
-                <Bar chartType={ChartType.BAR} data={newestRpgCompletions} title='Recent RPG Completions' name='Completions' />
-                <Bar chartType={ChartType.BAR} data={newestGotwotyCompletions} title='Recent GotWotY Completions' name='Completions' />
+                <Bar data={mostCompletedGames} title='Most Completed Games' name='Completions' />
+                <Bar data={newestGotmCompletions} title='Recent GotM Completions' name='Completions' />
+                <Bar data={newestRpgCompletions} title='Recent RPG Completions' name='Completions' />
+                <Bar data={newestGotwotyCompletions} title='Recent GotWotY Completions' name='Completions' />
             </div>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={newestCompletedGames} title='Recently Completed Games' name="Completions" />
-                <Bar chartType={ChartType.BAR} data={newestRetrobitCompletions} title='Recent Retrobit Completions' name="Completions" />
-                <Bar chartType={ChartType.BAR} data={newestGotyCompletions} title='Recent GotY Completions' name="Completions" />
+                <Bar data={newestCompletedGames} title='Recently Completed Games' name="Completions" />
+                <Bar data={newestRetrobitCompletions} title='Recent Retrobit Completions' name="Completions" />
+                <Bar data={newestGotyCompletions} title='Recent GotY Completions' name="Completions" />
             </div>
     </>
     const nominations = <>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={nominationsBeforeWin} title='Most Nominations Before Win' name='Nominations' />
-                <Bar chartType={ChartType.BAR} data={mostNominatedGames} title='Most Nominated Games' name='Nominations' />
-                <Bar chartType={ChartType.BAR} data={mostNominatedLosers} title='Most Nominated Games Without a Win' name='Nominations' />
+                <Bar data={nominationsBeforeWin} title='Most Nominations Before Win' name='Nominations' />
+                <Bar data={mostNominatedGames} title='Most Nominated Games' name='Nominations' />
+                <Bar data={mostNominatedLosers} title='Most Nominated Games Without a Win' name='Nominations' />
             </div>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={mostNominatedGamesByUser} title='Most Nominations by User' name='Nominations' />
-                <Bar chartType={ChartType.BAR} data={topNominationWinsByUser} title='Most Winning Nominations by User' name='Wins' />
+                <Bar data={mostNominatedGamesByUser} title='Most Nominations by User' name='Nominations' />
+                <Bar data={topNominationWinsByUser} title='Most Winning Nominations by User' name='Wins' />
             </div>
     </>;
     const timeToBeat = <>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={longestMonthsByAvgTimeToBeat} title='Longest Months' name='Avg Time to Beat' />
-                <Bar chartType={ChartType.BAR} data={avgTimeToBeatByMonth} title='Average Time to Beat by Month' name='Hours' />
+                <Bar data={longestMonthsByAvgTimeToBeat} title='Longest Months' name='Avg Time to Beat' />
+                <Bar data={avgTimeToBeatByMonth} title='Average Time to Beat by Month' name='Hours' />
             </div>
             <div className="column">
-                <Bar chartType={ChartType.BAR} data={shortestMonthsByAvgTimeToBeat} title='Shortest Months' name='Avg Time to Beat' />
+                <Bar data={shortestMonthsByAvgTimeToBeat} title='Shortest Months' name='Avg Time to Beat' />
             </div>
     </>;
 

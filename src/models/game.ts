@@ -217,5 +217,7 @@ export const convertDate = (nomination: NominationListItem, index: number) => {
 
 export enum ChartType {
   BAR = 'bar',
-  SPLINE = 'spline'
+  // COLUMN = 'column',
+  LINE = 'line',
+  SPLINE = 'spline',
 }
