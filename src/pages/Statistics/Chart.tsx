@@ -1,7 +1,8 @@
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import highchartsExport from 'highcharts/modules/exporting';
 import { observer } from "mobx-react-lite";
-import { ChartType, LabeledStat } from '../../models/game';
+import { SeriesType, LabeledStat } from '../../models/game';
 import { useMemo, useState } from 'react';
 import classNames from 'classnames';
 
@@ -11,9 +12,9 @@ interface ChartProps {
     name: string,
   }  
 
-const Bar = observer(({ data, title, name}: ChartProps) => {
+const Chart = observer(({ data, title, name}: ChartProps) => {
     const possiblePageSizes = [10, 20, 30, 40, 50, 100]
-    const [chartType, setChartType] = useState(ChartType.BAR);
+    const [chartType, setChartType] = useState(SeriesType.BAR);
     const [pageSize, setPageSize] = useState(possiblePageSizes[0]);
     const [currentPage, setCurrentPage] = useState(0);
     const [chartMenuOpen, setChartMenuOpen] = useState(false);
@@ -22,13 +23,16 @@ const Bar = observer(({ data, title, name}: ChartProps) => {
     const dataEnd = useMemo(() => dataStart + pageSize, [dataStart, pageSize]);
     const lastPage = data.length % pageSize === 0 ? Math.floor(data.length / pageSize) - 1 : Math.floor(data.length / pageSize);
     const chartOptions = useMemo(() => ({
+        chart: {
+            type: chartType,
+            styleMode: true,
+        },
         title: {
             text: title,
         },
         series: [
             {
                 name: name,
-                type: chartType,
                 data: data.map(x => x.value)
                 .slice(dataStart, dataEnd),
             }
@@ -39,7 +43,7 @@ const Bar = observer(({ data, title, name}: ChartProps) => {
         },
         legend: {
             enabled: false,
-        }
+        },
     }), [data, chartType, title, name, dataStart, dataEnd]);
     
     const allPages = [0, currentPage - 1, currentPage, currentPage + 1, lastPage].filter(x => x >= 0).filter(x => x <= lastPage);
@@ -53,6 +57,7 @@ const Bar = observer(({ data, title, name}: ChartProps) => {
     if (includeLastEllips) {
         pages.splice(-1, 0, <li key={-2}><span className='pagination-ellipsis'>&hellip;</span></li>);
     }
+    highchartsExport(Highcharts);
     
     return <>
         <div className='my-4'>
@@ -65,7 +70,7 @@ const Bar = observer(({ data, title, name}: ChartProps) => {
                 </div>
                 <div className="dropdown-menu" role="menu">
                     <div className="dropdown-content">
-                        {[...Object.entries(ChartType).map(([value, index]) => <a onClick={() => setChartType(value.toLowerCase() as ChartType)} className="dropdown-item" key={index}>{value.toLowerCase()}</a>)]}
+                        {[...Object.entries(SeriesType).map(([value, index]) => <a onClick={() => setChartType(value.toLowerCase() as SeriesType)} className="dropdown-item" key={index}>{value.toLowerCase()}</a>)]}
                     </div>
                 </div>
             </div>
@@ -97,4 +102,4 @@ const Bar = observer(({ data, title, name}: ChartProps) => {
         </div>
     </>
 });
-export default Bar;
+export default Chart;

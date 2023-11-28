@@ -215,9 +215,9 @@ export const convertDate = (nomination: NominationListItem, index: number) => {
   }
 };
 
-export enum ChartType {
+export enum SeriesType {
   BAR = 'bar',
-  // COLUMN = 'column',
+  COLUMN = 'column',
   LINE = 'line',
   SPLINE = 'spline',
 }
