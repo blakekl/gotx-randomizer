@@ -79,7 +79,7 @@ const Chart = observer(({ data, title, name}: ChartProps) => {
                 options={chartOptions} />
             { data.length > possiblePageSizes[0] && 
             <nav className="pagination is-right my-1" role="navigation" aria-label="pagination">
-                <div className={classNames({'is-active': pageMenuOpen, dropdown: true})}>
+                <div className={classNames({'is-active': pageMenuOpen, dropdown: true, 'mr-1': true})}>
                     <div className="dropdown-trigger">
                         <button onBlur={() => setTimeout(() => setPageMenuOpen(false), 100)} onClick={() => setPageMenuOpen(!pageMenuOpen)} className="button" aria-haspopup="true" aria-controls="dropdown-menu">
                             <span>{pageSize}&nbsp;/&nbsp;page</span>
