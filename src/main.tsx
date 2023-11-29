@@ -8,7 +8,7 @@ import './index.css';
 import Navigation from './Navigation.tsx';
 import Randomizer from './pages/Randomizer/Randomizer.tsx';
 import Footer from './Footer.tsx';
-import Statistics from './pages/Statistics/statistics.tsx';
+import Statistics from './pages/Statistics/Statistics.tsx';
 
   const router = createBrowserRouter([
   {
