@@ -208,25 +208,35 @@ WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type =
 GROUP BY [public.nominations].theme_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const longestMonthsByAvgTimeToBeat = `SELECT 
+export const totalTimeToBeatByMonth = `SELECT 
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
-  AVG(time_to_beat) AS average
+  SUM(time_to_beat) AS total
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
-ORDER BY average DESC;`;
+ORDER BY [public.themes].creation_date DESC;`
+
+export const longestMonthsByAvgTimeToBeat = `SELECT 
+  [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
+  SUM(time_to_beat) AS total
+FROM [public.games] 
+INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
+INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
+WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
+GROUP BY [public.nominations].theme_id
+ORDER BY total DESC;`;
 
 export const shortestMonthsByAvgTimeToBeat = `SELECT 
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
-  AVG(time_to_beat) AS average
+  SUM(time_to_beat) AS total
 FROM [public.games] 
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
-ORDER BY average ASC;`;
+ORDER BY total ASC;`;
 
 export const mostNominatedGamesByUser = `SELECT
   [public.users].name,

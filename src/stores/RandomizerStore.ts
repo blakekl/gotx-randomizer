@@ -282,6 +282,10 @@ class RandomizerStore {
     return dbClient.avgTimeToBeatByMonth() ?? [];
   }
 
+  getTotalTimeToBeatByMonth(): LabeledStat[] {
+    return dbClient.totalTimeToBeatByMonth() ?? [];
+  }
+
   getLongestMonthsByAvgTimeToBeat(): LabeledStat[] {
     return dbClient.longestMonthsByAvgTimeToBeat() ?? [];
   }

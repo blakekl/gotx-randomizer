@@ -26,6 +26,7 @@ import {
   shortestMonthsByAvgTimeToBeat,
   topNominationWinsByUser,
   totalNomsBeforeWinByGame,
+  totalTimeToBeatByMonth,
 } from '../data/Queries';
 import {
   NominationType,
@@ -152,6 +153,9 @@ const initDbClient = async () => {
     },
     avgTimeToBeatByMonth: () => {
       return db?.exec(avgTimeToBeatByMonth)[0].values.map(x => labeledStatDto(x));
+    },
+    totalTimeToBeatByMonth: () => {
+      return db?.exec(totalTimeToBeatByMonth)[0].values.map(x => labeledStatDto(x));
     },
     longestMonthsByAvgTimeToBeat: () => {
       return db?.exec(longestMonthsByAvgTimeToBeat)[0].values.map(x => labeledStatDto(x));

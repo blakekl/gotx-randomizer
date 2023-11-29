@@ -27,6 +27,7 @@ const Statistics = observer(() => {
     const mostNominatedGames = randomizerStore.getMostNominatedGames();
     const mostNominatedLosers = randomizerStore.getMostNominatedLoserGames();
     const avgTimeToBeatByMonth = randomizerStore.getAvgTimeToBeatByMonth().map(x => ({label: x.label, value: Number(x.value.toFixed(2))}));
+    const totalTimeToBeatByMonth = randomizerStore.getTotalTimeToBeatByMonth().map(x => ({label: x.label, value: Number(x.value.toFixed(2))}));
     const longestMonthsByAvgTimeToBeat = randomizerStore.getLongestMonthsByAvgTimeToBeat();
     const shortestMonthsByAvgTimeToBeat = randomizerStore.getShortestMonthsByAvgTimeToBeat();
     const mostNominatedGamesByUser = randomizerStore.getMostNominatedGamesByUser();
@@ -148,7 +149,8 @@ const Statistics = observer(() => {
                 <Chart data={avgTimeToBeatByMonth} title='Average Time to Beat by Month' name='Hours' />
             </div>
             <div className="column">
-                <Chart data={shortestMonthsByAvgTimeToBeat} title='Shortest Months' name='Avg Time to Beat' />
+                <Chart data={shortestMonthsByAvgTimeToBeat} title='Shortest Months' name='Average Time to Beat in Hours' />
+                <Chart data={totalTimeToBeatByMonth} title='Total Time to Beat by Month' name='Total Time to Beat in Hours' />
             </div>
     </>;
 
