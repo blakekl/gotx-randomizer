@@ -54,6 +54,31 @@ const Statistics = observer(() => {
                 color: '#FFF'
             }
         },
+        exporting: {
+            enabled: true,
+            buttons: {
+                contextButton: {
+                    symbolFill: '#fff',
+                    symbolStroke: '#fff',
+                    theme: {
+                        fill: '#1F2424'
+                    }
+                }
+            }
+
+        },
+        navigation : {
+            menuItemStyle: {
+                backgroundColor: '#1F2424',
+                color: '#fff',
+            },
+            menuItemHoverStyle: {
+                backgroundColor: '#1ABC9C',
+            },
+            menuStyle: {
+                backgroundColor: '#1F2424'
+            }
+        },
         xAxis: {
             labels: {
                 style: {
