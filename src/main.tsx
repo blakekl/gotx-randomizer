@@ -1,25 +1,16 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  createBrowserRouter,
-  RouterProvider,
+  BrowserRouter as Router,
+  Routes,
+  Route,
 } from 'react-router-dom';
 import './index.css';
 import Navigation from './Navigation.tsx';
 import Randomizer from './pages/Randomizer/Randomizer.tsx';
 import Footer from './Footer.tsx';
 import Statistics from './pages/Statistics/Statistics.tsx';
-
-  const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Randomizer />
-  },
-  {
-    path: '/stats',
-    element: <Statistics />
-  }
-]);
+import NotFound from './pages/NotFound/NotFound.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement !== null) {
@@ -28,7 +19,13 @@ if (rootElement !== null) {
       <Navigation />
       <main className="section">
         <div className="container">
-          <RouterProvider router={router} />
+          <Router>
+            <Routes>
+              <Route path='/' element={<Randomizer />} />
+              <Route path='/stats' element={<Statistics />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Router>
         </div>
       </main>
       <Footer />
