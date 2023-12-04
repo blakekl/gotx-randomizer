@@ -62,9 +62,10 @@ const Statistics = observer(() => {
                     symbolFill: '#fff',
                     symbolStroke: '#fff',
                     theme: {
-                        fill: '#1F2424'
-                    }
-                }
+                        fill: '#1F2424',
+                    },
+                },
+
             }
 
         },
