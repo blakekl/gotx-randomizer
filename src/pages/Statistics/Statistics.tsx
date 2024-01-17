@@ -184,7 +184,7 @@ const Statistics = observer(() => {
             </ul>
         </div>
         <div className="columns">
-            { tabsToHtmlMap.get(searchParams.get('tab') as Tabs) }
+            { tabsToHtmlMap.get(searchParams.get('tab') as Tabs) || tabsToHtmlMap.get(Tabs.NOMINATIONS)}
         </div>
     </>
 })
