@@ -238,6 +238,26 @@ class RandomizerStore {
     return dbClient.mostCompletedGames() ?? [];
   }
 
+  getMostCompletedGotmGames(): LabeledStat[] {
+    return dbClient.mostCompletedGotmGames() ?? [];
+  }
+
+  getMostCompletedGotyGames(): LabeledStat[] {
+    return dbClient.mostCompletedGotyGames() ?? [];
+  }
+
+  getMostCompletedRetrobitGames(): LabeledStat[] {
+    return dbClient.mostCompletedRetrobitGames() ?? [];
+  }
+
+  getMostCompletedRetrobitYearGames(): LabeledStat[] {
+    return dbClient.mostCompletedRetrobitYearGames() ?? [];
+  }
+
+  getMostCompletedRpgGames(): LabeledStat[] {
+    return dbClient.mostCompletedRpgGames() ?? [];
+  }
+
   getNewestCompletions(): LabeledStat[] {
     return dbClient.newestCompletions() ?? [];
   }

@@ -98,6 +98,7 @@ const Chart = observer(({ data, title, name}: ChartProps) => {
                     {[...pages]}
                 </ul>
             </nav> }
+            { data.length < possiblePageSizes[0] && <div  style={{minHeight: 45, margin: '0.25rem'}} /> }
             <hr/>
         </div>
     </>
