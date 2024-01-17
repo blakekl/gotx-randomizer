@@ -10,7 +10,7 @@ interface ChartProps {
     data: LabeledStat[],
     title: string,
     name: string,
-  }  
+  } 
 
 const Chart = observer(({ data, title, name}: ChartProps) => {
     const possiblePageSizes = [10, 20, 30, 40, 50, 100]
@@ -45,7 +45,7 @@ const Chart = observer(({ data, title, name}: ChartProps) => {
             enabled: false,
         },
     }), [data, chartType, title, name, dataStart, dataEnd]);
-    
+   
     const allPages = [0, currentPage - 1, currentPage, currentPage + 1, lastPage].filter(x => x >= 0).filter(x => x <= lastPage);
     const includeFirstEllips = new Set(allPages.slice(0, 2)).size !== 1;
     const includeLastEllips = new Set(allPages. slice(-2, Number.MAX_SAFE_INTEGER)).size !== 1;
@@ -58,7 +58,7 @@ const Chart = observer(({ data, title, name}: ChartProps) => {
         pages.splice(-1, 0, <li key={-2}><span className='pagination-ellipsis'>&hellip;</span></li>);
     }
     highchartsExport(Highcharts);
-    
+   
     return <>
         <div className='my-4'>
             <div className={classNames({'is-active': chartMenuOpen, dropdown: true, 'my-2': true})}>
@@ -77,7 +77,7 @@ const Chart = observer(({ data, title, name}: ChartProps) => {
             <HighchartsReact
                 highcharts={Highcharts}
                 options={chartOptions} />
-            { data.length > possiblePageSizes[0] && 
+            { data.length > possiblePageSizes[0] &&
             <nav className="pagination is-right my-1" role="navigation" aria-label="pagination">
                 <div className={classNames({'is-active': pageMenuOpen, dropdown: true, 'mr-1': true})}>
                     <div className="dropdown-trigger">

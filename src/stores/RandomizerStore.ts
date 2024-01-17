@@ -261,27 +261,27 @@ class RandomizerStore {
   getNewestCompletions(): LabeledStat[] {
     return dbClient.newestCompletions() ?? [];
   }
-  
+ 
   getNewestGotmCompletions(): LabeledStat[] {
     return dbClient.newestGotmCompletions() ?? [];
   }
-  
+ 
   getNewestGotwotyCompletions(): LabeledStat[] {
     return dbClient.newestGotwotyCompletions() ?? [];
   }
-  
+ 
   getNewestGotyCompletions(): LabeledStat[] {
     return dbClient.newestGotyCompletions() ?? [];
   }
-  
+ 
   getNewestRetrobitCompletions(): LabeledStat[] {
     return dbClient.newestRetrobitCompletions() ?? [];
   }
-  
+ 
   getNewestRpgCompletions(): LabeledStat[] {
     return dbClient.newestRpgCompletions() ?? [];
   }
-  
+ 
   getTotalNominationsBeforeWinByGame(): LabeledStat[] {
     return dbClient.totalNomsBeforeWinByGame() ?? [];
   }
