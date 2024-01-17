@@ -1,19 +1,19 @@
 import * as Highcharts from 'highcharts';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
 import classNames from 'classnames';
 import Chart from './Chart';
 import { useMediaQuery } from 'react-responsive';
+import { useSearchParams } from 'react-router-dom';
 
 enum Tabs {
-    COMPLETIONS,
-    NOMINATIONS,
-    TIME_TO_BEAT,
+    COMPLETIONS = 'completions',
+    NOMINATIONS = 'nominations',
+    TIME_TO_BEAT = 'ttb',
 }
 
 const Statistics = observer(() => {
-    const [selectedTab, setSelectedTab] = useState(Tabs.NOMINATIONS);
+    const [searchParams, setSearchParams] = useSearchParams();
     const {randomizerStore} = useStores();
     const mostCompletedGames = randomizerStore.getMostCompletedGames();
     const mostCompletedGotmGames = randomizerStore.getMostCompletedGotmGames();
@@ -38,6 +38,10 @@ const Statistics = observer(() => {
     const mostNominatedGamesByUser = randomizerStore.getMostNominatedGamesByUser();
     const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
+    if (searchParams.get('tab') === null) {
+        searchParams.set('tab', Tabs.NOMINATIONS);
+        setSearchParams(searchParams);
+    }
 
     const theme: Highcharts.Options = {
         colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
@@ -174,13 +178,13 @@ const Statistics = observer(() => {
         <h1 className="title has-text-centered">Statistics</h1>
         <div className="tabs">
             <ul>
-                <li className={classNames({'is-active': selectedTab === Tabs.NOMINATIONS})}><a onClick={() => setSelectedTab(Tabs.NOMINATIONS)}>Nominations</a></li>
-                <li className={classNames({'is-active': selectedTab === Tabs.COMPLETIONS})}><a className='link' onClick={() => setSelectedTab(Tabs.COMPLETIONS)}>Completions</a></li>
-                <li className={classNames({'is-active': selectedTab === Tabs.TIME_TO_BEAT})}><a onClick={() => setSelectedTab(Tabs.TIME_TO_BEAT)}>Time to Beat</a></li>
+                <li className={classNames({'is-active': (searchParams.get('tab') as Tabs) === Tabs.NOMINATIONS})}><a onClick={() => setSearchParams(new URLSearchParams({tab: Tabs.NOMINATIONS}))}>Nominations</a></li>
+                <li className={classNames({'is-active': (searchParams.get('tab') as Tabs) === Tabs.COMPLETIONS})}><a onClick={() => setSearchParams(new URLSearchParams({tab: Tabs.COMPLETIONS}))}>Completions</a></li>
+                <li className={classNames({'is-active': (searchParams.get('tab') as Tabs) === Tabs.TIME_TO_BEAT})}><a onClick={() => setSearchParams(new URLSearchParams({tab: Tabs.TIME_TO_BEAT}))}>Time to Beat</a></li>
             </ul>
         </div>
         <div className="columns">
-            {tabsToHtmlMap.get(selectedTab)}
+            { tabsToHtmlMap.get(searchParams.get('tab') as Tabs) }
         </div>
     </>
 })
