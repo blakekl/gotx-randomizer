@@ -2,19 +2,19 @@
  * Get game list queries.
  */
 export const getRetrobits = `SELECT
-  * 
-FROM [public.games] 
+  *
+FROM [public.games]
 WHERE id in (SELECT game_id FROM [public.nominations] WHERE nomination_type = 'retro');`;
 
-export const getRpgRunnerup = `SELECT 
-* 
+export const getRpgRunnerup = `SELECT
+*
 FROM [public.games]
 WHERE id IN(SELECT game_id FROM [public.nominations] WHERE nomination_type = 'rpg') AND id NOT IN (
   SELECT game_id FROM [public.nominations] WHERE nomination_type = 'rpg' AND winner = 1
-);`; 
+);`;
 
-export const getWinningRpg = `SELECT 
-* 
+export const getWinningRpg = `SELECT
+*
 FROM [public.games]
 WHERE id in (
   SELECT game_id FROM [public.nominations] WHERE nomination_type = 'rpg' AND winner = 1
@@ -27,55 +27,55 @@ WHERE id IN(SELECT game_id FROM [public.nominations] WHERE nomination_type = 'go
   SELECT game_id FROM [public.nominations] WHERE nomination_type = 'gotm' AND winner = 1
 );`;
 
-export const getWinningGotm = `SELECT * 
+export const getWinningGotm = `SELECT *
 FROM [public.games]
 WHERE id in (
   SELECT game_id FROM [public.nominations] WHERE nomination_type = 'gotm' AND winner = 1
 );`;
 
-export const getUserById = (id: number) => `SELECT * 
+export const getUserById = (id: number) => `SELECT *
 FROM [public.users]
 WHERE id = '${id}';`;
 
 export const getNominations = `SELECT *
 FROM [public.nominations];`;
 
-export const getGotmNominations = `SELECT * 
+export const getGotmNominations = `SELECT *
 FROM [public.nominations]
 WHERE nomination_type = 'gotm';`;
 
-export const getRetrobitNominations = `SELECT * 
+export const getRetrobitNominations = `SELECT *
 FROM [public.nominations]
 WHERE nomination_type = 'retro';`;
 
-export const getRpgNominations = `SELECT * 
+export const getRpgNominations = `SELECT *
 FROM [public.nominations]
 WHERE nomination_type = 'rpg';`;
 
 export const getNominationData = `SELECT
 [public.nominations].nomination_type,
 game_id,
-[public.users].name as user_name, 
-[public.nominations].description as game_description, 
+[public.users].name as user_name,
+[public.nominations].description as game_description,
 [public.themes].title as theme_title,
-[public.themes].description as theme_description, 
+[public.themes].description as theme_description,
 date([public.themes].creation_date) as 'date',
 winner
-FROM [public.nominations] 
-LEFT JOIN [public.users] on [public.users].id = [public.nominations].user_id 
+FROM [public.nominations]
+LEFT JOIN [public.users] on [public.users].id = [public.nominations].user_id
 LEFT JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 ORDER BY date([public.themes].creation_date) DESC;`;
 
 export const getNominationDataByGameId = (game_id: number) => {
-  return `SELECT 
-  [public.users].name, 
-  [public.nominations].description as game_description, 
+  return `SELECT
+  [public.users].name,
+  [public.nominations].description as game_description,
   [public.themes].title,
-  [public.themes].description, 
-  date([public.themes].creation_date) as 'date' 
-FROM [public.nominations] 
-INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id 
-INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id 
+  [public.themes].description,
+  date([public.themes].creation_date) as 'date'
+FROM [public.nominations]
+INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id
+INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].game_id = ${game_id}
 ORDER BY date([public.themes].creation_date) DESC;`;
 };
@@ -83,16 +83,66 @@ ORDER BY date([public.themes].creation_date) DESC;`;
 /**
  * Statistical queries.
  */
-export const mostCompletedGames = `SELECT 
-  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
-  COUNT(*) as completions
-FROM [public.games] 
+export const mostCompletedGames = `SELECT
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+COUNT(*) as completions
+FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
-INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id 
-GROUP BY nomination_id 
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
-export const newestCompletions = `SELECT 
+export const mostCompletedGotmGames = `SELECT
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+COUNT(*) as completions
+FROM [public.games]
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+GROUP BY [public.nominations].game_id
+HAVING [public.nominations].nomination_type IN ('gotm')
+ORDER BY completions DESC, title;`;
+
+export const mostCompletedRetrobitGames = `SELECT
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+COUNT(*) as completions
+FROM [public.games]
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+GROUP BY [public.nominations].game_id
+HAVING [public.nominations].nomination_type IN ('retro')
+ORDER BY completions DESC, title;`;
+
+export const mostCompletedRpgGames = `SELECT
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+COUNT(*) as completions
+FROM [public.games]
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+GROUP BY [public.nominations].game_id
+HAVING [public.nominations].nomination_type IN ('rpg')
+ORDER BY completions DESC, title;`;
+
+export const mostCompletedGotyGames = `SELECT
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+COUNT(*) as completions
+FROM [public.games]
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+WHERE [public.nominations].nomination_type IN ('goty')
+GROUP BY [public.nominations].game_id
+ORDER BY completions DESC, title;`;
+
+export const mostCompletedRetrobitYearGames = `SELECT
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+COUNT(*) as completions
+FROM [public.games]
+INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
+INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+WHERE [public.nominations].nomination_type = 'gotwoty'
+GROUP BY [public.nominations].game_id
+ORDER BY completions DESC, title;`;
+
+export const newestCompletions = `SELECT
   COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
   COUNT(*) as completions
 FROM [public.completions]
@@ -102,7 +152,7 @@ INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const newestRetrobitCompletions = `SELECT 
+export const newestRetrobitCompletions = `SELECT
 COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
 COUNT(*) as completions
 FROM [public.completions]
@@ -110,10 +160,10 @@ INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].nomination_type = 'retro'
-GROUP BY nomination_id 
+GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const newestGotmCompletions = `SELECT 
+export const newestGotmCompletions = `SELECT
 COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
 COUNT(*) as completions
 FROM [public.completions]
@@ -121,10 +171,10 @@ INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].nomination_type = 'gotm'
-GROUP BY nomination_id 
+GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const newestRpgCompletions = `SELECT 
+export const newestRpgCompletions = `SELECT
 COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
 COUNT(*) as completions
 FROM [public.completions]
@@ -132,10 +182,10 @@ INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].nomination_type = 'rpg'
-GROUP BY nomination_id 
+GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const newestGotyCompletions = `SELECT 
+export const newestGotyCompletions = `SELECT
 COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
 COUNT(*) as completions
 FROM [public.completions]
@@ -143,10 +193,10 @@ INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].nomination_type = 'goty'
-GROUP BY nomination_id 
+GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const newestGotwotyCompletions = `SELECT 
+export const newestGotwotyCompletions = `SELECT
 COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
 COUNT(*) as completions
 FROM [public.completions]
@@ -154,7 +204,7 @@ INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].nomination_type = 'gotwoty'
-GROUP BY nomination_id 
+GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const totalNomsBeforeWinByGame = `SELECT
@@ -204,40 +254,40 @@ AND [public.nominations].nomination_type = 'gotm'
 GROUP BY game_id
 ORDER BY nominations DESC, title;`;
 
-export const avgTimeToBeatByMonth = `SELECT 
+export const avgTimeToBeatByMonth = `SELECT
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
   AVG(time_to_beat) AS average
-FROM [public.games] 
+FROM [public.games]
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
 ORDER BY [public.themes].creation_date DESC;`;
 
-export const totalTimeToBeatByMonth = `SELECT 
+export const totalTimeToBeatByMonth = `SELECT
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
   SUM(time_to_beat) AS total
-FROM [public.games] 
+FROM [public.games]
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
 ORDER BY [public.themes].creation_date DESC;`
 
-export const longestMonthsByAvgTimeToBeat = `SELECT 
+export const longestMonthsByAvgTimeToBeat = `SELECT
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
   SUM(time_to_beat) AS total
-FROM [public.games] 
+FROM [public.games]
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
 ORDER BY total DESC;`;
 
-export const shortestMonthsByAvgTimeToBeat = `SELECT 
+export const shortestMonthsByAvgTimeToBeat = `SELECT
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
   SUM(time_to_beat) AS total
-FROM [public.games] 
+FROM [public.games]
 INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game_id
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
@@ -258,7 +308,7 @@ export const completionsCountByGame = `SELECT
   COUNT(*) AS completions,
   [public.nominations].theme_id,
   [public.nominations].nomination_type
-FROM [public.completions] 
+FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.nominations].id = [public.completions].nomination_id
 INNER JOIN [public.games] on [public.nominations].game_id = [public.games].id
 GROUP BY [public.completions].nomination_id

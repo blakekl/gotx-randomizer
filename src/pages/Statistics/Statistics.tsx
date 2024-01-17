@@ -16,6 +16,11 @@ const Statistics = observer(() => {
     const [selectedTab, setSelectedTab] = useState(Tabs.NOMINATIONS);
     const {randomizerStore} = useStores();
     const mostCompletedGames = randomizerStore.getMostCompletedGames();
+    const mostCompletedGotmGames = randomizerStore.getMostCompletedGotmGames();
+    const mostCompletedGotyGames = randomizerStore.getMostCompletedGotyGames();
+    const mostCompletedRetrobitGames = randomizerStore.getMostCompletedRetrobitGames();
+    const mostCompletedRetrobitYearGames = randomizerStore.getMostCompletedRetrobitYearGames();
+    const mostCompletedRpgGames = randomizerStore.getMostCompletedRpgGames();
     const newestCompletedGames = randomizerStore.getNewestCompletions();
     const newestGotmCompletions = randomizerStore.getNewestGotmCompletions();
     const newestGotwotyCompletions = randomizerStore.getNewestGotwotyCompletions();
@@ -122,13 +127,17 @@ const Statistics = observer(() => {
 
     const completions = <>
             <div className="column">
-                <Chart data={mostCompletedGames} title='Most Completed Games' name='Completions' />
+                <Chart data={mostCompletedGames} title='Most Completed Games - ALL' name='Completions' />
+                <Chart data={mostCompletedGotmGames} title='Most Completed Games - Game of the Month' name='Completions' />
+                <Chart data={mostCompletedGotyGames} title='Most Completed Games - Game of the Year' name='Completions' />
                 <Chart data={newestGotmCompletions} title='Recent GotM Completions' name='Completions' />
                 <Chart data={newestRpgCompletions} title='Recent RPG Completions' name='Completions' />
                 <Chart data={newestGotwotyCompletions} title='Recent GotWotY Completions' name='Completions' />
             </div>
             <div className="column">
-                <Chart data={newestCompletedGames} title='Recently Completed Games' name="Completions" />
+                <Chart data={mostCompletedRetrobitGames} title='Most Completed Games - Retrobits' name='Completions' />
+                <Chart data={mostCompletedRetrobitYearGames} title='Most Completed Games - Retrobit of the Year' name='Completions' />
+                <Chart data={mostCompletedRpgGames} title='Most Completed Games - RPG of the Quarter' name='Completions' />                <Chart data={newestCompletedGames} title='Recently Completed Games' name="Completions" />
                 <Chart data={newestRetrobitCompletions} title='Recent Retrobit Completions' name="Completions" />
                 <Chart data={newestGotyCompletions} title='Recent GotY Completions' name="Completions" />
             </div>

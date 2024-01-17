@@ -238,30 +238,50 @@ class RandomizerStore {
     return dbClient.mostCompletedGames() ?? [];
   }
 
+  getMostCompletedGotmGames(): LabeledStat[] {
+    return dbClient.mostCompletedGotmGames() ?? [];
+  }
+
+  getMostCompletedGotyGames(): LabeledStat[] {
+    return dbClient.mostCompletedGotyGames() ?? [];
+  }
+
+  getMostCompletedRetrobitGames(): LabeledStat[] {
+    return dbClient.mostCompletedRetrobitGames() ?? [];
+  }
+
+  getMostCompletedRetrobitYearGames(): LabeledStat[] {
+    return dbClient.mostCompletedRetrobitYearGames() ?? [];
+  }
+
+  getMostCompletedRpgGames(): LabeledStat[] {
+    return dbClient.mostCompletedRpgGames() ?? [];
+  }
+
   getNewestCompletions(): LabeledStat[] {
     return dbClient.newestCompletions() ?? [];
   }
-  
+ 
   getNewestGotmCompletions(): LabeledStat[] {
     return dbClient.newestGotmCompletions() ?? [];
   }
-  
+ 
   getNewestGotwotyCompletions(): LabeledStat[] {
     return dbClient.newestGotwotyCompletions() ?? [];
   }
-  
+ 
   getNewestGotyCompletions(): LabeledStat[] {
     return dbClient.newestGotyCompletions() ?? [];
   }
-  
+ 
   getNewestRetrobitCompletions(): LabeledStat[] {
     return dbClient.newestRetrobitCompletions() ?? [];
   }
-  
+ 
   getNewestRpgCompletions(): LabeledStat[] {
     return dbClient.newestRpgCompletions() ?? [];
   }
-  
+ 
   getTotalNominationsBeforeWinByGame(): LabeledStat[] {
     return dbClient.totalNomsBeforeWinByGame() ?? [];
   }
