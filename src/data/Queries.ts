@@ -98,8 +98,8 @@ COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
 INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+WHERE [public.nominations].nomination_type in ('gotm')
 GROUP BY [public.nominations].game_id
-HAVING [public.nominations].nomination_type IN ('gotm')
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedRetrobitGames = `SELECT
@@ -108,8 +108,8 @@ COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
 INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+WHERE [public.nominations].nomination_type IN ('retro')
 GROUP BY [public.nominations].game_id
-HAVING [public.nominations].nomination_type IN ('retro')
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedRpgGames = `SELECT
@@ -118,8 +118,8 @@ COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
 INNER JOIN [public.completions] on [public.completions].nomination_id = [public.nominations].id
+WHERE [public.nominations].nomination_type IN ('rpg')
 GROUP BY [public.nominations].game_id
-HAVING [public.nominations].nomination_type IN ('rpg')
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedGotyGames = `SELECT
