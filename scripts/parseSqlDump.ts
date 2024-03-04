@@ -6,13 +6,16 @@ const readline = require('node:readline').createInterface({
 const envPath = './scripts/.env'
 require('dotenv').config({path: envPath});
 
-const { MAX_COMPLETIONS, MAX_GAMES, MAX_NOMINATIONS, MAX_THEMES, MAX_USERS } = process.env;
+const MAX_COMPLETIONS  = parseInt((process.env.MAX_COMPLETIONS || '0'), 10);
+const MAX_GAMES = parseInt((process.env.MAX_GAMES || '0'), 10);
+const MAX_NOMINATIONS = parseInt((process.env.MAX_NOMINATIONS || '0'), 10);
+const MAX_THEMES = parseInt((process.env.MAX_THEMES || '0'), 10);
+const MAX_USERS = parseInt((process.env.MAX_USERS || '0'), 10);
 const idRegex = /VALUES \((\d+)/;
-const isIdGreater = (query: string, max: string = '0'): boolean => {
-    const maxNumber = parseInt(max, 10);
+const isIdGreater = (query: string, max: number): boolean => {
     if(idRegex.test(query)) {
         const id = (query.match(idRegex) || ['0', '0'])[1];
-        return parseInt(id, 10) > maxNumber;
+        return parseInt(id, 10) > max;
     }
     return false;
 }
@@ -53,7 +56,7 @@ const users = result
 
 writeFileSync(output, 
 [
-    `-- Don't forget to update the gotm winners, if there are new winners.`,
+    `-- Don't forget to update [public.nominations].winner, if there are new winners.`,
     ...initial,
     ...users,
     ...games,
@@ -71,26 +74,31 @@ readline.question('Did it run successfully? Type \'yes\' to confirm.\n', (respon
         newMaxMap.set('MAX_COMPLETIONS', 
         completions.map(x => (x.match(idRegex) || ['0', '0'])[1])
             .map(x => parseInt(x, 10))
+            .concat(MAX_COMPLETIONS)
             .sort().pop() || 0);
-
-        newMaxMap.set('MAX_GAMES', 
-        games.map(x => (x.match(idRegex) || ['0', '0'])[1])
+            
+            newMaxMap.set('MAX_GAMES', 
+            games.map(x => (x.match(idRegex) || ['0', '0'])[1])
             .map(x => parseInt(x, 10))
+            .concat(MAX_GAMES)
             .sort().pop() || 0);
-
-        newMaxMap.set('MAX_NOMINATIONS', 
-        nominations.map(x => (x.match(idRegex) || ['0', '0'])[1])
+            
+            newMaxMap.set('MAX_NOMINATIONS', 
+            nominations.map(x => (x.match(idRegex) || ['0', '0'])[1])
             .map(x => parseInt(x, 10))
+            .concat(MAX_NOMINATIONS)
             .sort().pop() || 0);
-
-        newMaxMap.set('MAX_THEMES', 
-        themes.map(x => (x.match(idRegex) || ['0', '0'])[1])
+            
+            newMaxMap.set('MAX_THEMES', 
+            themes.map(x => (x.match(idRegex) || ['0', '0'])[1])
             .map(x => parseInt(x, 10))
+            .concat(MAX_THEMES)
             .sort().pop() || 0);
-
-        newMaxMap.set('MAX_USERS', 
-        users.map(x => (x.match(idRegex) || ['0', '0'])[1])
+            
+            newMaxMap.set('MAX_USERS', 
+            users.map(x => (x.match(idRegex) || ['0', '0'])[1])
             .map(x => parseInt(x, 10))
+            .concat(MAX_USERS)
             .sort().pop() || 0);
 
         console.log('New Max Values:');
