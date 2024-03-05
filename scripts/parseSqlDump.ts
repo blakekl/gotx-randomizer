@@ -12,6 +12,7 @@ const MAX_NOMINATIONS = parseInt((process.env.MAX_NOMINATIONS || '0'), 10);
 const MAX_THEMES = parseInt((process.env.MAX_THEMES || '0'), 10);
 const MAX_USERS = parseInt((process.env.MAX_USERS || '0'), 10);
 const idRegex = /VALUES \((\d+)/;
+
 const isIdGreater = (query: string, max: number): boolean => {
     if(idRegex.test(query)) {
         const id = (query.match(idRegex) || ['0', '0'])[1];
