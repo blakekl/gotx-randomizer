@@ -28,11 +28,6 @@ const result = readFileSync(input, {encoding:'utf-8'})
     .slice(1)
     .replace(/;\n+/g, ';\n')
     .split(';\n');
-const initial = result
-    .filter(x => x && !x.startsWith('INSERT'));
-const streaks = result
-    .filter(x => x && x.startsWith('INSERT INTO [public.streaks'));
-
 const completions = result
     .filter(x => x && x.startsWith('INSERT INTO [public.completions'))
     .filter(x => isIdGreater(x, MAX_COMPLETIONS))
@@ -58,13 +53,11 @@ const users = result
 writeFileSync(output, 
 [
     `-- Don't forget to update [public.nominations].winner, if there are new winners.`,
-    ...initial,
     ...users,
     ...games,
     ...themes,
     ...nominations,
     ...completions,
-    ...streaks
 ].join(';\n'), {encoding: 'utf-8'});
 
 console.log('Query generated. Please copy and execute the query on the DB to update.');
