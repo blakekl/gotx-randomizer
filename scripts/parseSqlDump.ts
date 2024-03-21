@@ -5,6 +5,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 const { RETRIEVE_DUMP, DUMP_PATH } = process.env;
 
+if (!RETRIEVE_DUMP || !DUMP_PATH) {
+    console.error('RETRIEVE_DUMP and DUMP_PATH environment variables missing.');
+    process.exit(1);
+}
+
 enum Tables {
     COMPLETIONS,
     GAMES,
