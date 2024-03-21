@@ -2,7 +2,8 @@ import Database, { RunResult, Statement } from 'better-sqlite3';
 import * as child from 'child_process';
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
-const { RETRIEVE_DUMP, DUMP_PATH } = dotenv.config();
+dotenv.config();
+const { RETRIEVE_DUMP, DUMP_PATH } = process.env;
 
 enum Tables {
     COMPLETIONS,
@@ -20,7 +21,8 @@ const dbPath = './src/gotx-randomizer.sqlite';
 const MAX_IDS = new Map<Tables, number>;
 
 // First, get the latest postgres db dump.
-child.exec(RETRIEVE_DUMP);
+console.log('executing file: ', RETRIEVE_DUMP);
+console.log(child.execFileSync(RETRIEVE_DUMP, {encoding: 'utf-8'}));
 
 const db = new Database(dbPath);
 process.on('exit', () => db.close());
