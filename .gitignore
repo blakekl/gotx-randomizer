@@ -26,3 +26,9 @@ dist-ssr
 
 # build artifacts.
 dist
+
+# private files
+.env
+scripts/parseSqlDump.cjs
+scripts/dump.sql
+scripts/parseSqlDump.js
