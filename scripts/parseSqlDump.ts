@@ -3,10 +3,26 @@ import * as child from 'child_process';
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
 dotenv.config();
-const { RETRIEVE_DUMP, DUMP_PATH } = process.env;
+const { 
+    RETRIEVE_DUMP,
+    DUMP_PATH,
+    SERVER_NAME,
+    SERVER_HOST,
+    PORT,
+    USER: DB_USER,
+    DATABASE,
+} = process.env;
 
-if (!RETRIEVE_DUMP || !DUMP_PATH) {
-    console.error('RETRIEVE_DUMP and DUMP_PATH environment variables missing.');
+if (
+    !RETRIEVE_DUMP 
+    || !DUMP_PATH 
+    || !SERVER_NAME
+    || !SERVER_HOST
+    || !PORT
+    || !DB_USER
+    || !DATABASE
+){
+    console.error('environment variables missing. Please see .env.example');
     process.exit(1);
 }
 

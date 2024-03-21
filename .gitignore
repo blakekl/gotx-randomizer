@@ -29,7 +29,6 @@ dist
 
 # private files
 .env
-scripts/gotxDbDump.sh
 scripts/parseSqlDump.cjs
-dump.sql
+scripts/dump.sql
 scripts/parseSqlDump.js
