@@ -13,7 +13,7 @@
     "prettier-check": "prettier . --check",
     "prettier": "prettier . --write",
     "prepare": "husky install",
-    "processSqlDump": "npx tsc ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs &&  node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs"
+    "processSqlDump": "npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs &&  node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
