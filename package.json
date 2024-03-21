@@ -4,16 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build && cp ./src/.htaccess ./dist/",
     "deploy": "node deploy.js",
-    "publish": "npm run build && npm run deploy",
+    "dev": "vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "prepare": "husky install",
     "prettier-check": "prettier . --check",
     "prettier": "prettier . --write",
-    "prepare": "husky install",
-    "processSqlDump": "npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs &&  node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs"
+    "preview": "vite preview",
+    "publish": "npm run build && npm run deploy",
+    "updb": "npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs &&  node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
