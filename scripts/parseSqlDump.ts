@@ -3,6 +3,42 @@ const readline = require('node:readline').createInterface({
     input: process.stdin,
     output: process.stdout,
 });
+const envPath = './scripts/.env';
+require('dotenv').config({path: envPath});
+const dbPath = './src/gotx-randomizer.sqlite';
+const db = require('better-sqlite3')(dbPath, {});
+enum TABLES {
+    COMPLETIONS,
+    GAMES,
+    NOMINATIONS,
+    THEMES,
+    USERS,
+}
+const queries: Map<TABLES, any>  = [
+    [TABLES.COMPLETIONS, db.prepare(`SELECT MAX(id) as max FROM [public.completions];`)],
+    [TABLES.GAMES, db.prepare(`SELECT MAX(id) as max FROM [public.games];`)],
+    [TABLES.NOMINATIONS, db.prepare(`SELECT MAX(id) as max FROM [public.nominations];`)],
+    [TABLES.THEMES, db.prepare(`SELECT MAX(id) as max FROM [public.themes];`)],
+    [TABLES.USERS, db.prepare(`SELECT MAX(id) as max FROM [public.users];`)],
+];
+
+const MAX_IDS = new Map<TABLES, Number>
+queries.forEach((query, table) => {
+    const [{max}] = query.all();
+    const maxValue = max || 0;
+    MAX_IDS.set(table, maxValue);
+})
+
+console.log('max_ids: ', MAX_IDS);
+db.close();
+process.exit();
+
+/** begin old code here **/
+import { readFileSync, writeFileSync, rmSync, renameSync } from 'node:fs';
+const readline = require('node:readline').createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
 const envPath = './scripts/.env'
 require('dotenv').config({path: envPath});
 
