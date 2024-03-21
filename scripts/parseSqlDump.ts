@@ -63,6 +63,7 @@ writeFileSync(output,
 console.log('Query generated. Please copy and execute the query on the DB to update.');
 readline.question('Did it run successfully? Type \'yes\' to confirm.\n', (response: string) => {
     if (response.toLocaleLowerCase() === 'yes') {
+        readline.close();
         console.log('writing new env file.');
         const newMaxMap = new Map<string, number>();
         newMaxMap.set('MAX_COMPLETIONS', 
@@ -103,6 +104,8 @@ readline.question('Did it run successfully? Type \'yes\' to confirm.\n', (respon
         rmSync(output);
         rmSync(input);
         renameSync(`${envPath}-new`, envPath);
+    } else {
+        // exit with an error to prevent further command execution.
+        process.exit(1);
     }
-    readline.close();
 });
