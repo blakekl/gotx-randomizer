@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, rmSync, renameSync } from 'node:fs';
 const readline = require('node:readline').createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -101,6 +101,8 @@ readline.question('Did it run successfully? Type \'yes\' to confirm.\n', (respon
         writeFileSync(`${envPath}-new`, newEnv.join('\n'));
         console.log('deleting files...');
         rmSync(output);
+        rmSync(input);
+        renameSync(`${envPath}-new`, envPath);
     }
     readline.close();
 });
