@@ -13,7 +13,9 @@
     "prettier": "prettier . --write",
     "preview": "vite preview",
     "publish": "npm run build && npm run deploy",
-    "updb": "npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs &&  node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs"
+    "updb": "npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs &&  node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs",
+    "loadEnv": "export $(grep -v '^#' .env | xargs)",
+    "unloadEnv": "unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\\1/' | xargs)"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.10",
