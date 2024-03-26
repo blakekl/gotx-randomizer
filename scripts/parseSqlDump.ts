@@ -33,8 +33,13 @@ enum Tables {
     THEMES,
     USERS,
 }
+
 interface MaxQueryResult {
     max: number;
+}
+
+interface IdQueryResult {
+    id: number;
 }
 
 const idRegex = /VALUES \((\d+)/;
@@ -74,6 +79,9 @@ const isIdGreater = (query: string, table: Tables): boolean => {
     return false;
 }
 
+const allNominationsQuery = db.prepare<IdQueryResult[]>('SELECT id FROM [public.nominations]');
+const currentNominationIds = (allNominationsQuery.all() as IdQueryResult[]).map(x => x.id).sort();
+
 const inputData = readFileSync(DUMP_PATH, {encoding:'utf-8'})
     .slice(1)
     .replace(/;\n+/g, ';\n')
@@ -96,6 +104,11 @@ const nominations = inputData
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
     .map(x => db.prepare(x));
+const validNominationIds = inputData
+    .filter(x => x && x.startsWith('INSERT INTO [public.nominations'))
+    .map(x => (x.match(idRegex) || ['0', '0'])[1])
+    .map(x => parseInt(x, 10))
+    .sort();
 const themes = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.themes'))
     .filter(x => isIdGreater(x, Tables.THEMES))
@@ -108,18 +121,20 @@ const users = inputData
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
     .map(x => db.prepare(x));
-
+const removeNominationIds = currentNominationIds.filter(x => validNominationIds.indexOf(x) === -1).sort();
+const removeNominations = db.prepare(`DELETE FROM [public.nominations] WHERE ID IN (${removeNominationIds})`);
 const toExecute = [
     ...users,
     ...games,
     ...themes,
     ...nominations,
-    ...completions
+    ...completions,
+    removeNominations,
 ];
 
-console.log(`Inserting ${toExecute.length} records.`);
+console.log(`Updating ${toExecute.length} records.`);
 db.transaction((queries: Statement[]) => queries.forEach(query => query.run()))
     .deferred(toExecute);
-console.log('Inserts successful');
+console.log('Execution successful');
 db.close();
 process.exit();
