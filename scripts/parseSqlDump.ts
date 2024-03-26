@@ -121,10 +121,7 @@ const users = inputData
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
     .map(x => db.prepare(x));
-
 const removeNominationIds = currentNominationIds.filter(x => validNominationIds.indexOf(x) === -1).sort();
-console.log('removeNominationIds: ', removeNominationIds);
-
 const removeNominations = db.prepare(`DELETE FROM [public.nominations] WHERE ID IN (${removeNominationIds})`);
 const toExecute = [
     ...users,
