@@ -314,7 +314,7 @@ INNER JOIN [public.games] on [public.nominations].game_id = [public.games].id
 GROUP BY [public.completions].nomination_id
 ORDER BY [public.nominations].theme_id DESC, completions DESC;`;
 
-export const nominationSuccessRateByUser = `SELECT 
+export const nominationSuccessPercentByUser = `SELECT 
     [public.users].name,
     100 * wins / nominations AS success_rate,
     nominations,

@@ -318,8 +318,8 @@ class RandomizerStore {
     return dbClient.mostNominatedGamesByUser() ?? [];
   }
 
-  getNominationSuccessRateByUser(): LabeledStat[] {
-    return dbClient.getNominationSuccessRateByUser() ?? [];
+  getNominationSuccessPercentByUser(): LabeledStat[] {
+    return dbClient.getNominationSuccessPercentByUser() ?? [];
   } 
 
   get isGameHidden() {
