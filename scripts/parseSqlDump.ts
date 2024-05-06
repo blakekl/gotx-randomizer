@@ -91,19 +91,16 @@ const completions = inputData
     .filter(x => isIdGreater(x, Tables.COMPLETIONS))
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
-    .map(x => db.prepare(x));
 const games = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.games'))
     .filter(x => isIdGreater(x, Tables.GAMES))
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
-    .map(x => db.prepare(x));
 const nominations = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.nominations'))
     .filter(x => isIdGreater(x, Tables.NOMINATIONS))
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
-    .map(x => db.prepare(x));
 const validNominationIds = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.nominations'))
     .map(x => (x.match(idRegex) || ['0', '0'])[1])
@@ -114,22 +111,23 @@ const themes = inputData
     .filter(x => isIdGreater(x, Tables.THEMES))
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
-    .map(x => db.prepare(x));
 const users = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.users'))
     .filter(x => isIdGreater(x, Tables.USERS))
     .sort((a, b) => a.localeCompare(b))
     .map(x => `${x};`)
-    .map(x => db.prepare(x));
-const removeNominationIds = currentNominationIds.filter(x => validNominationIds.indexOf(x) === -1).sort();
-const removeNominations = db.prepare(`DELETE FROM [public.nominations] WHERE ID IN (${removeNominationIds})`);
+const removeNominations = currentNominationIds
+    .filter(x => !validNominationIds.includes(x))
+    .sort()
+    .join();
+console.log('executing queries:', [...users, ...games, ...themes, ...nominations, ...completions, `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations});`]);
 const toExecute = [
-    ...users,
-    ...games,
-    ...themes,
-    ...nominations,
-    ...completions,
-    removeNominations,
+    ...users.map(x => db.prepare(x)),
+    ...games.map(x => db.prepare(x)),
+    ...themes.map(x => db.prepare(x)),
+    ...nominations.map(x => db.prepare(x)),
+    ...completions.map(x => db.prepare(x)),
+    db.prepare(`DELETE FROM [public.nominations] WHERE ID IN (${removeNominations});`)
 ];
 
 console.log(`Updating ${toExecute.length} records.`);
