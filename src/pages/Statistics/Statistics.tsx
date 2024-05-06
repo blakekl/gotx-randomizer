@@ -36,6 +36,7 @@ const Statistics = observer(() => {
     const longestMonthsByAvgTimeToBeat = randomizerStore.getLongestMonthsByAvgTimeToBeat();
     const shortestMonthsByAvgTimeToBeat = randomizerStore.getShortestMonthsByAvgTimeToBeat();
     const mostNominatedGamesByUser = randomizerStore.getMostNominatedGamesByUser();
+    const nominationSuccessPercentByUser = randomizerStore.getNominationSuccessPercentByUser();
     const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
     if (searchParams.get('tab') === null) {
@@ -155,6 +156,7 @@ const Statistics = observer(() => {
             <div className="column">
                 <Chart data={mostNominatedGamesByUser} title='Most Nominations by User' name='Nominations' />
                 <Chart data={topNominationWinsByUser} title='Most Winning Nominations by User' name='Wins' />
+                <Chart data={nominationSuccessPercentByUser} title='Nomination Success Percent by User' name='Success rate' />
             </div>
     </>;
     const timeToBeat = <>

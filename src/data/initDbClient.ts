@@ -32,6 +32,7 @@ import {
   topNominationWinsByUser,
   totalNomsBeforeWinByGame,
   totalTimeToBeatByMonth,
+  nominationSuccessPercentByUser,
 } from '../data/Queries';
 import {
   NominationType,
@@ -189,6 +190,9 @@ const initDbClient = async () => {
     completionsCountByGame: () => {
       return db?.exec(completionsCountByGame)[0]?.values.map(x => labeledStatDto(x)) ?? [];
     },
+    getNominationSuccessPercentByUser: () => {
+      return db?.exec(nominationSuccessPercentByUser)[0].values.map(x => labeledStatDto(x)) ?? [];
+    }
   };
 };
 

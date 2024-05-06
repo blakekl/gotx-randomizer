@@ -313,3 +313,27 @@ INNER JOIN [public.nominations] ON [public.nominations].id = [public.completions
 INNER JOIN [public.games] on [public.nominations].game_id = [public.games].id
 GROUP BY [public.completions].nomination_id
 ORDER BY [public.nominations].theme_id DESC, completions DESC;`;
+
+export const nominationSuccessPercentByUser = `SELECT 
+    [public.users].name,
+    100 * wins / nominations AS success_rate,
+    nominations,
+    wins
+FROM [public.nominations]
+INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
+INNER JOIN (
+    SELECT [public.users].name AS nomination_name, COUNT(*) AS nominations
+    FROM [public.nominations]
+    INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
+    WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].nomination_type = 'gotm') AND user_id > 1
+    GROUP BY [public.nominations].user_id
+) ON [public.users].name = nomination_name
+INNER JOIN (
+    SELECT [public.users].name AS win_name, COUNT(*) AS wins
+    FROM [public.nominations]
+    INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
+    WHERE nomination_type = 'gotm' AND winner = 1 AND user_id > 1
+    GROUP BY [public.nominations].user_id
+) on [public.users].name = win_name
+GROUP BY [public.nominations].user_id
+ORDER BY success_rate DESC, [public.users].name ASC;`
