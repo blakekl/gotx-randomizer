@@ -120,19 +120,19 @@ const removeNominations = currentNominationIds
     .filter(x => !validNominationIds.includes(x))
     .sort()
     .join();
-console.log('executing queries:', [...users, ...games, ...themes, ...nominations, ...completions, `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations});`]);
 const toExecute = [
-    ...users.map(x => db.prepare(x)),
-    ...games.map(x => db.prepare(x)),
-    ...themes.map(x => db.prepare(x)),
-    ...nominations.map(x => db.prepare(x)),
-    ...completions.map(x => db.prepare(x)),
-    db.prepare(`DELETE FROM [public.nominations] WHERE ID IN (${removeNominations});`)
+    ...users,
+    ...games,
+    ...themes,
+    ...nominations,
+    ...completions,
+    `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations});`,
 ];
+console.log('executing queries:', toExecute);
 
-console.log(`Updating ${toExecute.length} records.`);
+console.log(`executing ${toExecute.length} queries.`);
 db.transaction((queries: Statement[]) => queries.forEach(query => query.run()))
-    .deferred(toExecute);
+    .deferred(toExecute.map(x => db.prepare(x)));
 console.log('Execution successful');
 db.close();
 process.exit();
