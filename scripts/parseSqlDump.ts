@@ -89,18 +89,15 @@ const inputData = readFileSync(DUMP_PATH, {encoding:'utf-8'})
 const completions = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.completions'))
     .filter(x => isIdGreater(x, Tables.COMPLETIONS))
-    .sort((a, b) => a.localeCompare(b))
-    .map(x => `${x};`)
+    .sort((a, b) => a.localeCompare(b));
 const games = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.games'))
     .filter(x => isIdGreater(x, Tables.GAMES))
-    .sort((a, b) => a.localeCompare(b))
-    .map(x => `${x};`)
+    .sort((a, b) => a.localeCompare(b));
 const nominations = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.nominations'))
     .filter(x => isIdGreater(x, Tables.NOMINATIONS))
-    .sort((a, b) => a.localeCompare(b))
-    .map(x => `${x};`)
+    .sort((a, b) => a.localeCompare(b));
 const validNominationIds = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.nominations'))
     .map(x => (x.match(idRegex) || ['0', '0'])[1])
@@ -109,13 +106,11 @@ const validNominationIds = inputData
 const themes = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.themes'))
     .filter(x => isIdGreater(x, Tables.THEMES))
-    .sort((a, b) => a.localeCompare(b))
-    .map(x => `${x};`)
+    .sort((a, b) => a.localeCompare(b));
 const users = inputData
     .filter(x => x && x.startsWith('INSERT INTO [public.users'))
     .filter(x => isIdGreater(x, Tables.USERS))
-    .sort((a, b) => a.localeCompare(b))
-    .map(x => `${x};`)
+    .sort((a, b) => a.localeCompare(b));
 const removeNominations = currentNominationIds
     .filter(x => !validNominationIds.includes(x))
     .sort()
@@ -126,8 +121,8 @@ const toExecute = [
     ...themes,
     ...nominations,
     ...completions,
-    `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations});`,
-];
+    `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations})`,
+].map(x => `${x};`);
 console.log('executing queries:', toExecute);
 
 console.log(`executing ${toExecute.length} queries.`);
