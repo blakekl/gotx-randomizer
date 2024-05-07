@@ -1,4 +1,4 @@
-import Database, { RunResult, Statement } from 'better-sqlite3';
+import Database, { Statement } from 'better-sqlite3';
 import * as child from 'child_process';
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
@@ -113,18 +113,24 @@ const users = inputData
     .sort((a, b) => a.localeCompare(b));
 const removeNominations = currentNominationIds
     .filter(x => !validNominationIds.includes(x))
-    .sort()
-    .join();
+    .sort();
+const removeNominationsQuery = removeNominations.length > 0  ? `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations.join()})` : null;
 const toExecute = [
     ...users,
     ...games,
     ...themes,
     ...nominations,
     ...completions,
-    `DELETE FROM [public.nominations] WHERE ID IN (${removeNominations})`,
-].map(x => `${x};`);
-console.log('executing queries:', toExecute);
+    removeNominationsQuery,
+].filter(x => x !== null)
+    .map(x => `${x};`);
 
+if (toExecute.length <= 0) {
+    console.error('No queries to execute. Do not commit/publish.');
+    process.exit(1);
+}
+
+console.log('executing queries:', toExecute);
 console.log(`executing ${toExecute.length} queries.`);
 db.transaction((queries: Statement[]) => queries.forEach(query => query.run()))
     .deferred(toExecute.map(x => db.prepare(x)));
