@@ -1,13 +1,15 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { useStores } from '../../../stores/useStores';
-import { NominationType } from '../../../models/game';
+import { NominationListItem, NominationType } from '../../../models/game';
 
-const NominationList = observer(() => {
-  const { randomizerStore } = useStores();
+interface NominationListParams {
+  nominations: NominationListItem[],
+}
+
+const NominationList = observer(({ nominations } : NominationListParams) => {
   return (
     <>
-      {randomizerStore.nominations.map((nomination, index) => (
+      {nominations.map((nomination, index) => (
         <article className="media" key={index}>
           <div className="media-content">
             <div className="content">

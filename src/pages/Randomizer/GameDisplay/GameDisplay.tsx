@@ -2,15 +2,17 @@ import { observer } from 'mobx-react-lite';
 import { useStores } from '../../../stores/useStores';
 import { useEffect, useRef, useState } from 'react';
 import NominationList from './NominationList';
+import { Game } from '../../../models/game';
 
 interface GameDisplayProps {
   imgLoaded: boolean;
   setImgLoaded: (loaded: boolean) => void;
+  game: Game,
 }
 
 const GameDisplay = observer(
-  ({ imgLoaded, setImgLoaded }: GameDisplayProps) => {
-    const { randomizerStore } = useStores();
+  ({ imgLoaded, setImgLoaded, game }: GameDisplayProps) => {
+    const { settingsStore, dbStore } = useStores();
     const imgElement = useRef<HTMLImageElement>(null);
     const [mainTitle, setMainTitle] = useState('');
     const [subtitles, setSubtitles] = useState(new Array<string>());
@@ -29,16 +31,15 @@ const GameDisplay = observer(
     useEffect(() => {
       setImgLoaded(false);
     }, [
-      randomizerStore.includeGotmRunnerUp,
-      randomizerStore.includeGotmWinners,
-      randomizerStore.includeRetrobits,
-      randomizerStore.includeRpgRunnerUp,
-      randomizerStore.includeRpgWinners,
+      settingsStore.includeGotmRunnerUp,
+      settingsStore.includeGotmWinners,
+      settingsStore.includeRetrobits,
+      settingsStore.includeRpgRunnerUp,
+      settingsStore.includeRpgWinners,
       setImgLoaded,
     ]);
 
     useEffect(() => {
-      const game = randomizerStore.currentGame;
       const titles = {
         usa: game.title_usa,
         world: game.title_world,
@@ -55,7 +56,7 @@ const GameDisplay = observer(
 
       setMainTitle(flaggedTitles[0] || '');
       setSubtitles(flaggedTitles.slice(1));
-    }, [randomizerStore.currentGame]);
+    }, [game]);
 
     return (
       <>
@@ -65,10 +66,10 @@ const GameDisplay = observer(
         ></div>
         <img
           ref={imgElement}
-          src={randomizerStore.currentGame.img_url}
+          src={game.img_url}
           style={{
             display:
-              !!randomizerStore.currentGame?.img_url && imgLoaded
+              !!game?.img_url && imgLoaded
                 ? 'block'
                 : 'none',
             margin: 'auto',
@@ -89,7 +90,7 @@ const GameDisplay = observer(
                 <p className="subtitle is-hidden-mobile">🗓️</p>
                 <p className="subtitle">
                   <span className="is-hidden-tablet">🗓️</span>
-                  <span>{randomizerStore.currentGame.year}</span>
+                  <span>{game.year}</span>
                 </p>
               </div>
             </div>
@@ -98,7 +99,7 @@ const GameDisplay = observer(
                 <p className="subtitle is-hidden-mobile">🕹️</p>
                 <p className="subtitle">
                   <span className="is-hidden-tablet">🕹️</span>
-                  <span>{randomizerStore.currentGame.system}</span>
+                  <span>{game.system}</span>
                 </p>
               </div>
             </div>
@@ -107,7 +108,7 @@ const GameDisplay = observer(
                 <p className="subtitle is-hidden-mobile">🏢</p>
                 <p className="subtitle">
                   <span className="is-hidden-tablet">🏢</span>
-                  <span>{randomizerStore.currentGame.developer}</span>
+                  <span>{game.developer}</span>
                 </p>
               </div>
             </div>
@@ -117,8 +118,8 @@ const GameDisplay = observer(
                 <p className="subtitle">
                   <span className="is-hidden-tablet">⏱️</span>
                   <span>
-                    {randomizerStore.currentGame.time_to_beat || 0 > 0
-                      ? `${randomizerStore.currentGame.time_to_beat} hours`
+                    {game.time_to_beat || 0 > 0
+                      ? `${game.time_to_beat} hours`
                       : 'No data'}
                   </span>
                 </p>
@@ -126,7 +127,7 @@ const GameDisplay = observer(
             </div>
           </div>
         </section>
-        <NominationList></NominationList>
+        <NominationList nominations={dbStore.getNominations(game.id)}></NominationList>
       </>
     );
   },

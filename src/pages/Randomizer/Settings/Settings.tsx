@@ -1,37 +1,15 @@
 import { observer } from 'mobx-react-lite';
 import ReactSlider from 'react-slider';
 import classNames from 'classnames';
-import { useStores } from '../../stores/useStores';
+import { useStores } from '../../../stores/useStores';
 import { useState } from 'react';
 
 const Settings = observer(() => {
-  const { randomizerStore } = useStores();
-  const [showSettings, setShowSettings] = useState(false);
-
-  const handleFilterChange = (item: number, value: boolean) => {
-    switch (item) {
-      case 0:
-        randomizerStore.setIncludeGotmRunnerUp(value);
-        break;
-      case 1:
-        randomizerStore.setIncludeGotmWinners(value);
-        break;
-      case 2:
-        randomizerStore.setIncludeRetrobits(value);
-        break;
-      case 3:
-        randomizerStore.setIncludeRpgRunnerUp(value);
-        break;
-      case 4:
-        randomizerStore.setIncludeRpgWinners(value);
-        break;
-      case 5:
-        randomizerStore.setShowHiddenGames(value);
-    }
-  };
+  const [ showSettings, setShowSettings ] = useState(false);
+  const { settingsStore } = useStores();
 
   const handleTtbFilterChange = (newValue: number[]) => {
-    randomizerStore.setTtbFilter(newValue);
+    settingsStore.setHltbFilter(newValue);
   };
 
   return (
@@ -72,10 +50,8 @@ const Settings = observer(() => {
                 <input
                   type="checkbox"
                   className="checkbox"
-                  checked={randomizerStore.includeGotmWinners}
-                  onChange={() => {
-                    handleFilterChange(1, !randomizerStore.includeGotmWinners);
-                  }}
+                  checked={settingsStore.includeGotmWinners}
+                  onChange={settingsStore.toggleGotmWinners}
                 ></input>
                 GotM Winners
               </label>
@@ -86,10 +62,8 @@ const Settings = observer(() => {
                   type="checkbox"
                   className="checkbox"
                   name="GotM Runner Ups"
-                  checked={randomizerStore.includeGotmRunnerUp}
-                  onChange={() => {
-                    handleFilterChange(0, !randomizerStore.includeGotmRunnerUp);
-                  }}
+                  checked={settingsStore.includeGotmRunnerUp}
+                  onChange={settingsStore.toggleGotmRunnerUp}
                 ></input>
                 GotM Runner Ups
               </label>
@@ -99,10 +73,8 @@ const Settings = observer(() => {
                 <input
                   type="checkbox"
                   className="checkbox"
-                  checked={randomizerStore.includeRetrobits}
-                  onChange={() => {
-                    handleFilterChange(2, !randomizerStore.includeRetrobits);
-                  }}
+                  checked={settingsStore.includeRetrobits}
+                  onChange={settingsStore.toggleRetrobits}
                 ></input>
                 Retrobits
               </label>
@@ -112,10 +84,8 @@ const Settings = observer(() => {
                 <input
                   type="checkbox"
                   className="checkbox"
-                  checked={randomizerStore.includeRpgWinners}
-                  onChange={() => {
-                    handleFilterChange(4, !randomizerStore.includeRpgWinners);
-                  }}
+                  checked={settingsStore.includeRpgWinners}
+                  onChange={settingsStore.toggleRpgWinners}
                 ></input>
                 RPGotQ Winners
               </label>
@@ -125,10 +95,8 @@ const Settings = observer(() => {
                 <input
                   type="checkbox"
                   className="checkbox"
-                  checked={randomizerStore.includeRpgRunnerUp}
-                  onChange={() => {
-                    handleFilterChange(3, !randomizerStore.includeRpgRunnerUp);
-                  }}
+                  checked={settingsStore.includeRpgRunnerUp}
+                  onChange={settingsStore.toggleRpgRunnerUp}
                 ></input>
                 RPGotQ Runner Ups
               </label>
@@ -138,10 +106,8 @@ const Settings = observer(() => {
                 <input
                   type="checkbox"
                   className="checkbox"
-                  checked={randomizerStore.showHiddenGames}
-                  onChange={() => {
-                    handleFilterChange(5, !randomizerStore.showHiddenGames);
-                  }}
+                  checked={settingsStore.includeHiddenGames}
+                  onChange={settingsStore.toggleHiddenGames}
                 ></input>
                 Include hidden games
               </label>
@@ -158,9 +124,9 @@ const Settings = observer(() => {
                   handleTtbFilterChange(newValues);
                 }}
                 defaultValue={[0, Number.MAX_SAFE_INTEGER]}
-                min={randomizerStore.ttbMin}
-                max={randomizerStore.ttbMax}
-                value={randomizerStore.ttbFilter}
+                min={settingsStore.hltbMin}
+                max={settingsStore.hltbMax}
+                value={settingsStore.hltbFilter}
                 ariaLabel={['Minimum time to beat', 'Maximum time to beat']}
                 ariaValuetext={(state: { valueNow: number }) =>
                   `Filter value ${state.valueNow}`
