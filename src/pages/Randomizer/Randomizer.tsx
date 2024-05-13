@@ -77,7 +77,6 @@ const Randomizer = observer(() => {
     if (newIndex >= gamePool.length) {
       newIndex = 0;
     }
-    console.log('newIndex:', newIndex, gamePool.length);
     setCurrentGameIndex(newIndex);
   };
 
