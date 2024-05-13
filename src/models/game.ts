@@ -62,14 +62,14 @@ export interface Nomination {
 }
 
 export interface NominationListItem {
-    nomination_type: NominationType;
-    game_id: number;
-    user_name: string;
-    game_description: string;
-    theme_title: string;
-    theme_description: string;
-    date: string;
-    winner: boolean;
+  nomination_type: NominationType;
+  game_id: number;
+  user_name: string;
+  game_description: string;
+  theme_title: string;
+  theme_description: string;
+  date: string;
+  winner: boolean;
 }
 
 export interface Theme {
@@ -125,7 +125,17 @@ export const gameDto = (data: any[]): Game => {
 };
 
 export const nominationDto = (data: any[]): Nomination => {
-  const [id, nomination_type, description, winner, game_id, user_id, theme_id, created_at, updated_at ] = data;
+  const [
+    id,
+    nomination_type,
+    description,
+    winner,
+    game_id,
+    user_id,
+    theme_id,
+    created_at,
+    updated_at,
+  ] = data;
 
   return {
     id,
@@ -141,7 +151,15 @@ export const nominationDto = (data: any[]): Nomination => {
 };
 
 export const themeDto = (data: any[]): Theme => {
-  const [id, creation_date, title, description, created_at, updated_at, nomination_type] = data;
+  const [
+    id,
+    creation_date,
+    title,
+    description,
+    created_at,
+    updated_at,
+    nomination_type,
+  ] = data;
   return {
     id,
     creation_date,
@@ -154,7 +172,19 @@ export const themeDto = (data: any[]): Theme => {
 };
 
 export const userDto = (data: any[]): User => {
-  const [id, name, discord_id, old_discord_name, current_points, redeemed_points, earned_points, premium_points, created_at, updated_at, premium_subscriber] = data;
+  const [
+    id,
+    name,
+    discord_id,
+    old_discord_name,
+    current_points,
+    redeemed_points,
+    earned_points,
+    premium_points,
+    created_at,
+    updated_at,
+    premium_subscriber,
+  ] = data;
 
   return {
     id,
@@ -172,7 +202,16 @@ export const userDto = (data: any[]): User => {
 };
 
 export const nominationListItemDto = (data: any[]): NominationListItem => {
-  const [nomination_type, game_id, user_name, game_description, theme_title, theme_description, date, winner] = data;
+  const [
+    nomination_type,
+    game_id,
+    user_name,
+    game_description,
+    theme_title,
+    theme_description,
+    date,
+    winner,
+  ] = data;
   return {
     nomination_type,
     game_id,
@@ -187,8 +226,8 @@ export const nominationListItemDto = (data: any[]): NominationListItem => {
 
 export const labeledStatDto = (data: any[]): LabeledStat => {
   const [label, value] = data;
-  return {label, value} as LabeledStat;
-}
+  return { label, value } as LabeledStat;
+};
 
 const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
 const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');

@@ -3,10 +3,10 @@ import { observer } from 'mobx-react-lite';
 import { NominationListItem, NominationType } from '../../../models/game';
 
 interface NominationListParams {
-  nominations: NominationListItem[],
+  nominations: NominationListItem[];
 }
 
-const NominationList = observer(({ nominations } : NominationListParams) => {
+const NominationList = observer(({ nominations }: NominationListParams) => {
   return (
     <>
       {nominations.map((nomination, index) => (

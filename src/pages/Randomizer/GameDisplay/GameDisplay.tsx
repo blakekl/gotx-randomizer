@@ -7,7 +7,7 @@ import { Game } from '../../../models/game';
 interface GameDisplayProps {
   imgLoaded: boolean;
   setImgLoaded: (loaded: boolean) => void;
-  game: Game,
+  game: Game;
 }
 
 const GameDisplay = observer(
@@ -68,10 +68,7 @@ const GameDisplay = observer(
           ref={imgElement}
           src={game.img_url}
           style={{
-            display:
-              !!game?.img_url && imgLoaded
-                ? 'block'
-                : 'none',
+            display: !!game?.img_url && imgLoaded ? 'block' : 'none',
             margin: 'auto',
           }}
         />
@@ -127,7 +124,9 @@ const GameDisplay = observer(
             </div>
           </div>
         </section>
-        <NominationList nominations={dbStore.getNominations(game.id)}></NominationList>
+        <NominationList
+          nominations={dbStore.getNominations(game.id)}
+        ></NominationList>
       </>
     );
   },

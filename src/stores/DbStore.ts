@@ -31,7 +31,7 @@ class DbStore {
     screenscraper_id: 0,
     created_at: '',
     updated_at: '',
-  } as Game;  
+  } as Game;
 
   constructor() {
     const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
@@ -48,7 +48,7 @@ class DbStore {
         rpgWinners,
       });
     });
-  }    
+  }
 
   setAllGames(value: GameCollection) {
     this.allGames = value;
@@ -81,27 +81,27 @@ class DbStore {
   getNewestCompletions(): LabeledStat[] {
     return dbClient.newestCompletions() ?? [];
   }
- 
+
   getNewestGotmCompletions(): LabeledStat[] {
     return dbClient.newestGotmCompletions() ?? [];
   }
- 
+
   getNewestGotwotyCompletions(): LabeledStat[] {
     return dbClient.newestGotwotyCompletions() ?? [];
   }
- 
+
   getNewestGotyCompletions(): LabeledStat[] {
     return dbClient.newestGotyCompletions() ?? [];
   }
- 
+
   getNewestRetrobitCompletions(): LabeledStat[] {
     return dbClient.newestRetrobitCompletions() ?? [];
   }
- 
+
   getNewestRpgCompletions(): LabeledStat[] {
     return dbClient.newestRpgCompletions() ?? [];
   }
- 
+
   getTotalNominationsBeforeWinByGame(): LabeledStat[] {
     return dbClient.totalNomsBeforeWinByGame() ?? [];
   }
@@ -140,7 +140,7 @@ class DbStore {
 
   getNominationSuccessPercentByUser(): LabeledStat[] {
     return dbClient.getNominationSuccessPercentByUser() ?? [];
-  } 
+  }
 
   getNominations(id: number) {
     return dbClient.getNominationData(id);

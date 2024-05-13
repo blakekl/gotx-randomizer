@@ -272,7 +272,7 @@ INNER JOIN [public.nominations] on [public.games].id = [public.nominations].game
 INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
 WHERE [public.nominations].winner = 1 AND [public.nominations].nomination_type = 'gotm'
 GROUP BY [public.nominations].theme_id
-ORDER BY [public.themes].creation_date DESC;`
+ORDER BY [public.themes].creation_date DESC;`;
 
 export const longestMonthsByAvgTimeToBeat = `SELECT
   [public.themes].creation_date || ' - ' || [public.themes].title AS theme,
@@ -336,4 +336,4 @@ INNER JOIN (
     GROUP BY [public.nominations].user_id
 ) on [public.users].name = win_name
 GROUP BY [public.nominations].user_id
-ORDER BY success_rate DESC, [public.users].name ASC;`
+ORDER BY success_rate DESC, [public.users].name ASC;`;

@@ -30,16 +30,27 @@ const Randomizer = observer(() => {
     if (settingsStore.includeRpgWinners) {
       newPoolArray = [...newPoolArray, ...games.rpgWinners];
     }
-    newPoolArray = newPoolArray.filter((game, index, list) => index === list.findIndex(x => x.id === game.id));
+    newPoolArray = newPoolArray.filter(
+      (game, index, list) => index === list.findIndex((x) => x.id === game.id),
+    );
 
-    const newMax = newPoolArray
-      .map((x) => x.time_to_beat)
-      .reduce((aggregate: number, current) => Math.max(aggregate, current || 0), 0,) || Number.MAX_SAFE_INTEGER;
-    const newMin = newPoolArray
-      .map((x) => x.time_to_beat)
-      .filter((x) => x || x === 0)
-      .filter((x) => x && x > -1)
-      .reduce((aggregate: number, current) => Math.min(aggregate, Math.round(current || 0)), Number.MAX_SAFE_INTEGER) || 0;
+    const newMax =
+      newPoolArray
+        .map((x) => x.time_to_beat)
+        .reduce(
+          (aggregate: number, current) => Math.max(aggregate, current || 0),
+          0,
+        ) || Number.MAX_SAFE_INTEGER;
+    const newMin =
+      newPoolArray
+        .map((x) => x.time_to_beat)
+        .filter((x) => x || x === 0)
+        .filter((x) => x && x > -1)
+        .reduce(
+          (aggregate: number, current) =>
+            Math.min(aggregate, Math.round(current || 0)),
+          Number.MAX_SAFE_INTEGER,
+        ) || 0;
 
     if (newMax !== newMin) {
       settingsStore.setHltbMax(newMax);
@@ -47,11 +58,19 @@ const Randomizer = observer(() => {
     }
 
     const newPoolFiltered = newPoolArray
-      .filter(x => settingsStore.includeHiddenGames || settingsStore.hiddenGames.includes(x.id) === false)
-      .filter(x => (x.time_to_beat || 0) >= settingsStore.hltbFilter[0] && (x.time_to_beat || 0) <= settingsStore.hltbFilter[1])
-      .map(value => ({value, sort: Math.random() }))
-      .sort((a,b) => a.sort - b.sort)
-      .map(({value}) => value);
+      .filter(
+        (x) =>
+          settingsStore.includeHiddenGames ||
+          settingsStore.hiddenGames.includes(x.id) === false,
+      )
+      .filter(
+        (x) =>
+          (x.time_to_beat || 0) >= settingsStore.hltbFilter[0] &&
+          (x.time_to_beat || 0) <= settingsStore.hltbFilter[1],
+      )
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
 
     setGamePool(newPoolFiltered);
     setCurrentGameIndex(0);
@@ -63,11 +82,8 @@ const Randomizer = observer(() => {
     settingsStore.includeRpgWinners,
     settingsStore.includeHiddenGames,
     settingsStore.hltbFilter,
-    games.gotmRunnerUp,
-    games.gotmWinners,
-    games.retrobits,
-    games.rpgRunnerUp,
-    games.rpgWinners,
+    settingsStore,
+    games,
   ]);
 
   const nextGame = () => {
@@ -115,15 +131,30 @@ const Randomizer = observer(() => {
         <button
           className={classNames({
             button: true,
-            'is-danger': !settingsStore.hiddenGames.includes(gamePool[currentGameIndex]?.id) || false,
-            'is-success': settingsStore.hiddenGames.includes(gamePool[currentGameIndex]?.id) || true,
+            'is-danger':
+              !settingsStore.hiddenGames.includes(
+                gamePool[currentGameIndex]?.id,
+              ) || false,
+            'is-success':
+              settingsStore.hiddenGames.includes(
+                gamePool[currentGameIndex]?.id,
+              ) || true,
           })}
-          onClick={() => settingsStore.toggleHiddenGame(gamePool[currentGameIndex].id)}
+          onClick={() =>
+            settingsStore.toggleHiddenGame(gamePool[currentGameIndex].id)
+          }
         >
-          {settingsStore.hiddenGames.includes(gamePool[currentGameIndex]?.id) || false ? 'Unhide Game' : 'Hide Game'}
+          {settingsStore.hiddenGames.includes(gamePool[currentGameIndex]?.id) ||
+          false
+            ? 'Unhide Game'
+            : 'Hide Game'}
         </button>
       </div>
-      <GameDisplay imgLoaded={imgLoaded} setImgLoaded={setImgLoaded} game={gamePool[currentGameIndex]} />
+      <GameDisplay
+        imgLoaded={imgLoaded}
+        setImgLoaded={setImgLoaded}
+        game={gamePool[currentGameIndex]}
+      />
     </>
   );
 
