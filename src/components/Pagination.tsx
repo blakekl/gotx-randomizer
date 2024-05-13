@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 interface PaginationProps {
   count: number;
   onPageChange: (data: number[]) => void;
+  showNextPreviousButtons?: boolean;
 }
 
-const Pagination = ({ count, onPageChange }: PaginationProps) => {
+const Pagination = ({ count, onPageChange, showNextPreviousButtons = true }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [pageMenuOpen, setPageMenuOpen] = useState(false);
@@ -113,22 +114,22 @@ const Pagination = ({ count, onPageChange }: PaginationProps) => {
           </div>
         </div>
       </div>
-      {currentPage > 0 && (
-        <a
-          className="pagination-previous"
-          onClick={() => setCurrentPage(currentPage - 1)}
+      { showNextPreviousButtons && <>
+        <button
+        disabled={currentPage <= 0}
+        className="button pagination-previous"
+        onClick={() => setCurrentPage(currentPage - 1)}
         >
           Previous
-        </a>
-      )}
-      {currentPage < pageCount - 1 && (
-        <a
-          className="pagination-next"
-          onClick={() => setCurrentPage(currentPage + 1)}
+        </button>
+        <button
+        disabled={currentPage >= pageCount - 1}
+        className="button pagination-next"
+        onClick={() => setCurrentPage(currentPage + 1)}
         >
           Next
-        </a>
-      )}
+        </button>
+          </>}
       <ul className="pagination-list">{[...pages]}</ul>
     </nav>
   );
