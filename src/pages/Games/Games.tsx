@@ -11,7 +11,7 @@ const Games = () => {
   const [gameList, setGameList] = useState(new Array<Game>());
   const [indexRange, setIndexRange] = useState([0, 0]);
   const [titleFilter, setTitleFilter] = useState('');
-  const [selectedGame, setSelectedGame ] = useState<Game | null>(null);
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [hovered, setHovered] = useState(0);
 
   useEffect(() => {
@@ -67,9 +67,14 @@ const Games = () => {
         </thead>
         <tbody>
           {gameList.slice(indexRange[0], indexRange[1]).map((x) => (
-            <tr key={x.id}
+            <tr
+              key={x.id}
               onClick={() => setSelectedGame(x)}
-              className={classNames({ 'is-selected': (selectedGame && x.id === selectedGame.id) || hovered === x.id})}
+              className={classNames({
+                'is-selected':
+                  (selectedGame && x.id === selectedGame.id) ||
+                  hovered === x.id,
+              })}
               onMouseEnter={() => setHovered(x.id)}
               onMouseLeave={() => setHovered(0)}
             >
@@ -80,7 +85,9 @@ const Games = () => {
                   x.title_eu,
                   x.title_usa,
                   x.title_world,
-                ].filter((x) => x && x?.length > 0).pop()}
+                ]
+                  .filter((x) => x && x?.length > 0)
+                  .pop()}
               </td>
             </tr>
           ))}
@@ -90,16 +97,25 @@ const Games = () => {
         count={gameList.length}
         onPageChange={setIndexRange}
       ></Pagination>
-      <div className={classNames({'modal': true, 'is-active': selectedGame !== null })}>
-        <div className='modal-background' onClick={() => setSelectedGame(null)}></div>
-        <div className='modal-content'>
-          { selectedGame && 
-            <GameDisplay game={selectedGame}></GameDisplay>
-          }
+      <div
+        className={classNames({
+          modal: true,
+          'is-active': selectedGame !== null,
+        })}
+      >
+        <div
+          className="modal-background"
+          onClick={() => setSelectedGame(null)}
+        ></div>
+        <div className="modal-content">
+          {selectedGame && <GameDisplay game={selectedGame}></GameDisplay>}
         </div>
-        <button className='modal-close is-large' aria-label='close' onClick={() => setSelectedGame(null)}></button>
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={() => setSelectedGame(null)}
+        ></button>
       </div>
-
     </>
   );
 };

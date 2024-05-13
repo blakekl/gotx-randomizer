@@ -7,7 +7,11 @@ interface PaginationProps {
   showNextPreviousButtons?: boolean;
 }
 
-const Pagination = ({ count, onPageChange, showNextPreviousButtons = true }: PaginationProps) => {
+const Pagination = ({
+  count,
+  onPageChange,
+  showNextPreviousButtons = true,
+}: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [pageMenuOpen, setPageMenuOpen] = useState(false);
@@ -114,22 +118,24 @@ const Pagination = ({ count, onPageChange, showNextPreviousButtons = true }: Pag
           </div>
         </div>
       </div>
-      { showNextPreviousButtons && <>
-        <button
-        disabled={currentPage <= 0}
-        className="button pagination-previous"
-        onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
-        <button
-        disabled={currentPage >= pageCount - 1}
-        className="button pagination-next"
-        onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-          </>}
+      {showNextPreviousButtons && (
+        <>
+          <button
+            disabled={currentPage <= 0}
+            className="button pagination-previous"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Previous
+          </button>
+          <button
+            disabled={currentPage >= pageCount - 1}
+            className="button pagination-next"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </button>
+        </>
+      )}
       <ul className="pagination-list">{[...pages]}</ul>
     </nav>
   );

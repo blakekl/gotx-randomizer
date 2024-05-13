@@ -143,9 +143,7 @@ const Randomizer = observer(() => {
             : 'Hide Game'}
         </button>
       </div>
-      <GameDisplay
-        game={gamePool[currentGameIndex]}
-      />
+      <GameDisplay game={gamePool[currentGameIndex]} />
     </>
   );
 
