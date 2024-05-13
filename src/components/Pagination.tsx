@@ -19,6 +19,7 @@ const Pagination = ({
   const possiblePageSizes = [10, 20, 30, 40, 50, 100];
 
   useEffect(() => {
+    setCurrentPage(0);
     setPageCount(Math.ceil(count / pageSize));
   }, [count, pageSize]);
 
