@@ -74,9 +74,10 @@ const Randomizer = observer(() => {
     setImgLoaded(false);
     let newIndex = currentGameIndex;
     newIndex++;
-    if (newIndex > gamePool.length) {
+    if (newIndex >= gamePool.length) {
       newIndex = 0;
     }
+    console.log('newIndex:', newIndex, gamePool.length);
     setCurrentGameIndex(newIndex);
   };
 
