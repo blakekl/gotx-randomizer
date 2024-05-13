@@ -24,11 +24,9 @@ const Games = () => {
       ...allGames.rpgRunnerUp,
       ...allGames.rpgWinners,
     ];
-    console.log('before duplicates removed:', newPoolArray.length);
     newPoolArray = newPoolArray.filter(
       (game, index, list) => index === list.findIndex((x) => x.id === game.id),
     );
-    console.log('after duplicates removed:', newPoolArray.length);
     if (titleFilter.length > 3) {
       newPoolArray = newPoolArray.filter((x) =>
         [x.title_eu, x.title_jap, x.title_other, x.title_usa, x.title_world]
@@ -97,6 +95,7 @@ const Games = () => {
         count={gameList.length}
         onPageChange={setIndexRange}
       ></Pagination>
+
       <div
         className={classNames({
           modal: true,
