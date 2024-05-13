@@ -8,7 +8,6 @@ import { Game } from '../../models/game';
 
 const Randomizer = observer(() => {
   const { dbStore, settingsStore } = useStores();
-  const [imgLoaded, setImgLoaded] = useState(false);
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [gamePool, setGamePool] = useState(new Array<Game>());
   const games = dbStore.allGames;
@@ -87,7 +86,6 @@ const Randomizer = observer(() => {
   ]);
 
   const nextGame = () => {
-    setImgLoaded(false);
     let newIndex = currentGameIndex;
     newIndex++;
     if (newIndex >= gamePool.length) {
@@ -122,11 +120,6 @@ const Randomizer = observer(() => {
           disabled={gamePool.length < 2}
         >
           <span>Reroll</span>
-          {!imgLoaded && (
-            <span className="icon is-small">
-              <span className="loader"></span>
-            </span>
-          )}
         </button>
         <button
           className={classNames({
@@ -151,8 +144,6 @@ const Randomizer = observer(() => {
         </button>
       </div>
       <GameDisplay
-        imgLoaded={imgLoaded}
-        setImgLoaded={setImgLoaded}
         game={gamePool[currentGameIndex]}
       />
     </>

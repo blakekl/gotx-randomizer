@@ -5,17 +5,21 @@ import NominationList from './NominationList';
 import { Game } from '../../../models/game';
 
 interface GameDisplayProps {
-  imgLoaded: boolean;
-  setImgLoaded: (loaded: boolean) => void;
   game: Game;
 }
 
 const GameDisplay = observer(
-  ({ imgLoaded, setImgLoaded, game }: GameDisplayProps) => {
+  ({ game }: GameDisplayProps) => {
     const { settingsStore, dbStore } = useStores();
+    const [imgLoaded, setImgLoaded] = useState(false);
     const imgElement = useRef<HTMLImageElement>(null);
     const [mainTitle, setMainTitle] = useState('');
     const [subtitles, setSubtitles] = useState(new Array<string>());
+
+    useEffect(() => {
+      setImgLoaded(false);
+    }, [game]);
+
     useEffect(() => {
       const onImageLoaded = () =>
         setImgLoaded(imgElement.current?.complete || false);
@@ -73,7 +77,7 @@ const GameDisplay = observer(
           }}
         />
         <section className="section">
-          <h1 className="title has-text-centered"> {mainTitle}</h1>
+          <h1 className="title has-text-centered">{mainTitle}</h1>
           {subtitles.length > 0 && (
             <h2 className="subtitle has-text-centered">
               {subtitles.map((x, index) => (
@@ -84,36 +88,36 @@ const GameDisplay = observer(
           <div className="level">
             <div className="level-item has-text-centered">
               <div>
-                <p className="subtitle is-hidden-mobile">🗓️</p>
+                <p className="subtitle is-hidden-mobile" title='release year'>🗓️</p>
                 <p className="subtitle">
-                  <span className="is-hidden-tablet">🗓️</span>
+                  <span className="is-hidden-tablet" title='release year'>🗓️</span>
                   <span>{game.year}</span>
                 </p>
               </div>
             </div>
             <div className="level-item has-text-centered">
               <div>
-                <p className="subtitle is-hidden-mobile">🕹️</p>
+                <p className="subtitle is-hidden-mobile" title='developer'>🕹️</p>
                 <p className="subtitle">
-                  <span className="is-hidden-tablet">🕹️</span>
+                  <span className="is-hidden-tablet" title='developer'>🕹️</span>
                   <span>{game.system}</span>
                 </p>
               </div>
             </div>
             <div className="level-item has-text-centered">
               <div>
-                <p className="subtitle is-hidden-mobile">🏢</p>
+                <p className="subtitle is-hidden-mobile" title='publisher'>🏢</p>
                 <p className="subtitle">
-                  <span className="is-hidden-tablet">🏢</span>
+                  <span className="is-hidden-tablet" title='publisher'>🏢</span>
                   <span>{game.developer}</span>
                 </p>
               </div>
             </div>
             <div className="level-item has-text-centered">
               <div>
-                <p className="subtitle is-hidden-mobile">⏱️</p>
+                <p className="subtitle is-hidden-mobile" title='time to beat'>⏱️</p>
                 <p className="subtitle">
-                  <span className="is-hidden-tablet">⏱️</span>
+                  <span className="is-hidden-tablet" title='time to beat'>⏱️</span>
                   <span>
                     {game.time_to_beat || 0 > 0
                       ? `${game.time_to_beat} hours`
@@ -122,6 +126,17 @@ const GameDisplay = observer(
                 </p>
               </div>
             </div>
+            { game.screenscraper_id && 
+              <div className="level-item has-text-centered">
+              <div>
+                <p className="subtitle is-hidden-mobile" title='screenscraper id'>🆔</p>
+                <p className="subtitle" title='screenscraper id'>
+                  <span className="is-hidden-tablet">🆔</span>
+                  <span>{game.screenscraper_id}</span>
+                </p>
+              </div>
+            </div>
+                    }
           </div>
         </section>
         <NominationList
