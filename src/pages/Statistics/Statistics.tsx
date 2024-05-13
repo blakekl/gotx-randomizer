@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Chart from './Chart';
 import { useMediaQuery } from 'react-responsive';
 import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 enum Tabs {
     COMPLETIONS = 'completions',
@@ -14,35 +15,37 @@ enum Tabs {
 
 const Statistics = observer(() => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const {randomizerStore} = useStores();
-    const mostCompletedGames = randomizerStore.getMostCompletedGames();
-    const mostCompletedGotmGames = randomizerStore.getMostCompletedGotmGames();
-    const mostCompletedGotyGames = randomizerStore.getMostCompletedGotyGames();
-    const mostCompletedRetrobitGames = randomizerStore.getMostCompletedRetrobitGames();
-    const mostCompletedRetrobitYearGames = randomizerStore.getMostCompletedRetrobitYearGames();
-    const mostCompletedRpgGames = randomizerStore.getMostCompletedRpgGames();
-    const newestCompletedGames = randomizerStore.getNewestCompletions();
-    const newestGotmCompletions = randomizerStore.getNewestGotmCompletions();
-    const newestGotwotyCompletions = randomizerStore.getNewestGotwotyCompletions();
-    const newestGotyCompletions = randomizerStore.getNewestGotyCompletions();
-    const newestRetrobitCompletions = randomizerStore.getNewestRetrobitCompletions();
-    const newestRpgCompletions = randomizerStore.getNewestRpgCompletions();
-    const nominationsBeforeWin = randomizerStore.getTotalNominationsBeforeWinByGame();
-    const topNominationWinsByUser = randomizerStore.getTopNominationWinsByUser();
-    const mostNominatedGames = randomizerStore.getMostNominatedGames();
-    const mostNominatedLosers = randomizerStore.getMostNominatedLoserGames();
-    const avgTimeToBeatByMonth = randomizerStore.getAvgTimeToBeatByMonth().map(x => ({label: x.label, value: Number(x.value.toFixed(2))}));
-    const totalTimeToBeatByMonth = randomizerStore.getTotalTimeToBeatByMonth().map(x => ({label: x.label, value: Number(x.value.toFixed(2))}));
-    const longestMonthsByAvgTimeToBeat = randomizerStore.getLongestMonthsByAvgTimeToBeat();
-    const shortestMonthsByAvgTimeToBeat = randomizerStore.getShortestMonthsByAvgTimeToBeat();
-    const mostNominatedGamesByUser = randomizerStore.getMostNominatedGamesByUser();
-    const nominationSuccessPercentByUser = randomizerStore.getNominationSuccessPercentByUser();
+    const {dbStore} = useStores();
+    const mostCompletedGames = dbStore.getMostCompletedGames();
+    const mostCompletedGotmGames = dbStore.getMostCompletedGotmGames();
+    const mostCompletedGotyGames = dbStore.getMostCompletedGotyGames();
+    const mostCompletedRetrobitGames = dbStore.getMostCompletedRetrobitGames();
+    const mostCompletedRetrobitYearGames = dbStore.getMostCompletedRetrobitYearGames();
+    const mostCompletedRpgGames = dbStore.getMostCompletedRpgGames();
+    const newestCompletedGames = dbStore.getNewestCompletions();
+    const newestGotmCompletions = dbStore.getNewestGotmCompletions();
+    const newestGotwotyCompletions = dbStore.getNewestGotwotyCompletions();
+    const newestGotyCompletions = dbStore.getNewestGotyCompletions();
+    const newestRetrobitCompletions = dbStore.getNewestRetrobitCompletions();
+    const newestRpgCompletions = dbStore.getNewestRpgCompletions();
+    const nominationsBeforeWin = dbStore.getTotalNominationsBeforeWinByGame();
+    const topNominationWinsByUser = dbStore.getTopNominationWinsByUser();
+    const mostNominatedGames = dbStore.getMostNominatedGames();
+    const mostNominatedLosers = dbStore.getMostNominatedLoserGames();
+    const avgTimeToBeatByMonth = dbStore.getAvgTimeToBeatByMonth().map(x => ({label: x.label, value: Number(x.value.toFixed(2))}));
+    const totalTimeToBeatByMonth = dbStore.getTotalTimeToBeatByMonth().map(x => ({label: x.label, value: Number(x.value.toFixed(2))}));
+    const longestMonthsByAvgTimeToBeat = dbStore.getLongestMonthsByAvgTimeToBeat();
+    const shortestMonthsByAvgTimeToBeat = dbStore.getShortestMonthsByAvgTimeToBeat();
+    const mostNominatedGamesByUser = dbStore.getMostNominatedGamesByUser();
+    const nominationSuccessPercentByUser = dbStore.getNominationSuccessPercentByUser();
     const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
-    if (searchParams.get('tab') === null) {
-        searchParams.set('tab', Tabs.NOMINATIONS);
-        setSearchParams(searchParams);
-    }
+    useEffect(() => {
+        if (searchParams.get('tab') === null) {
+            searchParams.set('tab', Tabs.NOMINATIONS);
+            setSearchParams(searchParams);
+        }
+    },[searchParams, setSearchParams])
 
     const theme: Highcharts.Options = {
         colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
