@@ -53,31 +53,69 @@ FROM [public.nominations]
 WHERE nomination_type = 'rpg';`;
 
 export const getNominationData = `SELECT
-[public.nominations].nomination_type,
-game_id,
-[public.users].name as user_name,
-[public.nominations].description as game_description,
-[public.themes].title as theme_title,
-[public.themes].description as theme_description,
-date([public.themes].creation_date) as 'date',
-winner
+  [public.nominations].nomination_type,
+  game_id,
+  [public.users].name as user_name,
+  [public.nominations].description as game_description,
+  [public.themes].title as theme_title,
+  [public.themes].description as theme_description,
+  date([public.themes].creation_date) as 'date',
+  winner
 FROM [public.nominations]
-LEFT JOIN [public.users] on [public.users].id = [public.nominations].user_id
+LEFT JOIN [public.users] ON [public.users].id = [public.nominations].user_id
 LEFT JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 ORDER BY date([public.themes].creation_date) DESC;`;
 
 export const getNominationDataByGameId = (game_id: number) => {
   return `SELECT
-  [public.users].name,
+  [public.nominations].nomination_type,
+  game_id,
+  [public.users].name as user_name,
   [public.nominations].description as game_description,
-  [public.themes].title,
-  [public.themes].description,
-  date([public.themes].creation_date) as 'date'
+  [public.themes].title as theme_title,
+  [public.themes].description as theme_description,
+  date([public.themes].creation_date) as 'date',
+  winner
 FROM [public.nominations]
 INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
 WHERE [public.nominations].game_id = ${game_id}
 ORDER BY date([public.themes].creation_date) DESC;`;
+};
+
+export const getNominationDataByUserId = (user_id: number) => {
+  return `SELECT
+  [public.nominations].nomination_type,
+  game_id,
+  [public.users].name as user_name,
+  [public.nominations].description as game_description,
+  [public.themes].title as theme_title,
+  [public.themes].description as theme_description,
+  date([public.themes].creation_date) as 'date',
+  winner
+FROM [public.nominations]
+INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id
+INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
+WHERE [public.users].id = ${user_id}
+ORDER BY date([public.themes].creation_date) DESC;`;
+};
+
+export const getCompletionsByUserId = (user_id: number) => {
+  return `SELECT 
+  [public.completions].id,
+  title_world,
+  title_usa,
+  title_eu,
+  title_jap,
+  title_other,
+  date(completed_at) as 'date',
+  [public.nominations].nomination_type
+FROM [public.completions]
+INNER JOIN [public.users] ON [public.users].id = [public.completions].user_id
+INNER JOIN [public.nominations] ON [public.nominations].id = [public.completions].nomination_id
+INNER JOIN [public.games] ON [public.games].id = [public.nominations].game_id
+WHERE [public.completions].user_id = ${user_id}
+ORDER BY [public.completions].completed_at DESC;`;
 };
 
 /**
@@ -315,25 +353,14 @@ GROUP BY [public.completions].nomination_id
 ORDER BY [public.nominations].theme_id DESC, completions DESC;`;
 
 export const nominationSuccessPercentByUser = `SELECT 
-    [public.users].name,
-    100 * wins / nominations AS success_rate,
-    nominations,
-    wins
-FROM [public.nominations]
-INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
-INNER JOIN (
-    SELECT [public.users].name AS nomination_name, COUNT(*) AS nominations
-    FROM [public.nominations]
-    INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
-    WHERE game_id IN (SELECT game_id FROM [public.nominations] WHERE [public.nominations].nomination_type = 'gotm') AND user_id > 1
-    GROUP BY [public.nominations].user_id
-) ON [public.users].name = nomination_name
-INNER JOIN (
-    SELECT [public.users].name AS win_name, COUNT(*) AS wins
-    FROM [public.nominations]
-    INNER JOIN [public.users] ON [public.nominations].user_id = [public.users].id
-    WHERE nomination_type = 'gotm' AND winner = 1 AND user_id > 1
-    GROUP BY [public.nominations].user_id
-) on [public.users].name = win_name
-GROUP BY [public.nominations].user_id
+  [public.users].id,
+  [public.users].name,
+  (100 * SUM([public.nominations].winner) / COUNT([public.nominations].id)) as success_rate,
+  COUNT([public.nominations].id) as nominations,
+  SUM([public.nominations].winner) as wins
+FROM
+  [public.users]
+INNER JOIN [public.nominations] ON [public.users].id = [public.nominations].user_id
+WHERE [public.nominations].nomination_type='gotm' AND [public.users].id > 1
+GROUP BY [public.users].id
 ORDER BY success_rate DESC, [public.users].name ASC;`;

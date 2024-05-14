@@ -17,7 +17,6 @@ const Games = () => {
   useEffect(() => {
     let newPoolArray: Game[] = [];
     newPoolArray = [
-      ...newPoolArray,
       ...allGames.gotmRunnerUp,
       ...allGames.gotmWinners,
       ...allGames.retrobits,
@@ -27,14 +26,12 @@ const Games = () => {
     newPoolArray = newPoolArray.filter(
       (game, index, list) => index === list.findIndex((x) => x.id === game.id),
     );
-    if (titleFilter.length > 3) {
-      newPoolArray = newPoolArray.filter((x) =>
-        [x.title_eu, x.title_jap, x.title_other, x.title_usa, x.title_world]
-          .map((x) => x?.toLocaleLowerCase())
-          .join()
-          .match(`.*${titleFilter}.*`),
-      );
-    }
+    newPoolArray = newPoolArray.filter((x) =>
+      [x.title_eu, x.title_jap, x.title_other, x.title_usa, x.title_world]
+        .map((x) => x?.toLocaleLowerCase())
+        .join()
+        .match(`.*${titleFilter}.*`),
+    );
     setGameList(newPoolArray);
   }, [allGames, titleFilter]);
 
@@ -57,7 +54,7 @@ const Games = () => {
           </span>
         </p>
       </div>
-      <table className="table is-striped is-fullwidth">
+      <table className="table selectable is-striped is-fullwidth">
         <thead>
           <tr>
             <th>Title</th>

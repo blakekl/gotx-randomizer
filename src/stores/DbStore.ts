@@ -1,6 +1,6 @@
 import { runInAction } from 'mobx';
 import dbClient from '../data';
-import { Game, LabeledStat } from '../models/game';
+import { Game, LabeledStat, UserListItem } from '../models/game';
 
 interface GameCollection {
   gotmRunnerUp: Game[];
@@ -138,12 +138,20 @@ class DbStore {
     return dbClient.mostNominatedGamesByUser() ?? [];
   }
 
-  getNominationSuccessPercentByUser(): LabeledStat[] {
+  getNominationSuccessPercentByUser(): UserListItem[] {
     return dbClient.getNominationSuccessPercentByUser() ?? [];
   }
 
-  getNominations(id: number) {
-    return dbClient.getNominationData(id);
+  getNominationsByGame(id: number) {
+    return dbClient.getNominationsByGameId(id) ?? [];
+  }
+
+  getNominationsByUser(id: number) {
+    return dbClient.getNominationsByUserId(id) ?? [];
+  }
+
+  getCompletionsByUserId(id: number) {
+    return dbClient.getCompletionsByUserId(id) ?? [];
   }
 }
 

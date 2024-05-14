@@ -7,7 +7,6 @@ import {
   avgTimeToBeatByMonth,
   completionsCountByGame,
   getGotmRunnerup,
-  getNominationData,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
@@ -33,13 +32,16 @@ import {
   totalNomsBeforeWinByGame,
   totalTimeToBeatByMonth,
   nominationSuccessPercentByUser,
+  getNominationDataByGameId as getNominationsByGameId,
+  getNominationDataByUserId,
+  getCompletionsByUserId,
 } from '../data/Queries';
 import {
-  NominationType,
-  convertDate,
+  completionsByUserIdDto,
   gameDto,
   labeledStatDto,
   nominationListItemDto,
+  userListItemDto,
 } from '../models/game';
 
 const initDbClient = async () => {
@@ -76,50 +78,27 @@ const initDbClient = async () => {
     getRpgWinners: () => {
       return db?.exec(`${getWinningRpg}`)[0].values.map((x) => gameDto(x));
     },
-    getNominationData: (game_id: number) => {
-      const nominations =
+    getNominationsByUserId: (user_id: number) => {
+      return (
         db
-          ?.exec(getNominationData)
+          ?.exec(getNominationDataByUserId(user_id))
           .flatMap((x) => x.values)
-          .flatMap(nominationListItemDto) || [];
-      const gameNoms = nominations.filter((x) => x.game_id === game_id);
-      const retrobitIndexes = nominations
-        .filter((x) => x.nomination_type === NominationType.RETROBIT)
-        .reduce((aggregate, current, index) => {
-          if (current.game_id === game_id) {
-            aggregate.push(index);
-            return [...aggregate, index];
-          }
-          return aggregate;
-        }, new Array<number>());
-
-      const rpgIndexes = nominations
-        .filter((x) => x.nomination_type === NominationType.RPG)
-        .reduce((aggregate, current, index) => {
-          if (current.game_id === game_id) {
-            aggregate.push(index);
-            return [...aggregate, index];
-          }
-          return aggregate;
-        }, new Array<number>());
-
-      gameNoms.map((x) => {
-        if (x.nomination_type === NominationType.GOTM) {
-          return x;
-        } else if (x.nomination_type === NominationType.RETROBIT) {
-          return;
-        }
-      });
-      return gameNoms.map((x) => {
-        switch (x.nomination_type) {
-          case NominationType.RETROBIT:
-            return convertDate(x, retrobitIndexes.shift() || 0);
-          case NominationType.RPG:
-            return convertDate(x, rpgIndexes.shift() || 0);
-          default:
-            return x;
-        }
-      });
+          .flatMap(nominationListItemDto) || []
+      );
+    },
+    getNominationsByGameId: (game_id: number) => {
+      return (
+        db
+          ?.exec(getNominationsByGameId(game_id))
+          .flatMap((x) => x.values)
+          .flatMap(nominationListItemDto) || []
+      );
+    },
+    getCompletionsByUserId: (user_id: number) => {
+      return db
+        ?.exec(getCompletionsByUserId(user_id))
+        .flatMap((x) => x.values)
+        .flatMap(completionsByUserIdDto);
     },
     mostCompletedGames: () => {
       return (
@@ -281,7 +260,7 @@ const initDbClient = async () => {
       return (
         db
           ?.exec(nominationSuccessPercentByUser)[0]
-          .values.map((x) => labeledStatDto(x)) ?? []
+          .values.map((x) => userListItemDto(x)) ?? []
       );
     },
   };

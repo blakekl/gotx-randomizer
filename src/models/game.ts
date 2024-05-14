@@ -31,6 +31,15 @@ export interface User {
   premium_subscriber: Subscription;
 }
 
+export interface UserListItem {
+  id: number;
+  name: string;
+  success_rate: number;
+  nominations: number;
+  wins: number;
+  completions: number;
+}
+
 export interface Game {
   id: number;
   title_usa?: string;
@@ -85,6 +94,17 @@ export interface Theme {
 export interface LabeledStat {
   label: string;
   value: number;
+}
+
+export interface CompletionListItem {
+  id: number;
+  title_world: string;
+  title_usa: string;
+  title_eu: string;
+  title_jap: string;
+  title_other: string;
+  date: string;
+  nomination_type: NominationType;
 }
 
 export const gameDto = (data: any[]): Game => {
@@ -224,34 +244,37 @@ export const nominationListItemDto = (data: any[]): NominationListItem => {
   } as NominationListItem;
 };
 
+export const completionsByUserIdDto = (data: any[]): CompletionListItem => {
+  const [
+    id,
+    title_world,
+    title_usa,
+    title_eu,
+    title_jap,
+    title_other,
+    date,
+    nomination_type,
+  ] = data;
+  return {
+    id,
+    title_world,
+    title_usa,
+    title_eu,
+    title_jap,
+    title_other,
+    date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
+    nomination_type,
+  } as CompletionListItem;
+};
+
 export const labeledStatDto = (data: any[]): LabeledStat => {
   const [label, value] = data;
   return { label, value } as LabeledStat;
 };
 
-const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
-const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
-export const convertDate = (nomination: NominationListItem, index: number) => {
-  switch (nomination.nomination_type) {
-    case NominationType.RETROBIT:
-      return {
-        ...nomination,
-        date: firstRetrobitDate
-          .add(7 * index, 'days')
-          .toDate()
-          .toLocaleDateString(),
-      };
-    case NominationType.RPG:
-      return {
-        ...nomination,
-        date: firstRpgDate
-          .add(3 * index, 'months')
-          .toDate()
-          .toLocaleDateString(),
-      };
-    default:
-      return nomination;
-  }
+export const userListItemDto = (data: any[]): UserListItem => {
+  const [id, name, success_rate, nominations, wins] = data;
+  return { id, name, success_rate, nominations, wins } as UserListItem;
 };
 
 export enum SeriesType {

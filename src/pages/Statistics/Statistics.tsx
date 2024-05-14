@@ -6,6 +6,7 @@ import Chart from './Chart';
 import { useMediaQuery } from 'react-responsive';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { labeledStatDto } from '../../models/game';
 
 enum Tabs {
   COMPLETIONS = 'completions',
@@ -44,8 +45,9 @@ const Statistics = observer(() => {
   const shortestMonthsByAvgTimeToBeat =
     dbStore.getShortestMonthsByAvgTimeToBeat();
   const mostNominatedGamesByUser = dbStore.getMostNominatedGamesByUser();
-  const nominationSuccessPercentByUser =
-    dbStore.getNominationSuccessPercentByUser();
+  const nominationSuccessPercentByUser = dbStore
+    .getNominationSuccessPercentByUser()
+    .map((x) => labeledStatDto([x.name, x.success_rate]) || []);
   const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
   useEffect(() => {

@@ -56,26 +56,6 @@ const NominationList = observer(({ nominations }: NominationListParams) => {
                         Theme: {nomination.theme_title}
                       </span>
                     )}
-                    {nomination.nomination_type === NominationType.RETROBIT && (
-                      <span
-                        className={classNames({
-                          subtitle: true,
-                          'has-text-white': nomination.winner,
-                        })}
-                      >
-                        Theme: Retrobits
-                      </span>
-                    )}
-                    {nomination.nomination_type === NominationType.RPG && (
-                      <span
-                        className={classNames({
-                          subtitle: true,
-                          'has-text-white': nomination.winner,
-                        })}
-                      >
-                        Theme: RPG of the Quarter
-                      </span>
-                    )}
                   </div>
                 </div>
                 <p>{nomination.game_description}</p>

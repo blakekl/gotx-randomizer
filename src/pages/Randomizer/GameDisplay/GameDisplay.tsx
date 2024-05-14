@@ -160,7 +160,7 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
         </div>
       </section>
       <NominationList
-        nominations={dbStore.getNominations(game.id)}
+        nominations={dbStore.getNominationsByGame(game.id)}
       ></NominationList>
     </>
   );
