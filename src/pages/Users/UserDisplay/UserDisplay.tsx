@@ -57,7 +57,7 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
         </ul>
       </div>
       {activeTab === Tabs.NOMINATIONS && (
-        <NominationList nominations={nominations}></NominationList>
+        <NominationList showTitle={true} nominations={nominations}></NominationList>
       )}
       {activeTab === Tabs.COMPLETIONS && (
         <table className="table is-fullwidth is-striped">

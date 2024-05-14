@@ -4,9 +4,10 @@ import { NominationListItem, NominationType } from '../../../models/game';
 
 interface NominationListParams {
   nominations: NominationListItem[];
+  showTitle: boolean;
 }
 
-const NominationList = observer(({ nominations }: NominationListParams) => {
+const NominationList = observer(({ nominations, showTitle = false }: NominationListParams) => {
   return (
     <>
       {nominations.map((nomination, index) => (
@@ -19,6 +20,7 @@ const NominationList = observer(({ nominations }: NominationListParams) => {
                   'has-text-white': nomination.winner,
                 })}
               >
+                { showTitle && <h2 className='subtitle has-text-centered'>{nomination.game_title}</h2> }
                 <div className="level">
                   {nomination.nomination_type === NominationType.GOTM && (
                     <div className="level-item">

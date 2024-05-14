@@ -68,6 +68,7 @@ ORDER BY date([public.themes].creation_date) DESC;`;
 
 export const getNominationDataByGameId = (game_id: number) => {
   return `SELECT
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
   [public.nominations].nomination_type,
   game_id,
   [public.users].name as user_name,
@@ -77,14 +78,16 @@ export const getNominationDataByGameId = (game_id: number) => {
   date([public.themes].creation_date) as 'date',
   winner
 FROM [public.nominations]
-INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id
+INNER JOIN [public.users] ON [public.users].id = [public.nominations].user_id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
+INNER JOIN [public.games] ON [public.games].id = [public.nominations].game_id
 WHERE [public.nominations].game_id = ${game_id}
 ORDER BY date([public.themes].creation_date) DESC;`;
 };
 
 export const getNominationDataByUserId = (user_id: number) => {
   return `SELECT
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title, 
   [public.nominations].nomination_type,
   game_id,
   [public.users].name as user_name,
@@ -96,6 +99,7 @@ export const getNominationDataByUserId = (user_id: number) => {
 FROM [public.nominations]
 INNER JOIN [public.users] on [public.users].id = [public.nominations].user_id
 INNER JOIN [public.themes] ON [public.nominations].theme_id = [public.themes].id
+INNER JOIN [public.games] ON [public.games].id = [public.nominations].game_id
 WHERE [public.users].id = ${user_id}
 ORDER BY date([public.themes].creation_date) DESC;`;
 };

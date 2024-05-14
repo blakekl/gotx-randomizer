@@ -71,6 +71,7 @@ export interface Nomination {
 }
 
 export interface NominationListItem {
+  game_title: string;
   nomination_type: NominationType;
   game_id: number;
   user_name: string;
@@ -223,6 +224,7 @@ export const userDto = (data: any[]): User => {
 
 export const nominationListItemDto = (data: any[]): NominationListItem => {
   const [
+    game_title,
     nomination_type,
     game_id,
     user_name,
@@ -233,6 +235,7 @@ export const nominationListItemDto = (data: any[]): NominationListItem => {
     winner,
   ] = data;
   return {
+    game_title,
     nomination_type,
     game_id,
     user_name,
