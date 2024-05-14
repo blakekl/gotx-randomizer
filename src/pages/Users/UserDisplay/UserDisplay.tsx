@@ -33,7 +33,7 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
   }, [dbStore, user]);
   return (
     <>
-      <h2 className="title has-text-centered">{user.name}</h2>
+      <h2 className="title is-2 has-text-centered">{user.name}</h2>
       <div className="tabs">
         <ul>
           <li
@@ -57,7 +57,10 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
         </ul>
       </div>
       {activeTab === Tabs.NOMINATIONS && (
-        <NominationList showTitle={true} nominations={nominations}></NominationList>
+        <NominationList
+          showTitle={true}
+          nominations={nominations}
+        ></NominationList>
       )}
       {activeTab === Tabs.COMPLETIONS && (
         <table className="table is-fullwidth is-striped">

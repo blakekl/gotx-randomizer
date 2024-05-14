@@ -293,7 +293,7 @@ const Statistics = observer(() => {
 
   return (
     <>
-      <h1 className="title has-text-centered">Statistics</h1>
+      <h1 className="title is-1 has-text-centered">Statistics</h1>
       <div className="tabs">
         <ul>
           <li

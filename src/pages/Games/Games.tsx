@@ -37,7 +37,7 @@ const Games = () => {
 
   return (
     <>
-      <h1 className="title has-text-centered">Games</h1>
+      <h1 className="title is-1 has-text-centered">Games</h1>
       <div className="field">
         <p className="control has-icons-left">
           <input

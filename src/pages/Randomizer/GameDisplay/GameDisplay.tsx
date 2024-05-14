@@ -76,9 +76,9 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
         }}
       />
       <section className="section">
-        <h1 className="title has-text-centered">{mainTitle}</h1>
+        <h1 className="title is-1 has-text-centered">{mainTitle}</h1>
         {subtitles.length > 0 && (
-          <h2 className="subtitle has-text-centered">
+          <h2 className="subtitle is-2 has-text-centered">
             {subtitles.map((x, index) => (
               <div key={index}>{x}</div>
             ))}
