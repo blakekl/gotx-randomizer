@@ -3,6 +3,7 @@ import {
   CompletionListItem,
   NominationListItem,
   UserListItem,
+  nominationTypeToPoints,
 } from '../../../models/game';
 import { useStores } from '../../../stores/useStores';
 import NominationList from '../../Randomizer/GameDisplay/NominationList';
@@ -31,6 +32,7 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
     setNominations(dbStore.getNominationsByUser(user.id));
     setCompletions(dbStore.getCompletionsByUserId(user.id));
   }, [dbStore, user]);
+
   return (
     <>
       <h2 className="title is-2 has-text-centered">{user.name}</h2>
@@ -63,28 +65,48 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
         ></NominationList>
       )}
       {activeTab === Tabs.COMPLETIONS && (
-        <table className="table is-fullwidth is-striped">
+        <table className="table is-fullwidth is-striped is-narrow">
           <thead>
-            <tr>
-              <th>Name</th>
+            <tr className="title is-3 is-primary">
+              <th className="">Earned Points</th>
+              <th className="has-text-centered"></th>
+              <th className="has-text-right">
+                {completions
+                  .map((x) => nominationTypeToPoints(x.nomination_type))
+                  .reduce((current, sum) => (sum += current), 0)}
+              </th>
+            </tr>
+            <tr className="title is-3 is-primary">
+              <th className="">Name</th>
+              <th className="has-text-centered">type</th>
+              <th className="has-text-right">Points</th>
             </tr>
           </thead>
           <tbody>
-            {completions.map((x) => (
-              <tr key={x.id}>
-                <td>
-                  {[
-                    x.title_other,
-                    x.title_jap,
-                    x.title_eu,
-                    x.title_usa,
-                    x.title_world,
-                  ]
-                    .filter((y) => y && y.length > 0)
-                    .pop()}
-                </td>
-              </tr>
-            ))}
+            {completions
+              .map((x) => ({
+                ...x,
+                points: nominationTypeToPoints(x.nomination_type),
+              }))
+              .map((x) => (
+                <tr key={x.id}>
+                  <td>
+                    {[
+                      x.title_other,
+                      x.title_jap,
+                      x.title_eu,
+                      x.title_usa,
+                      x.title_world,
+                    ]
+                      .filter((y) => y && y.length > 0)
+                      .pop()}
+                  </td>
+                  <td className="has-text-centered">{x.nomination_type}</td>
+                  <td className="has-text-right is-size-4">
+                    {x.points < 1 ? '½' : x.points}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       )}

@@ -45,13 +45,13 @@ const Users = () => {
           </span>
         </p>
       </div>
-      <table className="table selectable is-striped is-fullwidth">
+      <table className="table is-hoverable is-striped is-fullwidth is-narrow">
         <thead>
-          <tr>
+          <tr className="title is-3 is-primary">
             <th>Name</th>
-            <th>Nominations</th>
-            <th>Nomination Wins</th>
-            <th>Nomination Win Rate</th>
+            <th className="has-text-centered">Nominations</th>
+            <th className="has-text-centered">Nomination Wins</th>
+            <th className="has-text-right">Nomination Win Rate</th>
           </tr>
         </thead>
         <tbody>
@@ -68,9 +68,9 @@ const Users = () => {
               onMouseLeave={() => setHovered(0)}
             >
               <td>{x.name}</td>
-              <td>{x.nominations}</td>
-              <td>{x.wins}</td>
-              <td>{x.success_rate}</td>
+              <td className="has-text-centered">{x.nominations}</td>
+              <td className="has-text-centered">{x.wins}</td>
+              <td className="has-text-right">{x.success_rate}</td>
             </tr>
           ))}
         </tbody>

@@ -11,6 +11,16 @@ export enum NominationType {
   GOTY = 'goty',
 }
 
+export const nominationTypeToPoints = (nomination: NominationType) => {
+  switch (nomination) {
+    case NominationType.RETROBIT:
+    case NominationType.GOTWOTY:
+      return 0.5;
+    default:
+      return 1;
+  }
+};
+
 export enum Subscription {
   SUPPORTER = 'supporter',
   CHAMPION = 'champion',

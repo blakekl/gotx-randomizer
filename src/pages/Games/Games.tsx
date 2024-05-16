@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import GameDisplay from '../Randomizer/GameDisplay/GameDisplay';
 
 const Games = () => {
-  const { dbStore } = useStores();
+  const { dbStore, settingsStore } = useStores();
   const { allGames } = dbStore;
   const [gameList, setGameList] = useState(new Array<Game>());
   const [indexRange, setIndexRange] = useState([0, 0]);
@@ -35,6 +35,14 @@ const Games = () => {
     setGameList(newPoolArray);
   }, [allGames, titleFilter]);
 
+  const handleRowClicked = (e: React.MouseEvent, game: Game) => {
+    if ((e.target as HTMLElement).tagName === 'BUTTON') {
+      settingsStore.toggleHiddenGame(game.id);
+    } else {
+      setSelectedGame(game);
+    }
+  };
+
   return (
     <>
       <h1 className="title is-1 has-text-centered">Games</h1>
@@ -54,17 +62,19 @@ const Games = () => {
           </span>
         </p>
       </div>
-      <table className="table selectable is-striped is-fullwidth">
+      <table className="table is-hoverable is-striped is-fullwidth is-narrow">
         <thead>
-          <tr>
+          <tr className="title is-3 is-primary">
             <th>Title</th>
+            <th className="has-text-right">Hide</th>
           </tr>
         </thead>
         <tbody>
           {gameList.slice(indexRange[0], indexRange[1]).map((x) => (
             <tr
               key={x.id}
-              onClick={() => setSelectedGame(x)}
+              // onClick={() => setSelectedGame(x)}
+              onClick={(e) => handleRowClicked(e, x)}
               className={classNames({
                 'is-selected':
                   (selectedGame && x.id === selectedGame.id) ||
@@ -83,6 +93,22 @@ const Games = () => {
                 ]
                   .filter((x) => x && x?.length > 0)
                   .pop()}
+              </td>
+              <td className="has-text-right">
+                <button
+                  title="Hides game in randomizer"
+                  className={classNames({
+                    button: true,
+                    'is-small': true,
+                    'is-danger':
+                      !settingsStore.hiddenGames.includes(x.id) || false,
+                    'is-success':
+                      settingsStore.hiddenGames.includes(x.id) || true,
+                  })}
+                  // onClick={(e) => {e.preventDefault(); settingsStore.toggleHiddenGame(x.id);}}
+                >
+                  {settingsStore.hiddenGames.includes(x.id) ? 'Unhide' : 'Hide'}
+                </button>
               </td>
             </tr>
           ))}

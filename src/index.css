@@ -92,7 +92,7 @@ label input {
   height: 10px;
   line-height: 38px;
 }
-table.table.selectable tr {
+.table.is-hoverable {
   cursor: pointer;
 }
 .tabs .tag {
