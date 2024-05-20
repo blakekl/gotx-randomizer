@@ -113,7 +113,8 @@ export const getCompletionsByUserId = (user_id: number) => {
   title_jap,
   title_other,
   date(completed_at) as 'date',
-  [public.nominations].nomination_type
+  [public.nominations].nomination_type,
+  [public.nominations].theme_id
 FROM [public.completions]
 INNER JOIN [public.users] ON [public.users].id = [public.completions].user_id
 INNER JOIN [public.nominations] ON [public.nominations].id = [public.completions].nomination_id

@@ -11,14 +11,17 @@ export enum NominationType {
   GOTY = 'goty',
 }
 
-export const nominationTypeToPoints = (nomination: NominationType) => {
-  switch (nomination) {
-    case NominationType.RETROBIT:
-    case NominationType.GOTWOTY:
-      return 0.5;
-    default:
-      return 1;
+export const nominationTypeToPoints = (theme: number, nomination: NominationType) => {
+  if (theme > 16) {
+    switch (nomination) {
+      case NominationType.RETROBIT:
+      case NominationType.GOTWOTY:
+        return 0.5;
+      default:
+        return 1;
+    }
   }
+  return 0;
 };
 
 export enum Subscription {
@@ -116,6 +119,7 @@ export interface CompletionListItem {
   title_other: string;
   date: string;
   nomination_type: NominationType;
+  theme_id: number;
 }
 
 export const gameDto = (data: any[]): Game => {
@@ -267,6 +271,7 @@ export const completionsByUserIdDto = (data: any[]): CompletionListItem => {
     title_other,
     date,
     nomination_type,
+    theme_id,
   ] = data;
   return {
     id,
@@ -277,6 +282,7 @@ export const completionsByUserIdDto = (data: any[]): CompletionListItem => {
     title_other,
     date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
     nomination_type,
+    theme_id,
   } as CompletionListItem;
 };
 

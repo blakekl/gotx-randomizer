@@ -72,7 +72,7 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
               <th className="has-text-centered"></th>
               <th className="has-text-right">
                 {completions
-                  .map((x) => nominationTypeToPoints(x.nomination_type))
+                  .map((x) => nominationTypeToPoints(x.theme_id, x.nomination_type))
                   .reduce((current, sum) => (sum += current), 0)}
               </th>
             </tr>
@@ -86,7 +86,7 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
             {completions
               .map((x) => ({
                 ...x,
-                points: nominationTypeToPoints(x.nomination_type),
+                points: nominationTypeToPoints(x.theme_id, x.nomination_type),
               }))
               .map((x) => (
                 <tr key={x.id}>
@@ -103,7 +103,7 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
                   </td>
                   <td className="has-text-centered">{x.nomination_type}</td>
                   <td className="has-text-right is-size-4">
-                    {x.points < 1 ? '½' : x.points}
+                    {x.points === 1 || x.points == 0 ? `${x.points}` : '½'}
                   </td>
                 </tr>
               ))}
