@@ -84,7 +84,7 @@ ORDER BY date([public.themes].creation_date) DESC;`;
  * Statistical queries.
  */
 export const mostCompletedGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
@@ -93,7 +93,7 @@ GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedGotmGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
@@ -103,7 +103,7 @@ GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedRetrobitGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
@@ -113,7 +113,7 @@ GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedRpgGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
@@ -123,7 +123,7 @@ GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedGotyGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
@@ -133,7 +133,7 @@ GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
 export const mostCompletedRetrobitYearGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.games]
 INNER JOIN [public.nominations] on [public.nominations].game_id = [public.games].id
@@ -143,7 +143,7 @@ GROUP BY [public.nominations].game_id
 ORDER BY completions DESC, title;`;
 
 export const newestCompletions = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   COUNT(*) as completions
 FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.nominations].id
@@ -153,7 +153,7 @@ GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const newestRetrobitCompletions = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.nominations].id
@@ -164,7 +164,7 @@ GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const newestGotmCompletions = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.nominations].id
@@ -175,7 +175,7 @@ GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const newestRpgCompletions = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.nominations].id
@@ -186,7 +186,7 @@ GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const newestGotyCompletions = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.nominations].id
@@ -197,7 +197,7 @@ GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const newestGotwotyCompletions = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
 COUNT(*) as completions
 FROM [public.completions]
 INNER JOIN [public.nominations] ON [public.completions].nomination_id = [public.nominations].id
@@ -208,7 +208,7 @@ GROUP BY nomination_id
 ORDER BY [public.themes].creation_date DESC;`;
 
 export const totalNomsBeforeWinByGame = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   COUNT(*) AS total
 FROM [public.nominations]
 INNER JOIN [public.games] on game_id = [public.games].id
@@ -236,7 +236,7 @@ GROUP BY [public.nominations].user_id
 ORDER BY wins DESC, [public.users].name ASC;`;
 
 export const mostNominatedGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
@@ -245,7 +245,7 @@ GROUP BY game_id
 ORDER BY nominations DESC, title;`;
 
 export const mostNominatedLoserGames = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
@@ -304,7 +304,7 @@ GROUP BY [public.nominations].user_id
 ORDER BY nominations DESC, name;`;
 
 export const completionsCountByGame = `SELECT
-SELECT COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+ COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   COUNT(*) AS completions,
   [public.nominations].theme_id,
   [public.nominations].nomination_type
