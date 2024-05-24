@@ -36,9 +36,22 @@ const Games = () => {
   }, [allGames, titleFilter]);
 
   const handleRowClicked = (e: React.MouseEvent, game: Game) => {
-    if ((e.target as HTMLElement).tagName === 'BUTTON') {
-      settingsStore.toggleHiddenGame(game.id);
-    } else {
+    let element: HTMLElement | null = e.target as HTMLElement;
+    let isButton = false;
+    while (!isButton && element?.tagName !== 'TD') {
+      isButton = (element as HTMLElement).tagName === 'BUTTON'
+      if (isButton) {
+        console.log('button: ', element);
+        if ((e.target as HTMLElement).textContent?.trim() === 'Copy') {
+          void navigator.clipboard.writeText(`${game.screenscraper_id}`);
+        } else {
+          settingsStore.toggleHiddenGame(game.id);
+        }
+      }
+      element = element?.parentElement || null;
+    }
+    if (!isButton) {
+      console.log('row clicked');
       setSelectedGame(game);
     }
   };
@@ -65,7 +78,8 @@ const Games = () => {
       <table className="table is-hoverable is-striped is-fullwidth is-narrow">
         <thead>
           <tr className="title is-3 is-primary">
-            <th>Title</th>
+            <th className=''>Title</th>
+            <th className="has-text-right">ID</th>
             <th className="has-text-right">Hide</th>
           </tr>
         </thead>
@@ -93,6 +107,15 @@ const Games = () => {
                 ]
                   .filter((x) => x && x?.length > 0)
                   .pop()}
+              </td>
+              <td className='has-text-right'>
+                <button
+                  title="copy screenscraper id "
+                  className='button is-secondary has-tooltip-active'
+                >
+                  <span className='icon is-small'><i className="fa-solid fa-copy"></i></span>
+                  <span>Copy</span>
+                </button>
               </td>
               <td className="has-text-right">
                 <button
