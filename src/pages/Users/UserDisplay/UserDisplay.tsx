@@ -65,50 +65,53 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
         ></NominationList>
       )}
       {activeTab === Tabs.COMPLETIONS && (
-        <table className="table is-fullwidth is-striped is-narrow">
-          <thead>
-            <tr className="title is-3 is-primary">
-              <th className="">Earned Points</th>
-              <th className="has-text-centered"></th>
-              <th className="has-text-right">
-                {completions
-                  .map((x) => nominationTypeToPoints(x.theme_id, x.nomination_type, x.retroachievements))
-                  .reduce((current, sum) => (sum += current), 0)}
-              </th>
-            </tr>
-            <tr className="title is-3 is-primary">
-              <th className="">Name</th>
-              <th className="has-text-centered">type</th>
-              <th className="has-text-right">Points</th>
-            </tr>
-          </thead>
-          <tbody>
-            {completions
-              .map((x) => ({
-                ...x,
-                points: nominationTypeToPoints(x.theme_id, x.nomination_type, x.retroachievements),
-              }))
-              .map((x) => (
-                <tr key={x.id}>
-                  <td>
-                    {[
-                      x.title_other,
-                      x.title_jap,
-                      x.title_eu,
-                      x.title_usa,
-                      x.title_world,
-                    ]
-                      .filter((y) => y && y.length > 0)
-                      .pop()}
-                  </td>
-                  <td className="has-text-centered">{x.nomination_type}</td>
-                  <td className="has-text-right is-size-4">
-                    {x.points === 0.5 ? '½' : `${x.points}`}
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <>
+          <p>disclaimer: * points may not be accurate. This is just calculated from the completions table, which is not guaranteed to be good. But you can help correct the data by letting us now anything that is wrong.</p>
+          <table className="table is-fullwidth is-striped is-narrow mt-5">
+            <thead>
+              <tr className="title is-3 is-primary">
+                <th className="">Earned Points</th>
+                <th className="has-text-centered"></th>
+                <th className="has-text-right">
+                  {completions
+                    .map((x) => nominationTypeToPoints(x.theme_id, x.nomination_type, x.retroachievements))
+                    .reduce((current, sum) => (sum += current), 0)}
+                </th>
+              </tr>
+              <tr className="title is-3 is-primary">
+                <th className="">Name</th>
+                <th className="has-text-centered">type</th>
+                <th className="has-text-right">Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {completions
+                .map((x) => ({
+                  ...x,
+                  points: nominationTypeToPoints(x.theme_id, x.nomination_type, x.retroachievements),
+                }))
+                .map((x) => (
+                  <tr key={x.id}>
+                    <td>
+                      {[
+                        x.title_other,
+                        x.title_jap,
+                        x.title_eu,
+                        x.title_usa,
+                        x.title_world,
+                      ]
+                        .filter((y) => y && y.length > 0)
+                        .pop()}
+                    </td>
+                    <td className="has-text-centered">{x.nomination_type}</td>
+                    <td className="has-text-right is-size-4">
+                      {x.points === 0.5 ? '½' : `${x.points}`}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </>
       )}
     </>
   );
