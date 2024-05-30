@@ -11,11 +11,16 @@ export enum NominationType {
   GOTY = 'goty',
 }
 
-export const nominationTypeToPoints = (theme: number, type: NominationType, retroachievements: boolean): number => {
-  if(type === NominationType.RPG && retroachievements) {
+export const nominationTypeToPoints = (
+  theme: number,
+  type: NominationType,
+  retroachievements: boolean,
+): number => {
+  if (type === NominationType.RPG && retroachievements) {
     return 3;
   } else {
-    if (theme > 16) { // this is the last theme before we implemented the points system.
+    if (theme > 16) {
+      // this is the last theme before we implemented the points system.
       switch (type) {
         case NominationType.RETROBIT:
         case NominationType.GOTWOTY:

@@ -39,7 +39,7 @@ const Games = () => {
     let element: HTMLElement | null = e.target as HTMLElement;
     let isButton = false;
     while (!isButton && element?.tagName !== 'TD') {
-      isButton = (element as HTMLElement).tagName === 'BUTTON'
+      isButton = (element as HTMLElement).tagName === 'BUTTON';
       if (isButton) {
         console.log('button: ', element);
         if ((e.target as HTMLElement).textContent?.trim() === 'Copy') {
@@ -78,7 +78,7 @@ const Games = () => {
       <table className="table is-hoverable is-striped is-fullwidth is-narrow">
         <thead>
           <tr className="title is-3 is-primary">
-            <th className=''>Title</th>
+            <th className="">Title</th>
             <th className="has-text-right">ID</th>
             <th className="has-text-right">Hide</th>
           </tr>
@@ -108,12 +108,14 @@ const Games = () => {
                   .filter((x) => x && x?.length > 0)
                   .pop()}
               </td>
-              <td className='has-text-right'>
+              <td className="has-text-right">
                 <button
                   title="copy screenscraper id "
-                  className='button is-secondary has-tooltip-active'
+                  className="button is-secondary has-tooltip-active"
                 >
-                  <span className='icon is-small'><i className="fa-solid fa-copy"></i></span>
+                  <span className="icon is-small">
+                    <i className="fa-solid fa-copy"></i>
+                  </span>
                   <span>Copy</span>
                 </button>
               </td>

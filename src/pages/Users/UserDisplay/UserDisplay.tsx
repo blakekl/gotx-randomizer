@@ -66,7 +66,12 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
       )}
       {activeTab === Tabs.COMPLETIONS && (
         <>
-          <p>disclaimer: * points may not be accurate. This is just calculated from the completions table, which is not guaranteed to be good. But you can help correct the data by letting us now anything that is wrong.</p>
+          <p>
+            disclaimer: * points may not be accurate. This is just calculated
+            from the completions table, which is not guaranteed to be good. But
+            you can help correct the data by letting us now anything that is
+            wrong.
+          </p>
           <table className="table is-fullwidth is-striped is-narrow mt-5">
             <thead>
               <tr className="title is-3 is-primary">
@@ -74,7 +79,13 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
                 <th className="has-text-centered"></th>
                 <th className="has-text-right">
                   {completions
-                    .map((x) => nominationTypeToPoints(x.theme_id, x.nomination_type, x.retroachievements))
+                    .map((x) =>
+                      nominationTypeToPoints(
+                        x.theme_id,
+                        x.nomination_type,
+                        x.retroachievements,
+                      ),
+                    )
                     .reduce((current, sum) => (sum += current), 0)}
                 </th>
               </tr>
@@ -88,7 +99,11 @@ const UserDisplay = ({ user }: UserDisplayProps) => {
               {completions
                 .map((x) => ({
                   ...x,
-                  points: nominationTypeToPoints(x.theme_id, x.nomination_type, x.retroachievements),
+                  points: nominationTypeToPoints(
+                    x.theme_id,
+                    x.nomination_type,
+                    x.retroachievements,
+                  ),
                 }))
                 .map((x) => (
                   <tr key={x.id}>
