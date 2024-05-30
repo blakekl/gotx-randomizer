@@ -3,24 +3,44 @@ import { observer } from 'mobx-react-lite';
 import { NominationListItem, NominationType } from '../../../models/game';
 
 interface NominationListParams {
-  nominations: NominationListItem[],
+  nominations: NominationListItem[];
+  showTitle: boolean;
 }
 
-const NominationList = observer(({ nominations } : NominationListParams) => {
-  return (
-    <>
-      {nominations.map((nomination, index) => (
-        <article className="media" key={index}>
-          <div className="media-content">
-            <div className="content">
-              <blockquote
-                className={classNames({
-                  'has-background-primary': nomination.winner,
-                  'has-text-white': nomination.winner,
-                })}
-              >
-                <div className="level">
-                  {nomination.nomination_type === NominationType.GOTM && (
+const NominationList = observer(
+  ({ nominations, showTitle = false }: NominationListParams) => {
+    return (
+      <>
+        {nominations.map((nomination, index) => (
+          <article className="media" key={index}>
+            <div className="media-content">
+              <div className="content">
+                <blockquote
+                  className={classNames({
+                    'has-background-primary': nomination.winner,
+                    'has-text-white': nomination.winner,
+                  })}
+                >
+                  {showTitle && (
+                    <h3 className="subtitle is-3 has-text-centered">
+                      {nomination.game_title}
+                    </h3>
+                  )}
+                  <div className="level">
+                    {nomination.nomination_type === NominationType.GOTM && (
+                      <div className="level-item">
+                        <span
+                          className={classNames({
+                            subtitle: true,
+                            'has-text-white': nomination.winner,
+                          })}
+                        >
+                          Nominator: {nomination.user_name}{' '}
+                          {nomination.winner && '👑'}
+                        </span>
+                      </div>
+                    )}
+
                     <div className="level-item">
                       <span
                         className={classNames({
@@ -28,64 +48,32 @@ const NominationList = observer(({ nominations } : NominationListParams) => {
                           'has-text-white': nomination.winner,
                         })}
                       >
-                        Nominator: {nomination.user_name}{' '}
-                        {nomination.winner && '👑'}
+                        {nomination.date}
                       </span>
                     </div>
-                  )}
 
-                  <div className="level-item">
-                    <span
-                      className={classNames({
-                        subtitle: true,
-                        'has-text-white': nomination.winner,
-                      })}
-                    >
-                      {nomination.date}
-                    </span>
+                    <div className="level-item">
+                      {nomination.theme_title && (
+                        <span
+                          className={classNames({
+                            subtitle: true,
+                            'has-text-white': nomination.winner,
+                          })}
+                        >
+                          Theme: {nomination.theme_title}
+                        </span>
+                      )}
+                    </div>
                   </div>
-
-                  <div className="level-item">
-                    {nomination.theme_title && (
-                      <span
-                        className={classNames({
-                          subtitle: true,
-                          'has-text-white': nomination.winner,
-                        })}
-                      >
-                        Theme: {nomination.theme_title}
-                      </span>
-                    )}
-                    {nomination.nomination_type === NominationType.RETROBIT && (
-                      <span
-                        className={classNames({
-                          subtitle: true,
-                          'has-text-white': nomination.winner,
-                        })}
-                      >
-                        Theme: Retrobits
-                      </span>
-                    )}
-                    {nomination.nomination_type === NominationType.RPG && (
-                      <span
-                        className={classNames({
-                          subtitle: true,
-                          'has-text-white': nomination.winner,
-                        })}
-                      >
-                        Theme: RPG of the Quarter
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <p>{nomination.game_description}</p>
-              </blockquote>
+                  <p>{nomination.game_description}</p>
+                </blockquote>
+              </div>
             </div>
-          </div>
-        </article>
-      ))}
-    </>
-  );
-});
+          </article>
+        ))}
+      </>
+    );
+  },
+);
 
 export default NominationList;

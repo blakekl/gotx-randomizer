@@ -1,6 +1,6 @@
 import { runInAction } from 'mobx';
 import dbClient from '../data';
-import { Game, LabeledStat } from '../models/game';
+import { Game, LabeledStat, UserListItem } from '../models/game';
 
 interface GameCollection {
   gotmRunnerUp: Game[];
@@ -31,7 +31,7 @@ class DbStore {
     screenscraper_id: 0,
     created_at: '',
     updated_at: '',
-  } as Game;  
+  } as Game;
 
   constructor() {
     const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
@@ -48,7 +48,7 @@ class DbStore {
         rpgWinners,
       });
     });
-  }    
+  }
 
   setAllGames(value: GameCollection) {
     this.allGames = value;
@@ -81,27 +81,27 @@ class DbStore {
   getNewestCompletions(): LabeledStat[] {
     return dbClient.newestCompletions() ?? [];
   }
- 
+
   getNewestGotmCompletions(): LabeledStat[] {
     return dbClient.newestGotmCompletions() ?? [];
   }
- 
+
   getNewestGotwotyCompletions(): LabeledStat[] {
     return dbClient.newestGotwotyCompletions() ?? [];
   }
- 
+
   getNewestGotyCompletions(): LabeledStat[] {
     return dbClient.newestGotyCompletions() ?? [];
   }
- 
+
   getNewestRetrobitCompletions(): LabeledStat[] {
     return dbClient.newestRetrobitCompletions() ?? [];
   }
- 
+
   getNewestRpgCompletions(): LabeledStat[] {
     return dbClient.newestRpgCompletions() ?? [];
   }
- 
+
   getTotalNominationsBeforeWinByGame(): LabeledStat[] {
     return dbClient.totalNomsBeforeWinByGame() ?? [];
   }
@@ -138,12 +138,20 @@ class DbStore {
     return dbClient.mostNominatedGamesByUser() ?? [];
   }
 
-  getNominationSuccessPercentByUser(): LabeledStat[] {
+  getNominationSuccessPercentByUser(): UserListItem[] {
     return dbClient.getNominationSuccessPercentByUser() ?? [];
-  } 
+  }
 
-  getNominations(id: number) {
-    return dbClient.getNominationData(id);
+  getNominationsByGame(id: number) {
+    return dbClient.getNominationsByGameId(id) ?? [];
+  }
+
+  getNominationsByUser(id: number) {
+    return dbClient.getNominationsByUserId(id) ?? [];
+  }
+
+  getCompletionsByUserId(id: number) {
+    return dbClient.getCompletionsByUserId(id) ?? [];
   }
 }
 

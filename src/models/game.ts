@@ -11,6 +11,28 @@ export enum NominationType {
   GOTY = 'goty',
 }
 
+export const nominationTypeToPoints = (
+  theme: number,
+  type: NominationType,
+  retroachievements: boolean,
+): number => {
+  if (type === NominationType.RPG && retroachievements) {
+    return 3;
+  } else {
+    if (theme > 16) {
+      // this is the last theme before we implemented the points system.
+      switch (type) {
+        case NominationType.RETROBIT:
+        case NominationType.GOTWOTY:
+          return 0.5;
+        default:
+          return 1;
+      }
+    }
+  }
+  return 0;
+};
+
 export enum Subscription {
   SUPPORTER = 'supporter',
   CHAMPION = 'champion',
@@ -29,6 +51,15 @@ export interface User {
   created_at: string;
   updated_at: string;
   premium_subscriber: Subscription;
+}
+
+export interface UserListItem {
+  id: number;
+  name: string;
+  success_rate: number;
+  nominations: number;
+  wins: number;
+  completions: number;
 }
 
 export interface Game {
@@ -62,14 +93,15 @@ export interface Nomination {
 }
 
 export interface NominationListItem {
-    nomination_type: NominationType;
-    game_id: number;
-    user_name: string;
-    game_description: string;
-    theme_title: string;
-    theme_description: string;
-    date: string;
-    winner: boolean;
+  game_title: string;
+  nomination_type: NominationType;
+  game_id: number;
+  user_name: string;
+  game_description: string;
+  theme_title: string;
+  theme_description: string;
+  date: string;
+  winner: boolean;
 }
 
 export interface Theme {
@@ -85,6 +117,19 @@ export interface Theme {
 export interface LabeledStat {
   label: string;
   value: number;
+}
+
+export interface CompletionListItem {
+  id: number;
+  title_world: string;
+  title_usa: string;
+  title_eu: string;
+  title_jap: string;
+  title_other: string;
+  date: string;
+  nomination_type: NominationType;
+  theme_id: number;
+  retroachievements: boolean;
 }
 
 export const gameDto = (data: any[]): Game => {
@@ -125,7 +170,17 @@ export const gameDto = (data: any[]): Game => {
 };
 
 export const nominationDto = (data: any[]): Nomination => {
-  const [id, nomination_type, description, winner, game_id, user_id, theme_id, created_at, updated_at ] = data;
+  const [
+    id,
+    nomination_type,
+    description,
+    winner,
+    game_id,
+    user_id,
+    theme_id,
+    created_at,
+    updated_at,
+  ] = data;
 
   return {
     id,
@@ -141,7 +196,15 @@ export const nominationDto = (data: any[]): Nomination => {
 };
 
 export const themeDto = (data: any[]): Theme => {
-  const [id, creation_date, title, description, created_at, updated_at, nomination_type] = data;
+  const [
+    id,
+    creation_date,
+    title,
+    description,
+    created_at,
+    updated_at,
+    nomination_type,
+  ] = data;
   return {
     id,
     creation_date,
@@ -154,7 +217,19 @@ export const themeDto = (data: any[]): Theme => {
 };
 
 export const userDto = (data: any[]): User => {
-  const [id, name, discord_id, old_discord_name, current_points, redeemed_points, earned_points, premium_points, created_at, updated_at, premium_subscriber] = data;
+  const [
+    id,
+    name,
+    discord_id,
+    old_discord_name,
+    current_points,
+    redeemed_points,
+    earned_points,
+    premium_points,
+    created_at,
+    updated_at,
+    premium_subscriber,
+  ] = data;
 
   return {
     id,
@@ -172,8 +247,19 @@ export const userDto = (data: any[]): User => {
 };
 
 export const nominationListItemDto = (data: any[]): NominationListItem => {
-  const [nomination_type, game_id, user_name, game_description, theme_title, theme_description, date, winner] = data;
+  const [
+    game_title,
+    nomination_type,
+    game_id,
+    user_name,
+    game_description,
+    theme_title,
+    theme_description,
+    date,
+    winner,
+  ] = data;
   return {
+    game_title,
     nomination_type,
     game_id,
     user_name,
@@ -185,34 +271,41 @@ export const nominationListItemDto = (data: any[]): NominationListItem => {
   } as NominationListItem;
 };
 
+export const completionsByUserIdDto = (data: any[]): CompletionListItem => {
+  const [
+    id,
+    title_world,
+    title_usa,
+    title_eu,
+    title_jap,
+    title_other,
+    date,
+    nomination_type,
+    theme_id,
+    retroachievements,
+  ] = data;
+  return {
+    id,
+    title_world,
+    title_usa,
+    title_eu,
+    title_jap,
+    title_other,
+    date: dayjs(`${date}T13:00:00.000Z`).toDate().toLocaleDateString(),
+    nomination_type,
+    theme_id,
+    retroachievements,
+  } as CompletionListItem;
+};
+
 export const labeledStatDto = (data: any[]): LabeledStat => {
   const [label, value] = data;
-  return {label, value} as LabeledStat;
-}
+  return { label, value } as LabeledStat;
+};
 
-const firstRetrobitDate = dayjs('2022-03-27T00:00:00.000Z');
-const firstRpgDate = dayjs('2023-01-01T13:00:00.000Z');
-export const convertDate = (nomination: NominationListItem, index: number) => {
-  switch (nomination.nomination_type) {
-    case NominationType.RETROBIT:
-      return {
-        ...nomination,
-        date: firstRetrobitDate
-          .add(7 * index, 'days')
-          .toDate()
-          .toLocaleDateString(),
-      };
-    case NominationType.RPG:
-      return {
-        ...nomination,
-        date: firstRpgDate
-          .add(3 * index, 'months')
-          .toDate()
-          .toLocaleDateString(),
-      };
-    default:
-      return nomination;
-  }
+export const userListItemDto = (data: any[]): UserListItem => {
+  const [id, name, success_rate, nominations, wins] = data;
+  return { id, name, success_rate, nominations, wins } as UserListItem;
 };
 
 export enum SeriesType {

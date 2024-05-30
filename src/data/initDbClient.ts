@@ -7,7 +7,6 @@ import {
   avgTimeToBeatByMonth,
   completionsCountByGame,
   getGotmRunnerup,
-  getNominationData,
   getRetrobits,
   getRpgRunnerup,
   getWinningGotm,
@@ -33,13 +32,16 @@ import {
   totalNomsBeforeWinByGame,
   totalTimeToBeatByMonth,
   nominationSuccessPercentByUser,
+  getNominationDataByGameId as getNominationsByGameId,
+  getNominationDataByUserId,
+  getCompletionsByUserId,
 } from '../data/Queries';
 import {
-  NominationType,
-  convertDate,
+  completionsByUserIdDto,
   gameDto,
   labeledStatDto,
   nominationListItemDto,
+  userListItemDto,
 } from '../models/game';
 
 const initDbClient = async () => {
@@ -76,123 +78,191 @@ const initDbClient = async () => {
     getRpgWinners: () => {
       return db?.exec(`${getWinningRpg}`)[0].values.map((x) => gameDto(x));
     },
-    getNominationData: (game_id: number) => {
-      const nominations =
+    getNominationsByUserId: (user_id: number) => {
+      return (
         db
-          ?.exec(getNominationData)
+          ?.exec(getNominationDataByUserId(user_id))
           .flatMap((x) => x.values)
-          .flatMap(nominationListItemDto) || [];
-      const gameNoms = nominations.filter((x) => x.game_id === game_id);
-      const retrobitIndexes = nominations
-        .filter((x) => x.nomination_type === NominationType.RETROBIT)
-        .reduce((aggregate, current, index) => {
-          if (current.game_id === game_id) {
-            aggregate.push(index);
-            return [...aggregate, index];
-          }
-          return aggregate;
-        }, new Array<number>());
-
-      const rpgIndexes = nominations
-        .filter((x) => x.nomination_type === NominationType.RPG)
-        .reduce((aggregate, current, index) => {
-          if (current.game_id === game_id) {
-            aggregate.push(index);
-            return [...aggregate, index];
-          }
-          return aggregate;
-        }, new Array<number>());
-
-      gameNoms.map((x) => {
-        if (x.nomination_type === NominationType.GOTM) {
-          return x;
-        } else if (x.nomination_type === NominationType.RETROBIT) {
-          return;
-        }
-      });
-      return gameNoms.map((x) => {
-        switch (x.nomination_type) {
-          case NominationType.RETROBIT:
-            return convertDate(x, retrobitIndexes.shift() || 0);
-          case NominationType.RPG:
-            return convertDate(x, rpgIndexes.shift() || 0);
-          default:
-            return x;
-        }
-      });
+          .flatMap(nominationListItemDto) || []
+      );
+    },
+    getNominationsByGameId: (game_id: number) => {
+      return (
+        db
+          ?.exec(getNominationsByGameId(game_id))
+          .flatMap((x) => x.values)
+          .flatMap(nominationListItemDto) || []
+      );
+    },
+    getCompletionsByUserId: (user_id: number) => {
+      return db
+        ?.exec(getCompletionsByUserId(user_id))
+        .flatMap((x) => x.values)
+        .flatMap(completionsByUserIdDto);
     },
     mostCompletedGames: () => {
-      return db?.exec(mostCompletedGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db?.exec(mostCompletedGames)[0]?.values.map((x) => labeledStatDto(x)) ??
+        []
+      );
     },
     mostCompletedGotmGames: () => {
-      return db?.exec(mostCompletedGotmGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostCompletedGotmGames)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     mostCompletedGotyGames: () => {
-      return db?.exec(mostCompletedGotyGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostCompletedGotyGames)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     mostCompletedRetrobitGames: () => {
-      return db?.exec(mostCompletedRetrobitGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostCompletedRetrobitGames)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     mostCompletedRetrobitYearGames: () => {
-      return db?.exec(mostCompletedRetrobitYearGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostCompletedRetrobitYearGames)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     mostCompletedRpgGames: () => {
-      return db?.exec(mostCompletedRpgGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostCompletedRpgGames)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     newestCompletions: () => {
-      return db?.exec(newestCompletions)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db?.exec(newestCompletions)[0]?.values.map((x) => labeledStatDto(x)) ??
+        []
+      );
     },
     newestRetrobitCompletions: () => {
-      return db?.exec(newestRetrobitCompletions)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(newestRetrobitCompletions)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     newestGotmCompletions: () => {
-      return db?.exec(newestGotmCompletions)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(newestGotmCompletions)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     newestRpgCompletions: () => {
-      return db?.exec(newestRpgCompletions)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(newestRpgCompletions)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     newestGotyCompletions: () => {
-      return db?.exec(newestGotyCompletions)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(newestGotyCompletions)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     newestGotwotyCompletions: () => {
-      return db?.exec(newestGotwotyCompletions)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(newestGotwotyCompletions)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     totalNomsBeforeWinByGame: () => {
-      return db?.exec(totalNomsBeforeWinByGame)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(totalNomsBeforeWinByGame)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     avgNominationsBeforeWin: () => {
-      return db?.exec(avgNominationsBeforeWin)[0]?.values.map(x => Number(x)) ?? [];
+      return (
+        db?.exec(avgNominationsBeforeWin)[0]?.values.map((x) => Number(x)) ?? []
+      );
     },
     topNominationWinsByUser: () => {
-      return db?.exec(topNominationWinsByUser)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(topNominationWinsByUser)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     mostNominatedGames: () => {
-      return db?.exec(mostNominatedGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db?.exec(mostNominatedGames)[0]?.values.map((x) => labeledStatDto(x)) ??
+        []
+      );
     },
     mostNominatedLoserGames: () => {
-      return db?.exec(mostNominatedLoserGames)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostNominatedLoserGames)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     avgTimeToBeatByMonth: () => {
-      return db?.exec(avgTimeToBeatByMonth)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(avgTimeToBeatByMonth)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     totalTimeToBeatByMonth: () => {
-      return db?.exec(totalTimeToBeatByMonth)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(totalTimeToBeatByMonth)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     longestMonthsByAvgTimeToBeat: () => {
-      return db?.exec(longestMonthsByAvgTimeToBeat)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(longestMonthsByAvgTimeToBeat)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     shortestMonthsByAvgTimeToBeat: () => {
-      return db?.exec(shortestMonthsByAvgTimeToBeat)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(shortestMonthsByAvgTimeToBeat)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     mostNominatedGamesByUser: () => {
-      return db?.exec(mostNominatedGamesByUser)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(mostNominatedGamesByUser)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     completionsCountByGame: () => {
-      return db?.exec(completionsCountByGame)[0]?.values.map(x => labeledStatDto(x)) ?? [];
+      return (
+        db
+          ?.exec(completionsCountByGame)[0]
+          ?.values.map((x) => labeledStatDto(x)) ?? []
+      );
     },
     getNominationSuccessPercentByUser: () => {
-      return db?.exec(nominationSuccessPercentByUser)[0].values.map(x => labeledStatDto(x)) ?? [];
-    }
+      return (
+        db
+          ?.exec(nominationSuccessPercentByUser)[0]
+          .values.map((x) => userListItemDto(x)) ?? []
+      );
+    },
   };
 };
 

@@ -92,3 +92,9 @@ label input {
   height: 10px;
   line-height: 38px;
 }
+.table.is-hoverable {
+  cursor: pointer;
+}
+.tabs .tag {
+  margin-inline-start: 0.5em;
+}

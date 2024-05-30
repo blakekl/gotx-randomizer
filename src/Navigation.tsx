@@ -7,11 +7,7 @@ const Navigation = () => {
   const isDark = useMediaQuery({ query: '(prefers-color-scheme: dark)' });
 
   return (
-    <nav
-      className="navbar"
-      role="navigation"
-      aria-label="main navigation"
-    >
+    <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="https://retrohandhelds.gg">
           <img
@@ -35,7 +31,9 @@ const Navigation = () => {
           onClick={() => setShowMenu(!showMenu)}
           onBlur={() => setTimeout(() => setShowMenu(false), 100)}
         >
-          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
         </a>
       </div>
       <div
@@ -46,8 +44,18 @@ const Navigation = () => {
       >
         <div className="navbar-end">
           {/* future links to go here. Just <a className="navbar-item"> */}
-          <a className="navbar-item" href="/">Randomizer</a>
-          <a className="navbar-item" href="stats">Statistics</a>
+          <a className="navbar-item" href="/">
+            Randomizer
+          </a>
+          <a className="navbar-item" href="stats">
+            Statistics
+          </a>
+          <a className="navbar-item" href="games">
+            Games
+          </a>
+          <a className="navbar-item" href="users">
+            Users
+          </a>
         </div>
       </div>
     </nav>

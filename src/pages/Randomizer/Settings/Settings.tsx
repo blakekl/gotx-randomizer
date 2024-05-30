@@ -5,7 +5,7 @@ import { useStores } from '../../../stores/useStores';
 import { useState } from 'react';
 
 const Settings = observer(() => {
-  const [ showSettings, setShowSettings ] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const { settingsStore } = useStores();
 
   const handleTtbFilterChange = (newValue: number[]) => {
