@@ -68,7 +68,7 @@ ORDER BY date([public.themes].creation_date) DESC;`;
 
 export const getNominationDataByGameId = (game_id: number) => {
   return `SELECT
-  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title,
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   [public.nominations].nomination_type,
   game_id,
   [public.users].name as user_name,
@@ -87,7 +87,7 @@ ORDER BY date([public.themes].creation_date) DESC;`;
 
 export const getNominationDataByUserId = (user_id: number) => {
   return `SELECT
-  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap) AS title, 
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   [public.nominations].nomination_type,
   game_id,
   [public.users].name as user_name,
@@ -280,7 +280,7 @@ GROUP BY [public.nominations].user_id
 ORDER BY wins DESC, [public.users].name ASC;`;
 
 export const mostNominatedGames = `SELECT
- COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   COUNT(*) AS nominations
 FROM [public.nominations]
 INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
