@@ -15,11 +15,7 @@ const Users = () => {
   const [hovered, setHovered] = useState(0);
 
   useEffect(() => {
-    setAllUsers(
-      dbStore
-        .getNominationSuccessPercentByUser()
-        .sort((a, b) => a.name.localeCompare(b.name)),
-    );
+    setAllUsers(dbStore.getNominationSuccessPercentByUser());
   }, [dbStore]);
 
   useEffect(() => {
