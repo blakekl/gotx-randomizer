@@ -378,4 +378,4 @@ LEFT JOIN (
 ) ON [public.users].id = join_user_id
 WHERE [public.users].id > 1
 GROUP BY [public.users].id
-ORDER BY success_rate DESC;`;
+ORDER BY success_rate DESC, nominations DESC, [public.users].name ASC;`;
