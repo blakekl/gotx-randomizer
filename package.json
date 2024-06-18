@@ -13,7 +13,7 @@
     "prettier": "prettier . --write",
     "preview": "vite preview",
     "publish": "npm run build && npm run deploy",
-    "updb": "echo 'compiling scripts...' && npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs && echo 'updating db...' && node ./scripts/parseSqlDump.cjs && echo 'cleaning up...' rm ./scripts/parseSqlDump.cjs",
+    "updb": "npx tsc --esModuleInterop true ./scripts/parseSqlDump.ts && mv ./scripts/parseSqlDump.js ./scripts/parseSqlDump.cjs && node ./scripts/parseSqlDump.cjs && rm ./scripts/parseSqlDump.cjs",
     "loadEnv": "export $(grep -v '^#' .env | xargs)",
     "unloadEnv": "unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\\1/' | xargs)"
   },
