@@ -2,17 +2,39 @@ import Database, { Statement } from 'better-sqlite3';
 import * as child from 'child_process';
 import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: `${__dirname}/../.env` });
+
 const {
   RETRIEVE_DUMP,
   DUMP_PATH,
   SERVER_NAME,
   SERVER_HOST,
   PORT,
-  USER: DB_USER,
+  DB_USER,
   DATABASE,
 } = process.env;
 
+if (!RETRIEVE_DUMP) {
+  console.error('RETRIEVE_DUMP environment variable not set.');
+}
+if (!DUMP_PATH) {
+  console.error('DUMP_PATH environment variable not set.');
+}
+if (!SERVER_NAME) {
+  console.error('SERVER_NAME environment variable not set.');
+}
+if (!SERVER_HOST) {
+  console.error('SERVER_HOST environment variable not set.');
+}
+if (!PORT) {
+  console.error('PORT environment variable not set.');
+}
+if (!DB_USER) {
+  console.error('DB_USER environment variable not set.');
+}
+if (!DATABASE) {
+  console.error('DATABASE environment variable not set.');
+}
 if (
   !RETRIEVE_DUMP ||
   !DUMP_PATH ||
