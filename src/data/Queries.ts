@@ -379,3 +379,17 @@ LEFT JOIN (
 WHERE [public.users].id > 1
 GROUP BY [public.users].id
 ORDER BY success_rate DESC, nominations DESC, [public.users].name ASC;`;
+
+export const nominationCountByThemeByCategory = `SELECT 
+  [public.themes].title,
+  CASE
+    WHEN [public.games].year < 1996 THEN 'pre-96'
+    WHEN [public.games].year > 1995 AND [public.games].year < 2000 THEN '96-99'
+    WHEN [public.games].year > 1999 THEN '2k+'
+  END category,
+  COUNT(*) as count
+ FROM [public.themes] INNER 
+   JOIN [public.nominations] ON [public.themes].id = [public.nominations].theme_id
+   INNER JOIN [public.games] ON [public.nominations].game_id = [public.games].id
+ WHERE [public.themes].nomination_type = 'gotm'
+ GROUP BY [public.themes].id, category;`;
