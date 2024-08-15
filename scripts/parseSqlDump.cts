@@ -166,7 +166,10 @@ if (toExecute.length <= 0) {
   process.exit(1);
 }
 
-console.log('executing queries:', toExecute);
+console.log('executing queries:');
+toExecute.forEach((x) => console.log(x));
+console.log('');
+console.log('');
 console.log(`executing ${toExecute.length} queries.`);
 db.transaction((queries: Statement[]) =>
   queries.forEach((query) => query.run()),
