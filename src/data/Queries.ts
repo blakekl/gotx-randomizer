@@ -394,4 +394,5 @@ export const nominationCountByThemeByCategory = `SELECT
  WHERE [public.themes].nomination_type = 'gotm'
  GROUP BY [public.themes].id, category;`;
 
- export const getGameById = (id: number) => `SELECT * FROM [public.games] WHERE id = "${id}" LIMIT 1;`;
+export const getGameById = (id: number) =>
+  `SELECT * FROM [public.games] WHERE id = "${id}" LIMIT 1;`;

@@ -265,8 +265,13 @@ const initDbClient = async () => {
       );
     },
     getGameById: (id: number) => {
-      return db?.exec(getGameById(id)).pop()?.values.map((x) => gameDto(x))[0] ?? null
-    }
+      return (
+        db
+          ?.exec(getGameById(id))
+          .pop()
+          ?.values.map((x) => gameDto(x))[0] ?? null
+      );
+    },
   };
 };
 
