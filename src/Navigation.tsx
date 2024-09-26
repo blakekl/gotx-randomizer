@@ -47,13 +47,13 @@ const Navigation = () => {
           <a className="navbar-item" href="/">
             Randomizer
           </a>
-          <a className="navbar-item" href="stats">
+          <a className="navbar-item" href="/stats">
             Statistics
           </a>
-          <a className="navbar-item" href="games">
+          <a className="navbar-item" href="/games">
             Games
           </a>
-          <a className="navbar-item" href="users">
+          <a className="navbar-item" href="/users">
             Users
           </a>
         </div>
