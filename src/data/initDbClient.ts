@@ -35,6 +35,7 @@ import {
   getNominationDataByGameId as getNominationsByGameId,
   getNominationDataByUserId,
   getCompletionsByUserId,
+  getGameById,
 } from '../data/Queries';
 import {
   completionsByUserIdDto,
@@ -261,6 +262,14 @@ const initDbClient = async () => {
         db
           ?.exec(nominationSuccessPercentByUser)[0]
           .values.map((x) => userListItemDto(x)) ?? []
+      );
+    },
+    getGameById: (id: number) => {
+      return (
+        db
+          ?.exec(getGameById(id))
+          .pop()
+          ?.values.map((x) => gameDto(x))[0] ?? null
       );
     },
   };

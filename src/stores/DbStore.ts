@@ -153,6 +153,10 @@ class DbStore {
   getCompletionsByUserId(id: number) {
     return dbClient.getCompletionsByUserId(id) ?? [];
   }
+
+  getGameById(id: number) {
+    return dbClient.getGameById(id) ?? null;
+  }
 }
 
 export default DbStore;
