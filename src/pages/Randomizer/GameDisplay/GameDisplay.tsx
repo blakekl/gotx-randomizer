@@ -62,7 +62,7 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
   }, [game]);
 
   return (
-    <>
+    <div data-gameid={game.id}>
       <div
         className="loader"
         style={{ display: imgLoaded ? 'none' : 'block' }}
@@ -163,7 +163,7 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
         showTitle={false}
         nominations={dbStore.getNominationsByGame(game.id)}
       ></NominationList>
-    </>
+    </div>
   );
 });
 
