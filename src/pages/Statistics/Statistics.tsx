@@ -36,10 +36,10 @@ const Statistics = observer(() => {
   const mostNominatedLosers = dbStore.getMostNominatedLoserGames();
   const avgTimeToBeatByMonth = dbStore
     .getAvgTimeToBeatByMonth()
-    .map((x) => ({ label: x.label, value: Number(x.value.toFixed(2)) }));
+    .map((x) => ({ label: x.label, value: Number(x.value?.toFixed(2)) || 0 }));
   const totalTimeToBeatByMonth = dbStore
     .getTotalTimeToBeatByMonth()
-    .map((x) => ({ label: x.label, value: Number(x.value.toFixed(2)) }));
+    .map((x) => ({ label: x.label, value: Number(x.value?.toFixed(2)) || 0}));
   const longestMonthsByAvgTimeToBeat =
     dbStore.getLongestMonthsByAvgTimeToBeat();
   const shortestMonthsByAvgTimeToBeat =
