@@ -30,7 +30,7 @@ const Games = () => {
       [x.title_eu, x.title_jap, x.title_other, x.title_usa, x.title_world]
         .map((x) => x?.toLocaleLowerCase())
         .join()
-        .match(`.*${titleFilter}.*`),
+        .match(`.*${titleFilter.trim()}.*`),
     );
     setGameList(newPoolArray);
   }, [allGames, titleFilter]);
@@ -67,7 +67,7 @@ const Games = () => {
             placeholder="game title"
             value={titleFilter}
             onChange={(e) =>
-              setTitleFilter(e.currentTarget.value.toLocaleLowerCase().trim())
+              setTitleFilter(e.currentTarget.value.toLocaleLowerCase())
             }
           />
           <span className="icon is-small is-left">
