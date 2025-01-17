@@ -51,11 +51,36 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
       other: game.title_other,
     };
     const flaggedTitles: JSX.Element[] = [];
-    titles.usa && flaggedTitles.push((<><span className="fi fi-us"></span> <span>{titles.usa}</span></>));
-    titles.world && flaggedTitles.push(<><span className="fi fi-un"></span> <span>{titles.world}</span></>);
-    titles.eu && flaggedTitles.push(<><span className="fi fi-eu"></span> <span>{titles.eu}</span></>);
-    titles.jap && flaggedTitles.push((<><span className="fi fi-jp"></span> <span>{titles.jap}</span></>));
-    titles.other && flaggedTitles.push(<><span className="fi fi-world"></span> <span>{titles.other}</span></>);
+    titles.usa &&
+      flaggedTitles.push(
+        <>
+          <span className="fi fi-us"></span> <span>{titles.usa}</span>
+        </>,
+      );
+    titles.world &&
+      flaggedTitles.push(
+        <>
+          <span className="fi fi-un"></span> <span>{titles.world}</span>
+        </>,
+      );
+    titles.eu &&
+      flaggedTitles.push(
+        <>
+          <span className="fi fi-eu"></span> <span>{titles.eu}</span>
+        </>,
+      );
+    titles.jap &&
+      flaggedTitles.push(
+        <>
+          <span className="fi fi-jp"></span> <span>{titles.jap}</span>
+        </>,
+      );
+    titles.other &&
+      flaggedTitles.push(
+        <>
+          <span className="fi fi-world"></span> <span>{titles.other}</span>
+        </>,
+      );
 
     setMainTitle(flaggedTitles[0] || null);
     setSubtitles(flaggedTitles.slice(1));
@@ -151,7 +176,9 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
                   <span className="fa-solid fa-hashtag" />
                 </p>
                 <p className="subtitle" title="screenscraper id">
-                  <span className="is-hidden-tablet"><span className="fa-solid fa-hashtag" /></span>
+                  <span className="is-hidden-tablet">
+                    <span className="fa-solid fa-hashtag" />
+                  </span>
                   <span>{game.screenscraper_id}</span>
                 </p>
               </div>
