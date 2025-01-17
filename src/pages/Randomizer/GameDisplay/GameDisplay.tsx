@@ -54,31 +54,36 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
     titles.usa &&
       flaggedTitles.push(
         <>
-          <span className="fi fi-us"></span> <span>{titles.usa}</span>
+          <span className="fi fi-us" title="USA title"></span>{' '}
+          <span>{titles.usa}</span>
         </>,
       );
     titles.world &&
       flaggedTitles.push(
         <>
-          <span className="fi fi-un"></span> <span>{titles.world}</span>
+          <span className="fi fi-un" title="World title"></span>{' '}
+          <span>{titles.world}</span>
         </>,
       );
     titles.eu &&
       flaggedTitles.push(
         <>
-          <span className="fi fi-eu"></span> <span>{titles.eu}</span>
+          <span className="fi fi-eu" title="European title"></span>{' '}
+          <span>{titles.eu}</span>
         </>,
       );
     titles.jap &&
       flaggedTitles.push(
         <>
-          <span className="fi fi-jp"></span> <span>{titles.jap}</span>
+          <span className="fi fi-jp" title="Japanese title"></span>{' '}
+          <span>{titles.jap}</span>
         </>,
       );
     titles.other &&
       flaggedTitles.push(
         <>
-          <span className="fi fi-world"></span> <span>{titles.other}</span>
+          <span className="fi fi-other" title="Other title"></span>{' '}
+          <span>{titles.other}</span>
         </>,
       );
 
