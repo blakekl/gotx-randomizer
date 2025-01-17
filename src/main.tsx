@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound/NotFound.tsx';
 import Games from './pages/Games/Games.tsx';
 import Users from './pages/Users/Users.tsx';
 import GameDetails from './pages/Games/GameDetails.tsx';
+import Home from './pages/Home/Home.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement !== null) {
@@ -20,7 +21,8 @@ if (rootElement !== null) {
         <div className="container">
           <Router>
             <Routes>
-              <Route path="/" element={<Randomizer />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/randomizer" element={<Randomizer />} />
               <Route path="/stats" element={<Statistics />} />
               <Route path="/games" element={<Games />} />
               <Route path="/games/:gameId" element={<GameDetails />} />
