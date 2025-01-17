@@ -44,11 +44,21 @@ const Navigation = () => {
         })}
       >
         <div className="navbar-end">
-          <Link className="navbar-item" to="/">Home</Link>
-          <Link className="navbar-item" to="/randomizer">Randomizer</Link>
-          <Link className="navbar-item" to="/stats">Statistics</Link>
-          <Link className="navbar-item" to="/games">Games</Link>
-          <Link className="navbar-item" to="/users">Users</Link>
+          <Link className="navbar-item" to="/">
+            Dashboard Home
+          </Link>
+          <Link className="navbar-item" to="/randomizer">
+            Randomizer
+          </Link>
+          <Link className="navbar-item" to="/stats">
+            Statistics
+          </Link>
+          <Link className="navbar-item" to="/games">
+            Games
+          </Link>
+          <Link className="navbar-item" to="/users">
+            Users
+          </Link>
         </div>
       </div>
     </nav>
