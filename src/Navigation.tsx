@@ -44,18 +44,11 @@ const Navigation = () => {
       >
         <div className="navbar-end">
           {/* future links to go here. Just <a className="navbar-item"> */}
-          <a className="navbar-item" href="/">
-            Randomizer
-          </a>
-          <a className="navbar-item" href="/stats">
-            Statistics
-          </a>
-          <a className="navbar-item" href="/games">
-            Games
-          </a>
-          <a className="navbar-item" href="/users">
-            Users
-          </a>
+          <a className="navbar-item" href="/">Home</a>
+          <a className="navbar-item" href="/randomizer">Randomizer</a>
+          <a className="navbar-item" href="/stats">Statistics</a>
+          <a className="navbar-item" href="/games">Games</a>
+          <a className="navbar-item" href="/users">Users</a>
         </div>
       </div>
     </nav>
