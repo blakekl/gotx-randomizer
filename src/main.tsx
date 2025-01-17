@@ -20,15 +20,15 @@ if (rootElement !== null) {
         <Navigation />
         <main className="section">
           <div className="container">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/randomizer" element={<Randomizer />} />
-                <Route path="/stats" element={<Statistics />} />
-                <Route path="/games" element={<Games />} />
-                <Route path="/games/:gameId" element={<GameDetails />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/randomizer" element={<Randomizer />} />
+              <Route path="/stats" element={<Statistics />} />
+              <Route path="/games" element={<Games />} />
+              <Route path="/games/:gameId" element={<GameDetails />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
           </div>
         </main>
       </Router>
