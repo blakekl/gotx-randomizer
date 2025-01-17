@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -44,11 +45,16 @@ const Navigation = () => {
       >
         <div className="navbar-end">
           {/* future links to go here. Just <a className="navbar-item"> */}
-          <a className="navbar-item" href="/">Home</a>
+          {/* <a className="navbar-item" href="/">Home</a>
           <a className="navbar-item" href="/randomizer">Randomizer</a>
           <a className="navbar-item" href="/stats">Statistics</a>
           <a className="navbar-item" href="/games">Games</a>
-          <a className="navbar-item" href="/users">Users</a>
+          <a className="navbar-item" href="/users">Users</a> */}
+          <Link className="navbar-item" to="/">Home</Link>
+          <Link className="navbar-item" to="/randomizer">Randomizer</Link>
+          <Link className="navbar-item" to="/stats">Statistics</Link>
+          <Link className="navbar-item" to="/games">Games</Link>
+          <Link className="navbar-item" to="/users">Users</Link>
         </div>
       </div>
     </nav>
