@@ -67,7 +67,7 @@ const Games = () => {
             placeholder="game title"
             value={titleFilter}
             onChange={(e) =>
-              setTitleFilter(e.currentTarget.value.toLocaleLowerCase().trim())
+              setTitleFilter(e.currentTarget.value.toLocaleLowerCase())
             }
           />
           <span className="icon is-small is-left">
