@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
+    <>
+          <h1 className="title is-1 has-text-centered">GotX Dashboard</h1>
     <div className="fixed-grid has-1-cols-mobile has-2-cols">
       <div className="grid is-size-3 has-text-centered">
         <div className="cell is-col-min-2">
@@ -38,6 +40,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
