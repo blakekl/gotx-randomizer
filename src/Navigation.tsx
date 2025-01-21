@@ -45,13 +45,13 @@ const Navigation = () => {
       >
         <div className="navbar-end">
           <Link className="navbar-item" to="/">
-            Dashboard Home
+            Home
           </Link>
           <Link className="navbar-item" to="/randomizer">
             Randomizer
           </Link>
           <Link className="navbar-item" to="/stats">
-            Statistics
+            Stats
           </Link>
           <Link className="navbar-item" to="/games">
             Games
