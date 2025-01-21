@@ -1,6 +1,7 @@
 import { runInAction } from 'mobx';
 import dbClient from '../data';
 import { Game, LabeledStat, UserListItem } from '../models/game';
+import { RootStore } from './RootStore';
 
 interface GameCollection {
   gotmRunnerUp: Game[];
@@ -33,7 +34,8 @@ class DbStore {
     updated_at: '',
   } as Game;
 
-  constructor() {
+  //@ts-expect-error rootStore is not currently used, but could be. Remove this if you start using rootStore
+  constructor(private rootStore: RootStore) {
     const gotmRunnerUp = dbClient.getGotmRunnerup() || [];
     const gotmWinners = dbClient.getGotmWinners() || [];
     const retrobits = dbClient.getRetrobits() || [];
