@@ -4,16 +4,7 @@ const Home = () => {
   return (
     <>
       <h1 className="title is-1 has-text-centered">GotX Dashboard</h1>
-      <p>
-        Welcome to the GotX Dashboard. Your place for all the details on the
-        Retro Handhelds GotX program. Select a tool from the list below. Use
-        Randomizer to find a random game featured in GotX, one way or another.
-        Use stats to see what&apos;s being nominated, played, and other data facts.
-        Use games to search for a particular game. And finally, use users to see
-        your own personal (or anyone else&apos;s) completed games and nomination
-        lists.
-      </p>
-      <div className="fixed-grid mt-6 has-1-cols-mobile has-2-cols-tablet has-4-cols-desktop">
+      <div className="fixed-grid has-1-cols-mobile has-2-cols-tablet has-4-cols-desktop">
         <div className="grid is-size-3 has-text-centered">
           <div className="cell">
             <Link to="/randomizer">
@@ -49,6 +40,25 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <p className="mt-6">
+        Welcome to the GotX Dashboard. Your place for all the details on the
+        Retro Handhelds GotX program. Select a tool from the list above.
+      </p>
+      <ul>
+        <li>
+          • Use Randomizer to find a random game featured in GotX, one way or
+          another.
+        </li>
+        <li>
+          • Use stats to see what&apos;s being nominated, played, and other data
+          points.
+        </li>
+        <li>• Use games to search for a particular game.</li>
+        <li>
+          • Use users to see your own personal (or anyone else&apos;s) completed
+          games and nomination lists.
+        </li>
+      </ul>
     </>
   );
 };
