@@ -1,4 +1,5 @@
 import { action, makeAutoObservable, observable } from 'mobx';
+import { RootStore } from './RootStore';
 
 class SettingsStore {
   hltbFilter = [0, Number.MAX_SAFE_INTEGER];
@@ -14,7 +15,8 @@ class SettingsStore {
 
   private readonly HIDDEN_KEY = 'completed';
 
-  constructor() {
+  //@ts-expect-error rootStore is not currently used, but could be. Remove this if you start using rootStore
+  constructor(private rootStore: RootStore) {
     makeAutoObservable(this, {
       hiddenGames: observable,
       hltbFilter: observable,
