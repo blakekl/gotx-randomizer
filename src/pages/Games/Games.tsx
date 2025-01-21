@@ -106,7 +106,6 @@ const Games = observer(() => {
     while (!isButton && element?.tagName !== 'TD') {
       isButton = (element as HTMLElement).tagName === 'BUTTON';
       if (isButton) {
-        console.log('button: ', element);
         if ((e.target as HTMLElement).textContent?.trim() === 'Copy') {
           void navigator.clipboard.writeText(`${game.screenscraper_id}`);
         } else {
@@ -116,7 +115,6 @@ const Games = observer(() => {
       element = element?.parentElement || null;
     }
     if (!isButton) {
-      console.log('row clicked');
       setSelectedGame(game);
     }
   };

@@ -6,11 +6,13 @@ import { useStores } from '../../stores/useStores';
 import UserDisplay from './UserDisplay/UserDisplay';
 
 const Users = () => {
-  const { dbStore } = useStores();
+  const { dbStore, settingsStore } = useStores();
   const [allUsers, setAllUsers] = useState(new Array<UserListItem>());
   const [userList, setUserList] = useState(new Array<UserListItem>());
   const [indexRange, setIndexRange] = useState([0, 0]);
-  const [usernameFilter, setUsernameFilter] = useState('');
+  const [usernameFilter, setUsernameFilter] = useState(
+    settingsStore.myUserName ?? '',
+  );
   const [selectedUser, setSelectedUser] = useState<UserListItem | null>(null);
   const [hovered, setHovered] = useState(0);
 
