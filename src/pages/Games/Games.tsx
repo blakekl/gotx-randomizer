@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useStores } from '../../stores/useStores';
 import { Game } from '../../models/game';
 import Pagination from '../../components/Pagination';
 import classNames from 'classnames';
 import GameDisplay from '../Randomizer/GameDisplay/GameDisplay';
+import Settings from '../Randomizer/Settings/Settings';
+import { observer } from 'mobx-react-lite';
 
-const Games = () => {
+const Games = observer(() => {
   const { dbStore, settingsStore } = useStores();
   const { allGames } = dbStore;
   const [gameList, setGameList] = useState(new Array<Game>());
@@ -14,26 +16,89 @@ const Games = () => {
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [hovered, setHovered] = useState(0);
 
-  useEffect(() => {
-    let newPoolArray: Game[] = [];
-    newPoolArray = [
-      ...allGames.gotmRunnerUp,
-      ...allGames.gotmWinners,
-      ...allGames.retrobits,
-      ...allGames.rpgRunnerUp,
-      ...allGames.rpgWinners,
-    ];
-    newPoolArray = newPoolArray.filter(
+  const gamePool = useMemo(() => {
+    let newPool: Game[] = [];
+    if (settingsStore.includeGotmRunnerUp) {
+      newPool = newPool.concat(allGames.gotmRunnerUp);
+    }
+    if (settingsStore.includeGotmWinners) {
+      newPool = newPool.concat(allGames.gotmWinners);
+    }
+    if (settingsStore.includeRetrobits) {
+      newPool = newPool.concat(allGames.retrobits);
+    }
+    if (settingsStore.includeRpgRunnerUp) {
+      newPool = newPool.concat(allGames.rpgRunnerUp);
+    }
+    if (settingsStore.includeRpgWinners) {
+      newPool = newPool.concat(allGames.rpgWinners);
+    }
+
+    // Remove duplicates, since there is overlap between the different programs.
+    newPool = newPool.filter(
       (game, index, list) => index === list.findIndex((x) => x.id === game.id),
     );
-    newPoolArray = newPoolArray.filter((x) =>
+
+    const newMax =
+      newPool
+        .map((x) => x.time_to_beat)
+        .reduce(
+          (aggregate: number, current) => Math.max(aggregate, current || 0),
+          0,
+        ) || Number.MAX_SAFE_INTEGER;
+    const newMin =
+      newPool
+        .map((x) => x.time_to_beat)
+        .filter((x) => x || x === 0)
+        .filter((x) => x && x > -1)
+        .reduce(
+          (aggregate: number, current) =>
+            Math.min(aggregate, Math.round(current || 0)),
+          Number.MAX_SAFE_INTEGER,
+        ) || 0;
+
+    if (newMax !== newMin) {
+      settingsStore.setHltbMax(newMax);
+      settingsStore.setHltbMin(newMin);
+    }
+
+    newPool = newPool
+      .filter(
+        (x) =>
+          settingsStore.includeHiddenGames ||
+          settingsStore.hiddenGames.includes(x.id) === false,
+      )
+      .filter(
+        (x) =>
+          (x.time_to_beat || 0) >= settingsStore.hltbFilter[0] &&
+          (x.time_to_beat || 0) <= settingsStore.hltbFilter[1],
+      );
+    return newPool;
+  }, [
+    allGames,
+    settingsStore.includeGotmRunnerUp,
+    settingsStore.includeRetrobits,
+    settingsStore.includeGotmWinners,
+    settingsStore.includeRpgRunnerUp,
+    settingsStore.includeRpgWinners,
+    settingsStore.includeRetrobits,
+    settingsStore.hltbFilter,
+  ]);
+
+  useMemo(() => {
+    const escapeRegex = /[.*+?^${}()|[\]\\]/g;
+    const escapedFilter = titleFilter
+      .trim()
+      .toLocaleLowerCase()
+      .replace(escapeRegex, '\\$&');
+    const filteredPool = gamePool.filter((x) =>
       [x.title_eu, x.title_jap, x.title_other, x.title_usa, x.title_world]
         .map((x) => x?.toLocaleLowerCase())
         .join()
-        .match(`.*${titleFilter.trim()}.*`),
+        .match(`.*${escapedFilter}.*`),
     );
-    setGameList(newPoolArray);
-  }, [allGames, titleFilter]);
+    setGameList(filteredPool);
+  }, [gamePool, titleFilter]);
 
   const handleRowClicked = (e: React.MouseEvent, game: Game) => {
     let element: HTMLElement | null = e.target as HTMLElement;
@@ -59,7 +124,8 @@ const Games = () => {
   return (
     <>
       <h1 className="title is-1 has-text-centered">Games</h1>
-      <div className="field">
+      <Settings />
+      <div className="field mt-4">
         <p className="control has-icons-left">
           <input
             className="input"
@@ -165,6 +231,6 @@ const Games = () => {
       </div>
     </>
   );
-};
+});
 
 export default Games;
