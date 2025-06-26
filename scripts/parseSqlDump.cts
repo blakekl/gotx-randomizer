@@ -1,4 +1,4 @@
-import * as BetterSQLite3 from 'better-sqlite3';
+import BetterSQLite3 from 'better-sqlite3';
 type Database = BetterSQLite3.Database;
 type Statement = BetterSQLite3.Statement;
 import * as child from 'child_process';
