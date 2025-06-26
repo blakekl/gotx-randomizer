@@ -172,7 +172,16 @@ console.log('');
 console.log('');
 console.log(`executing ${toExecute.length} queries.`);
 db.transaction((queries: Statement[]) =>
-  queries.forEach((query) => query.run()),
+  queries.forEach((query) => {
+    try {
+      return query.run();
+    } catch (e) {
+      console.error('Error executing query:', query);
+      console.error(e);
+      db.close();
+      process.exit(1);
+    }
+  }),
 ).deferred(toExecute.map((x) => db.prepare(x)));
 console.log('Execution successful');
 db.close();
