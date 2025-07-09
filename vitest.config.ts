@@ -4,13 +4,7 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  esbuild: {
-    supported: {
-      'top-level-await': true, //browsers can handle top-level-await features
-    },
-  },
   plugins: [
     react(),
     tsconfigPaths(),
@@ -50,7 +44,6 @@ export default defineConfig({
       },
     }),
   ],
-  assetsInclude: ['**/*.sqlite'],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -78,4 +71,5 @@ export default defineConfig({
       },
     },
   },
+  assetsInclude: ['**/*.sqlite'],
 });
