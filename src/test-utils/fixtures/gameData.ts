@@ -207,9 +207,9 @@ export const mockNominations = {
 export const createMockGame = (overrides: Partial<Game> = {}): Game => ({
   id: 999,
   title_usa: 'Test Game',
-  title_eu: 'Test Game',
-  title_jap: 'テストゲーム',
-  title_world: 'Test Game',
+  title_eu: '',
+  title_jap: '',
+  title_world: '',
   title_other: '',
   year: 2000,
   system: 'Test System',
