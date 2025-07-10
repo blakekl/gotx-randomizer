@@ -62,7 +62,7 @@ const GameDisplay = observer(({ game }: GameDisplayProps) => {
   }, [game]);
 
   return (
-    <div data-gameid={game.id}>
+    <div data-gameid={game.id} data-testid="game-display">
       <div
         className="loader"
         style={{ display: imgLoaded ? 'none' : 'block' }}

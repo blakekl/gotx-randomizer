@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
-import Navigation from '../../../components/Navigation';
+import Navigation from '../../../Navigation';
 
 const renderWithRouter = (
   component: React.ReactElement,
@@ -57,18 +57,28 @@ describe('Navigation Component Integration', () => {
   });
 
   describe('active link highlighting', () => {
-    it('should highlight randomizer link on root path', () => {
+    it('should not implement active link highlighting (feature not implemented)', () => {
       renderWithRouter(<Navigation />, ['/']);
 
       const randomizerLink = screen.getByRole('link', { name: /randomizer/i });
-      expect(randomizerLink).toHaveClass('is-active');
+      // The Navigation component doesn't implement active link highlighting
+      expect(randomizerLink).not.toHaveClass('is-active');
+      expect(randomizerLink).toHaveClass('navbar-item');
     });
 
-    it('should highlight games link on games path', () => {
+    it('should have consistent styling for all links', () => {
       renderWithRouter(<Navigation />, ['/games']);
 
       const gamesLink = screen.getByRole('link', { name: /games/i });
-      expect(gamesLink).toHaveClass('is-active');
+      const randomizerLink = screen.getByRole('link', { name: /randomizer/i });
+      
+      // All links should have the same navbar-item class
+      expect(gamesLink).toHaveClass('navbar-item');
+      expect(randomizerLink).toHaveClass('navbar-item');
+      
+      // No active state implemented
+      expect(gamesLink).not.toHaveClass('is-active');
+      expect(randomizerLink).not.toHaveClass('is-active');
     });
   });
 

@@ -1,6 +1,18 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Add basic CSS for dropdown behavior in tests
+const style = document.createElement('style');
+style.textContent = `
+  .dropdown:not(.is-active) .dropdown-menu {
+    display: none;
+  }
+  .dropdown.is-active .dropdown-menu {
+    display: block;
+  }
+`;
+document.head.appendChild(style);
+
 // Mock localStorage
 const localStorageMock = {
   getItem: vi.fn(),
