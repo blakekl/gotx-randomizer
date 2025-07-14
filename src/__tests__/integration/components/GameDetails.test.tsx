@@ -2,10 +2,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GameDetails from '../../../pages/Games/GameDetails';
-import { StoreContext } from '../../../stores';
 import {
   createMockDbStore,
   createMockSettingsStore,
+  StoreContext,
 } from '../../test-utils/mockStores';
 
 const mockGame = {
@@ -56,7 +56,7 @@ describe('GameDetails Component Integration', () => {
 
   describe('game information display', () => {
     it('should display game title', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
         expect(screen.getByText('Test Game')).toBeInTheDocument();
@@ -64,90 +64,76 @@ describe('GameDetails Component Integration', () => {
     });
 
     it('should display game details', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
         expect(screen.getByText('Test Developer')).toBeInTheDocument();
         expect(screen.getByText('Test Publisher')).toBeInTheDocument();
-        expect(screen.getByText('2020')).toBeInTheDocument();
         expect(screen.getByText('Action')).toBeInTheDocument();
-        expect(screen.getByText('PC')).toBeInTheDocument();
+        expect(screen.getByText('2020')).toBeInTheDocument();
       });
     });
 
     it('should display HLTB information when available', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('10')).toBeInTheDocument(); // Main story
-        expect(screen.getByText('25')).toBeInTheDocument(); // Completionist
+        expect(screen.getByText(/10.*hours/i)).toBeInTheDocument();
+        expect(screen.getByText(/25.*hours/i)).toBeInTheDocument();
       });
     });
 
     it('should display game image', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
         const image = screen.getByRole('img');
+        expect(image).toBeInTheDocument();
         expect(image).toHaveAttribute('src', 'https://example.com/game.jpg');
       });
     });
 
     it('should handle game not found', async () => {
-      renderWithStores('999', {
-        dbStore: {
-          getGameById: vi.fn(() => null),
-        },
-      });
+      renderWithStores('999');
 
       await waitFor(() => {
-        expect(screen.getByText(/Game not found/i)).toBeInTheDocument();
+        expect(screen.getByText(/game not found/i)).toBeInTheDocument();
       });
     });
 
     it('should handle invalid game ID', async () => {
-      renderWithStores('invalid', {
-        dbStore: {
-          getGameById: vi.fn(() => null),
-        },
-      });
+      renderWithStores('invalid');
 
       await waitFor(() => {
-        expect(screen.getByText(/Game not found/i)).toBeInTheDocument();
+        expect(screen.getByText(/invalid game/i)).toBeInTheDocument();
       });
     });
   });
 
   describe('regional titles display', () => {
     it('should display all regional titles when available', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('Test Game')).toBeInTheDocument(); // USA
-        expect(screen.getByText('Test Game World')).toBeInTheDocument(); // World
-        expect(screen.getByText('Test Game EU')).toBeInTheDocument(); // EU
-        expect(screen.getByText('テストゲーム')).toBeInTheDocument(); // Japanese
-        expect(screen.getByText('Test Game Other')).toBeInTheDocument(); // Other
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+        expect(screen.getByText('Test Game World')).toBeInTheDocument();
+        expect(screen.getByText('テストゲーム')).toBeInTheDocument();
       });
     });
 
     it('should handle missing regional titles gracefully', async () => {
-      const gameWithMissingTitles = {
+      const gameWithoutTitles = {
         ...mockGame,
-        title_world: null,
-        title_eu: null,
         title_jap: null,
-        title_other: null,
+        title_eu: null,
       };
-
       renderWithStores('1', {
-        dbStore: {
-          getGameById: vi.fn(() => gameWithMissingTitles),
-        },
+        dbStore: { getGameById: vi.fn(() => gameWithoutTitles) },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('Test Game')).toBeInTheDocument(); // Should still show USA title
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+        expect(screen.queryByText('テストゲーム')).not.toBeInTheDocument();
       });
     });
   });
@@ -155,11 +141,8 @@ describe('GameDetails Component Integration', () => {
   describe('data loading', () => {
     it('should call getGameById with correct game ID', async () => {
       const mockGetGameById = vi.fn(() => mockGame);
-
       renderWithStores('1', {
-        dbStore: {
-          getGameById: mockGetGameById,
-        },
+        dbStore: { getGameById: mockGetGameById },
       });
 
       await waitFor(() => {
@@ -168,67 +151,58 @@ describe('GameDetails Component Integration', () => {
     });
 
     it('should handle database errors gracefully', async () => {
-      const consoleSpy = vi
-        .spyOn(console, 'error')
-        .mockImplementation(() => {});
-
+      const mockGetGameById = vi.fn(() => {
+        throw new Error('Database error');
+      });
       renderWithStores('1', {
-        dbStore: {
-          getGameById: vi.fn(() => {
-            throw new Error('DB Error');
-          }),
-        },
+        dbStore: { getGameById: mockGetGameById },
       });
 
-      // Should show error state instead of crashing
       await waitFor(() => {
-        expect(screen.getByText(/Error loading game/i)).toBeInTheDocument();
+        expect(screen.getByText(/error loading game/i)).toBeInTheDocument();
       });
-
-      consoleSpy.mockRestore();
     });
 
     it('should show loading state initially', () => {
-      renderWithStores();
+      const mockGetGameById = vi.fn(() => new Promise(() => {})); // Never resolves
+      renderWithStores('1', {
+        dbStore: { getGameById: mockGetGameById, isLoading: true },
+      });
 
-      // Should show some loading indicator or the component should render quickly
-      expect(screen.getByText(/Test Game|Loading|Game/)).toBeInTheDocument();
+      expect(screen.getByText(/loading/i)).toBeInTheDocument();
     });
   });
 
   describe('navigation and routing', () => {
     it('should extract game ID from URL params', async () => {
       const mockGetGameById = vi.fn(() => mockGame);
-
-      renderWithStores('42', {
-        dbStore: {
-          getGameById: mockGetGameById,
-        },
+      renderWithStores('123', {
+        dbStore: { getGameById: mockGetGameById },
       });
 
       await waitFor(() => {
-        expect(mockGetGameById).toHaveBeenCalledWith(42);
+        expect(mockGetGameById).toHaveBeenCalledWith(123);
       });
     });
 
     it('should handle navigation back to games list', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const backLink = screen.getByText(/Back to Games|← Games/i);
+        const backLink = screen.getByRole('link', { name: /back to games/i });
         expect(backLink).toBeInTheDocument();
-        expect(backLink.closest('a')).toHaveAttribute('href', '/games');
+        expect(backLink).toHaveAttribute('href', '/games');
       });
     });
   });
 
   describe('responsive design', () => {
     it('should have responsive layout classes', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const container = screen.getByText('Test Game').closest('div');
-        expect(container).toBeInTheDocument();
+        const container = screen.getByTestId('game-details-container');
+        expect(container).toHaveClass('columns', 'is-mobile');
       });
     });
 
@@ -240,61 +214,68 @@ describe('GameDetails Component Integration', () => {
         value: 375,
       });
 
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('Test Game')).toBeInTheDocument();
+        const image = screen.getByRole('img');
+        expect(image).toHaveClass('is-mobile-friendly');
       });
     });
   });
 
   describe('accessibility', () => {
     it('should have proper heading structure', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const gameHeading = screen.getByRole('heading', { level: 1 });
-        expect(gameHeading).toBeInTheDocument();
-        expect(gameHeading).toHaveTextContent('Test Game');
+        const heading = screen.getByRole('heading', { level: 1 });
+        expect(heading).toBeInTheDocument();
+        expect(heading).toHaveTextContent('Test Game');
       });
     });
 
     it('should have accessible image with alt text', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
         const image = screen.getByRole('img');
-        expect(image).toHaveAttribute('alt');
+        expect(image).toHaveAttribute(
+          'alt',
+          expect.stringContaining('Test Game'),
+        );
       });
     });
 
     it('should have proper navigation links', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const backLink = screen.getByRole('link', { name: /back|games/i });
+        const backLink = screen.getByRole('link', { name: /back to games/i });
         expect(backLink).toBeInTheDocument();
+        expect(backLink).toHaveAccessibleName();
       });
     });
 
     it('should be keyboard navigable', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const backLink = screen.getByRole('link', { name: /back|games/i });
+        const backLink = screen.getByRole('link', { name: /back to games/i });
         backLink.focus();
-        expect(backLink).toHaveFocus();
+        expect(document.activeElement).toBe(backLink);
       });
     });
   });
 
   describe('data formatting', () => {
     it('should format HLTB times correctly', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('10')).toBeInTheDocument(); // Hours
-        expect(screen.getByText('25')).toBeInTheDocument(); // Hours
+        expect(screen.getByText(/main story.*10.*hours/i)).toBeInTheDocument();
+        expect(
+          screen.getByText(/completionist.*25.*hours/i),
+        ).toBeInTheDocument();
       });
     });
 
@@ -304,16 +285,12 @@ describe('GameDetails Component Integration', () => {
         hltb_main: null,
         hltb_completionist: null,
       };
-
       renderWithStores('1', {
-        dbStore: {
-          getGameById: vi.fn(() => gameWithoutHLTB),
-        },
+        dbStore: { getGameById: vi.fn(() => gameWithoutHLTB) },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('Test Game')).toBeInTheDocument();
-        expect(screen.getByText(/No data available/i)).toBeInTheDocument();
+        expect(screen.getByText(/no time data available/i)).toBeInTheDocument();
       });
     });
 
@@ -323,16 +300,14 @@ describe('GameDetails Component Integration', () => {
         hltb_main: 0,
         hltb_completionist: 0,
       };
-
       renderWithStores('1', {
-        dbStore: {
-          getGameById: vi.fn(() => gameWithZeroHLTB),
-        },
+        dbStore: { getGameById: vi.fn(() => gameWithZeroHLTB) },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('Test Game')).toBeInTheDocument();
-        // Should show zero values or indicate no data
+        expect(
+          screen.getByText(/time data not available/i),
+        ).toBeInTheDocument();
       });
     });
   });
@@ -341,51 +316,48 @@ describe('GameDetails Component Integration', () => {
     it('should handle missing store gracefully', () => {
       expect(() => {
         render(
-          <BrowserRouter initialEntries={['/games/1']}>
+          <BrowserRouter>
             <Routes>
               <Route path="/games/:gameId" element={<GameDetails />} />
             </Routes>
           </BrowserRouter>,
         );
-      }).toThrow(); // Should throw because no store context
+      }).toThrow();
     });
 
     it('should handle malformed game data', async () => {
-      const malformedGame = {
-        id: 1,
-        title_usa: null,
-        developer: undefined,
-        release_year: 'invalid',
-        hltb_main: 'not a number',
-      };
-
+      const malformedGame = { id: 1, title_usa: null, developer: undefined };
       renderWithStores('1', {
-        dbStore: {
-          getGameById: vi.fn(() => malformedGame),
-        },
+        dbStore: { getGameById: vi.fn(() => malformedGame) },
       });
 
-      // Should not crash
       await waitFor(() => {
-        expect(screen.getByText(/Game Details|Error/i)).toBeInTheDocument();
+        expect(screen.getByText(/unknown game/i)).toBeInTheDocument();
       });
     });
   });
 
   describe('performance', () => {
-    it('should not cause memory leaks on unmount', () => {
-      const { unmount } = renderWithStores();
+    it('should not cause memory leaks on unmount', async () => {
+      const { unmount } = renderWithStores('1');
+
+      await waitFor(() => {
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+      });
 
       expect(() => unmount()).not.toThrow();
     });
 
     it('should render quickly', async () => {
       const startTime = performance.now();
-      renderWithStores();
+      renderWithStores('1');
       const endTime = performance.now();
 
-      // Should render in reasonable time
       expect(endTime - startTime).toBeLessThan(1000);
+
+      await waitFor(() => {
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+      });
     });
   });
 });

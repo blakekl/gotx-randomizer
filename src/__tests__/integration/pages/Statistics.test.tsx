@@ -1,24 +1,63 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Statistics from '../../../pages/Statistics/Statistics';
-import { StoreContext } from '../../../stores';
 import {
   createMockDbStore,
   createMockSettingsStore,
+  StoreContext,
 } from '../../test-utils/mockStores';
 
-// Mock Chart component since it uses external charting library
+// Mock Chart component since we already tested it separately
 vi.mock('../../../pages/Statistics/Chart', () => ({
-  default: ({ data, title }: { data: any; title: string }) => (
-    <div data-testid="mock-chart" data-title={title}>
-      Chart: {title} ({data?.length || 0} items)
+  default: vi.fn(({ data, title, name }) => (
+    <div data-testid="mock-chart">
+      <div data-testid="chart-title">{title}</div>
+      <div data-testid="chart-name">{name}</div>
+      <div data-testid="chart-data-count">{data?.length || 0}</div>
     </div>
-  ),
+  )),
 }));
 
 const renderWithStores = (mockStores = {}) => {
-  const mockDbStore = createMockDbStore(mockStores.dbStore);
+  const mockDbStore = createMockDbStore({
+    games: [
+      { id: 1, name: 'Game 1', genre: 'Action', system: 'PC' },
+      { id: 2, name: 'Game 2', genre: 'RPG', system: 'Console' },
+      { id: 3, name: 'Game 3', genre: 'Action', system: 'PC' },
+    ],
+    users: [
+      { id: 1, username: 'user1', totalCompletions: 5 },
+      { id: 2, username: 'user2', totalCompletions: 3 },
+    ],
+    completions: [
+      { id: 1, gameId: 1, userId: 1, rating: 8 },
+      { id: 2, gameId: 2, userId: 1, rating: 9 },
+      { id: 3, gameId: 1, userId: 2, rating: 7 },
+    ],
+    getGameStats: vi.fn(() => ({
+      totalGames: 3,
+      gamesByGenre: [
+        { label: 'Action', value: 2 },
+        { label: 'RPG', value: 1 },
+      ],
+      gamesBySystem: [
+        { label: 'PC', value: 2 },
+        { label: 'Console', value: 1 },
+      ],
+      averageRating: 8.0,
+    })),
+    getUserStats: vi.fn(() => ({
+      totalUsers: 2,
+      usersByCompletions: [
+        { label: 'user1', value: 5 },
+        { label: 'user2', value: 3 },
+      ],
+      averageCompletions: 4,
+    })),
+    ...mockStores.dbStore,
+  });
+
   const mockSettingsStore = createMockSettingsStore(mockStores.settingsStore);
 
   const mockContext = {
@@ -41,44 +80,132 @@ describe('Statistics Page Integration', () => {
   });
 
   describe('page rendering', () => {
-    it('should render statistics page title', () => {
+    it('should render statistics page title', async () => {
       renderWithStores();
 
-      expect(screen.getByText('Statistics')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+        expect(screen.getByText(/statistics/i)).toBeInTheDocument();
+      });
     });
 
-    it('should render all chart sections', () => {
+    it('should render all chart sections', async () => {
       renderWithStores();
 
-      // Check for main sections
-      expect(screen.getByText(/Nominations by Theme/)).toBeInTheDocument();
-      expect(screen.getByText(/Points by User/)).toBeInTheDocument();
-      expect(screen.getByText(/Completions by User/)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText(/games by genre/i)).toBeInTheDocument();
+        expect(screen.getByText(/games by system/i)).toBeInTheDocument();
+        expect(screen.getByText(/user completions/i)).toBeInTheDocument();
+      });
     });
 
     it('should render charts with mock data', async () => {
-      const mockStats = {
-        nominationsByTheme: [
-          { label: 'Theme 1', value: 10 },
-          { label: 'Theme 2', value: 15 },
-        ],
-        pointsByUser: [
-          { label: 'User1', value: 25 },
-          { label: 'User2', value: 30 },
-        ],
-        completionsByUser: [
-          { label: 'User1', value: 5 },
-          { label: 'User2', value: 8 },
-        ],
-      };
+      renderWithStores();
+
+      await waitFor(() => {
+        const charts = screen.getAllByTestId('mock-chart');
+        expect(charts).toHaveLength(3); // Genre, System, User charts
+
+        expect(screen.getByTestId('chart-title')).toBeInTheDocument();
+        expect(screen.getByTestId('chart-data-count')).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('data loading', () => {
+    it('should call database methods to load statistics', async () => {
+      const mockGetGameStats = vi.fn(() => ({
+        gamesByGenre: [{ label: 'Action', value: 2 }],
+        gamesBySystem: [{ label: 'PC', value: 2 }],
+      }));
+      const mockGetUserStats = vi.fn(() => ({
+        usersByCompletions: [{ label: 'user1', value: 5 }],
+      }));
 
       renderWithStores({
         dbStore: {
-          getNominationsByTheme: vi.fn(() => mockStats.nominationsByTheme),
-          getPointsByUser: vi.fn(() => mockStats.pointsByUser),
-          getCompletionsByUser: vi.fn(() => mockStats.completionsByUser),
+          getGameStats: mockGetGameStats,
+          getUserStats: mockGetUserStats,
         },
       });
+
+      await waitFor(() => {
+        expect(mockGetGameStats).toHaveBeenCalled();
+        expect(mockGetUserStats).toHaveBeenCalled();
+      });
+    });
+
+    it('should handle empty data gracefully', async () => {
+      renderWithStores({
+        dbStore: {
+          getGameStats: vi.fn(() => ({
+            gamesByGenre: [],
+            gamesBySystem: [],
+          })),
+          getUserStats: vi.fn(() => ({
+            usersByCompletions: [],
+          })),
+        },
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText(/no data available/i)).toBeInTheDocument();
+      });
+    });
+
+    it('should handle database errors gracefully', async () => {
+      renderWithStores({
+        dbStore: {
+          getGameStats: vi.fn(() => {
+            throw new Error('Database error');
+          }),
+          error: 'Database connection failed',
+        },
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(/error loading statistics/i),
+        ).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('responsive behavior', () => {
+    it('should render properly on different screen sizes', async () => {
+      const viewports = [
+        { width: 320, height: 568 }, // Mobile
+        { width: 768, height: 1024 }, // Tablet
+        { width: 1920, height: 1080 }, // Desktop
+      ];
+
+      for (const viewport of viewports) {
+        Object.defineProperty(window, 'innerWidth', {
+          writable: true,
+          configurable: true,
+          value: viewport.width,
+        });
+
+        renderWithStores();
+
+        await waitFor(() => {
+          const container = screen.getByTestId('statistics-container');
+          expect(container).toHaveClass('columns');
+        });
+      }
+    });
+
+    it('should handle chart resizing', async () => {
+      renderWithStores();
+
+      // Simulate window resize
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: 768,
+      });
+
+      fireEvent(window, new Event('resize'));
 
       await waitFor(() => {
         const charts = screen.getAllByTestId('mock-chart');
@@ -87,107 +214,26 @@ describe('Statistics Page Integration', () => {
     });
   });
 
-  describe('data loading', () => {
-    it('should call database methods to load statistics', async () => {
-      const mockDbStore = {
-        getNominationsByTheme: vi.fn(() => []),
-        getPointsByUser: vi.fn(() => []),
-        getCompletionsByUser: vi.fn(() => []),
-        getGamesByGenre: vi.fn(() => []),
-        getGamesByYear: vi.fn(() => []),
-        getGamesByPlatform: vi.fn(() => []),
-      };
-
-      renderWithStores({ dbStore: mockDbStore });
-
-      await waitFor(() => {
-        expect(mockDbStore.getNominationsByTheme).toHaveBeenCalled();
-        expect(mockDbStore.getPointsByUser).toHaveBeenCalled();
-        expect(mockDbStore.getCompletionsByUser).toHaveBeenCalled();
-      });
-    });
-
-    it('should handle empty data gracefully', async () => {
-      renderWithStores({
-        dbStore: {
-          getNominationsByTheme: vi.fn(() => []),
-          getPointsByUser: vi.fn(() => []),
-          getCompletionsByUser: vi.fn(() => []),
-        },
-      });
-
-      await waitFor(() => {
-        const charts = screen.getAllByTestId('mock-chart');
-        charts.forEach((chart) => {
-          expect(chart).toHaveTextContent('(0 items)');
-        });
-      });
-    });
-
-    it('should handle database errors gracefully', async () => {
-      const consoleSpy = vi
-        .spyOn(console, 'error')
-        .mockImplementation(() => {});
-
-      renderWithStores({
-        dbStore: {
-          getNominationsByTheme: vi.fn(() => {
-            throw new Error('DB Error');
-          }),
-          getPointsByUser: vi.fn(() => {
-            throw new Error('DB Error');
-          }),
-          getCompletionsByUser: vi.fn(() => {
-            throw new Error('DB Error');
-          }),
-        },
-      });
-
-      // Should not crash the component
-      expect(screen.getByText('Statistics')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
-    });
-  });
-
-  describe('responsive behavior', () => {
-    it('should render properly on different screen sizes', () => {
-      renderWithStores();
-
-      // Check for responsive classes
-      const container = screen.getByText('Statistics').closest('div');
-      expect(container).toBeInTheDocument();
-    });
-
-    it('should handle chart resizing', async () => {
-      renderWithStores();
-
-      // Simulate window resize
-      global.dispatchEvent(new Event('resize'));
-
-      await waitFor(() => {
-        expect(screen.getByText('Statistics')).toBeInTheDocument();
-      });
-    });
-  });
-
   describe('accessibility', () => {
-    it('should have proper heading structure', () => {
+    it('should have proper heading structure', async () => {
       renderWithStores();
 
-      const mainHeading = screen.getByRole('heading', { level: 1 });
-      expect(mainHeading).toBeInTheDocument();
-      expect(mainHeading).toHaveTextContent('Statistics');
+      await waitFor(() => {
+        const mainHeading = screen.getByRole('heading', { level: 1 });
+        expect(mainHeading).toBeInTheDocument();
+
+        const sectionHeadings = screen.getAllByRole('heading', { level: 2 });
+        expect(sectionHeadings.length).toBeGreaterThan(0);
+      });
     });
 
     it('should have accessible chart descriptions', async () => {
       renderWithStores();
 
       await waitFor(() => {
-        const charts = screen.getAllByTestId('mock-chart');
-        charts.forEach((chart) => {
-          expect(chart).toHaveAttribute('data-title');
-        });
+        expect(screen.getByText(/games by genre/i)).toBeInTheDocument();
+        expect(screen.getByText(/games by system/i)).toBeInTheDocument();
+        expect(screen.getByText(/user completions/i)).toBeInTheDocument();
       });
     });
   });
@@ -200,46 +246,56 @@ describe('Statistics Page Integration', () => {
             <Statistics />
           </BrowserRouter>,
         );
-      }).toThrow(); // Should throw because no store context
+      }).toThrow();
     });
 
     it('should handle malformed data gracefully', async () => {
       renderWithStores({
         dbStore: {
-          getNominationsByTheme: vi.fn(() => null),
-          getPointsByUser: vi.fn(() => undefined),
-          getCompletionsByUser: vi.fn(() => 'invalid'),
+          getGameStats: vi.fn(() => ({
+            gamesByGenre: [{ label: null, value: 'invalid' }],
+          })),
         },
       });
 
-      // Should not crash
-      expect(screen.getByText('Statistics')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText(/data format error/i)).toBeInTheDocument();
+      });
     });
   });
 
   describe('performance', () => {
-    it('should not cause memory leaks on unmount', () => {
+    it('should not cause memory leaks on unmount', async () => {
       const { unmount } = renderWithStores();
+
+      await waitFor(() => {
+        expect(screen.getByText(/statistics/i)).toBeInTheDocument();
+      });
 
       expect(() => unmount()).not.toThrow();
     });
 
     it('should handle large datasets efficiently', async () => {
-      const largeDataset = Array.from({ length: 1000 }, (_, i) => ({
-        label: `Item ${i}`,
-        value: Math.random() * 100,
+      const largeGenreData = Array.from({ length: 100 }, (_, i) => ({
+        label: `Genre ${i + 1}`,
+        value: Math.floor(Math.random() * 50),
       }));
 
+      const startTime = performance.now();
       renderWithStores({
         dbStore: {
-          getNominationsByTheme: vi.fn(() => largeDataset),
-          getPointsByUser: vi.fn(() => largeDataset),
-          getCompletionsByUser: vi.fn(() => largeDataset),
+          getGameStats: vi.fn(() => ({
+            gamesByGenre: largeGenreData,
+            gamesBySystem: largeGenreData,
+          })),
         },
       });
+      const endTime = performance.now();
+
+      expect(endTime - startTime).toBeLessThan(2000); // Should render within 2 seconds
 
       await waitFor(() => {
-        expect(screen.getByText('Statistics')).toBeInTheDocument();
+        expect(screen.getByText(/statistics/i)).toBeInTheDocument();
       });
     });
   });

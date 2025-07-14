@@ -1,12 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import NotFound from '../../../pages/NotFound/NotFound';
 
 describe('NotFound Page Integration', () => {
   beforeEach(() => {
     // Clear any previous renders
-    document.body.innerHTML = '';
+    cleanup();
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   describe('page rendering', () => {
@@ -42,10 +46,10 @@ describe('NotFound Page Integration', () => {
       const title = screen.getByRole('heading', { level: 1 });
       expect(title).toHaveClass('has-text-centered');
 
-      const paragraphs = screen.getAllByText(
-        /has-text-centered|You have exited|Please navigate/,
-      );
-      expect(paragraphs.length).toBeGreaterThan(0);
+      const paragraphs = document.querySelectorAll('p');
+      paragraphs.forEach((p) => {
+        expect(p).toHaveClass('has-text-centered');
+      });
     });
   });
 
@@ -142,14 +146,16 @@ describe('NotFound Page Integration', () => {
 
   describe('responsive design', () => {
     it('should work on different screen sizes', () => {
-      // Mock different viewport sizes
       const viewports = [
         { width: 320, height: 568 }, // Mobile
         { width: 768, height: 1024 }, // Tablet
         { width: 1920, height: 1080 }, // Desktop
       ];
 
-      viewports.forEach((viewport) => {
+      viewports.forEach((viewport, index) => {
+        // Clean up previous render
+        cleanup();
+
         Object.defineProperty(window, 'innerWidth', {
           writable: true,
           configurable: true,
@@ -167,6 +173,9 @@ describe('NotFound Page Integration', () => {
         const title = screen.getByRole('heading', { level: 1 });
         expect(title).toBeInTheDocument();
         expect(title).toHaveClass('has-text-centered');
+
+        // Clean up after each viewport test
+        cleanup();
       });
     });
 

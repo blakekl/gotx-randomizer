@@ -100,15 +100,44 @@ export const mockCompletions: Completion[] = [
   },
 ];
 
-export function createMockDbStore(): Partial<DbStore> {
-  return {
+// Mock labeled stat data for charts
+const mockLabeledStats = [
+  { label: 'Game 1', value: 10 },
+  { label: 'Game 2', value: 20 },
+  { label: 'Game 3', value: 15 },
+];
+
+// Mock user list items for Users page
+const mockUserListItems = [
+  {
+    id: 1,
+    username: 'user1',
+    display_name: 'User One',
+    total_points: 1500,
+    total_completions: 25,
+    join_date: '2023-01-01',
+    success_percentage: 85.5,
+  },
+  {
+    id: 2,
+    username: 'user2',
+    display_name: 'User Two',
+    total_points: 1200,
+    total_completions: 20,
+    join_date: '2023-02-01',
+    success_percentage: 78.2,
+  },
+];
+
+export function createMockDbStore(overrides: any = {}): Partial<DbStore> {
+  const defaultMock = {
     games: mockGames,
     users: mockUsers,
     completions: mockCompletions,
     isLoading: false,
     error: null,
 
-    // Methods
+    // Basic CRUD methods
     getGameById: vi.fn((id: number) => mockGames.find((g) => g.id === id)),
     getUserById: vi.fn((id: number) => mockUsers.find((u) => u.id === id)),
     getCompletionsByUserId: vi.fn((userId: number) =>
@@ -133,7 +162,37 @@ export function createMockDbStore(): Partial<DbStore> {
       mockGames.filter((g) => g.system === system),
     ),
 
-    // Statistics methods
+    // User-specific methods for Users page
+    getNominationSuccessPercentByUser: vi.fn(() => mockUserListItems),
+
+    // Statistics methods needed by Statistics component
+    getMostCompletedGames: vi.fn(() => mockLabeledStats),
+    getMostCompletedGotmGames: vi.fn(() => mockLabeledStats),
+    getMostCompletedGotyGames: vi.fn(() => mockLabeledStats),
+    getMostCompletedRetrobitGames: vi.fn(() => mockLabeledStats),
+    getMostCompletedRetrobitYearGames: vi.fn(() => mockLabeledStats),
+    getMostCompletedRpgGames: vi.fn(() => mockLabeledStats),
+    getNewestCompletions: vi.fn(() => mockLabeledStats),
+    getNewestGotmCompletions: vi.fn(() => mockLabeledStats),
+    getNewestGotwotyCompletions: vi.fn(() => mockLabeledStats),
+    getNewestGotyCompletions: vi.fn(() => mockLabeledStats),
+    getNewestRetrobitCompletions: vi.fn(() => mockLabeledStats),
+    getNewestRetrobitYearCompletions: vi.fn(() => mockLabeledStats),
+    getNewestRpgCompletions: vi.fn(() => mockLabeledStats),
+    getHighestRatedGames: vi.fn(() => mockLabeledStats),
+    getHighestRatedGotmGames: vi.fn(() => mockLabeledStats),
+    getHighestRatedGotyGames: vi.fn(() => mockLabeledStats),
+    getHighestRatedRetrobitGames: vi.fn(() => mockLabeledStats),
+    getHighestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
+    getHighestRatedRpgGames: vi.fn(() => mockLabeledStats),
+    getLowestRatedGames: vi.fn(() => mockLabeledStats),
+    getLowestRatedGotmGames: vi.fn(() => mockLabeledStats),
+    getLowestRatedGotyGames: vi.fn(() => mockLabeledStats),
+    getLowestRatedRetrobitGames: vi.fn(() => mockLabeledStats),
+    getLowestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
+    getLowestRatedRpgGames: vi.fn(() => mockLabeledStats),
+
+    // General statistics methods
     getGameStats: vi.fn(() => ({
       totalGames: mockGames.length,
       totalCompletions: mockCompletions.length,
@@ -152,6 +211,11 @@ export function createMockDbStore(): Partial<DbStore> {
     loadCompletions: vi.fn().mockResolvedValue(mockCompletions),
     refreshData: vi.fn().mockResolvedValue(undefined),
 
+    // List methods
+    getUserList: vi.fn(() => mockUsers),
+    getGameList: vi.fn(() => mockGames),
+    getCompletionList: vi.fn(() => mockCompletions),
+
     // CRUD operations
     addGame: vi.fn().mockResolvedValue(mockGames[0]),
     updateGame: vi.fn().mockResolvedValue(mockGames[0]),
@@ -165,10 +229,14 @@ export function createMockDbStore(): Partial<DbStore> {
     updateCompletion: vi.fn().mockResolvedValue(mockCompletions[0]),
     deleteCompletion: vi.fn().mockResolvedValue(undefined),
   };
+
+  return { ...defaultMock, ...overrides };
 }
 
-export function createMockSettingsStore(): Partial<SettingsStore> {
-  return {
+export function createMockSettingsStore(
+  overrides: any = {},
+): Partial<SettingsStore> {
+  const defaultMock = {
     theme: 'light',
     language: 'en',
     itemsPerPage: 10,
@@ -180,9 +248,9 @@ export function createMockSettingsStore(): Partial<SettingsStore> {
     setTheme: vi.fn(),
     setLanguage: vi.fn(),
     setItemsPerPage: vi.fn(),
-    setShowCompletedGames: vi.fn(),
     setSortBy: vi.fn(),
     setSortOrder: vi.fn(),
+    setShowCompletedGames: vi.fn(),
 
     // Persistence methods
     loadSettings: vi.fn().mockResolvedValue(undefined),
@@ -208,17 +276,19 @@ export function createMockSettingsStore(): Partial<SettingsStore> {
       sortOrder: 'asc',
     }),
   };
+
+  return { ...defaultMock, ...overrides };
 }
 
 // Helper function to create mock store context
-export function createMockStoreContext() {
+export function createMockStoreContext(overrides: any = {}) {
   return {
-    dbStore: createMockDbStore(),
-    settingsStore: createMockSettingsStore(),
+    dbStore: createMockDbStore(overrides.dbStore),
+    settingsStore: createMockSettingsStore(overrides.settingsStore),
   };
 }
 
-// Mock StoreContext for testing
+// Create a mock context that matches the actual store structure
 export const MockStoreContext = React.createContext(createMockStoreContext());
 
 // Helper function to wrap components with mock store context
@@ -231,3 +301,7 @@ export function withMockStores(component: React.ReactElement, stores?: any) {
     component,
   );
 }
+
+// Export the actual store context for tests to use
+// This matches the default export from stores/index.tsx
+export { default as StoreContext } from '../../stores/index';

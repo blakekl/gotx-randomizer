@@ -1,22 +1,22 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UserDisplay from '../../../pages/Users/UserDisplay/UserDisplay';
-import { StoreContext } from '../../../stores';
 import {
   createMockDbStore,
   createMockSettingsStore,
+  StoreContext,
 } from '../../test-utils/mockStores';
 
 const mockUser = {
   id: 1,
-  username: 'TestUser',
-  discord_user_id: '123456789',
-  total_points: 25.5,
-  total_completions: 10,
-  gotm_points: 15,
-  rpg_points: 10.5,
-  retrobit_points: 0,
+  username: 'testuser',
+  display_name: 'Test User',
+  avatar_url: 'https://example.com/avatar.jpg',
+  join_date: '2023-01-01',
+  total_points: 1500,
+  total_completions: 25,
+  favorite_genre: 'Action',
 };
 
 const mockCompletions = [
@@ -25,20 +25,20 @@ const mockCompletions = [
     user_id: 1,
     game_id: 1,
     game_title: 'Test Game 1',
-    nomination_type: 'GOTM_WINNER',
-    theme_number: 20,
-    points: 3,
-    completed_date: '2024-01-15',
+    completed_date: '2023-03-01',
+    points: 100,
+    difficulty: 3,
+    rating: 8,
   },
   {
     id: 2,
     user_id: 1,
     game_id: 2,
     game_title: 'Test Game 2',
-    nomination_type: 'RPG_WINNER',
-    theme_number: 19,
-    points: 3,
-    completed_date: '2024-01-10',
+    completed_date: '2023-02-15',
+    points: 150,
+    difficulty: 5,
+    rating: 9,
   },
 ];
 
@@ -73,103 +73,82 @@ describe('UserDisplay Component Integration', () => {
 
   describe('user information display', () => {
     it('should display user details', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('TestUser')).toBeInTheDocument();
-        expect(screen.getByText('25.5')).toBeInTheDocument(); // Total points
-        expect(screen.getByText('10')).toBeInTheDocument(); // Total completions
-        expect(screen.getByText('15')).toBeInTheDocument(); // GotM points
-        expect(screen.getByText('10.5')).toBeInTheDocument(); // RPG points
+        expect(screen.getByText('Test User')).toBeInTheDocument();
+        expect(screen.getByText('testuser')).toBeInTheDocument();
+        expect(screen.getByText('1500')).toBeInTheDocument(); // total points
+        expect(screen.getByText('25')).toBeInTheDocument(); // total completions
       });
     });
 
     it('should display user statistics breakdown', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText(/Total Points/)).toBeInTheDocument();
-        expect(screen.getByText(/Total Completions/)).toBeInTheDocument();
-        expect(screen.getByText(/GotM Points/)).toBeInTheDocument();
-        expect(screen.getByText(/RPG Points/)).toBeInTheDocument();
+        expect(screen.getByText(/total points/i)).toBeInTheDocument();
+        expect(screen.getByText(/total completions/i)).toBeInTheDocument();
+        expect(screen.getByText(/favorite genre/i)).toBeInTheDocument();
+        expect(screen.getByText('Action')).toBeInTheDocument();
       });
     });
 
     it('should handle user not found', async () => {
-      renderWithStores('999', {
-        dbStore: {
-          getUserById: vi.fn(() => null),
-          getCompletionsByUserId: vi.fn(() => []),
-        },
-      });
+      renderWithStores('999');
 
       await waitFor(() => {
-        expect(screen.getByText(/User not found/i)).toBeInTheDocument();
+        expect(screen.getByText(/user not found/i)).toBeInTheDocument();
       });
     });
 
     it('should handle invalid user ID', async () => {
-      renderWithStores('invalid', {
-        dbStore: {
-          getUserById: vi.fn(() => null),
-          getCompletionsByUserId: vi.fn(() => []),
-        },
-      });
+      renderWithStores('invalid');
 
       await waitFor(() => {
-        expect(screen.getByText(/User not found/i)).toBeInTheDocument();
+        expect(screen.getByText(/invalid user/i)).toBeInTheDocument();
       });
     });
   });
 
   describe('completions display', () => {
     it('should display user completions list', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
         expect(screen.getByText('Test Game 1')).toBeInTheDocument();
         expect(screen.getByText('Test Game 2')).toBeInTheDocument();
-        expect(screen.getByText('GOTM_WINNER')).toBeInTheDocument();
-        expect(screen.getByText('RPG_WINNER')).toBeInTheDocument();
       });
     });
 
     it('should display completion details', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('Theme 20')).toBeInTheDocument();
-        expect(screen.getByText('Theme 19')).toBeInTheDocument();
-        expect(screen.getByText('2024-01-15')).toBeInTheDocument();
-        expect(screen.getByText('2024-01-10')).toBeInTheDocument();
+        expect(screen.getByText('100')).toBeInTheDocument(); // points
+        expect(screen.getByText('150')).toBeInTheDocument(); // points
+        expect(screen.getByText(/2023-03-01/)).toBeInTheDocument();
+        expect(screen.getByText(/2023-02-15/)).toBeInTheDocument();
       });
     });
 
     it('should handle empty completions list', async () => {
       renderWithStores('1', {
-        dbStore: {
-          getUserById: vi.fn(() => mockUser),
-          getCompletionsByUserId: vi.fn(() => []),
-        },
+        dbStore: { getCompletionsByUserId: vi.fn(() => []) },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('TestUser')).toBeInTheDocument();
-        expect(screen.getByText(/No completions found/i)).toBeInTheDocument();
+        expect(screen.getByText(/no completions found/i)).toBeInTheDocument();
       });
     });
 
     it('should sort completions by date (newest first)', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const completionRows = screen.getAllByRole('row');
-        // Skip header row, check data rows
-        const firstCompletion = completionRows[1];
-        const secondCompletion = completionRows[2];
-
-        expect(firstCompletion).toHaveTextContent('2024-01-15'); // Newer date first
-        expect(secondCompletion).toHaveTextContent('2024-01-10');
+        const completions = screen.getAllByText(/Test Game/);
+        expect(completions[0]).toHaveTextContent('Test Game 1'); // March 1st (newer)
+        expect(completions[1]).toHaveTextContent('Test Game 2'); // Feb 15th (older)
       });
     });
   });
@@ -193,34 +172,27 @@ describe('UserDisplay Component Integration', () => {
     });
 
     it('should handle database errors gracefully', async () => {
-      const consoleSpy = vi
-        .spyOn(console, 'error')
-        .mockImplementation(() => {});
+      const mockGetUserById = vi.fn(() => {
+        throw new Error('Database error');
+      });
 
       renderWithStores('1', {
-        dbStore: {
-          getUserById: vi.fn(() => {
-            throw new Error('DB Error');
-          }),
-          getCompletionsByUserId: vi.fn(() => {
-            throw new Error('DB Error');
-          }),
-        },
+        dbStore: { getUserById: mockGetUserById },
       });
 
-      // Should show error state instead of crashing
       await waitFor(() => {
-        expect(screen.getByText(/Error loading user/i)).toBeInTheDocument();
+        expect(screen.getByText(/error loading user/i)).toBeInTheDocument();
       });
-
-      consoleSpy.mockRestore();
     });
 
     it('should show loading state initially', () => {
-      renderWithStores();
+      const mockGetUserById = vi.fn(() => new Promise(() => {})); // Never resolves
 
-      // Should show some loading indicator or the component should render quickly
-      expect(screen.getByText(/TestUser|Loading|User/)).toBeInTheDocument();
+      renderWithStores('1', {
+        dbStore: { getUserById: mockGetUserById, isLoading: true },
+      });
+
+      expect(screen.getByText(/loading/i)).toBeInTheDocument();
     });
   });
 
@@ -228,36 +200,33 @@ describe('UserDisplay Component Integration', () => {
     it('should extract user ID from URL params', async () => {
       const mockGetUserById = vi.fn(() => mockUser);
 
-      renderWithStores('42', {
-        dbStore: {
-          getUserById: mockGetUserById,
-          getCompletionsByUserId: vi.fn(() => []),
-        },
+      renderWithStores('123', {
+        dbStore: { getUserById: mockGetUserById },
       });
 
       await waitFor(() => {
-        expect(mockGetUserById).toHaveBeenCalledWith(42);
+        expect(mockGetUserById).toHaveBeenCalledWith(123);
       });
     });
 
     it('should handle navigation back to users list', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const backLink = screen.getByText(/Back to Users|← Users/i);
+        const backLink = screen.getByRole('link', { name: /back to users/i });
         expect(backLink).toBeInTheDocument();
-        expect(backLink.closest('a')).toHaveAttribute('href', '/users');
+        expect(backLink).toHaveAttribute('href', '/users');
       });
     });
   });
 
   describe('responsive design', () => {
     it('should have responsive layout classes', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const container = screen.getByText('TestUser').closest('div');
-        expect(container).toBeInTheDocument();
+        const container = screen.getByTestId('user-display-container');
+        expect(container).toHaveClass('columns', 'is-mobile');
       });
     });
 
@@ -269,93 +238,91 @@ describe('UserDisplay Component Integration', () => {
         value: 375,
       });
 
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('TestUser')).toBeInTheDocument();
+        const avatar = screen.getByRole('img');
+        expect(avatar).toHaveClass('is-mobile-friendly');
       });
     });
   });
 
   describe('accessibility', () => {
     it('should have proper heading structure', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const userHeading = screen.getByRole('heading', { level: 1 });
-        expect(userHeading).toBeInTheDocument();
-        expect(userHeading).toHaveTextContent('TestUser');
+        const heading = screen.getByRole('heading', { level: 1 });
+        expect(heading).toBeInTheDocument();
+        expect(heading).toHaveTextContent('Test User');
       });
     });
 
     it('should have accessible table for completions', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
         const table = screen.getByRole('table');
         expect(table).toBeInTheDocument();
+        expect(table).toHaveAccessibleName();
 
-        const columnHeaders = screen.getAllByRole('columnheader');
-        expect(columnHeaders.length).toBeGreaterThan(0);
+        const headers = screen.getAllByRole('columnheader');
+        expect(headers.length).toBeGreaterThan(0);
       });
     });
 
     it('should have proper navigation links', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const backLink = screen.getByRole('link', { name: /back|users/i });
+        const backLink = screen.getByRole('link', { name: /back to users/i });
         expect(backLink).toBeInTheDocument();
+        expect(backLink).toHaveAccessibleName();
       });
     });
 
     it('should be keyboard navigable', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        const backLink = screen.getByRole('link', { name: /back|users/i });
+        const backLink = screen.getByRole('link', { name: /back to users/i });
         backLink.focus();
-        expect(backLink).toHaveFocus();
+        expect(document.activeElement).toBe(backLink);
       });
     });
   });
 
   describe('data formatting', () => {
     it('should format points correctly', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        // Should show decimal points for fractional values
-        expect(screen.getByText('25.5')).toBeInTheDocument();
-        expect(screen.getByText('10.5')).toBeInTheDocument();
+        expect(screen.getByText(/1,500/)).toBeInTheDocument(); // Formatted with comma
       });
     });
 
     it('should format dates correctly', async () => {
-      renderWithStores();
+      renderWithStores('1');
 
       await waitFor(() => {
-        expect(screen.getByText('2024-01-15')).toBeInTheDocument();
-        expect(screen.getByText('2024-01-10')).toBeInTheDocument();
+        expect(screen.getByText(/march.*1.*2023/i)).toBeInTheDocument();
+        expect(screen.getByText(/february.*15.*2023/i)).toBeInTheDocument();
       });
     });
 
     it('should handle zero values appropriately', async () => {
       const userWithZeros = {
         ...mockUser,
-        retrobit_points: 0,
+        total_points: 0,
         total_completions: 0,
       };
-
       renderWithStores('1', {
-        dbStore: {
-          getUserById: vi.fn(() => userWithZeros),
-          getCompletionsByUserId: vi.fn(() => []),
-        },
+        dbStore: { getUserById: vi.fn(() => userWithZeros) },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('0')).toBeInTheDocument(); // Should show zero values
+        expect(screen.getByText('0')).toBeInTheDocument();
+        expect(screen.getByText(/no completions yet/i)).toBeInTheDocument();
       });
     });
   });
@@ -364,63 +331,62 @@ describe('UserDisplay Component Integration', () => {
     it('should handle missing store gracefully', () => {
       expect(() => {
         render(
-          <BrowserRouter initialEntries={['/users/1']}>
+          <BrowserRouter>
             <Routes>
               <Route path="/users/:userId" element={<UserDisplay />} />
             </Routes>
           </BrowserRouter>,
         );
-      }).toThrow(); // Should throw because no store context
+      }).toThrow();
     });
 
     it('should handle malformed completion data', async () => {
       const malformedCompletions = [
-        { id: 1, game_title: null, points: 'invalid' },
-        { id: 2 }, // Missing required fields
-        null, // Null completion
+        { id: 1, game_title: null, completed_date: 'invalid-date' },
       ];
 
       renderWithStores('1', {
-        dbStore: {
-          getUserById: vi.fn(() => mockUser),
-          getCompletionsByUserId: vi.fn(() => malformedCompletions),
-        },
+        dbStore: { getCompletionsByUserId: vi.fn(() => malformedCompletions) },
       });
 
-      // Should not crash
       await waitFor(() => {
-        expect(screen.getByText('TestUser')).toBeInTheDocument();
+        expect(screen.getByText(/unknown game/i)).toBeInTheDocument();
       });
     });
   });
 
   describe('performance', () => {
     it('should handle large completion lists efficiently', async () => {
-      const largeCompletionList = Array.from({ length: 100 }, (_, i) => ({
+      const largeCompletionsList = Array.from({ length: 1000 }, (_, i) => ({
         id: i + 1,
         user_id: 1,
         game_id: i + 1,
         game_title: `Game ${i + 1}`,
-        nomination_type: 'GOTM_WINNER',
-        theme_number: 20,
-        points: 3,
-        completed_date: `2024-01-${String(i + 1).padStart(2, '0')}`,
+        completed_date: '2023-01-01',
+        points: 100,
+        difficulty: 3,
+        rating: 8,
       }));
 
+      const startTime = performance.now();
       renderWithStores('1', {
-        dbStore: {
-          getUserById: vi.fn(() => mockUser),
-          getCompletionsByUserId: vi.fn(() => largeCompletionList),
-        },
+        dbStore: { getCompletionsByUserId: vi.fn(() => largeCompletionsList) },
       });
+      const endTime = performance.now();
+
+      expect(endTime - startTime).toBeLessThan(2000); // Should render within 2 seconds
 
       await waitFor(() => {
-        expect(screen.getByText('TestUser')).toBeInTheDocument();
+        expect(screen.getByText('Test User')).toBeInTheDocument();
       });
     });
 
-    it('should not cause memory leaks on unmount', () => {
-      const { unmount } = renderWithStores();
+    it('should not cause memory leaks on unmount', async () => {
+      const { unmount } = renderWithStores('1');
+
+      await waitFor(() => {
+        expect(screen.getByText('Test User')).toBeInTheDocument();
+      });
 
       expect(() => unmount()).not.toThrow();
     });

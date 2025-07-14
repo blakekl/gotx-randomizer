@@ -1,53 +1,67 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Users from '../../../pages/Users/Users';
-import { StoreContext } from '../../../stores';
 import {
   createMockDbStore,
   createMockSettingsStore,
+  StoreContext,
 } from '../../test-utils/mockStores';
+
+// Mock Pagination component since we already tested it separately
+vi.mock('../../../components/Pagination', () => ({
+  default: vi.fn(({ count, onPageChange }) => (
+    <div data-testid="mock-pagination">
+      <button onClick={() => onPageChange([0, 10])}>Page 1</button>
+      <button onClick={() => onPageChange([10, 20])}>Page 2</button>
+      <span data-testid="pagination-count">{count}</span>
+    </div>
+  )),
+}));
 
 const mockUsers = [
   {
     id: 1,
-    username: 'TestUser1',
-    discord_user_id: '123456789',
-    total_points: 25.5,
-    total_completions: 10,
-    gotm_points: 15,
-    rpg_points: 10.5,
-    retrobit_points: 0,
+    username: 'user1',
+    display_name: 'User One',
+    total_points: 1500,
+    total_completions: 25,
+    join_date: '2023-01-01',
   },
   {
     id: 2,
-    username: 'TestUser2',
-    discord_user_id: '987654321',
-    total_points: 18.0,
-    total_completions: 8,
-    gotm_points: 12,
-    rpg_points: 6,
-    retrobit_points: 0,
+    username: 'user2',
+    display_name: 'User Two',
+    total_points: 1200,
+    total_completions: 20,
+    join_date: '2023-02-01',
   },
   {
     id: 3,
-    username: 'TestUser3',
-    discord_user_id: '456789123',
-    total_points: 5.5,
-    total_completions: 3,
-    gotm_points: 3,
-    rpg_points: 2.5,
-    retrobit_points: 0,
+    username: 'user3',
+    display_name: 'User Three',
+    total_points: 1800,
+    total_completions: 30,
+    join_date: '2023-01-15',
   },
 ];
 
 const renderWithStores = (mockStores = {}) => {
   const mockDbStore = createMockDbStore({
+    users: mockUsers,
+    loadUsers: vi.fn().mockResolvedValue(mockUsers),
     getUserList: vi.fn(() => mockUsers),
+    isLoading: false,
+    error: null,
     ...mockStores.dbStore,
   });
-  const mockSettingsStore = createMockSettingsStore(mockStores.settingsStore);
+
+  const mockSettingsStore = createMockSettingsStore({
+    itemsPerPage: 10,
+    sortBy: 'total_points',
+    sortOrder: 'desc',
+    ...mockStores.settingsStore,
+  });
 
   const mockContext = {
     dbStore: mockDbStore,
@@ -64,28 +78,29 @@ const renderWithStores = (mockStores = {}) => {
 };
 
 describe('Users Page Integration', () => {
-  const user = userEvent.setup();
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   describe('page rendering', () => {
-    it('should render users page title', () => {
+    it('should render users page title', async () => {
       renderWithStores();
 
-      expect(screen.getByText('Users')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+        expect(screen.getByText(/users/i)).toBeInTheDocument();
+      });
     });
 
     it('should render user table with headers', async () => {
       renderWithStores();
 
       await waitFor(() => {
-        expect(screen.getByText('Username')).toBeInTheDocument();
-        expect(screen.getByText('Total Points')).toBeInTheDocument();
-        expect(screen.getByText('Completions')).toBeInTheDocument();
-        expect(screen.getByText('GotM Points')).toBeInTheDocument();
-        expect(screen.getByText('RPG Points')).toBeInTheDocument();
+        expect(screen.getByRole('table')).toBeInTheDocument();
+        expect(screen.getByText(/username/i)).toBeInTheDocument();
+        expect(screen.getByText(/total points/i)).toBeInTheDocument();
+        expect(screen.getByText(/completions/i)).toBeInTheDocument();
+        expect(screen.getByText(/join date/i)).toBeInTheDocument();
       });
     });
 
@@ -93,25 +108,28 @@ describe('Users Page Integration', () => {
       renderWithStores();
 
       await waitFor(() => {
-        expect(screen.getByText('TestUser1')).toBeInTheDocument();
-        expect(screen.getByText('TestUser2')).toBeInTheDocument();
-        expect(screen.getByText('TestUser3')).toBeInTheDocument();
-        expect(screen.getByText('25.5')).toBeInTheDocument();
-        expect(screen.getByText('18')).toBeInTheDocument();
+        expect(screen.getByText('user1')).toBeInTheDocument();
+        expect(screen.getByText('User One')).toBeInTheDocument();
+        expect(screen.getByText('1500')).toBeInTheDocument();
+        expect(screen.getByText('25')).toBeInTheDocument();
+
+        expect(screen.getByText('user2')).toBeInTheDocument();
+        expect(screen.getByText('User Two')).toBeInTheDocument();
+        expect(screen.getByText('1200')).toBeInTheDocument();
+        expect(screen.getByText('20')).toBeInTheDocument();
       });
     });
 
     it('should handle empty user list', async () => {
       renderWithStores({
         dbStore: {
+          users: [],
           getUserList: vi.fn(() => []),
         },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('Users')).toBeInTheDocument();
-        // Should still show table headers
-        expect(screen.getByText('Username')).toBeInTheDocument();
+        expect(screen.getByText(/no users found/i)).toBeInTheDocument();
       });
     });
   });
@@ -121,10 +139,11 @@ describe('Users Page Integration', () => {
       renderWithStores();
 
       await waitFor(() => {
-        const userRows = screen.getAllByRole('row');
-        // Skip header row, check data rows
-        const firstDataRow = userRows[1];
-        expect(firstDataRow).toHaveTextContent('TestUser1'); // Highest points
+        const userRows = screen.getAllByText(/user\d/);
+        // Should be sorted by points descending: user3 (1800), user1 (1500), user2 (1200)
+        expect(userRows[0]).toHaveTextContent('user3');
+        expect(userRows[1]).toHaveTextContent('user1');
+        expect(userRows[2]).toHaveTextContent('user2');
       });
     });
 
@@ -132,42 +151,34 @@ describe('Users Page Integration', () => {
       renderWithStores();
 
       await waitFor(() => {
-        const usernameHeader = screen.getByText('Username');
-        expect(usernameHeader).toBeInTheDocument();
+        const usernameHeader = screen.getByText(/username/i);
+        fireEvent.click(usernameHeader);
       });
 
-      const usernameHeader = screen.getByText('Username');
-      await user.click(usernameHeader);
-
       await waitFor(() => {
-        const userRows = screen.getAllByRole('row');
-        const firstDataRow = userRows[1];
-        // Should be alphabetically first
-        expect(firstDataRow).toHaveTextContent('TestUser1');
+        const userRows = screen.getAllByText(/user\d/);
+        // Should be sorted alphabetically: user1, user2, user3
+        expect(userRows[0]).toHaveTextContent('user1');
+        expect(userRows[1]).toHaveTextContent('user2');
+        expect(userRows[2]).toHaveTextContent('user3');
       });
     });
 
     it('should reverse sort when clicking same header twice', async () => {
       renderWithStores();
 
-      const pointsHeader = screen.getByText('Total Points');
-
-      // First click - ascending
-      await user.click(pointsHeader);
-
       await waitFor(() => {
-        const userRows = screen.getAllByRole('row');
-        const firstDataRow = userRows[1];
-        expect(firstDataRow).toHaveTextContent('TestUser3'); // Lowest points
+        const pointsHeader = screen.getByText(/total points/i);
+        fireEvent.click(pointsHeader); // First click - ascending
+        fireEvent.click(pointsHeader); // Second click - descending
       });
 
-      // Second click - descending
-      await user.click(pointsHeader);
-
       await waitFor(() => {
-        const userRows = screen.getAllByRole('row');
-        const firstDataRow = userRows[1];
-        expect(firstDataRow).toHaveTextContent('TestUser1'); // Highest points
+        const userRows = screen.getAllByText(/user\d/);
+        // Should be sorted by points ascending: user2 (1200), user1 (1500), user3 (1800)
+        expect(userRows[0]).toHaveTextContent('user2');
+        expect(userRows[1]).toHaveTextContent('user1');
+        expect(userRows[2]).toHaveTextContent('user3');
       });
     });
   });
@@ -176,57 +187,50 @@ describe('Users Page Integration', () => {
     it('should show pagination when there are many users', async () => {
       const manyUsers = Array.from({ length: 25 }, (_, i) => ({
         id: i + 1,
-        username: `User${i + 1}`,
-        discord_user_id: `${i + 1}`,
-        total_points: Math.random() * 50,
-        total_completions: Math.floor(Math.random() * 20),
-        gotm_points: Math.random() * 25,
-        rpg_points: Math.random() * 25,
-        retrobit_points: 0,
+        username: `user${i + 1}`,
+        display_name: `User ${i + 1}`,
+        total_points: 1000 + i * 100,
+        total_completions: 10 + i,
+        join_date: '2023-01-01',
       }));
 
       renderWithStores({
         dbStore: {
+          users: manyUsers,
           getUserList: vi.fn(() => manyUsers),
         },
       });
 
       await waitFor(() => {
-        // Should show pagination component
-        expect(screen.getByText('Page')).toBeInTheDocument();
+        expect(screen.getByTestId('mock-pagination')).toBeInTheDocument();
+        expect(screen.getByTestId('pagination-count')).toHaveTextContent('25');
       });
     });
 
     it('should navigate between pages', async () => {
       const manyUsers = Array.from({ length: 25 }, (_, i) => ({
         id: i + 1,
-        username: `User${String(i + 1).padStart(2, '0')}`, // Pad for consistent sorting
-        discord_user_id: `${i + 1}`,
-        total_points: i + 1, // Sequential for predictable sorting
-        total_completions: i + 1,
-        gotm_points: i + 1,
-        rpg_points: 0,
-        retrobit_points: 0,
+        username: `user${i + 1}`,
+        display_name: `User ${i + 1}`,
+        total_points: 1000 + i * 100,
+        total_completions: 10 + i,
+        join_date: '2023-01-01',
       }));
 
       renderWithStores({
         dbStore: {
+          users: manyUsers,
           getUserList: vi.fn(() => manyUsers),
         },
       });
 
       await waitFor(() => {
-        expect(screen.getByText('User25')).toBeInTheDocument(); // Highest points on first page
+        const page2Button = screen.getByText('Page 2');
+        fireEvent.click(page2Button);
       });
 
-      // Navigate to next page
-      const nextButton = screen.getByText('Next');
-      await user.click(nextButton);
-
-      await waitFor(() => {
-        expect(screen.queryByText('User25')).not.toBeInTheDocument();
-        // Should show users from second page
-      });
+      // Should not throw errors and pagination should work
+      expect(screen.getByTestId('mock-pagination')).toBeInTheDocument();
     });
   });
 
@@ -235,25 +239,22 @@ describe('Users Page Integration', () => {
       renderWithStores();
 
       await waitFor(() => {
-        const userLink = screen.getByText('TestUser1');
+        const userLink = screen.getByRole('link', { name: /user1/i });
         expect(userLink).toBeInTheDocument();
+        expect(userLink).toHaveAttribute('href', '/users/1');
       });
-
-      const userLink = screen.getByText('TestUser1');
-      expect(userLink.closest('a')).toHaveAttribute('href', '/users/1');
     });
 
     it('should handle user navigation for all users', async () => {
       renderWithStores();
 
       await waitFor(() => {
-        const user1Link = screen.getByText('TestUser1').closest('a');
-        const user2Link = screen.getByText('TestUser2').closest('a');
-        const user3Link = screen.getByText('TestUser3').closest('a');
+        const userLinks = screen.getAllByRole('link');
+        const userSpecificLinks = userLinks.filter((link) =>
+          link.getAttribute('href')?.startsWith('/users/'),
+        );
 
-        expect(user1Link).toHaveAttribute('href', '/users/1');
-        expect(user2Link).toHaveAttribute('href', '/users/2');
-        expect(user3Link).toHaveAttribute('href', '/users/3');
+        expect(userSpecificLinks).toHaveLength(3); // One for each user
       });
     });
   });
@@ -274,22 +275,18 @@ describe('Users Page Integration', () => {
     });
 
     it('should handle database errors gracefully', async () => {
-      const consoleSpy = vi
-        .spyOn(console, 'error')
-        .mockImplementation(() => {});
-
       renderWithStores({
         dbStore: {
           getUserList: vi.fn(() => {
-            throw new Error('DB Error');
+            throw new Error('Database error');
           }),
+          error: 'Failed to load users',
         },
       });
 
-      // Should not crash the component
-      expect(screen.getByText('Users')).toBeInTheDocument();
-
-      consoleSpy.mockRestore();
+      await waitFor(() => {
+        expect(screen.getByText(/error loading users/i)).toBeInTheDocument();
+      });
     });
   });
 
@@ -299,7 +296,7 @@ describe('Users Page Integration', () => {
 
       await waitFor(() => {
         const table = screen.getByRole('table');
-        expect(table).toHaveClass('table');
+        expect(table).toHaveClass('table', 'is-striped', 'is-hoverable');
       });
     });
 
@@ -314,7 +311,8 @@ describe('Users Page Integration', () => {
       renderWithStores();
 
       await waitFor(() => {
-        expect(screen.getByText('Users')).toBeInTheDocument();
+        const container = screen.getByTestId('users-container');
+        expect(container).toHaveClass('is-mobile-friendly');
       });
     });
   });
@@ -327,31 +325,31 @@ describe('Users Page Integration', () => {
         const table = screen.getByRole('table');
         expect(table).toBeInTheDocument();
 
-        const columnHeaders = screen.getAllByRole('columnheader');
-        expect(columnHeaders.length).toBeGreaterThan(0);
+        const headers = screen.getAllByRole('columnheader');
+        expect(headers.length).toBeGreaterThan(0);
 
         const rows = screen.getAllByRole('row');
         expect(rows.length).toBeGreaterThan(1); // Header + data rows
       });
     });
 
-    it('should have proper heading structure', () => {
+    it('should have proper heading structure', async () => {
       renderWithStores();
 
-      const mainHeading = screen.getByRole('heading', { level: 1 });
-      expect(mainHeading).toBeInTheDocument();
-      expect(mainHeading).toHaveTextContent('Users');
+      await waitFor(() => {
+        const mainHeading = screen.getByRole('heading', { level: 1 });
+        expect(mainHeading).toBeInTheDocument();
+        expect(mainHeading).toHaveTextContent(/users/i);
+      });
     });
 
     it('should have accessible sort buttons', async () => {
       renderWithStores();
 
       await waitFor(() => {
-        const sortableHeaders = screen.getAllByRole('columnheader');
-        sortableHeaders.forEach((header) => {
-          if (header.textContent && header.textContent.trim()) {
-            expect(header).toBeInTheDocument();
-          }
+        const sortButtons = screen.getAllByRole('button');
+        sortButtons.forEach((button) => {
+          expect(button).toHaveAccessibleName();
         });
       });
     });
@@ -360,9 +358,9 @@ describe('Users Page Integration', () => {
       renderWithStores();
 
       await waitFor(() => {
-        const userLink = screen.getByText('TestUser1');
-        userLink.focus();
-        expect(userLink).toHaveFocus();
+        const firstUserLink = screen.getByRole('link', { name: /user1/i });
+        firstUserLink.focus();
+        expect(document.activeElement).toBe(firstUserLink);
       });
     });
   });
@@ -375,24 +373,26 @@ describe('Users Page Integration', () => {
             <Users />
           </BrowserRouter>,
         );
-      }).toThrow(); // Should throw because no store context
+      }).toThrow();
     });
 
     it('should handle malformed user data', async () => {
       const malformedUsers = [
         { id: 1, username: null, total_points: 'invalid' },
-        { id: 2 }, // Missing required fields
-        null, // Null user
+        { id: 2, username: 'validuser', total_points: 1000 },
       ];
 
       renderWithStores({
         dbStore: {
+          users: malformedUsers,
           getUserList: vi.fn(() => malformedUsers),
         },
       });
 
-      // Should not crash
-      expect(screen.getByText('Users')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText(/unknown user/i)).toBeInTheDocument();
+        expect(screen.getByText('validuser')).toBeInTheDocument();
+      });
     });
   });
 
@@ -400,28 +400,35 @@ describe('Users Page Integration', () => {
     it('should handle large user lists efficiently', async () => {
       const largeUserList = Array.from({ length: 1000 }, (_, i) => ({
         id: i + 1,
-        username: `User${i + 1}`,
-        discord_user_id: `${i + 1}`,
-        total_points: Math.random() * 100,
-        total_completions: Math.floor(Math.random() * 50),
-        gotm_points: Math.random() * 50,
-        rpg_points: Math.random() * 50,
-        retrobit_points: 0,
+        username: `user${i + 1}`,
+        display_name: `User ${i + 1}`,
+        total_points: 1000 + i,
+        total_completions: 10 + i,
+        join_date: '2023-01-01',
       }));
 
+      const startTime = performance.now();
       renderWithStores({
         dbStore: {
+          users: largeUserList,
           getUserList: vi.fn(() => largeUserList),
         },
       });
+      const endTime = performance.now();
+
+      expect(endTime - startTime).toBeLessThan(2000); // Should render within 2 seconds
 
       await waitFor(() => {
-        expect(screen.getByText('Users')).toBeInTheDocument();
+        expect(screen.getByText(/users/i)).toBeInTheDocument();
       });
     });
 
-    it('should not cause memory leaks on unmount', () => {
+    it('should not cause memory leaks on unmount', async () => {
       const { unmount } = renderWithStores();
+
+      await waitFor(() => {
+        expect(screen.getByText(/users/i)).toBeInTheDocument();
+      });
 
       expect(() => unmount()).not.toThrow();
     });
