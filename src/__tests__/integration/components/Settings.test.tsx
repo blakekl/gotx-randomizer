@@ -239,12 +239,19 @@ describe('Settings Component', () => {
 
       render(<Settings />);
 
-      const settingsButtons = screen.getAllByRole('button', { name: /settings/i });
+      const settingsButtons = screen.getAllByRole('button', {
+        name: /settings/i,
+      });
       const settingsButton = settingsButtons[0]; // Use the first one
       await user.click(settingsButton);
 
-      const minSlider = screen.getByLabelText('Minimum time to beat');
-      const maxSlider = screen.getByLabelText('Maximum time to beat');
+      // Get all sliders and identify them by their values
+      const minSliders = screen.getAllByLabelText('Minimum time to beat');
+      const maxSliders = screen.getAllByLabelText('Maximum time to beat');
+
+      // Use the first slider of each type
+      const minSlider = minSliders[0];
+      const maxSlider = maxSliders[0];
 
       expect(minSlider).toHaveAttribute('aria-valuenow', '25');
       expect(maxSlider).toHaveAttribute('aria-valuenow', '75');

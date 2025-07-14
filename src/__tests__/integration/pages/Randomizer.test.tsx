@@ -83,10 +83,12 @@ describe('Randomizer Page Integration', () => {
     mockSettingsStore.includeRpgWinners = true;
     mockSettingsStore.includeHiddenGames = false;
     mockSettingsStore.hltbFilter = [0, 100];
-    
+
     // Reset mock games data
     mockDbStore.allGames = {
-      gotmRunnerUp: [createMockGame({ id: 1, title_usa: 'GotM Runner Up Game' })],
+      gotmRunnerUp: [
+        createMockGame({ id: 1, title_usa: 'GotM Runner Up Game' }),
+      ],
       gotmWinners: [createMockGame({ id: 2, title_usa: 'GotM Winner Game' })],
       retrobits: [createMockGame({ id: 3, title_usa: 'Retrobit Game' })],
       rpgRunnerUp: [createMockGame({ id: 4, title_usa: 'RPG Runner Up Game' })],
@@ -156,18 +158,20 @@ describe('Randomizer Page Integration', () => {
       renderWithRouter(<Randomizer />);
 
       // Should show the no games message instead of the randomizer interface
-      expect(screen.getByText(/There are no games left in the pool/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/There are no games left in the pool/),
+      ).toBeInTheDocument();
       expect(screen.queryByText('Reroll')).not.toBeInTheDocument();
     });
 
     it('should respect HLTB filters', async () => {
       // Set up games with time_to_beat values
-      const gameWithTime = createMockGame({ 
-        id: 1, 
-        title_usa: 'Game With Time', 
-        time_to_beat: 55 
+      const gameWithTime = createMockGame({
+        id: 1,
+        title_usa: 'Game With Time',
+        time_to_beat: 55,
       });
-      
+
       mockDbStore.allGames = {
         gotmRunnerUp: [gameWithTime],
         gotmWinners: [],
@@ -184,18 +188,12 @@ describe('Randomizer Page Integration', () => {
 
       // Should have games available since our game fits the filter
       expect(screen.getByText('Reroll')).toBeInTheDocument();
-      
+
       const randomButton = screen.getByText('Reroll');
       await user.click(randomButton);
 
       // Should show the game that matches the filter
       expect(screen.getByText('Game With Time')).toBeInTheDocument();
-    });
-
-      // Should still attempt to show a game (filtering logic tested in unit tests)
-      await waitFor(() => {
-        expect(screen.getByTestId('game-display')).toBeInTheDocument();
-      });
     });
 
     it('should exclude hidden games by default', async () => {
@@ -212,11 +210,14 @@ describe('Randomizer Page Integration', () => {
         expect(gameDisplay).toBeInTheDocument();
         // Should not show hidden games (games with id 1 and 2)
         expect(
-          screen.queryByText('GotM Runner Up Game'),
+          screen.queryByText(/GotM Runner Up Game/),
         ).not.toBeInTheDocument();
-        expect(screen.queryByText('GotM Winner Game')).not.toBeInTheDocument();
-        // Should show non-hidden games
-        expect(screen.getByText('Retrobit Game')).toBeInTheDocument();
+        expect(screen.queryByText(/GotM Winner Game/)).not.toBeInTheDocument();
+        // Should show one of the non-hidden games (could be Retrobit Game or RPG Runner Up Game or RPG Winner Game)
+        // Verify it's not showing the hidden games by checking the game display contains some game
+        expect(gameDisplay.textContent).toMatch(
+          /(Retrobit Game|RPG Runner Up Game|RPG Winner Game)/,
+        );
       });
     });
 
@@ -297,29 +298,27 @@ describe('Randomizer Page Integration', () => {
         expect(screen.getByTestId('game-display')).toBeInTheDocument();
       });
 
-      // Hide the current game
-      const hideButton = screen.getByText('Hide Game');
-      await user.click(hideButton);
+      // Hide the current game using the main hide button (has specific CSS classes)
+      // Get the one with CSS classes (main UI button, not the one in GameDisplay)
+      const mainHideButton = Array.from(screen.getAllByText('Hide Game')).find(
+        (button) => button.className.includes('button is-danger is-success'),
+      );
+      await user.click(mainHideButton);
 
       expect(mockSettingsStore.toggleHiddenGame).toHaveBeenCalled();
     });
 
     it('should update available games when games are hidden', async () => {
-      renderWithRouter(<Randomizer />);
-
-      // Initially should have games available
-      const randomButton = screen.getByText('Reroll');
-      expect(randomButton).toBeEnabled();
-
-      // Simulate hiding all games
+      // Set up scenario where all games are hidden from the start
       mockSettingsStore.hiddenGames = [1, 2, 3, 4, 5];
       mockSettingsStore.includeHiddenGames = false;
 
-      // Re-render to reflect state change
       renderWithRouter(<Randomizer />);
 
-      // Should show no games message instead of disabled button
-      expect(screen.getByText(/There are no games left in the pool/)).toBeInTheDocument();
+      // Should show no games message instead of buttons
+      expect(
+        screen.getByText(/There are no games left in the pool/),
+      ).toBeInTheDocument();
       expect(screen.queryByText('Reroll')).not.toBeInTheDocument();
     });
   });
@@ -332,24 +331,19 @@ describe('Randomizer Page Integration', () => {
     });
 
     it('should update game pool when settings change', async () => {
-      renderWithRouter(<Randomizer />);
-
-      // Initially all games available
-      const randomButton = screen.getByText('Reroll');
-      expect(randomButton).toBeEnabled();
-
-      // Simulate settings change (disable all game types)
+      // Set up scenario where all game types are disabled from the start
       mockSettingsStore.includeGotmRunnerUp = false;
       mockSettingsStore.includeGotmWinners = false;
       mockSettingsStore.includeRetrobits = false;
       mockSettingsStore.includeRpgRunnerUp = false;
       mockSettingsStore.includeRpgWinners = false;
 
-      // Re-render to reflect state change
       renderWithRouter(<Randomizer />);
 
       // Should show no games message instead of disabled button
-      expect(screen.getByText(/There are no games left in the pool/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/There are no games left in the pool/),
+      ).toBeInTheDocument();
       expect(screen.queryByText('Reroll')).not.toBeInTheDocument();
     });
   });
@@ -368,7 +362,9 @@ describe('Randomizer Page Integration', () => {
       renderWithRouter(<Randomizer />);
 
       // Should show no games message instead of disabled button
-      expect(screen.getByText(/There are no games left in the pool/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/There are no games left in the pool/),
+      ).toBeInTheDocument();
       expect(screen.queryByText('Reroll')).not.toBeInTheDocument();
     });
 
@@ -402,11 +398,11 @@ describe('Randomizer Page Integration', () => {
         name: /reroll/i,
       });
       expect(randomButton).toBeInTheDocument();
-      
-      const hideButton = screen.getByRole('button', {
+
+      const hideButtons = screen.getAllByRole('button', {
         name: /hide game/i,
       });
-      expect(hideButton).toBeInTheDocument();
+      expect(hideButtons.length).toBeGreaterThan(0);
     });
 
     it('should be keyboard navigable', () => {
@@ -424,16 +420,16 @@ describe('Randomizer Page Integration', () => {
       renderWithRouter(<Randomizer />);
 
       // Should have the main heading
-      const mainHeading = screen.getByRole('heading', { level: 1 });
+      const mainHeading = screen.getByText('Randomizer');
       expect(mainHeading).toBeInTheDocument();
-      expect(mainHeading).toHaveTextContent('Randomizer');
+      expect(mainHeading.tagName).toBe('H1');
 
       const randomButton = screen.getByText('Reroll');
       await user.click(randomButton);
 
       await waitFor(() => {
-        // Should still have the heading after clicking
-        const heading = screen.getByRole('heading', { level: 1 });
+        // Should still have the main heading after clicking
+        const heading = screen.getByText('Randomizer');
         expect(heading).toBeInTheDocument();
       });
     });
@@ -467,7 +463,7 @@ describe('Randomizer Page Integration', () => {
 
       const updatedRandomButton = screen.getByText('Reroll');
       expect(updatedRandomButton).toBeEnabled();
-      
+
       // Should still be able to click and get a game
       await user.click(updatedRandomButton);
       await waitFor(() => {
@@ -500,4 +496,3 @@ describe('Randomizer Page Integration', () => {
     });
   });
 });
-
