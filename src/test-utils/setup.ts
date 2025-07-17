@@ -41,27 +41,6 @@ vi.mock('../gotx-randomizer.sqlite?url', () => ({
   default: 'mock-database-url',
 }));
 
-// Mock the database initialization
-vi.mock('../data/initDbClient', () => ({
-  default: vi.fn().mockResolvedValue({
-    exec: vi.fn(() => [{ values: [] }]),
-    close: vi.fn(),
-  }),
-}));
-
-// Mock data layer
-vi.mock('../data/index', () => ({
-  getAllGames: vi.fn(() => []),
-  getAllUsers: vi.fn(() => []),
-  getAllCompletions: vi.fn(() => []),
-  getGameById: vi.fn(() => null),
-  getUserById: vi.fn(() => null),
-  searchGames: vi.fn(() => []),
-  filterGamesByGenre: vi.fn(() => []),
-  getGameStats: vi.fn(() => ({})),
-  getUserStats: vi.fn(() => ({})),
-}));
-
 // Mock labeled stat data for charts
 const mockLabeledStats = [
   { label: 'Game 1', value: 10 },
@@ -73,133 +52,142 @@ const mockLabeledStats = [
 const mockUserListItems = [
   {
     id: 1,
-    username: 'user1',
-    display_name: 'User One',
-    total_points: 1500,
-    total_completions: 25,
-    join_date: '2023-01-01',
-    success_percentage: 85.5,
+    name: 'User One',
+    success_rate: 85.5,
+    nominations: 30,
+    wins: 26, // Changed from 25 to avoid duplicate with user2 nominations
+  },
+  {
+    id: 2,
+    name: 'User Two',
+    success_rate: 78.2,
+    nominations: 25,
+    wins: 20,
   },
 ];
 
-// Mock DbStore class
-vi.mock('../stores/DbStore', () => ({
-  default: vi.fn().mockImplementation(() => ({
-    games: [],
-    users: [],
-    completions: [],
-    isLoading: false,
-    error: null,
+// Mock game data
+const mockGame = {
+  id: 1,
+  title_usa: 'Test Game',
+  year: 2020,
+  system: 'PC',
+  developer: 'Test Developer',
+  genre: 'Action',
+  img_url: 'https://example.com/game.jpg',
+  time_to_beat: 10,
+  screenscraper_id: 12345,
+  created_at: '2023-01-01',
+  updated_at: '2023-01-01',
+};
 
-    // Basic CRUD methods
-    getGameById: vi.fn(() => null),
-    getUserById: vi.fn(() => null),
-    getCompletionsByUserId: vi.fn(() => []),
-    getCompletionsByGameId: vi.fn(() => []),
-
-    // Search and filter methods
-    searchGames: vi.fn(() => []),
-    filterGamesByGenre: vi.fn(() => []),
-    filterGamesBySystem: vi.fn(() => []),
-
-    // User-specific methods for Users page
+// Mock the database initialization
+vi.mock('../data/initDbClient', () => ({
+  default: vi.fn().mockResolvedValue({
+    exec: vi.fn(() => [{ values: [] }]),
+    close: vi.fn(),
+    // Add all the expected query methods
+    getGotmRunnerup: vi.fn(() => []),
+    getGotmWinners: vi.fn(() => []),
+    getRetrobits: vi.fn(() => []),
+    getRpgRunnerup: vi.fn(() => []),
+    getRpgWinners: vi.fn(() => []),
+    mostCompletedGames: vi.fn(() => mockLabeledStats),
+    mostCompletedGotmGames: vi.fn(() => mockLabeledStats),
+    mostCompletedGotyGames: vi.fn(() => mockLabeledStats),
+    mostCompletedRetrobitGames: vi.fn(() => mockLabeledStats),
+    mostCompletedRetrobitYearGames: vi.fn(() => mockLabeledStats),
+    mostCompletedRpgGames: vi.fn(() => mockLabeledStats),
+    newestCompletions: vi.fn(() => mockLabeledStats),
+    newestGotmCompletions: vi.fn(() => mockLabeledStats),
+    newestGotwotyCompletions: vi.fn(() => mockLabeledStats),
+    newestGotyCompletions: vi.fn(() => mockLabeledStats),
+    newestRetrobitCompletions: vi.fn(() => mockLabeledStats),
+    newestRpgCompletions: vi.fn(() => mockLabeledStats),
+    totalNomsBeforeWinByGame: vi.fn(() => mockLabeledStats),
+    topNominationWinsByUser: vi.fn(() => mockLabeledStats),
+    mostNominatedGames: vi.fn(() => mockLabeledStats),
+    mostNominatedLoserGames: vi.fn(() => mockLabeledStats),
+    avgTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+    totalTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+    longestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+    shortestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+    mostNominatedGamesByUser: vi.fn(() => mockLabeledStats),
     getNominationSuccessPercentByUser: vi.fn(() => mockUserListItems),
-
-    // Statistics methods needed by Statistics component
-    getMostCompletedGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedGotmGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedGotyGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedRetrobitGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedRetrobitYearGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedRpgGames: vi.fn(() => mockLabeledStats),
-    getNewestCompletions: vi.fn(() => mockLabeledStats),
-    getNewestGotmCompletions: vi.fn(() => mockLabeledStats),
-    getNewestGotwotyCompletions: vi.fn(() => mockLabeledStats),
-    getNewestGotyCompletions: vi.fn(() => mockLabeledStats),
-    getNewestRetrobitCompletions: vi.fn(() => mockLabeledStats),
-    getNewestRetrobitYearCompletions: vi.fn(() => mockLabeledStats),
-    getNewestRpgCompletions: vi.fn(() => mockLabeledStats),
-    getHighestRatedGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedGotmGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedGotyGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedRetrobitGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedRpgGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedGotmGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedGotyGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedRetrobitGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedRpgGames: vi.fn(() => mockLabeledStats),
-
-    // General statistics methods
-    getGameStats: vi.fn(() => ({
-      totalGames: 0,
-      totalCompletions: 0,
-      averageRating: 0,
-      mostPopularGenre: 'Action',
-    })),
-    getUserStats: vi.fn(() => ({
-      totalUsers: 0,
-      activeUsers: 0,
-      averageCompletions: 0,
-    })),
-
-    // Data loading methods
-    loadGames: vi.fn().mockResolvedValue([]),
-    loadUsers: vi.fn().mockResolvedValue([]),
-    loadCompletions: vi.fn().mockResolvedValue([]),
-    refreshData: vi.fn().mockResolvedValue(undefined),
-
-    // List methods
-    getUserList: vi.fn(() => []),
-    getGameList: vi.fn(() => []),
-    getCompletionList: vi.fn(() => []),
-  })),
+    getNominationsByGameId: vi.fn(() => []),
+    getNominationsByUserId: vi.fn(() => []),
+    getCompletionsByUserId: vi.fn(() => []),
+    getGameById: vi.fn((id) => (id === 1 ? mockGame : null)),
+  }),
 }));
 
-// Mock SettingsStore class
-vi.mock('../stores/SettingsStore', () => ({
-  default: vi.fn().mockImplementation(() => ({
-    theme: 'light',
-    language: 'en',
-    itemsPerPage: 10,
-    showCompletedGames: true,
-    sortBy: 'name',
-    sortOrder: 'asc',
-
-    // Methods
-    setTheme: vi.fn(),
-    setLanguage: vi.fn(),
-    setItemsPerPage: vi.fn(),
-    setSortBy: vi.fn(),
-    setSortOrder: vi.fn(),
-    setShowCompletedGames: vi.fn(),
-
-    // Persistence methods
-    loadSettings: vi.fn().mockResolvedValue(undefined),
-    saveSettings: vi.fn().mockResolvedValue(undefined),
-    resetSettings: vi.fn(),
-
-    // Computed properties
-    get isDarkTheme() {
-      return this.theme === 'dark';
-    },
-    get isLightTheme() {
-      return this.theme === 'light';
-    },
-
-    // Validation methods
-    validateSettings: vi.fn().mockReturnValue(true),
-    getDefaultSettings: vi.fn().mockReturnValue({
-      theme: 'light',
-      language: 'en',
-      itemsPerPage: 10,
-      showCompletedGames: true,
-      sortBy: 'name',
-      sortOrder: 'asc',
-    }),
-  })),
+// Mock data layer
+vi.mock('../data/index', () => ({
+  default: {
+    getGotmRunnerup: vi.fn(() => []),
+    getGotmWinners: vi.fn(() => []),
+    getRetrobits: vi.fn(() => []),
+    getRpgRunnerup: vi.fn(() => []),
+    getRpgWinners: vi.fn(() => []),
+    mostCompletedGames: vi.fn(() => mockLabeledStats),
+    mostCompletedGotmGames: vi.fn(() => mockLabeledStats),
+    mostCompletedGotyGames: vi.fn(() => mockLabeledStats),
+    mostCompletedRetrobitGames: vi.fn(() => mockLabeledStats),
+    mostCompletedRetrobitYearGames: vi.fn(() => mockLabeledStats),
+    mostCompletedRpgGames: vi.fn(() => mockLabeledStats),
+    newestCompletions: vi.fn(() => mockLabeledStats),
+    newestGotmCompletions: vi.fn(() => mockLabeledStats),
+    newestGotwotyCompletions: vi.fn(() => mockLabeledStats),
+    newestGotyCompletions: vi.fn(() => mockLabeledStats),
+    newestRetrobitCompletions: vi.fn(() => mockLabeledStats),
+    newestRpgCompletions: vi.fn(() => mockLabeledStats),
+    totalNomsBeforeWinByGame: vi.fn(() => mockLabeledStats),
+    topNominationWinsByUser: vi.fn(() => mockLabeledStats),
+    mostNominatedGames: vi.fn(() => mockLabeledStats),
+    mostNominatedLoserGames: vi.fn(() => mockLabeledStats),
+    avgTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+    totalTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+    longestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+    shortestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+    mostNominatedGamesByUser: vi.fn(() => mockLabeledStats),
+    getNominationSuccessPercentByUser: vi.fn(() => mockUserListItems),
+    getNominationsByGameId: vi.fn(() => []),
+    getNominationsByUserId: vi.fn(() => []),
+    getCompletionsByUserId: vi.fn(() => []),
+    getGameById: vi.fn((id) => (id === 1 ? mockGame : null)),
+  },
+  // Also export individual functions for named imports
+  getGotmRunnerup: vi.fn(() => []),
+  getGotmWinners: vi.fn(() => []),
+  getRetrobits: vi.fn(() => []),
+  getRpgRunnerup: vi.fn(() => []),
+  getRpgWinners: vi.fn(() => []),
+  mostCompletedGames: vi.fn(() => mockLabeledStats),
+  mostCompletedGotmGames: vi.fn(() => mockLabeledStats),
+  mostCompletedGotyGames: vi.fn(() => mockLabeledStats),
+  mostCompletedRetrobitGames: vi.fn(() => mockLabeledStats),
+  mostCompletedRetrobitYearGames: vi.fn(() => mockLabeledStats),
+  mostCompletedRpgGames: vi.fn(() => mockLabeledStats),
+  newestCompletions: vi.fn(() => mockLabeledStats),
+  newestGotmCompletions: vi.fn(() => mockLabeledStats),
+  newestGotwotyCompletions: vi.fn(() => mockLabeledStats),
+  newestGotyCompletions: vi.fn(() => mockLabeledStats),
+  newestRetrobitCompletions: vi.fn(() => mockLabeledStats),
+  newestRpgCompletions: vi.fn(() => mockLabeledStats),
+  totalNomsBeforeWinByGame: vi.fn(() => mockLabeledStats),
+  topNominationWinsByUser: vi.fn(() => mockLabeledStats),
+  mostNominatedGames: vi.fn(() => mockLabeledStats),
+  mostNominatedLoserGames: vi.fn(() => mockLabeledStats),
+  avgTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+  totalTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+  longestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+  shortestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+  mostNominatedGamesByUser: vi.fn(() => mockLabeledStats),
+  getNominationSuccessPercentByUser: vi.fn(() => mockUserListItems),
+  getNominationsByGameId: vi.fn(() => []),
+  getNominationsByUserId: vi.fn(() => []),
+  getCompletionsByUserId: vi.fn(() => []),
+  getGameById: vi.fn((id) => (id === 1 ? mockGame : null)),
 }));
 
 // Global test utilities

@@ -1,7 +1,7 @@
 import React from 'react';
 import { vi } from 'vitest';
-import { DbStore } from '../../stores/DbStore';
-import { SettingsStore } from '../../stores/SettingsStore';
+import DbStore from '../../stores/DbStore';
+import SettingsStore from '../../stores/SettingsStore';
 import { Game, User, Completion } from '../../models/game';
 
 // Mock data
@@ -111,21 +111,24 @@ const mockLabeledStats = [
 const mockUserListItems = [
   {
     id: 1,
-    username: 'user1',
-    display_name: 'User One',
-    total_points: 1500,
-    total_completions: 25,
-    join_date: '2023-01-01',
-    success_percentage: 85.5,
+    name: 'user1', // Match test expectations
+    success_rate: 85.5,
+    nominations: 30,
+    wins: 26, // Changed from 25 to avoid duplicate with user2 nominations
   },
   {
     id: 2,
-    username: 'user2',
-    display_name: 'User Two',
-    total_points: 1200,
-    total_completions: 20,
-    join_date: '2023-02-01',
-    success_percentage: 78.2,
+    name: 'user2',
+    success_rate: 78.2,
+    nominations: 25,
+    wins: 20,
+  },
+  {
+    id: 3,
+    name: 'user3',
+    success_rate: 92.1,
+    nominations: 35,
+    wins: 32, // Changed from 30 to avoid duplicate with user1 nominations
   },
 ];
 
@@ -136,6 +139,28 @@ export function createMockDbStore(overrides: any = {}): Partial<DbStore> {
     completions: mockCompletions,
     isLoading: false,
     error: null,
+
+    // Properties
+    allGames: {
+      gotmRunnerUp: [],
+      gotmWinners: [],
+      retrobits: [],
+      rpgRunnerUp: [],
+      rpgWinners: [],
+    },
+    emptyGame: {
+      id: 0,
+      title_usa: '',
+      year: 0,
+      system: '',
+      developer: '',
+      genre: '',
+      img_url: '',
+      time_to_beat: 0,
+      screenscraper_id: 0,
+      created_at: '',
+      updated_at: '',
+    },
 
     // Basic CRUD methods
     getGameById: vi.fn((id: number) => mockGames.find((g) => g.id === id)),
@@ -192,6 +217,22 @@ export function createMockDbStore(overrides: any = {}): Partial<DbStore> {
     getLowestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
     getLowestRatedRpgGames: vi.fn(() => mockLabeledStats),
 
+    // Methods - All methods from the actual DbStore
+    setAllGames: vi.fn((games) => {
+      defaultMock.allGames = games;
+    }),
+    getTotalNominationsBeforeWinByGame: vi.fn(() => mockLabeledStats),
+    getTopNominationWinsByUser: vi.fn(() => mockLabeledStats),
+    getMostNominatedGames: vi.fn(() => mockLabeledStats),
+    getMostNominatedLoserGames: vi.fn(() => mockLabeledStats),
+    getAvgTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+    getTotalTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
+    getLongestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+    getShortestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
+    getMostNominatedGamesByUser: vi.fn(() => mockLabeledStats),
+    getNominationsByGame: vi.fn(() => []),
+    getNominationsByUser: vi.fn(() => []),
+
     // General statistics methods
     getGameStats: vi.fn(() => ({
       totalGames: mockGames.length,
@@ -244,6 +285,18 @@ export function createMockSettingsStore(
     sortBy: 'name',
     sortOrder: 'asc',
 
+    // Properties - match actual SettingsStore
+    hltbFilter: [0, Number.MAX_SAFE_INTEGER],
+    hltbMax: Number.MAX_SAFE_INTEGER,
+    hltbMin: 0,
+    hiddenGames: [],
+    includeGotmRunnerUp: true,
+    includeGotmWinners: true,
+    includeHiddenGames: false,
+    includeRetrobits: true,
+    includeRpgRunnerUp: true,
+    includeRpgWinners: true,
+
     // Methods
     setTheme: vi.fn(),
     setLanguage: vi.fn(),
@@ -251,6 +304,18 @@ export function createMockSettingsStore(
     setSortBy: vi.fn(),
     setSortOrder: vi.fn(),
     setShowCompletedGames: vi.fn(),
+
+    // Methods - all actual methods from SettingsStore
+    setHltbFilter: vi.fn(),
+    setHltbMax: vi.fn(),
+    setHltbMin: vi.fn(),
+    toggleGotmRunnerUp: vi.fn(),
+    toggleGotmWinners: vi.fn(),
+    toggleHiddenGame: vi.fn(),
+    toggleHiddenGames: vi.fn(),
+    toggleRetrobits: vi.fn(),
+    toggleRpgRunnerUp: vi.fn(),
+    toggleRpgWinners: vi.fn(),
 
     // Persistence methods
     loadSettings: vi.fn().mockResolvedValue(undefined),
@@ -305,3 +370,12 @@ export function withMockStores(component: React.ReactElement, stores?: any) {
 // Export the actual store context for tests to use
 // This matches the default export from stores/index.tsx
 export { default as StoreContext } from '../../stores/index';
+
+// Mock the store classes for integration tests only
+// These will be used by integration tests that import this file
+export const MockDbStore = vi
+  .fn()
+  .mockImplementation(() => createMockDbStore());
+export const MockSettingsStore = vi
+  .fn()
+  .mockImplementation(() => createMockSettingsStore());

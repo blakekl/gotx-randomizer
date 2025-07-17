@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
 import Users from '../../../pages/Users/Users';
 import {
   createMockDbStore,
@@ -10,47 +11,49 @@ import {
 
 // Mock Pagination component since we already tested it separately
 vi.mock('../../../components/Pagination', () => ({
-  default: vi.fn(({ count, onPageChange }) => (
-    <div data-testid="mock-pagination">
-      <button onClick={() => onPageChange([0, 10])}>Page 1</button>
-      <button onClick={() => onPageChange([10, 20])}>Page 2</button>
-      <span data-testid="pagination-count">{count}</span>
-    </div>
-  )),
+  default: vi.fn(({ count, onPageChange }) => {
+    // Call onPageChange on mount to set initial page range (like the real component does)
+    React.useEffect(() => {
+      onPageChange([0, Math.min(10, count)]);
+    }, [count, onPageChange]);
+
+    return (
+      <div data-testid="mock-pagination">
+        <button onClick={() => onPageChange([0, 10])}>Page 1</button>
+        <button onClick={() => onPageChange([10, 20])}>Page 2</button>
+        <span data-testid="pagination-count">{count}</span>
+      </div>
+    );
+  }),
 }));
 
 const mockUsers = [
   {
     id: 1,
-    username: 'user1',
-    display_name: 'User One',
-    total_points: 1500,
-    total_completions: 25,
-    join_date: '2023-01-01',
+    name: 'user1', // Match test expectations
+    success_rate: 85.5,
+    nominations: 30,
+    wins: 26, // Changed from 25 to avoid duplicate with user2 nominations
   },
   {
     id: 2,
-    username: 'user2',
-    display_name: 'User Two',
-    total_points: 1200,
-    total_completions: 20,
-    join_date: '2023-02-01',
+    name: 'user2',
+    success_rate: 78.2,
+    nominations: 25,
+    wins: 20,
   },
   {
     id: 3,
-    username: 'user3',
-    display_name: 'User Three',
-    total_points: 1800,
-    total_completions: 30,
-    join_date: '2023-01-15',
+    name: 'user3',
+    success_rate: 92.1,
+    nominations: 35,
+    wins: 32, // Changed from 30 to avoid duplicate with user1 nominations
   },
 ];
 
 const renderWithStores = (mockStores = {}) => {
   const mockDbStore = createMockDbStore({
-    users: mockUsers,
-    loadUsers: vi.fn().mockResolvedValue(mockUsers),
-    getUserList: vi.fn(() => mockUsers),
+    getNominationSuccessPercentByUser: vi.fn(() => mockUsers), // This is the correct method name
     isLoading: false,
     error: null,
     ...mockStores.dbStore,
@@ -109,14 +112,18 @@ describe('Users Page Integration', () => {
 
       await waitFor(() => {
         expect(screen.getByText('user1')).toBeInTheDocument();
-        expect(screen.getByText('User One')).toBeInTheDocument();
-        expect(screen.getByText('1500')).toBeInTheDocument();
-        expect(screen.getByText('25')).toBeInTheDocument();
-
         expect(screen.getByText('user2')).toBeInTheDocument();
-        expect(screen.getByText('User Two')).toBeInTheDocument();
-        expect(screen.getByText('1200')).toBeInTheDocument();
-        expect(screen.getByText('20')).toBeInTheDocument();
+        expect(screen.getByText('user3')).toBeInTheDocument();
+
+        // Check for unique values to avoid duplicates
+        expect(screen.getByText('26')).toBeInTheDocument(); // user1 wins
+        expect(screen.getByText('25')).toBeInTheDocument(); // user2 nominations
+        expect(screen.getByText('20')).toBeInTheDocument(); // user2 wins
+        expect(screen.getByText('35')).toBeInTheDocument(); // user3 nominations
+        expect(screen.getByText('32')).toBeInTheDocument(); // user3 wins
+        expect(screen.getByText('85.5%')).toBeInTheDocument(); // user1 success rate
+        expect(screen.getByText('78.2%')).toBeInTheDocument(); // user2 success rate
+        expect(screen.getByText('92.1%')).toBeInTheDocument(); // user3 success rate
       });
     });
 

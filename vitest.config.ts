@@ -47,7 +47,10 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./src/test-utils/setup.ts'],
+    setupFiles: [
+      // Use different setup files based on test type
+      './src/test-utils/setup.ts', // For integration tests
+    ],
     css: true,
     coverage: {
       provider: 'v8',
