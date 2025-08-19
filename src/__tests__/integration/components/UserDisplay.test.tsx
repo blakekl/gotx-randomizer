@@ -5,8 +5,9 @@ import {
   createMockDbStore,
   createMockSettingsStore,
   MockStoreContext,
-  mockUserListItems,
 } from '../../test-utils/mockStores';
+import DbStore from '../../../stores/DbStore';
+import SettingsStore from '../../../stores/SettingsStore';
 
 const mockUser = {
   id: 1,
@@ -19,15 +20,15 @@ const mockUser = {
 
 const mockNominations = [
   {
-    id: 1,
-    title_world: 'Nominated Game 1',
-    title_usa: '',
-    title_eu: '',
-    title_jap: '',
-    title_other: '',
-    nomination_type: 'standard' as any,
-    theme_id: 1,
-    retroachievements: false,
+    game_title: 'Nominated Game 1',
+    nomination_type: 'gotm' as any,
+    game_id: 1,
+    user_name: 'Test User',
+    game_description: 'A nominated game',
+    theme_title: 'Test Theme',
+    theme_description: 'A test theme',
+    date: '2023-01-01',
+    winner: false,
   },
 ];
 
@@ -58,13 +59,21 @@ const mockCompletions = [
   },
 ];
 
-const renderWithStores = (mockStores = {}) => {
+const renderWithStores = (
+  mockStores: {
+    dbStore?: Partial<DbStore>;
+    settingsStore?: Partial<SettingsStore>;
+  } = {},
+) => {
   const mockDbStore = createMockDbStore({
     getNominationsByUser: vi.fn(() => mockNominations),
     getCompletionsByUserId: vi.fn(() => mockCompletions),
     ...mockStores.dbStore,
-  });
-  const mockSettingsStore = createMockSettingsStore(mockStores.settingsStore);
+  }) as DbStore;
+
+  const mockSettingsStore = createMockSettingsStore({
+    ...mockStores.settingsStore,
+  }) as SettingsStore;
 
   const mockContext = {
     dbStore: mockDbStore,

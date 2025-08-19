@@ -30,11 +30,15 @@ const mockGame = {
 
 const mockNominations = [
   {
-    id: 1,
+    game_title: 'Test Game',
+    nomination_type: 'gotm' as any,
     game_id: 1,
-    nomination_type: 'gotm',
-    theme_id: 20,
-    retroachievements: false,
+    user_name: 'Test User',
+    game_description: 'A test game',
+    theme_title: 'Test Theme',
+    theme_description: 'A test theme',
+    date: '2023-01-01',
+    winner: true,
   },
 ];
 
