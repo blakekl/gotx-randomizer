@@ -2,380 +2,187 @@ import React from 'react';
 import { vi } from 'vitest';
 import DbStore from '../../stores/DbStore';
 import SettingsStore from '../../stores/SettingsStore';
-import { Game, User, Completion } from '../../models/game';
+import { Game, User, UserListItem, Subscription } from '../../models/game';
 
 // Mock data
 export const mockGames: Game[] = [
   {
     id: 1,
-    name: 'Test Game 1',
+    title_usa: 'Test Game 1',
     system: 'Test System',
-    region: 'US',
-    regionalTitles: { US: 'Test Game 1', JP: 'テストゲーム1' },
-    genre: 'Action',
+    year: 2023,
     developer: 'Test Developer',
-    publisher: 'Test Publisher',
-    releaseDate: '2023-01-01',
-    description: 'A test game for testing purposes',
-    imageUrl: 'https://example.com/test-game-1.jpg',
-    tags: ['test', 'action'],
-    difficulty: 3,
-    playtime: 10,
-    rating: 8.5,
-    completions: [],
+    genre: 'Action',
+    img_url: 'https://example.com/test-game-1.jpg',
+    screenscraper_id: 12345,
+    created_at: '2023-01-01',
+    updated_at: '2023-01-01',
   },
   {
     id: 2,
-    name: 'Test Game 2',
+    title_usa: 'Test Game 2',
     system: 'Test System 2',
-    region: 'EU',
-    regionalTitles: { EU: 'Test Game 2', US: 'Test Game 2 US' },
-    genre: 'RPG',
+    year: 2023,
     developer: 'Test Developer 2',
-    publisher: 'Test Publisher 2',
-    releaseDate: '2023-02-01',
-    description: 'Another test game',
-    imageUrl: 'https://example.com/test-game-2.jpg',
-    tags: ['test', 'rpg'],
-    difficulty: 5,
-    playtime: 50,
-    rating: 9.0,
-    completions: [],
+    genre: 'RPG',
+    img_url: 'https://example.com/test-game-2.jpg',
+    screenscraper_id: 12346,
+    created_at: '2023-02-01',
+    updated_at: '2023-02-01',
   },
 ];
 
 export const mockUsers: User[] = [
   {
     id: 1,
-    username: 'testuser1',
-    displayName: 'Test User 1',
-    avatar: 'https://example.com/avatar1.jpg',
-    joinDate: '2023-01-01',
-    completions: [],
-    stats: {
-      totalCompletions: 5,
-      totalPlaytime: 100,
-      averageRating: 8.0,
-      favoriteGenre: 'Action',
-    },
+    name: 'testuser1',
+    discord_id: '123456789',
+    old_discord_name: 'olduser1',
+    current_points: 100,
+    redeemed_points: 50,
+    earned_points: 150,
+    premium_points: 25,
+    created_at: '2023-01-01',
+    updated_at: '2023-01-01',
+    premium_subscriber: Subscription.SUPPORTER,
   },
   {
     id: 2,
-    username: 'testuser2',
-    displayName: 'Test User 2',
-    avatar: 'https://example.com/avatar2.jpg',
-    joinDate: '2023-02-01',
-    completions: [],
-    stats: {
-      totalCompletions: 3,
-      totalPlaytime: 75,
-      averageRating: 7.5,
-      favoriteGenre: 'RPG',
-    },
+    name: 'testuser2',
+    discord_id: '987654321',
+    old_discord_name: 'olduser2',
+    current_points: 75,
+    redeemed_points: 25,
+    earned_points: 100,
+    premium_points: 10,
+    created_at: '2023-02-01',
+    updated_at: '2023-02-01',
+    premium_subscriber: Subscription.CHAMPION,
   },
 ];
 
-export const mockCompletions: Completion[] = [
+export const mockUserListItems: UserListItem[] = [
   {
     id: 1,
-    userId: 1,
-    gameId: 1,
-    completedAt: '2023-03-01',
-    rating: 8,
-    review: 'Great game!',
-    playtime: 10,
-    difficulty: 3,
-    screenshots: ['https://example.com/screenshot1.jpg'],
+    name: 'testuser1',
+    success_rate: 0.8,
+    nominations: 10,
+    wins: 8,
+    completions: 15,
   },
   {
     id: 2,
-    userId: 2,
-    gameId: 2,
-    completedAt: '2023-03-15',
-    rating: 9,
-    review: 'Amazing RPG!',
-    playtime: 50,
-    difficulty: 5,
-    screenshots: ['https://example.com/screenshot2.jpg'],
+    name: 'testuser2',
+    success_rate: 0.6,
+    nominations: 5,
+    wins: 3,
+    completions: 8,
   },
 ];
 
-// Mock labeled stat data for charts
-const mockLabeledStats = [
-  { label: 'Game 1', value: 10 },
-  { label: 'Game 2', value: 20 },
-  { label: 'Game 3', value: 15 },
-];
-
-// Mock user list items for Users page
-const mockUserListItems = [
-  {
-    id: 1,
-    name: 'user1', // Match test expectations
-    success_rate: 85.5,
-    nominations: 30,
-    wins: 26, // Changed from 25 to avoid duplicate with user2 nominations
-  },
-  {
-    id: 2,
-    name: 'user2',
-    success_rate: 78.2,
-    nominations: 25,
-    wins: 20,
-  },
-  {
-    id: 3,
-    name: 'user3',
-    success_rate: 92.1,
-    nominations: 35,
-    wins: 32, // Changed from 30 to avoid duplicate with user1 nominations
-  },
-];
-
-export function createMockDbStore(overrides: any = {}): Partial<DbStore> {
-  const defaultMock = {
-    games: mockGames,
-    users: mockUsers,
-    completions: mockCompletions,
-    isLoading: false,
-    error: null,
-
-    // Properties
-    allGames: {
-      gotmRunnerUp: [],
-      gotmWinners: [],
-      retrobits: [],
-      rpgRunnerUp: [],
-      rpgWinners: [],
-    },
-    emptyGame: {
-      id: 0,
-      title_usa: '',
-      year: 0,
-      system: '',
-      developer: '',
-      genre: '',
-      img_url: '',
-      time_to_beat: 0,
-      screenscraper_id: 0,
-      created_at: '',
-      updated_at: '',
-    },
-
-    // Basic CRUD methods
-    getGameById: vi.fn((id: number) => mockGames.find((g) => g.id === id)),
-    getUserById: vi.fn((id: number) => mockUsers.find((u) => u.id === id)),
-    getCompletionsByUserId: vi.fn((userId: number) =>
-      mockCompletions.filter((c) => c.userId === userId),
-    ),
-    getCompletionsByGameId: vi.fn((gameId: number) =>
-      mockCompletions.filter((c) => c.gameId === gameId),
-    ),
-
-    // Search and filter methods
-    searchGames: vi.fn((query: string) =>
-      mockGames.filter(
-        (g) =>
-          g.name.toLowerCase().includes(query.toLowerCase()) ||
-          g.genre.toLowerCase().includes(query.toLowerCase()),
-      ),
-    ),
-    filterGamesByGenre: vi.fn((genre: string) =>
-      mockGames.filter((g) => g.genre === genre),
-    ),
-    filterGamesBySystem: vi.fn((system: string) =>
-      mockGames.filter((g) => g.system === system),
-    ),
-
-    // User-specific methods for Users page
-    getNominationSuccessPercentByUser: vi.fn(() => mockUserListItems),
-
-    // Statistics methods needed by Statistics component
-    getMostCompletedGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedGotmGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedGotyGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedRetrobitGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedRetrobitYearGames: vi.fn(() => mockLabeledStats),
-    getMostCompletedRpgGames: vi.fn(() => mockLabeledStats),
-    getNewestCompletions: vi.fn(() => mockLabeledStats),
-    getNewestGotmCompletions: vi.fn(() => mockLabeledStats),
-    getNewestGotwotyCompletions: vi.fn(() => mockLabeledStats),
-    getNewestGotyCompletions: vi.fn(() => mockLabeledStats),
-    getNewestRetrobitCompletions: vi.fn(() => mockLabeledStats),
-    getNewestRetrobitYearCompletions: vi.fn(() => mockLabeledStats),
-    getNewestRpgCompletions: vi.fn(() => mockLabeledStats),
-    getHighestRatedGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedGotmGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedGotyGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedRetrobitGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
-    getHighestRatedRpgGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedGotmGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedGotyGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedRetrobitGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedRetrobitYearGames: vi.fn(() => mockLabeledStats),
-    getLowestRatedRpgGames: vi.fn(() => mockLabeledStats),
-
-    // Methods - All methods from the actual DbStore
-    setAllGames: vi.fn((games) => {
-      defaultMock.allGames = games;
-    }),
-    getTotalNominationsBeforeWinByGame: vi.fn(() => mockLabeledStats),
-    getTopNominationWinsByUser: vi.fn(() => mockLabeledStats),
-    getMostNominatedGames: vi.fn(() => mockLabeledStats),
-    getMostNominatedLoserGames: vi.fn(() => mockLabeledStats),
-    getAvgTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
-    getTotalTimeToBeatByMonth: vi.fn(() => mockLabeledStats),
-    getLongestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
-    getShortestMonthsByAvgTimeToBeat: vi.fn(() => mockLabeledStats),
-    getMostNominatedGamesByUser: vi.fn(() => mockLabeledStats),
-    getNominationsByGame: vi.fn(() => []),
-    getNominationsByUser: vi.fn(() => []),
-
-    // General statistics methods
-    getGameStats: vi.fn(() => ({
-      totalGames: mockGames.length,
-      totalCompletions: mockCompletions.length,
-      averageRating: 8.5,
-      mostPopularGenre: 'Action',
-    })),
-    getUserStats: vi.fn(() => ({
-      totalUsers: mockUsers.length,
-      activeUsers: mockUsers.length,
-      averageCompletions: 4,
-    })),
-
-    // Data loading methods
-    loadGames: vi.fn().mockResolvedValue(mockGames),
-    loadUsers: vi.fn().mockResolvedValue(mockUsers),
-    loadCompletions: vi.fn().mockResolvedValue(mockCompletions),
-    refreshData: vi.fn().mockResolvedValue(undefined),
-
-    // List methods
-    getUserList: vi.fn(() => mockUsers),
-    getGameList: vi.fn(() => mockGames),
-    getCompletionList: vi.fn(() => mockCompletions),
-
-    // CRUD operations
-    addGame: vi.fn().mockResolvedValue(mockGames[0]),
-    updateGame: vi.fn().mockResolvedValue(mockGames[0]),
-    deleteGame: vi.fn().mockResolvedValue(undefined),
-
-    addUser: vi.fn().mockResolvedValue(mockUsers[0]),
-    updateUser: vi.fn().mockResolvedValue(mockUsers[0]),
-    deleteUser: vi.fn().mockResolvedValue(undefined),
-
-    addCompletion: vi.fn().mockResolvedValue(mockCompletions[0]),
-    updateCompletion: vi.fn().mockResolvedValue(mockCompletions[0]),
-    deleteCompletion: vi.fn().mockResolvedValue(undefined),
-  };
-
-  return { ...defaultMock, ...overrides };
-}
-
-export function createMockSettingsStore(
-  overrides: any = {},
-): Partial<SettingsStore> {
-  const defaultMock = {
-    theme: 'light',
-    language: 'en',
-    itemsPerPage: 10,
-    showCompletedGames: true,
-    sortBy: 'name',
-    sortOrder: 'asc',
-
-    // Properties - match actual SettingsStore
-    hltbFilter: [0, Number.MAX_SAFE_INTEGER],
-    hltbMax: Number.MAX_SAFE_INTEGER,
-    hltbMin: 0,
-    hiddenGames: [],
-    includeGotmRunnerUp: true,
-    includeGotmWinners: true,
-    includeHiddenGames: false,
-    includeRetrobits: true,
-    includeRpgRunnerUp: true,
-    includeRpgWinners: true,
-
-    // Methods
-    setTheme: vi.fn(),
-    setLanguage: vi.fn(),
-    setItemsPerPage: vi.fn(),
-    setSortBy: vi.fn(),
-    setSortOrder: vi.fn(),
-    setShowCompletedGames: vi.fn(),
-
-    // Methods - all actual methods from SettingsStore
-    setHltbFilter: vi.fn(),
-    setHltbMax: vi.fn(),
-    setHltbMin: vi.fn(),
-    toggleGotmRunnerUp: vi.fn(),
-    toggleGotmWinners: vi.fn(),
-    toggleHiddenGame: vi.fn(),
-    toggleHiddenGames: vi.fn(),
-    toggleRetrobits: vi.fn(),
-    toggleRpgRunnerUp: vi.fn(),
-    toggleRpgWinners: vi.fn(),
-
-    // Persistence methods
-    loadSettings: vi.fn().mockResolvedValue(undefined),
-    saveSettings: vi.fn().mockResolvedValue(undefined),
-    resetSettings: vi.fn(),
-
-    // Computed properties
-    get isDarkTheme() {
-      return this.theme === 'dark';
-    },
-    get isLightTheme() {
-      return this.theme === 'light';
-    },
-
-    // Validation methods
-    validateSettings: vi.fn().mockReturnValue(true),
-    getDefaultSettings: vi.fn().mockReturnValue({
-      theme: 'light',
-      language: 'en',
-      itemsPerPage: 10,
-      showCompletedGames: true,
-      sortBy: 'name',
-      sortOrder: 'asc',
-    }),
-  };
-
-  return { ...defaultMock, ...overrides };
-}
-
-// Helper function to create mock store context
-export function createMockStoreContext(overrides: any = {}) {
+// Mock stores
+export const createMockDbStore = (
+  overrides: Partial<DbStore> = {},
+): Partial<DbStore> => {
   return {
-    dbStore: createMockDbStore(overrides.dbStore),
-    settingsStore: createMockSettingsStore(overrides.settingsStore),
+    allGames: {
+      games: mockGames,
+      filteredGames: mockGames,
+      searchTerm: '',
+      selectedGenre: '',
+      selectedSystem: '',
+      currentPage: 1,
+      gamesPerPage: 10,
+      totalPages: 1,
+      isLoading: false,
+      error: null,
+      setSearchTerm: vi.fn(),
+      setSelectedGenre: vi.fn(),
+      setSelectedSystem: vi.fn(),
+      setCurrentPage: vi.fn(),
+      setGamesPerPage: vi.fn(),
+      loadGames: vi.fn(),
+      clearFilters: vi.fn(),
+    },
+    emptyGame: mockGames[0],
+    setAllGames: vi.fn(),
+    getMostCompletedGames: vi.fn(() => []),
+    getMostCompletedGotmGames: vi.fn(() => []),
+    getMostCompletedGotyGames: vi.fn(() => []),
+    getMostCompletedRetrobitGames: vi.fn(() => []),
+    getMostCompletedRetrobitYearGames: vi.fn(() => []),
+    getMostCompletedRpgGames: vi.fn(() => []),
+    getNewestCompletions: vi.fn(() => []),
+    getNewestRetrobitCompletions: vi.fn(() => []),
+    getNewestGotmCompletions: vi.fn(() => []),
+    getNewestRpgCompletions: vi.fn(() => []),
+    getNewestGotyCompletions: vi.fn(() => []),
+    getNewestGotwotyCompletions: vi.fn(() => []),
+    getTotalNominationsBeforeWinByGame: vi.fn(() => []),
+    getAvgNominationsBeforeWin: vi.fn(() => []),
+    getTopNominationWinsByUser: vi.fn(() => []),
+    getMostNominatedGames: vi.fn(() => []),
+    getMostNominatedLoserGames: vi.fn(() => []),
+    getAvgTimeToBeatByMonth: vi.fn(() => []),
+    getTotalTimeToBeatByMonth: vi.fn(() => []),
+    getLongestMonthsByAvgTimeToBeat: vi.fn(() => []),
+    getShortestMonthsByAvgTimeToBeat: vi.fn(() => []),
+    getMostNominatedGamesByUser: vi.fn(() => []),
+    getNominationSuccessPercentByUser: vi.fn(() => []),
+    getGotmRunnerup: vi.fn(() => []),
+    getGotmWinners: vi.fn(() => []),
+    getRetrobits: vi.fn(() => []),
+    getRpgRunnerup: vi.fn(() => []),
+    getRpgWinners: vi.fn(() => []),
+    getNominationsByGameId: vi.fn(() => []),
+    getNominationsByUserId: vi.fn(() => []),
+    getCompletionsByUserId: vi.fn(() => []),
+    getGameById: vi.fn(
+      (id: number) => mockGames.find((game) => game.id === id) || null,
+    ),
+    ...overrides,
   };
-}
+};
 
-// Create a mock context that matches the actual store structure
-export const MockStoreContext = React.createContext(createMockStoreContext());
+export const createMockSettingsStore = (
+  overrides: Partial<SettingsStore> = {},
+): Partial<SettingsStore> => {
+  return {
+    HIDDEN_KEY: 'hidden_games',
+    hiddenGames: [],
+    hideGame: vi.fn(),
+    showGame: vi.fn(),
+    isGameHidden: vi.fn(() => false),
+    clearHiddenGames: vi.fn(),
+    getHiddenGames: vi.fn(() => []),
+    ...overrides,
+  };
+};
 
-// Helper function to wrap components with mock store context
-export function withMockStores(component: React.ReactElement, stores?: any) {
-  const mockStores = stores || createMockStoreContext();
+// Mock store context
+export const mockStoreContext = {
+  dbStore: createMockDbStore(),
+  settingsStore: createMockSettingsStore(),
+};
 
-  return React.createElement(
-    MockStoreContext.Provider,
-    { value: mockStores },
-    component,
-  );
-}
+// Helper function to create a mock store context with overrides
+export const createMockStoreContext = (
+  dbStoreOverrides: Partial<DbStore> = {},
+  settingsStoreOverrides: Partial<SettingsStore> = {},
+) => ({
+  dbStore: createMockDbStore(dbStoreOverrides),
+  settingsStore: createMockSettingsStore(settingsStoreOverrides),
+});
 
-// Export the actual store context for tests to use
-// This matches the default export from stores/index.tsx
-export { default as StoreContext } from '../../stores/index';
+// Mock React context
+export const MockStoreContext = React.createContext(mockStoreContext);
 
-// Mock the store classes for integration tests only
-// These will be used by integration tests that import this file
-export const MockDbStore = vi
-  .fn()
-  .mockImplementation(() => createMockDbStore());
-export const MockSettingsStore = vi
-  .fn()
-  .mockImplementation(() => createMockSettingsStore());
+// Helper to get a game by name for tests
+export const getGameByTitle = (title: string): Game | undefined => {
+  return mockGames.find((game) => game.title_usa === title);
+};
+
+// Helper to get a user by name for tests
+export const getUserByName = (name: string): User | undefined => {
+  return mockUsers.find((user) => user.name === name);
+};

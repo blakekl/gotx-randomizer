@@ -5,8 +5,10 @@ import GameDetails from '../../../pages/Games/GameDetails';
 import {
   createMockDbStore,
   createMockSettingsStore,
-  StoreContext,
+  MockStoreContext,
 } from '../../test-utils/mockStores';
+import DbStore from '../../../stores/DbStore';
+import SettingsStore from '../../../stores/SettingsStore';
 
 const mockGame = {
   id: 1,
@@ -36,13 +38,22 @@ const mockNominations = [
   },
 ];
 
-const renderWithStores = (gameId = '1', mockStores = {}) => {
+const renderWithStores = (
+  gameId = '1',
+  mockStores: {
+    dbStore?: Partial<DbStore>;
+    settingsStore?: Partial<SettingsStore>;
+  } = {},
+) => {
   const mockDbStore = createMockDbStore({
     getGameById: vi.fn((id) => (id === 1 ? mockGame : null)),
     getNominationsByGame: vi.fn(() => mockNominations),
     ...mockStores.dbStore,
-  });
-  const mockSettingsStore = createMockSettingsStore(mockStores.settingsStore);
+  }) as DbStore;
+
+  const mockSettingsStore = createMockSettingsStore({
+    ...mockStores.settingsStore,
+  }) as SettingsStore;
 
   const mockContext = {
     dbStore: mockDbStore,
@@ -51,11 +62,11 @@ const renderWithStores = (gameId = '1', mockStores = {}) => {
 
   return render(
     <MemoryRouter initialEntries={[`/games/${gameId}`]}>
-      <StoreContext.Provider value={mockContext}>
+      <MockStoreContext.Provider value={mockContext}>
         <Routes>
           <Route path="/games/:gameId" element={<GameDetails />} />
         </Routes>
-      </StoreContext.Provider>
+      </MockStoreContext.Provider>
     </MemoryRouter>,
   );
 };

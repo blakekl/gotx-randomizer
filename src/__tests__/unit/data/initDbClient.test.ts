@@ -93,7 +93,7 @@ describe('initDbClient', () => {
 
       // Test that the client has a reasonable number of methods
       const clientMethods = Object.keys(client).filter(
-        (key) => typeof client[key] === 'function',
+        (key) => typeof (client as any)[key] === 'function',
       );
       expect(clientMethods.length).toBeGreaterThan(20);
     });

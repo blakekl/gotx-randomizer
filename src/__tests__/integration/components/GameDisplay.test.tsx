@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import GameDisplay from '../../../pages/Randomizer/GameDisplay/GameDisplay';
 import { createMockGame } from '../../../test-utils/fixtures/gameData';
 
@@ -30,7 +29,6 @@ vi.mock('../../../pages/Randomizer/GameDisplay/NominationList', () => ({
 }));
 
 describe('GameDisplay Component', () => {
-  const user = userEvent.setup();
   const mockGame = createMockGame({
     id: 1,
     title_usa: 'Super Mario Bros.',
@@ -102,8 +100,13 @@ describe('GameDisplay Component', () => {
       expect(loader).toHaveStyle('display: block');
 
       // Simulate image load by setting complete property and firing load event
-      Object.defineProperty(image, 'complete', { value: true, writable: true });
-      fireEvent.load(image);
+      if (image) {
+        Object.defineProperty(image, 'complete', {
+          value: true,
+          writable: true,
+        });
+        fireEvent.load(image);
+      }
 
       await waitFor(() => {
         expect(loader).toHaveStyle('display: none');

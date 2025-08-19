@@ -4,13 +4,17 @@ import UserDisplay from '../../../pages/Users/UserDisplay/UserDisplay';
 import {
   createMockDbStore,
   createMockSettingsStore,
-  StoreContext,
+  MockStoreContext,
+  mockUserListItems,
 } from '../../test-utils/mockStores';
 
 const mockUser = {
   id: 1,
   name: 'Test User',
-  total_points: 1500,
+  success_rate: 0.8,
+  nominations: 10,
+  wins: 8,
+  completions: 15,
 };
 
 const mockNominations = [
@@ -68,9 +72,9 @@ const renderWithStores = (mockStores = {}) => {
   };
 
   return render(
-    <StoreContext.Provider value={mockContext}>
+    <MockStoreContext.Provider value={mockContext}>
       <UserDisplay user={mockUser} />
-    </StoreContext.Provider>,
+    </MockStoreContext.Provider>,
   );
 };
 
@@ -136,7 +140,9 @@ describe('UserDisplay Component Integration', () => {
         const completionsTab = screen
           .getByRole('list')
           .querySelector('li:nth-child(2) a');
-        fireEvent.click(completionsTab);
+        if (completionsTab) {
+          fireEvent.click(completionsTab);
+        }
       });
 
       await waitFor(() => {
@@ -338,17 +344,24 @@ describe('UserDisplay Component Integration', () => {
       const { rerender } = renderWithStores({ dbStore: mockDbStore });
 
       // Change user
-      const newUser = { id: 2, name: 'New User', total_points: 2000 };
+      const newUser = {
+        id: 2,
+        name: 'New User',
+        success_rate: 0.9,
+        nominations: 5,
+        wins: 4,
+        completions: 10,
+      };
 
       rerender(
-        <StoreContext.Provider
+        <MockStoreContext.Provider
           value={{
-            dbStore: createMockDbStore(mockDbStore),
-            settingsStore: createMockSettingsStore(),
+            dbStore: createMockDbStore(mockDbStore) as any,
+            settingsStore: createMockSettingsStore() as any,
           }}
         >
           <UserDisplay user={newUser} />
-        </StoreContext.Provider>,
+        </MockStoreContext.Provider>,
       );
 
       await waitFor(() => {
@@ -405,7 +418,9 @@ describe('UserDisplay Component Integration', () => {
         const completionsTab = screen
           .getByRole('list')
           .querySelector('li:nth-child(2) a');
-        fireEvent.click(completionsTab);
+        if (completionsTab) {
+          fireEvent.click(completionsTab);
+        }
       });
 
       await waitFor(() => {

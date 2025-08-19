@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createContext } from 'react';
 import Settings from '../../../pages/Randomizer/Settings/Settings';
 
 // Mock the stores
