@@ -166,8 +166,9 @@ describe('Store Context (Main Branch)', () => {
   describe('store integration', () => {
     it('should allow stores to interact with each other', () => {
       // Test that stores can be used together
-      const dbStore = new DbStore();
-      const settingsStore = new SettingsStore();
+      const mockRootStore = {} as any;
+      const dbStore = new DbStore(mockRootStore);
+      const settingsStore = new SettingsStore(mockRootStore);
 
       expect(dbStore).toBeDefined();
       expect(settingsStore).toBeDefined();
@@ -178,8 +179,9 @@ describe('Store Context (Main Branch)', () => {
     });
 
     it('should maintain separate state between stores', () => {
-      const dbStore = new DbStore();
-      const settingsStore = new SettingsStore();
+      const mockRootStore = {} as any;
+      const dbStore = new DbStore(mockRootStore);
+      const settingsStore = new SettingsStore(mockRootStore);
 
       // Modify one store
       settingsStore.toggleGotmRunnerUp();
