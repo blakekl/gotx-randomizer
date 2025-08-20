@@ -4,13 +4,7 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  esbuild: {
-    supported: {
-      'top-level-await': true, //browsers can handle top-level-await features
-    },
-  },
   plugins: [
     react(),
     tsconfigPaths(),
@@ -50,11 +44,13 @@ export default defineConfig({
       },
     }),
   ],
-  assetsInclude: ['**/*.sqlite'],
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./src/test-utils/setup.ts'],
+    setupFiles: [
+      // Use different setup files based on test type
+      './src/test-utils/setup.ts', // For integration tests
+    ],
     css: true,
     coverage: {
       provider: 'v8',
@@ -62,8 +58,20 @@ export default defineConfig({
       exclude: [
         'node_modules/',
         'src/test-utils/',
+        'src/__tests__/test-utils/',
+        'src/__tests__/**/*.test.*',
+        '**/*.test.*',
+        '**/*.spec.*',
+        '**/test-utils/**',
+        '**/fixtures/**',
+        '**/mocks/**',
+        '**/__tests__/**',
         '**/*.d.ts',
         '**/*.config.*',
+        '**/.eslintrc.*',
+        '**/deploy.js',
+        'src/main.tsx',
+        'src/data/index.ts',
         'dist/',
         'scripts/',
         'src/gotx-randomizer.sqlite',
@@ -78,4 +86,5 @@ export default defineConfig({
       },
     },
   },
+  assetsInclude: ['**/*.sqlite'],
 });

@@ -14,6 +14,7 @@ const Settings = observer(() => {
 
   return (
     <div
+      data-testid="settings-component"
       className={classNames({
         dropdown: true,
         'is-active': showSettings,

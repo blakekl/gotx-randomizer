@@ -27,6 +27,9 @@ dist-ssr
 # build artifacts.
 dist
 
+# Test coverage
+coverage
+
 # private files
 .env
 scripts/parseSqlDump.cjs
