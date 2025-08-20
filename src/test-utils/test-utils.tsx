@@ -1,12 +1,14 @@
 import React, { ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { createContext } from 'react';
 import { vi } from 'vitest';
 import DbStore from '../stores/DbStore';
 import SettingsStore from '../stores/SettingsStore';
 
-// Create mock store context
+// Import the actual RootStore context
+import rootStoreContext from '../stores/RootStore';
+
+// Create mock store context using RootStore pattern
 const createMockStoreContext = (
   overrides: {
     dbStore?: Partial<DbStore>;
@@ -107,7 +109,7 @@ const createMockStoreContext = (
     getCompletionsByUserId: vi.fn(),
     getGameById: vi.fn(),
     ...overrides.dbStore,
-  };
+  } as any; // Use 'as any' to bypass strict typing for mock
 
   const mockSettingsStore = {
     HIDDEN_KEY: 'hidden_games',
@@ -118,16 +120,16 @@ const createMockStoreContext = (
     clearHiddenGames: vi.fn(),
     getHiddenGames: vi.fn(),
     ...overrides.settingsStore,
-  };
+  } as any; // Use 'as any' to bypass strict typing for mock
 
-  return {
+  // Create a mock RootStore instance that matches the new pattern
+  const mockRootStoreInstance = {
     dbStore: mockDbStore,
     settingsStore: mockSettingsStore,
-  };
-};
+  } as any; // Use 'as any' to bypass strict typing for mock
 
-// Create the mock context
-const MockStoreContext = createContext(createMockStoreContext());
+  return mockRootStoreInstance;
+};
 
 // Custom render function that includes providers
 const customRender = (
@@ -150,9 +152,9 @@ const customRender = (
 
   const Wrapper = ({ children }: { children: React.ReactNode }) => (
     <BrowserRouter>
-      <MockStoreContext.Provider value={mockContext}>
+      <rootStoreContext.Provider value={mockContext}>
         {children}
-      </MockStoreContext.Provider>
+      </rootStoreContext.Provider>
     </BrowserRouter>
   );
 
@@ -162,5 +164,4 @@ const customRender = (
 // Re-export everything
 export * from '@testing-library/react';
 export { customRender as render };
-export { MockStoreContext };
 export { createMockStoreContext };

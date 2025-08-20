@@ -52,7 +52,9 @@ describe('DbStore', () => {
     const dataModule = await import('../../../data');
     mockDbClient = dataModule.default;
 
-    dbStore = new DbStore();
+    // Create a mock RootStore for testing
+    const mockRootStore = {} as any;
+    dbStore = new DbStore(mockRootStore);
   });
 
   describe('initialization', () => {
@@ -93,7 +95,8 @@ describe('DbStore', () => {
     it('should handle dbClient returning null gracefully', () => {
       // This test is more about ensuring the store doesn't crash
       // when methods return null, which is handled by the mocked methods
-      expect(() => new DbStore()).not.toThrow();
+      const mockRootStore = {} as any;
+      expect(() => new DbStore(mockRootStore)).not.toThrow();
     });
   });
 
@@ -355,7 +358,8 @@ describe('DbStore', () => {
 
     it('should handle undefined dbClient methods', () => {
       // This test ensures the store doesn't crash with incomplete dbClient
-      expect(() => new DbStore()).not.toThrow();
+      const mockRootStore = {} as any;
+      expect(() => new DbStore(mockRootStore)).not.toThrow();
     });
   });
 

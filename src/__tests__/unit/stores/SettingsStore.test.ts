@@ -22,7 +22,9 @@ describe('SettingsStore', () => {
     mockLocalStorage.getItem.mockReturnValue(null);
     mockLocalStorage.setItem.mockImplementation(() => {});
 
-    settingsStore = new SettingsStore();
+    // Create a mock RootStore for testing
+    const mockRootStore = {} as any;
+    settingsStore = new SettingsStore(mockRootStore);
   });
 
   describe('initialization', () => {
@@ -46,7 +48,8 @@ describe('SettingsStore', () => {
         return null;
       });
 
-      const store = new SettingsStore();
+      const mockRootStore = {} as any;
+      const store = new SettingsStore(mockRootStore);
 
       expect(mockLocalStorage.getItem).toHaveBeenCalledWith('completed');
       expect(store.hiddenGames).toEqual(mockHiddenGames);
@@ -58,13 +61,15 @@ describe('SettingsStore', () => {
         return null;
       });
 
-      expect(() => new SettingsStore()).toThrow();
+      const mockRootStore = {} as any;
+      expect(() => new SettingsStore(mockRootStore)).toThrow();
     });
 
     it('should handle missing localStorage data', () => {
       mockLocalStorage.getItem.mockReturnValue(null);
 
-      const store = new SettingsStore();
+      const mockRootStore = {} as any;
+      const store = new SettingsStore(mockRootStore);
 
       expect(store.hiddenGames).toEqual([]);
     });
@@ -252,7 +257,10 @@ describe('SettingsStore', () => {
       });
 
       // The current implementation doesn't handle localStorage errors gracefully
-      expect(() => new SettingsStore()).toThrow('localStorage error');
+      const mockRootStore = {} as any;
+      expect(() => new SettingsStore(mockRootStore)).toThrow(
+        'localStorage error',
+      );
     });
   });
 

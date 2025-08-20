@@ -21,22 +21,25 @@ describe('Navigation Component Integration', () => {
     it('should render all navigation links', () => {
       renderWithRouter(<Navigation />);
 
+      expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument();
       expect(
         screen.getByRole('link', { name: /randomizer/i }),
       ).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /games/i })).toBeInTheDocument();
       expect(screen.getByRole('link', { name: /users/i })).toBeInTheDocument();
-      expect(
-        screen.getByRole('link', { name: /statistics/i }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /stats/i })).toBeInTheDocument();
     });
 
     it('should have correct href attributes', () => {
       renderWithRouter(<Navigation />);
 
-      expect(screen.getByRole('link', { name: /randomizer/i })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: /home/i })).toHaveAttribute(
         'href',
         '/',
+      );
+      expect(screen.getByRole('link', { name: /randomizer/i })).toHaveAttribute(
+        'href',
+        '/randomizer',
       );
       expect(screen.getByRole('link', { name: /games/i })).toHaveAttribute(
         'href',
@@ -46,7 +49,7 @@ describe('Navigation Component Integration', () => {
         'href',
         '/users',
       );
-      expect(screen.getByRole('link', { name: /statistics/i })).toHaveAttribute(
+      expect(screen.getByRole('link', { name: /stats/i })).toHaveAttribute(
         'href',
         '/stats',
       );
