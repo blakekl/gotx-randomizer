@@ -52,7 +52,10 @@ describe('GameDisplay Component', () => {
     it('should display game title', () => {
       render(<GameDisplay game={mockGame} />);
 
-      expect(screen.getByText('🇺🇸 Super Mario Bros.')).toBeInTheDocument();
+      // Check for the main title in the h1 element specifically
+      const mainTitle = screen.getByRole('heading', { level: 1 });
+      expect(mainTitle).toHaveTextContent('Super Mario Bros.');
+      expect(document.querySelector('.fi-us')).toBeInTheDocument();
     });
 
     it('should display game details', () => {
@@ -137,7 +140,9 @@ describe('GameDisplay Component', () => {
 
       render(<GameDisplay game={gameWithMultipleTitles} />);
 
-      expect(screen.getByText(/🇺🇸 USA Title/)).toBeInTheDocument();
+      // Check for USA title text and flag icon
+      expect(screen.getByText('USA Title')).toBeInTheDocument();
+      expect(document.querySelector('.fi-us')).toBeInTheDocument();
     });
 
     it('should fall back to world title if USA title is missing', () => {
@@ -150,7 +155,9 @@ describe('GameDisplay Component', () => {
 
       render(<GameDisplay game={gameWithWorldTitle} />);
 
-      expect(screen.getByText('🌎 World Title')).toBeInTheDocument();
+      // Check for world title text and flag icon
+      expect(screen.getByText('World Title')).toBeInTheDocument();
+      expect(document.querySelector('.fi-un')).toBeInTheDocument();
     });
 
     it('should show multiple titles as subtitles', () => {
@@ -163,9 +170,13 @@ describe('GameDisplay Component', () => {
 
       render(<GameDisplay game={gameWithMultipleTitles} />);
 
-      expect(screen.getByText('🇺🇸 USA Title')).toBeInTheDocument();
-      expect(screen.getByText('🇪🇺 EU Title')).toBeInTheDocument();
-      expect(screen.getByText('🇯🇵 Japanese Title')).toBeInTheDocument();
+      // Check for title texts and flag icons
+      expect(screen.getByText('USA Title')).toBeInTheDocument();
+      expect(screen.getByText('EU Title')).toBeInTheDocument();
+      expect(screen.getByText('Japanese Title')).toBeInTheDocument();
+      expect(document.querySelector('.fi-us')).toBeInTheDocument();
+      expect(document.querySelector('.fi-eu')).toBeInTheDocument();
+      expect(document.querySelector('.fi-jp')).toBeInTheDocument();
     });
 
     it('should handle special characters in titles', () => {
@@ -177,10 +188,11 @@ describe('GameDisplay Component', () => {
 
       render(<GameDisplay game={gameWithSpecialChars} />);
 
-      expect(
-        screen.getByText('🇺🇸 Game: Special Edition™'),
-      ).toBeInTheDocument();
-      expect(screen.getByText('🇯🇵 ゲーム：特別版')).toBeInTheDocument();
+      // Check for special character titles and flag icons
+      expect(screen.getByText('Game: Special Edition™')).toBeInTheDocument();
+      expect(screen.getByText('ゲーム：特別版')).toBeInTheDocument();
+      expect(document.querySelector('.fi-us')).toBeInTheDocument();
+      expect(document.querySelector('.fi-jp')).toBeInTheDocument();
     });
   });
 
@@ -210,7 +222,7 @@ describe('GameDisplay Component', () => {
 
       // The component uses level classes for layout, not columns
       const levelContainer = screen
-        .getByText('🇺🇸 Super Mario Bros.')
+        .getByRole('heading', { level: 1 })
         .closest('section');
       expect(levelContainer).toHaveClass('section');
     });
@@ -226,7 +238,7 @@ describe('GameDisplay Component', () => {
 
       expect(
         screen.getByText(
-          '🇺🇸 This is a very long game title that might wrap to multiple lines',
+          'This is a very long game title that might wrap to multiple lines',
         ),
       ).toBeInTheDocument();
     });
@@ -240,7 +252,8 @@ describe('GameDisplay Component', () => {
       render(<GameDisplay game={gameWithoutDeveloper} />);
 
       // Should still render other information
-      expect(screen.getByText('🇺🇸 Super Mario Bros.')).toBeInTheDocument();
+      const mainTitle = screen.getByRole('heading', { level: 1 });
+      expect(mainTitle).toHaveTextContent('Super Mario Bros.');
       expect(screen.getByText('1985')).toBeInTheDocument();
       // Empty developer should still be rendered (as empty string)
       expect(screen.getByText('NES')).toBeInTheDocument();
@@ -278,7 +291,7 @@ describe('GameDisplay Component', () => {
       render(<GameDisplay game={mockGame} />);
 
       const title = screen.getByRole('heading', { level: 1 });
-      expect(title).toHaveTextContent('🇺🇸 Super Mario Bros.');
+      expect(title).toHaveTextContent('Super Mario Bros.');
     });
   });
 
