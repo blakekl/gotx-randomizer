@@ -314,3 +314,202 @@ export enum SeriesType {
   LINE = 'line',
   SPLINE = 'spline',
 }
+
+/**
+ * Theme browser interfaces (extending existing types)
+ */
+
+// Extend existing Theme interface for theme browser needs
+export interface ThemeWithStatus extends Theme {
+  status: 'current' | 'upcoming' | 'historical';
+  displayTitle: string; // For privacy handling - "Upcoming GotM Theme" vs actual title
+  nominationCount: number;
+  winners: Game[]; // Multiple winners possible (GotM categories, GotY awards)
+  categoryBreakdown: YearCategoryBreakdown;
+  winnersByCategory?: { [category: string]: Game }; // For GotM year categories
+}
+
+export interface YearCategoryBreakdown {
+  'pre 96': number;
+  '96-99'?: number; // Only for theme_id < 235 (from existing logic)
+  '2k+'?: number; // Only for theme_id < 235 (from existing logic)
+  '96-01'?: number; // Only for theme_id >= 235 (from existing logic)
+  '02+'?: number; // Only for theme_id >= 235 (from existing logic)
+}
+
+// Extend existing Nomination for theme browser context
+export interface NominationWithGame extends Nomination {
+  game: Game; // Full game object instead of just game_id
+  yearCategory: string; // Computed category based on theme_id and year
+  user_name?: string; // From user join
+}
+
+// For current active themes dashboard - updated for multiple winners
+export interface CurrentTheme {
+  nominationType: NominationType;
+  theme: ThemeWithStatus;
+  winners: Game[]; // Array to handle multiple winners
+  isMultiWinner: boolean; // Flag for special display logic
+}
+
+// For GotY program - multiple themes per year with same creation_date
+export interface GotyYearGroup {
+  year: number;
+  creation_date: string;
+  themes: ThemeWithStatus[]; // Multiple award categories
+  allWinners: Game[]; // All winners across categories
+}
+
+// Theme filtering options
+export interface ThemeFilters {
+  programType?: NominationType | 'all';
+  year?: number | 'all';
+  status?: 'current' | 'upcoming' | 'historical' | 'all';
+  searchTerm?: string; // Only searches historical themes (privacy)
+}
+
+/**
+ * Theme browser DTOs (following existing patterns)
+ */
+
+export const themeWithStatusDto = (data: any[]): ThemeWithStatus => {
+  const [
+    id,
+    nomination_type,
+    creation_date,
+    description,
+    created_at,
+    updated_at,
+    status,
+    display_title,
+    nomination_count,
+    // winner_count - not used in this DTO but part of query result
+  ] = data;
+
+  return {
+    id,
+    creation_date,
+    title: display_title, // Privacy-aware title
+    description,
+    created_at,
+    updated_at,
+    nomination_type,
+    status,
+    displayTitle:
+      display_title ||
+      `Upcoming ${String(nomination_type).toUpperCase()} Theme`,
+    nominationCount: nomination_count || 0,
+    winners: [], // Will be populated separately
+    categoryBreakdown: {}, // Will be computed separately
+  } as ThemeWithStatus;
+};
+
+export const nominationWithGameDto = (data: any[]): NominationWithGame => {
+  const [
+    theme_id,
+    // title - theme title, not used in this DTO
+    nomination_type,
+    // creation_date - not used in this DTO
+    // description - theme description, not used in this DTO
+    game_title,
+    game_id,
+    year,
+    screenscraper_id,
+    system,
+    developer,
+    genre,
+    img_url,
+    time_to_beat,
+    winner,
+    nomination_description,
+    user_name,
+    year_category,
+  ] = data;
+
+  return {
+    // Nomination fields (using existing Nomination interface structure)
+    id: 0, // Will be set separately if needed
+    nomination_type,
+    description: nomination_description || '',
+    winner: winner === 1,
+    game_id,
+    user_id: 0, // Will be set separately if needed
+    theme_id,
+    created_at: '',
+    updated_at: '',
+
+    // Game object
+    game: {
+      id: game_id,
+      title_world: game_title,
+      year,
+      system,
+      developer,
+      genre,
+      img_url,
+      time_to_beat,
+      screenscraper_id,
+      created_at: '',
+      updated_at: '',
+    } as Game,
+
+    // Additional fields
+    yearCategory: year_category || 'Unknown',
+    user_name,
+  } as NominationWithGame;
+};
+
+export const currentThemeDto = (data: any[]): CurrentTheme => {
+  const [
+    nomination_type,
+    theme_title,
+    theme_id,
+    creation_date,
+    game_title,
+    game_id,
+    screenscraper_id,
+    year,
+    system,
+    developer,
+    genre,
+    img_url,
+    time_to_beat,
+    // year_category - not used in this DTO but part of query result
+  ] = data;
+
+  const game: Game = {
+    id: game_id,
+    title_world: game_title,
+    year,
+    system,
+    developer,
+    genre,
+    img_url,
+    time_to_beat,
+    screenscraper_id,
+    created_at: '',
+    updated_at: '',
+  };
+
+  const theme: ThemeWithStatus = {
+    id: theme_id,
+    creation_date,
+    title: theme_title,
+    description: '',
+    created_at: '',
+    updated_at: '',
+    nomination_type,
+    status: 'current',
+    displayTitle: theme_title,
+    nominationCount: 0,
+    winners: [game],
+    categoryBreakdown: {},
+  };
+
+  return {
+    nominationType: nomination_type,
+    theme,
+    winners: [game],
+    isMultiWinner: false, // Will be determined by caller
+  } as CurrentTheme;
+};
