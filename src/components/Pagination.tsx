@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface PaginationProps {
   count: number;
@@ -16,6 +16,7 @@ const Pagination = ({
   const [pageSize, setPageSize] = useState(10);
   const [pageMenuOpen, setPageMenuOpen] = useState(false);
   const [pageCount, setPageCount] = useState(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const possiblePageSizes = [10, 20, 30, 40, 50, 100];
 
   useEffect(() => {
@@ -27,6 +28,22 @@ const Pagination = ({
     const start = currentPage * pageSize;
     onPageChange([start, start + pageSize]);
   }, [currentPage, pageSize, onPageChange]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleBlur = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => setPageMenuOpen(false), 100);
+  };
 
   const allPages = [
     0,
@@ -91,7 +108,7 @@ const Pagination = ({
       >
         <div className="dropdown-trigger">
           <button
-            onBlur={() => setTimeout(() => setPageMenuOpen(false), 100)}
+            onBlur={handleBlur}
             onClick={() => setPageMenuOpen(!pageMenuOpen)}
             className="button"
             aria-haspopup="true"
