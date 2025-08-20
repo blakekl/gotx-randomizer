@@ -10,7 +10,6 @@ import {
   userListItemDto,
   nominationTypeToPoints,
   NominationType,
-  Subscription,
 } from '../../../models/game';
 
 describe('Game Models and DTOs', () => {

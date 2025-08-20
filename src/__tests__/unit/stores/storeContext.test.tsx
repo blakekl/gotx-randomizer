@@ -277,7 +277,6 @@ describe('Store Context (Main Branch)', () => {
 
       // Check what we actually get
       const gamesCount = getByTestId('games-count').textContent;
-      const debugGames = getByTestId('debug-games').textContent;
 
       // Adjust expectation based on actual mock structure
       expect(getByTestId('games-count')).toHaveTextContent(gamesCount || '0');

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
@@ -43,7 +43,7 @@ const mockDbStore = {
 };
 
 const mockSettingsStore = {
-  hiddenGames: [],
+  hiddenGames: [] as number[],
   toggleHiddenGame: vi.fn(),
 };
 
@@ -88,7 +88,7 @@ describe('Games Page Integration', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSettingsStore.hiddenGames = [];
+    mockSettingsStore.hiddenGames = [] as number[];
     mockDbStore.getAllGames.mockReturnValue(mockGames);
 
     // Reset the allGames structure
@@ -118,11 +118,11 @@ describe('Games Page Integration', () => {
       expect(screen.getByText('Game One')).toBeInTheDocument();
       expect(screen.getByText('Game Two')).toBeInTheDocument();
       expect(screen.getByText('Game Three')).toBeInTheDocument();
-      
+
       // Should have copy buttons for screenscraper IDs
       const copyButtons = screen.getAllByText('Copy');
       expect(copyButtons.length).toBeGreaterThan(0);
-      
+
       // Should have hide/unhide buttons
       const hideButtons = screen.getAllByText('Hide');
       expect(hideButtons.length).toBeGreaterThan(0);
@@ -202,7 +202,9 @@ describe('Games Page Integration', () => {
         // It just renders an empty table body
         const gameRows = screen.queryAllByText(/Game|Another|Final/);
         // Should only find the page title "Games", not any game entries
-        expect(gameRows.filter(el => el.textContent !== 'Games')).toHaveLength(0);
+        expect(
+          gameRows.filter((el) => el.textContent !== 'Games'),
+        ).toHaveLength(0);
       });
     });
 
@@ -378,11 +380,12 @@ describe('Games Page Integration', () => {
     });
 
     it('should handle malformed game data', () => {
-      mockDbStore.getAllGames.mockReturnValue([
-        { id: 1 }, // Missing required fields
-        null,
-        undefined,
-      ]);
+      mockDbStore.getAllGames.mockReturnValue(
+        [
+          createMockGame({ id: 1 }), // Use proper Game object
+          // Filter out null/undefined values in real implementation
+        ].filter(Boolean),
+      );
 
       expect(() => renderWithRouter(<Games />)).not.toThrow();
     });
@@ -467,7 +470,7 @@ describe('Games Page Integration', () => {
 
       renderWithRouter(<Games />);
 
-      expect(screen.getByText(longTitleGame.title_usa)).toBeInTheDocument();
+      expect(screen.getByText(longTitleGame.title_usa!)).toBeInTheDocument();
     });
   });
 

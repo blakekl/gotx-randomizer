@@ -107,7 +107,6 @@ export const createMockDbStore = (
     getNewestGotyCompletions: vi.fn(() => []),
     getNewestGotwotyCompletions: vi.fn(() => []),
     getTotalNominationsBeforeWinByGame: vi.fn(() => []),
-    getAvgNominationsBeforeWin: vi.fn(() => []),
     getTopNominationWinsByUser: vi.fn(() => []),
     getMostNominatedGames: vi.fn(() => []),
     getMostNominatedLoserGames: vi.fn(() => []),
@@ -117,13 +116,6 @@ export const createMockDbStore = (
     getShortestMonthsByAvgTimeToBeat: vi.fn(() => []),
     getMostNominatedGamesByUser: vi.fn(() => []),
     getNominationSuccessPercentByUser: vi.fn(() => []),
-    getGotmRunnerup: vi.fn(() => []),
-    getGotmWinners: vi.fn(() => []),
-    getRetrobits: vi.fn(() => []),
-    getRpgRunnerup: vi.fn(() => []),
-    getRpgWinners: vi.fn(() => []),
-    getNominationsByGameId: vi.fn(() => []),
-    getNominationsByUserId: vi.fn(() => []),
     getCompletionsByUserId: vi.fn(() => []),
     getGameById: vi.fn(
       (id: number) => mockGames.find((game) => game.id === id) || null,
@@ -146,11 +138,6 @@ export const createMockSettingsStore = (
     includeRetrobits: true,
     includeRpgRunnerUp: true,
     includeRpgWinners: true,
-    hideGame: vi.fn(),
-    showGame: vi.fn(),
-    isGameHidden: vi.fn(() => false),
-    clearHiddenGames: vi.fn(),
-    getHiddenGames: vi.fn(() => []),
     ...overrides,
   };
 };

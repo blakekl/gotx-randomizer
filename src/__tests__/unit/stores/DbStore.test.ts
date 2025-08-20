@@ -115,8 +115,6 @@ describe('DbStore', () => {
     });
 
     it('should be observable and trigger reactions', () => {
-      const reactionSpy = vi.fn();
-
       // This would normally use autorun from mobx, but for testing we'll just verify the assignment
       const newGames = {
         gotmRunnerUp: [mockGames.gotmRunnerUp[0]],

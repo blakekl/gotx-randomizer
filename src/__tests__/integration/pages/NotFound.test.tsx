@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import NotFound from '../../../pages/NotFound/NotFound';
@@ -152,7 +151,7 @@ describe('NotFound Page Integration', () => {
         { width: 1920, height: 1080 }, // Desktop
       ];
 
-      viewports.forEach((viewport, index) => {
+      viewports.forEach((viewport) => {
         // Clean up previous render
         cleanup();
 

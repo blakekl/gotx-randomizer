@@ -5,7 +5,6 @@ import { createContext } from 'react';
 import { vi } from 'vitest';
 import DbStore from '../stores/DbStore';
 import SettingsStore from '../stores/SettingsStore';
-import { createMockDbClient } from './mocks/mockDbClient';
 
 // Create mock store context
 const createMockStoreContext = (

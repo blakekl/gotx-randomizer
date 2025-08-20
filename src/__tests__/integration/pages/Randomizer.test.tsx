@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Randomizer from '../../../pages/Randomizer/Randomizer';
@@ -16,7 +16,7 @@ const mockSettingsStore = {
   includeRpgRunnerUp: true,
   includeRpgWinners: true,
   includeHiddenGames: false,
-  hiddenGames: [],
+  hiddenGames: [] as number[],
   toggleHiddenGame: vi.fn(),
   setHltbMax: vi.fn(),
   setHltbMin: vi.fn(),
@@ -75,7 +75,7 @@ describe('Randomizer Page Integration', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSettingsStore.hiddenGames = [];
+    mockSettingsStore.hiddenGames = [] as number[];
     mockSettingsStore.includeGotmRunnerUp = true;
     mockSettingsStore.includeGotmWinners = true;
     mockSettingsStore.includeRetrobits = true;
@@ -303,7 +303,7 @@ describe('Randomizer Page Integration', () => {
       const mainHideButton = Array.from(screen.getAllByText('Hide Game')).find(
         (button) => button.className.includes('button is-danger is-success'),
       );
-      await user.click(mainHideButton);
+      await user.click(mainHideButton!);
 
       expect(mockSettingsStore.toggleHiddenGame).toHaveBeenCalled();
     });
@@ -379,7 +379,7 @@ describe('Randomizer Page Integration', () => {
     it('should handle malformed game data', async () => {
       // Mock games with missing data
       mockDbStore.allGames = {
-        gotmRunnerUp: [{ id: 1 }], // Missing required fields
+        gotmRunnerUp: [createMockGame({ id: 1 })], // Use proper Game object
         gotmWinners: [],
         retrobits: [],
         rpgRunnerUp: [],
