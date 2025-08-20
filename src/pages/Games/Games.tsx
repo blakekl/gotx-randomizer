@@ -77,11 +77,12 @@ const Games = observer(() => {
   }, [
     allGames,
     settingsStore.includeGotmRunnerUp,
-    settingsStore.includeRetrobits,
     settingsStore.includeGotmWinners,
+    settingsStore.includeRetrobits,
     settingsStore.includeRpgRunnerUp,
     settingsStore.includeRpgWinners,
-    settingsStore.includeRetrobits,
+    settingsStore.includeHiddenGames,
+    settingsStore.hiddenGames,
     settingsStore.hltbFilter,
   ]);
 
