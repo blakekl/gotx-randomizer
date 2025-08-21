@@ -109,7 +109,6 @@ const ThemeBrowser = observer(() => {
                 <button
                   className={classNames('button', {
                     'is-primary': typeFilter === filterType,
-                    'is-light': typeFilter !== filterType,
                   })}
                   onClick={() => setTypeFilter(filterType)}
                 >
