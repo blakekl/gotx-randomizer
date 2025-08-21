@@ -1,7 +1,11 @@
 import { useMemo } from 'react';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
-import { getBestGameTitle, getThemeTypeDisplay } from '../../models/game';
+import {
+  getBestGameTitle,
+  getThemeTypeDisplay,
+  getThemeIcon,
+} from '../../models/game';
 
 const CurrentThemes = observer(() => {
   const { dbStore } = useStores();
@@ -24,23 +28,6 @@ const CurrentThemes = observer(() => {
       return aOrder - bOrder;
     });
   }, [dbStore]);
-
-  const getThemeIcon = (type: string) => {
-    switch (type) {
-      case 'gotm':
-        return 'fas fa-trophy';
-      case 'goty':
-        return 'fas fa-crown';
-      case 'retrobit':
-        return 'fas fa-gamepad';
-      case 'rpg':
-        return 'fas fa-dragon';
-      case 'gotwoty':
-        return 'fas fa-calendar-week';
-      default:
-        return 'fas fa-star';
-    }
-  };
 
   if (currentThemes.length === 0) {
     return (
