@@ -49,7 +49,7 @@ export const GotmThemeDetail: React.FC<GotmThemeDetailProps> = ({
                   <div className="columns is-multiline">
                     {categoryWinners.map((winner, index) => (
                       <div key={index} className="column is-one-third">
-                        <WinnerCard winner={winner} showCategory={true} />
+                        <WinnerCard winner={winner} showCategory={false} />
                       </div>
                     ))}
                   </div>
