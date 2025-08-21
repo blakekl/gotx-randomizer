@@ -496,6 +496,28 @@ export const getThemeTypeDisplay = (type: string): string => {
   }
 };
 
+/**
+ * Get the FontAwesome icon class for a theme type
+ * Returns appropriate icon classes for visual representation of theme types
+ */
+export const getThemeIcon = (type: string): string => {
+  switch (type) {
+    case 'gotm':
+      return 'fas fa-trophy';
+    case 'goty':
+      return 'fas fa-crown';
+    case 'retro':
+    case 'retrobit':
+      return 'fas fa-gamepad';
+    case 'rpg':
+      return 'fas fa-dragon';
+    case 'gotwoty':
+      return 'fas fa-calendar-week';
+    default:
+      return 'fas fa-star';
+  }
+};
+
 export const currentThemeDto = (data: any[]): CurrentTheme => {
   const [
     nomination_type,
