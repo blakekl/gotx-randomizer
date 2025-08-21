@@ -142,16 +142,18 @@ const CurrentThemes = observer(() => {
                           )}
                         </h5>
                         <div className="content">
-                          {currentTheme.winners.map((winner, winnerIndex) => (
-                            <div key={winnerIndex} className="mb-2">
-                              <strong>{getBestGameTitle(winner)}</strong>
-                              {winner.year && (
-                                <span className="tag is-small is-light ml-2">
-                                  {String(winner.year)}
-                                </span>
-                              )}
-                            </div>
-                          ))}
+                          {currentTheme.winners
+                            .sort((a, b) => (a.year || 0) - (b.year || 0)) // Sort by year, oldest to newest
+                            .map((winner, winnerIndex) => (
+                              <div key={winnerIndex} className="mb-2">
+                                <strong>{getBestGameTitle(winner)}</strong>
+                                {winner.year && (
+                                  <span className="tag is-small is-light ml-2">
+                                    {String(winner.year)}
+                                  </span>
+                                )}
+                              </div>
+                            ))}
                         </div>
                       </div>
                     ) : (
