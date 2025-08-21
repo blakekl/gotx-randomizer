@@ -497,6 +497,27 @@ export const getThemeTypeDisplay = (type: string): string => {
 };
 
 /**
+ * Get the short display name for a theme type
+ * Used for filter buttons, navigation, and compact displays
+ */
+export const getThemeTypeShort = (type: string): string => {
+  switch (type) {
+    case 'gotm':
+      return 'GotM';
+    case 'goty':
+    case 'gotwoty':
+      return 'GotY';
+    case 'retro':
+    case 'retrobit':
+      return 'Retrobit';
+    case 'rpg':
+      return 'RPG';
+    default:
+      return type;
+  }
+};
+
+/**
  * Get the FontAwesome icon class for a theme type
  * Returns appropriate icon classes for visual representation of theme types
  */
