@@ -24,11 +24,20 @@ export const WinnerCard: React.FC<WinnerCardProps> = ({
           {getBestGameTitle(winner.game)}
         </p>
         {winner.game.img_url && (
-          <figure className="image is-16by9 mb-3">
+          <figure
+            className="image mb-3"
+            style={{ height: '200px', overflow: 'hidden' }}
+          >
             <img
               src={winner.game.img_url}
               alt={getBestGameTitle(winner.game)}
-              style={{ borderRadius: '6px' }}
+              style={{
+                borderRadius: '6px',
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                backgroundColor: '#f5f5f5', // Light background for letterboxing
+              }}
             />
           </figure>
         )}
