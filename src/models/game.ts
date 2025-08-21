@@ -459,13 +459,35 @@ export const nominationWithGameDto = (data: any[]): NominationWithGame => {
   } as NominationWithGame;
 };
 
+/**
+ * Get the best available title for a game, following the same priority as coalescedTitle
+ * Priority: title_world > title_usa > title_eu > title_jap > title_other
+ */
+export const getBestGameTitle = (game: Game): string => {
+  return (
+    game.title_world ||
+    game.title_usa ||
+    game.title_eu ||
+    game.title_jap ||
+    game.title_other ||
+    'Unknown Title'
+  );
+};
+
 export const currentThemeDto = (data: any[]): CurrentTheme => {
   const [
     nomination_type,
     theme_title,
     theme_id,
     creation_date,
-    game_title,
+    theme_description,
+    theme_created_at,
+    theme_updated_at,
+    title_world,
+    title_usa,
+    title_eu,
+    title_jap,
+    title_other,
     game_id,
     screenscraper_id,
     year,
@@ -479,7 +501,11 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
 
   const game: Game = {
     id: game_id,
-    title_world: game_title,
+    title_world,
+    title_usa,
+    title_eu,
+    title_jap,
+    title_other,
     year,
     system,
     developer,
@@ -495,9 +521,9 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
     id: theme_id,
     creation_date,
     title: theme_title,
-    description: '',
-    created_at: '',
-    updated_at: '',
+    description: theme_description || '',
+    created_at: theme_created_at,
+    updated_at: theme_updated_at,
     nomination_type,
     status: 'current',
     displayTitle: theme_title,
