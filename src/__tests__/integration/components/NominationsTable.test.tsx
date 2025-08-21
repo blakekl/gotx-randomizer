@@ -138,8 +138,8 @@ describe('NominationsTable Component', () => {
       // Check first game
       expect(screen.getByText('Game One')).toBeInTheDocument();
       expect(screen.getByText('1995')).toBeInTheDocument();
-      expect(screen.getByText('Unknown')).toBeInTheDocument(); // Nominated By
-      expect(screen.getByText('Nominated')).toBeInTheDocument(); // Status
+      expect(screen.getAllByText('Unknown')).toHaveLength(2); // Both nominations show "Unknown" for nominator
+      expect(screen.getAllByText('Nominated')).toHaveLength(2); // Both nominations show "Nominated" status
 
       // Check second game
       expect(screen.getByText('Game Two')).toBeInTheDocument();
