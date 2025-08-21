@@ -31,6 +31,7 @@ const CurrentThemes = observer(() => {
         return 'Game of the Month';
       case 'goty':
         return 'Game of the Year';
+      case 'retro':
       case 'retrobit':
         return 'Retrobit';
       case 'rpg':
