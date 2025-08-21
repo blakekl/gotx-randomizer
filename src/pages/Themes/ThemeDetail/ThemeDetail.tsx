@@ -111,18 +111,16 @@ const ThemeDetail = observer(() => {
                           <div className="card">
                             <div className="card-content">
                               <h4 className="title is-5 mb-2">
-                                {getBestGameTitle(winner.game)}
+                                {winner.yearCategory}
                               </h4>
-                              <div className="tags mb-3">
-                                <span className="tag is-primary">
-                                  {winner.yearCategory}
+                              <p className="subtitle is-6 mb-3">
+                                {getBestGameTitle(winner.game)}
+                              </p>
+                              {winner.game.year && (
+                                <span className="tag is-info mb-2">
+                                  {winner.game.year}
                                 </span>
-                                {winner.game.year && (
-                                  <span className="tag is-info">
-                                    {winner.game.year}
-                                  </span>
-                                )}
-                              </div>
+                              )}
                               {winner.user_name && (
                                 <p className="has-text-grey is-size-7">
                                   Nominated by: {winner.user_name}
@@ -144,18 +142,16 @@ const ThemeDetail = observer(() => {
                     <div className="card">
                       <div className="card-content">
                         <h4 className="title is-5 mb-2">
-                          {getBestGameTitle(winner.game)}
+                          {winner.yearCategory}
                         </h4>
-                        <div className="tags mb-3">
-                          <span className="tag is-primary">
-                            {winner.yearCategory}
+                        <p className="subtitle is-6 mb-3">
+                          {getBestGameTitle(winner.game)}
+                        </p>
+                        {winner.game.year && (
+                          <span className="tag is-info mb-2">
+                            {winner.game.year}
                           </span>
-                          {winner.game.year && (
-                            <span className="tag is-info">
-                              {winner.game.year}
-                            </span>
-                          )}
-                        </div>
+                        )}
                         {winner.user_name && (
                           <p className="has-text-grey is-size-7">
                             Nominated by: {winner.user_name}
