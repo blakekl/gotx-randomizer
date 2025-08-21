@@ -108,6 +108,17 @@ const createMockStoreContext = (
     getNominationsByUserId: vi.fn(),
     getCompletionsByUserId: vi.fn(),
     getGameById: vi.fn(),
+    // Theme browser methods
+    getThemesWithStatus: vi.fn(() => []),
+    getCurrentWinners: vi.fn(() => []),
+    getUpcomingThemes: vi.fn(() => []),
+    getThemeDetailWithCategories: vi.fn(() => ({
+      theme: null,
+      nominations: [],
+    })),
+    getGotyThemesByYear: vi.fn(() => []),
+    getGotyThemesForYear: vi.fn(() => []),
+    getThemeWinners: vi.fn(() => []),
     ...overrides.dbStore,
   } as any; // Use 'as any' to bypass strict typing for mock
 
