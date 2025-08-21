@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useParams, Navigate } from 'react-router-dom';
 import { useStores } from '../../../stores/useStores';
+import { NominationType } from '../../../models/game';
 import { ThemeHeader } from './shared/ThemeHeader';
 import { GotmThemeDetail } from './components/GotmThemeDetail';
 import { RetrobitsThemeDetail } from './components/RetrobitsThemeDetail';
@@ -32,25 +33,25 @@ const ThemeDetail = observer(() => {
   // Determine theme type and render appropriate component
   const renderThemeContent = () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const themeType = String(theme.nomination_type).toLowerCase();
+    const themeType = theme.nomination_type;
 
     // Debug: log the theme type to help identify issues
     console.log('Theme type detected:', themeType);
 
     switch (themeType) {
-      case 'gotm':
+      case NominationType.GOTM:
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <GotmThemeDetail nominations={nominations} />;
 
-      case 'retro':
+      case NominationType.RETROBIT:
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <RetrobitsThemeDetail nominations={nominations} />;
 
-      case 'rpg':
+      case NominationType.RPG:
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <RpgThemeDetail nominations={nominations} />;
 
-      case 'goty':
+      case NominationType.GOTY:
         // TODO: Implement GotyThemeDetail
         return (
           <div className="box">
