@@ -12,19 +12,6 @@ export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
   // GotY themes have multiple winners with categories in nomination descriptions
   const winners = nominations.filter((nom) => nom.winner);
 
-  // Debug: Log the winners to see what data we have
-  console.log('GotY Winners:', winners);
-  console.log(
-    'All potential category fields:',
-    winners.map((w) => ({
-      game: w.game.title_world,
-      themeDescription: w.themeDescription, // t.description
-      nominationDescription: w.description, // n.description - THIS IS THE CATEGORY!
-      themeId: w.theme_id,
-      yearCategory: w.yearCategory,
-    })),
-  );
-
   return (
     <>
       {/* Winners Section */}
