@@ -1,14 +1,31 @@
 /* eslint @typescript-eslint/no-explicit-any: 0 */
+/* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 
 import dayjs from 'dayjs';
 
-/* eslint @typescript-eslint/no-unsafe-assignment: 0 */
+// ============================================================================
+// ENUMS & CONSTANTS
+// ============================================================================
+
 export enum NominationType {
   GOTM = 'gotm',
   RETROBIT = 'retro',
   RPG = 'rpg',
   GOTWOTY = 'gotwoty',
   GOTY = 'goty',
+}
+
+export enum Subscription {
+  SUPPORTER = 'supporter',
+  CHAMPION = 'champion',
+  LEGEND = 'legend',
+}
+
+export enum SeriesType {
+  BAR = 'bar',
+  COLUMN = 'column',
+  LINE = 'line',
+  SPLINE = 'spline',
 }
 
 export const nominationTypeToPoints = (
@@ -33,11 +50,9 @@ export const nominationTypeToPoints = (
   return 0;
 };
 
-export enum Subscription {
-  SUPPORTER = 'supporter',
-  CHAMPION = 'champion',
-  LEGEND = 'legend',
-}
+// ============================================================================
+// CORE TABLE INTERFACES
+// ============================================================================
 
 export interface User {
   id: number;
@@ -51,15 +66,6 @@ export interface User {
   created_at: string;
   updated_at: string;
   premium_subscriber: Subscription;
-}
-
-export interface UserListItem {
-  id: number;
-  name: string;
-  success_rate: number;
-  nominations: number;
-  wins: number;
-  completions: number;
 }
 
 export interface Game {
@@ -80,6 +86,16 @@ export interface Game {
   updated_at: string;
 }
 
+export interface Theme {
+  id: number;
+  creation_date: string;
+  title: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  nomination_type: NominationType;
+}
+
 export interface Nomination {
   id: number;
   nomination_type: NominationType;
@@ -90,6 +106,19 @@ export interface Nomination {
   theme_id: number;
   created_at: string;
   updated_at: string;
+}
+
+// ============================================================================
+// COMPOSED INTERFACES (List Items & Stats)
+// ============================================================================
+
+export interface UserListItem {
+  id: number;
+  name: string;
+  success_rate: number;
+  nominations: number;
+  wins: number;
+  completions: number;
 }
 
 export interface NominationListItem {
@@ -104,21 +133,6 @@ export interface NominationListItem {
   winner: boolean;
 }
 
-export interface Theme {
-  id: number;
-  creation_date: string;
-  title: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
-  nomination_type: NominationType;
-}
-
-export interface LabeledStat {
-  label: string;
-  value: number;
-}
-
 export interface CompletionListItem {
   id: number;
   title_world: string;
@@ -131,6 +145,15 @@ export interface CompletionListItem {
   theme_id: number;
   retroachievements: boolean;
 }
+
+export interface LabeledStat {
+  label: string;
+  value: number;
+}
+
+// ============================================================================
+// DTO FUNCTIONS (Database Result Mappers)
+// ============================================================================
 
 export const gameDto = (data: any[]): Game => {
   const [
@@ -308,16 +331,17 @@ export const userListItemDto = (data: any[]): UserListItem => {
   return { id, name, success_rate, nominations, wins } as UserListItem;
 };
 
-export enum SeriesType {
-  BAR = 'bar',
-  COLUMN = 'column',
-  LINE = 'line',
-  SPLINE = 'spline',
-}
+// ============================================================================
+// THEME BROWSER INTERFACES
+// ============================================================================
 
-/**
- * Theme browser interfaces (extending existing types)
- */
+export interface YearCategoryBreakdown {
+  'pre 96': number;
+  '96-99'?: number; // Only for theme_id < 235 (from existing logic)
+  '2k+'?: number; // Only for theme_id < 235 (from existing logic)
+  '96-01'?: number; // Only for theme_id >= 235 (from existing logic)
+  '02+'?: number; // Only for theme_id >= 235 (from existing logic)
+}
 
 // Extend existing Theme interface for theme browser needs
 export interface ThemeWithStatus extends Theme {
@@ -327,14 +351,6 @@ export interface ThemeWithStatus extends Theme {
   winners: Game[]; // Multiple winners possible (GotM categories, GotY awards)
   categoryBreakdown: YearCategoryBreakdown;
   winnersByCategory?: { [category: string]: Game }; // For GotM year categories
-}
-
-export interface YearCategoryBreakdown {
-  'pre 96': number;
-  '96-99'?: number; // Only for theme_id < 235 (from existing logic)
-  '2k+'?: number; // Only for theme_id < 235 (from existing logic)
-  '96-01'?: number; // Only for theme_id >= 235 (from existing logic)
-  '02+'?: number; // Only for theme_id >= 235 (from existing logic)
 }
 
 // Extend existing Nomination for theme browser context
@@ -369,9 +385,9 @@ export interface ThemeFilters {
   searchTerm?: string; // Only searches historical themes (privacy)
 }
 
-/**
- * Theme browser DTOs (following existing patterns)
- */
+// ============================================================================
+// THEME BROWSER DTO FUNCTIONS
+// ============================================================================
 
 export const themeWithStatusDto = (data: any[]): ThemeWithStatus => {
   const [
@@ -467,6 +483,10 @@ export const nominationWithGameDto = (data: any[]): NominationWithGame => {
     themeDescription: theme_description || undefined, // Theme description for GotY categories
   } as NominationWithGame;
 };
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
 
 /**
  * Get the best available title for a game, following the same priority as coalescedTitle
