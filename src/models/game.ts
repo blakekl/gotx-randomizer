@@ -474,6 +474,28 @@ export const getBestGameTitle = (game: Game): string => {
   );
 };
 
+/**
+ * Get the display name for a theme type
+ * Handles both database storage variations and provides consistent capitalization
+ */
+export const getThemeTypeDisplay = (type: string): string => {
+  switch (type) {
+    case 'gotm':
+      return 'Game of the Month';
+    case 'goty':
+      return 'Game of the Year';
+    case 'retro':
+    case 'retrobit':
+      return 'Retrobit';
+    case 'rpg':
+      return 'RPG';
+    case 'gotwoty':
+      return 'Game of the Week of the Year';
+    default:
+      return type;
+  }
+};
+
 export const currentThemeDto = (data: any[]): CurrentTheme => {
   const [
     nomination_type,

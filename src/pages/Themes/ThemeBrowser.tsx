@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useStores } from '../../stores/useStores';
-import { ThemeWithStatus } from '../../models/game';
+import { ThemeWithStatus, getThemeTypeDisplay } from '../../models/game';
 import Pagination from '../../components/Pagination';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
@@ -68,24 +68,6 @@ const ThemeBrowser = observer(() => {
         return <span className="tag is-warning">Upcoming</span>;
       default:
         return <span className="tag is-light">Unknown</span>;
-    }
-  };
-
-  const getThemeTypeDisplay = (type: string) => {
-    switch (type) {
-      case 'gotm':
-        return 'Game of the Month';
-      case 'goty':
-        return 'Game of the Year';
-      case 'retro':
-      case 'retrobit':
-        return 'Retrobit';
-      case 'rpg':
-        return 'RPG';
-      case 'gotwoty':
-        return 'Game of the Week of the Year';
-      default:
-        return type;
     }
   };
 
