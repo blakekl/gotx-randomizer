@@ -99,6 +99,27 @@ const ThemeBrowser = observer(() => {
       <div className="mt-6">
         <h2 className="title is-3">Theme History</h2>
 
+        {/* Type Filter Buttons */}
+        <div className="field mt-4">
+          <div className="field has-addons">
+            {(
+              ['All', 'GotM', 'Retrobit', 'RPG', 'GotY'] as ThemeTypeFilter[]
+            ).map((filterType) => (
+              <p key={filterType} className="control">
+                <button
+                  className={classNames('button', {
+                    'is-primary': typeFilter === filterType,
+                    'is-light': typeFilter !== filterType,
+                  })}
+                  onClick={() => setTypeFilter(filterType)}
+                >
+                  {filterType}
+                </button>
+              </p>
+            ))}
+          </div>
+        </div>
+
         {/* Search Filter */}
         <div className="field mt-4">
           <p className="control has-icons-left">
@@ -113,27 +134,6 @@ const ThemeBrowser = observer(() => {
               <i className="fas fa-search" />
             </span>
           </p>
-        </div>
-
-        {/* Type Filter Buttons */}
-        <div className="field mt-4">
-          <div className="field has-addons">
-            {(
-              ['All', 'GotM', 'Retrobit', 'RPG', 'GotY'] as ThemeTypeFilter[]
-            ).map((filterType) => (
-              <p key={filterType} className="control">
-                <button
-                  className={classNames('button', {
-                    'is-primary': typeFilter === filterType,
-                    'is-outlined': typeFilter !== filterType,
-                  })}
-                  onClick={() => setTypeFilter(filterType)}
-                >
-                  {filterType}
-                </button>
-              </p>
-            ))}
-          </div>
         </div>
 
         {/* Themes Table */}
