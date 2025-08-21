@@ -173,11 +173,12 @@ const ThemeDetail = observer(() => {
         {/* All Nominations Section - Grouped by Category */}
         {nominations.length > 0 && (
           <div className="box">
-            <h2 className="title is-3">
+            <h2 className="title is-3 has-text-centered">
               <span className="icon mr-2">
                 <i className="fas fa-list"></i>
               </span>
-              All Nominations ({nominations.length})
+              All Nominations
+              <span className="tag is-info ml-2">{nominations.length}</span>
             </h2>
 
             {/* Group nominations by category */}
@@ -195,10 +196,11 @@ const ThemeDetail = observer(() => {
               ),
             ).map(([category, categoryNominations]) => (
               <div key={category} className="mb-5">
-                <h3 className="title is-4 mb-3">
-                  <span className="tag is-primary mr-2">{category}</span>
-                  {categoryNominations.length} nomination
-                  {categoryNominations.length !== 1 ? 's' : ''}
+                <h3 className="title is-4 has-text-centered mb-3">
+                  {category}
+                  <span className="tag is-primary ml-2">
+                    {categoryNominations.length}
+                  </span>
                 </h3>
 
                 <table className="table is-hoverable is-striped is-fullwidth">
