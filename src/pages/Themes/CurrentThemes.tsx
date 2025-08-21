@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
-import { getBestGameTitle } from '../../models/game';
+import { getBestGameTitle, getThemeTypeDisplay } from '../../models/game';
 
 const CurrentThemes = observer(() => {
   const { dbStore } = useStores();
@@ -24,24 +24,6 @@ const CurrentThemes = observer(() => {
       return aOrder - bOrder;
     });
   }, [dbStore]);
-
-  const getThemeTypeDisplay = (type: string) => {
-    switch (type) {
-      case 'gotm':
-        return 'Game of the Month';
-      case 'goty':
-        return 'Game of the Year';
-      case 'retro':
-      case 'retrobit':
-        return 'Retrobit';
-      case 'rpg':
-        return 'RPG';
-      case 'gotwoty':
-        return 'Game of the Week of the Year';
-      default:
-        return type;
-    }
-  };
 
   const getThemeIcon = (type: string) => {
     switch (type) {
