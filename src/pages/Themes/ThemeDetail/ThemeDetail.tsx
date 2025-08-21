@@ -112,10 +112,11 @@ const ThemeDetail = observer(() => {
                           <div className="card">
                             <div className="card-content">
                               <h4 className="title is-5">
-                                {getBestGameTitle(winner)}
+                                {getBestGameTitle(winner.game)}
                               </h4>
                               <p className="subtitle is-6">
-                                {winner.year && `Released: ${winner.year}`}
+                                {winner.game.year &&
+                                  `Released: ${winner.game.year}`}
                               </p>
                               {winner.user_name && (
                                 <p className="has-text-grey">
@@ -138,10 +139,10 @@ const ThemeDetail = observer(() => {
                     <div className="card">
                       <div className="card-content">
                         <h4 className="title is-5">
-                          {getBestGameTitle(winner)}
+                          {getBestGameTitle(winner.game)}
                         </h4>
                         <p className="subtitle is-6">
-                          {winner.year && `Released: ${winner.year}`}
+                          {winner.game.year && `Released: ${winner.game.year}`}
                         </p>
                         {winner.user_name && (
                           <p className="has-text-grey">
@@ -181,10 +182,10 @@ const ThemeDetail = observer(() => {
                 {nominations.map((nomination, index) => (
                   <tr key={index}>
                     <td>
-                      <strong>{getBestGameTitle(nomination)}</strong>
+                      <strong>{getBestGameTitle(nomination.game)}</strong>
                     </td>
-                    <td>{nomination.year || 'Unknown'}</td>
-                    <td>{nomination.year_category || 'Unknown'}</td>
+                    <td>{nomination.game.year || 'Unknown'}</td>
+                    <td>{nomination.yearCategory || 'Unknown'}</td>
                     <td>{nomination.user_name || 'Unknown'}</td>
                     <td>
                       {nomination.winner ? (
