@@ -119,7 +119,7 @@ const ThemeDetail = observer(() => {
                                   {winner.yearCategory}
                                 </span>
                                 {winner.game.year && (
-                                  <span className="tag is-light">
+                                  <span className="tag is-info">
                                     {winner.game.year}
                                   </span>
                                 )}
@@ -152,7 +152,7 @@ const ThemeDetail = observer(() => {
                             {winner.yearCategory}
                           </span>
                           {winner.game.year && (
-                            <span className="tag is-light">
+                            <span className="tag is-info">
                               {winner.game.year}
                             </span>
                           )}
