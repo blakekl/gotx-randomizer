@@ -483,8 +483,8 @@ export const getThemeDetailWithCategories = (themeId: number) => `
 SELECT 
   t.id,
   CASE 
-    WHEN t.creation_date > date('now') OR (
-      t.creation_date <= date('now') AND NOT EXISTS(
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') OR (
+      t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
         SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = t.id AND n3.winner = 1
       )
     ) THEN NULL  -- Privacy: hide upcoming theme titles
