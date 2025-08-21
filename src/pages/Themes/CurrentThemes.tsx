@@ -105,24 +105,20 @@ const CurrentThemes = observer(() => {
 
                   <div className="field is-grouped is-grouped-multiline mb-4">
                     <div className="control">
-                      <div className="tags has-addons">
-                        <span className="tag is-dark">Date</span>
-                        <span className="tag is-primary">
-                          {currentTheme.theme.creation_date
-                            ? new Date(
-                                currentTheme.theme.creation_date,
-                              ).toLocaleDateString()
-                            : 'TBD'}
-                        </span>
-                      </div>
+                      <span className="tag">
+                        Date:{' '}
+                        {currentTheme.theme.creation_date
+                          ? new Date(
+                              currentTheme.theme.creation_date,
+                            ).toLocaleDateString()
+                          : 'TBD'}
+                      </span>
                     </div>
                     <div className="control">
-                      <div className="tags has-addons">
-                        <span className="tag is-dark">Nominations</span>
-                        <span className="tag is-info">
-                          {String(currentTheme.theme.nominationCount || 0)}
-                        </span>
-                      </div>
+                      <span className="tag">
+                        Nominations:{' '}
+                        {String(currentTheme.theme.nominationCount || 0)}
+                      </span>
                     </div>
                   </div>
 
@@ -135,11 +131,6 @@ const CurrentThemes = observer(() => {
                             <i className="fas fa-medal"></i>
                           </span>
                           Winner{currentTheme.winners.length > 1 ? 's' : ''}
-                          {currentTheme.isMultiWinner && (
-                            <span className="tag is-small is-warning ml-2">
-                              Multi-Winner
-                            </span>
-                          )}
                         </h5>
                         <div className="content">
                           {currentTheme.winners
@@ -148,7 +139,7 @@ const CurrentThemes = observer(() => {
                               <div key={winnerIndex} className="mb-2">
                                 <strong>{getBestGameTitle(winner)}</strong>
                                 {winner.year && (
-                                  <span className="tag is-small is-light ml-2">
+                                  <span className="tag is-small ml-2">
                                     {String(winner.year)}
                                   </span>
                                 )}
