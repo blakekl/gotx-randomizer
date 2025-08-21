@@ -3,6 +3,8 @@ import { useParams, Navigate } from 'react-router-dom';
 import { useStores } from '../../../stores/useStores';
 import { ThemeHeader } from './shared/ThemeHeader';
 import { GotmThemeDetail } from './components/GotmThemeDetail';
+import { RetrobitsThemeDetail } from './components/RetrobitsThemeDetail';
+import { RpgThemeDetail } from './components/RpgThemeDetail';
 
 const ThemeDetail = observer(() => {
   const { themeId } = useParams<{ themeId: string }>();
@@ -38,36 +40,12 @@ const ThemeDetail = observer(() => {
         return <GotmThemeDetail nominations={nominations} />;
 
       case 'retrobits':
-        // TODO: Implement RetrobitsThemeDetail
-        return (
-          <div className="box">
-            <div className="notification is-info">
-              <p>
-                <strong>Retrobits theme display coming soon!</strong>
-              </p>
-              <p>
-                This theme type will have a specialized single-game showcase
-                format.
-              </p>
-            </div>
-          </div>
-        );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        return <RetrobitsThemeDetail nominations={nominations} />;
 
       case 'rpg':
-        // TODO: Implement RpgThemeDetail
-        return (
-          <div className="box">
-            <div className="notification is-info">
-              <p>
-                <strong>RPG theme display coming soon!</strong>
-              </p>
-              <p>
-                This theme type will have a single winner with nominations table
-                format.
-              </p>
-            </div>
-          </div>
-        );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        return <RpgThemeDetail nominations={nominations} />;
 
       case 'goty':
         // TODO: Implement GotyThemeDetail
