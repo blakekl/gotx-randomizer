@@ -36,7 +36,6 @@ export const WinnerCard: React.FC<WinnerCardProps> = ({
                 width: '100%',
                 height: '100%',
                 objectFit: 'contain',
-                backgroundColor: '#f5f5f5', // Light background for letterboxing
               }}
             />
           </figure>
