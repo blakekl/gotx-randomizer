@@ -1,7 +1,7 @@
 /**
  * Get game list queries.
  */
-const coalescedTitle = `COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title`;
+const coalescedTitle = `COALESCE([public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title`;
 export const getRetrobits = `SELECT
   *
 FROM [public.games]
