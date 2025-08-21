@@ -410,12 +410,20 @@ SELECT
   t.description,
   t.created_at,
   t.updated_at,
-  'historical' as status,
-  t.title as display_title,
+  CASE 
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') THEN 'upcoming'
+    WHEN EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t.id AND n2.winner = 1) THEN 'completed'
+    ELSE 'active'
+  END as status,
+  CASE 
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') THEN NULL  -- Privacy: hide upcoming theme titles
+    ELSE t.title
+  END as display_title,
   COUNT(n.id) as nomination_count,
   COUNT(CASE WHEN n.winner = 1 THEN 1 END) as winner_count
 FROM [public.themes] t
 LEFT JOIN [public.nominations] n ON t.id = n.theme_id
+WHERE t.creation_date <= strftime('%Y-%m-%d', 'now')  -- Privacy: exclude upcoming themes entirely
 GROUP BY t.id, t.title, t.nomination_type, t.creation_date, t.description, t.created_at, t.updated_at
 ORDER BY t.creation_date DESC, t.nomination_type;`;
 
