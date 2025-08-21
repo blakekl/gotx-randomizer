@@ -1,146 +1,42 @@
 import { useMemo } from 'react';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
-import {
-  getBestGameTitle,
-  getThemeTypeDisplay,
-  getThemeIcon,
-} from '../../models/game';
+import { useThemeOrdering } from './hooks/useThemeOrdering';
+import CurrentThemeCard from './components/CurrentThemeCard';
 
 const CurrentThemes = observer(() => {
   const { dbStore } = useStores();
 
   // Get current active themes with winners
-  const currentThemes = useMemo(() => {
-    const themes = dbStore.getCurrentWinners();
-
-    // Sort themes in desired order: gotm, retro, rpg, goty, gotwoty
-    const typeOrder = ['gotm', 'retro', 'rpg', 'goty', 'gotwoty'];
-
-    return themes.sort((a, b) => {
-      const aIndex = typeOrder.indexOf(a.nominationType);
-      const bIndex = typeOrder.indexOf(b.nominationType);
-
-      // If type not found in order, put it at the end
-      const aOrder = aIndex === -1 ? 999 : aIndex;
-      const bOrder = bIndex === -1 ? 999 : bIndex;
-
-      return aOrder - bOrder;
-    });
+  const rawThemes = useMemo(() => {
+    return dbStore.getCurrentWinners();
   }, [dbStore]);
+
+  // Use shared ordering logic
+  const currentThemes = useThemeOrdering(rawThemes);
 
   if (currentThemes.length === 0) {
     return (
       <div className="notification is-info">
-        <p className="has-text-centered">
-          <span className="icon is-large">
-            <i className="fas fa-info-circle fa-2x"></i>
-          </span>
-        </p>
-        <p className="has-text-centered">
-          No active themes at the moment. Check back soon for new themes!
-        </p>
+        <div className="content has-text-centered">
+          <p className="title is-4">
+            <span className="icon mr-2">
+              <i className="fas fa-info-circle"></i>
+            </span>
+            No Active Themes
+          </p>
+          <p>No active themes at the moment. Check back soon for new themes!</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="mb-6">
+    <div>
       <h2 className="title is-3">Current Themes</h2>
       <div className="columns is-multiline">
         {currentThemes.map((currentTheme, index) => (
-          <div
-            key={`${currentTheme.theme.id}-${index}`}
-            className="column is-one-third"
-          >
-            <div
-              className="card is-flex is-flex-direction-column"
-              style={{ height: '100%' }}
-            >
-              <div className="card-header">
-                <div className="card-header-title">
-                  <span className="icon mr-2">
-                    <i
-                      className={getThemeIcon(currentTheme.nominationType)}
-                    ></i>
-                  </span>
-                  {getThemeTypeDisplay(currentTheme.nominationType)}
-                </div>
-              </div>
-              <div className="card-content is-flex-grow-1">
-                <div className="content">
-                  <h4 className="title is-5 mb-3">
-                    {currentTheme.theme.title || 'Current Theme'}
-                  </h4>
-
-                  <div className="field is-grouped is-grouped-multiline mb-4">
-                    <div className="control">
-                      <span className="tag is-primary">
-                        Date:{' '}
-                        {currentTheme.theme.creation_date
-                          ? new Date(
-                              currentTheme.theme.creation_date,
-                            ).toLocaleDateString()
-                          : 'TBD'}
-                      </span>
-                    </div>
-                    <div className="control">
-                      <span className="tag is-primary">
-                        Nominations:{' '}
-                        {String(currentTheme.theme.nominationCount || 0)}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Winners Section */}
-                  <div className="winners-section">
-                    {currentTheme.winners && currentTheme.winners.length > 0 ? (
-                      <div>
-                        <h5 className="title is-6 mb-2">
-                          <span className="icon mr-1">
-                            <i className="fas fa-medal"></i>
-                          </span>
-                          Winner{currentTheme.winners.length > 1 ? 's' : ''}
-                        </h5>
-                        <div className="content">
-                          {currentTheme.winners
-                            .sort((a, b) => (a.year || 0) - (b.year || 0)) // Sort by year, oldest to newest
-                            .map((winner, winnerIndex) => (
-                              <div key={winnerIndex} className="mb-2">
-                                <strong>{getBestGameTitle(winner)}</strong>
-                                {winner.year && (
-                                  <span className="tag is-small is-primary ml-2">
-                                    {String(winner.year)}
-                                  </span>
-                                )}
-                              </div>
-                            ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="notification is-light is-small">
-                        <span className="icon mr-2">
-                          <i className="fas fa-clock"></i>
-                        </span>
-                        Winners not yet announced
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div className="card-footer">
-                <a
-                  href={`/themes/${String(currentTheme.theme.id)}`}
-                  className="card-footer-item"
-                >
-                  <span className="icon mr-1">
-                    <i className="fas fa-eye"></i>
-                  </span>
-                  View Details
-                </a>
-              </div>
-            </div>
-          </div>
+          <CurrentThemeCard key={index} currentTheme={currentTheme} />
         ))}
       </div>
     </div>
