@@ -1,25 +1,26 @@
 import React from 'react';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame } from '../../../../models/game';
 import { WinnerCard } from '../WinnerCard/WinnerCard';
+import { NominationsTable } from '../NominationsTable/NominationsTable';
 
-interface GotwotypThemeDetailProps {
+interface RpgThemeDetailProps {
   nominations: NominationWithGame[];
 }
 
-export const GotwotypThemeDetail: React.FC<GotwotypThemeDetailProps> = ({
+export const RpgThemeDetail: React.FC<RpgThemeDetailProps> = ({
   nominations,
 }) => {
-  // GOTWOTY themes have only one winner and no other nominations
+  // RPG themes have one winner and multiple nominations
   const winners = nominations.filter((nom) => nom.winner);
 
   return (
     <>
-      {/* Single Winner Showcase */}
+      {/* Single Winner Section */}
       {winners.length > 0 && (
         <div className="box">
           <h2 className="title is-3">
             <span className="icon mr-2">
-              <i className="fas fa-calendar-week"></i>
+              <i className="fas fa-trophy"></i>
             </span>
             Winner
           </h2>
@@ -33,17 +34,12 @@ export const GotwotypThemeDetail: React.FC<GotwotypThemeDetailProps> = ({
         </div>
       )}
 
-      {/* No nominations table for GOTWOTY - they don't have other nominations */}
-      {winners.length === 0 && (
-        <div className="box">
-          <div className="notification is-info">
-            <p>
-              <strong>No winner announced yet.</strong>
-            </p>
-            <p>This GOTWOTY theme is still in progress.</p>
-          </div>
-        </div>
-      )}
+      {/* All Nominations Section - Flat table (no categories for RPG) */}
+      <NominationsTable
+        nominations={nominations}
+        showCategories={false}
+        title="All Nominations"
+      />
     </>
   );
 };
