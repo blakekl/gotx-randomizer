@@ -105,7 +105,7 @@ const CurrentThemes = observer(() => {
 
                   <div className="field is-grouped is-grouped-multiline mb-4">
                     <div className="control">
-                      <span className="tag">
+                      <span className="tag is-primary">
                         Date:{' '}
                         {currentTheme.theme.creation_date
                           ? new Date(
@@ -115,7 +115,7 @@ const CurrentThemes = observer(() => {
                       </span>
                     </div>
                     <div className="control">
-                      <span className="tag">
+                      <span className="tag is-primary">
                         Nominations:{' '}
                         {String(currentTheme.theme.nominationCount || 0)}
                       </span>
@@ -139,7 +139,7 @@ const CurrentThemes = observer(() => {
                               <div key={winnerIndex} className="mb-2">
                                 <strong>{getBestGameTitle(winner)}</strong>
                                 {winner.year && (
-                                  <span className="tag is-small ml-2">
+                                  <span className="tag is-small is-primary ml-2">
                                     {String(winner.year)}
                                   </span>
                                 )}
