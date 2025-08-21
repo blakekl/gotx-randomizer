@@ -7,6 +7,7 @@ import { GotmThemeDetail } from './components/GotmThemeDetail';
 import { RetrobitsThemeDetail } from './components/RetrobitsThemeDetail';
 import { RpgThemeDetail } from './components/RpgThemeDetail';
 import { GotyThemeDetail } from './components/GotyThemeDetail';
+import { GotwotypThemeDetail } from './components/GotwotypThemeDetail';
 
 const ThemeDetail = observer(() => {
   const { themeId } = useParams<{ themeId: string }>();
@@ -55,6 +56,10 @@ const ThemeDetail = observer(() => {
       case NominationType.GOTY:
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <GotyThemeDetail nominations={nominations} />;
+
+      case NominationType.GOTWOTY:
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        return <GotwotypThemeDetail nominations={nominations} />;
 
       default:
         // Fallback to GotM format for unknown types
