@@ -480,23 +480,22 @@ export const getBestGameTitle = (game: Game): string => {
 
 /**
  * Get the display name for a theme type
- * Handles both database storage variations and provides consistent capitalization
+ * Uses enum for type safety and consistent handling
  */
-export const getThemeTypeDisplay = (type: string): string => {
+export const getThemeTypeDisplay = (type: NominationType): string => {
   switch (type) {
-    case 'gotm':
+    case NominationType.GOTM:
       return 'Game of the Month';
-    case 'goty':
+    case NominationType.GOTY:
       return 'Game of the Year';
-    case 'retro':
-    case 'retrobit':
+    case NominationType.RETROBIT:
       return 'Retrobit';
-    case 'rpg':
+    case NominationType.RPG:
       return 'RPG';
-    case 'gotwoty':
+    case NominationType.GOTWOTY:
       return 'Game of the Week of the Year';
     default:
-      return type;
+      return 'Unknown Theme Type';
   }
 };
 
@@ -504,20 +503,19 @@ export const getThemeTypeDisplay = (type: string): string => {
  * Get the short display name for a theme type
  * Used for filter buttons, navigation, and compact displays
  */
-export const getThemeTypeShort = (type: string): string => {
+export const getThemeTypeShort = (type: NominationType): string => {
   switch (type) {
-    case 'gotm':
+    case NominationType.GOTM:
       return 'GotM';
-    case 'goty':
-    case 'gotwoty':
+    case NominationType.GOTY:
+    case NominationType.GOTWOTY:
       return 'GotY';
-    case 'retro':
-    case 'retrobit':
+    case NominationType.RETROBIT:
       return 'Retrobit';
-    case 'rpg':
+    case NominationType.RPG:
       return 'RPG';
     default:
-      return type;
+      return 'Unknown';
   }
 };
 
@@ -525,18 +523,17 @@ export const getThemeTypeShort = (type: string): string => {
  * Get the FontAwesome icon class for a theme type
  * Returns appropriate icon classes for visual representation of theme types
  */
-export const getThemeIcon = (type: string): string => {
+export const getThemeIcon = (type: NominationType): string => {
   switch (type) {
-    case 'gotm':
+    case NominationType.GOTM:
       return 'fas fa-trophy';
-    case 'goty':
+    case NominationType.GOTY:
       return 'fas fa-crown';
-    case 'retro':
-    case 'retrobit':
+    case NominationType.RETROBIT:
       return 'fas fa-gamepad';
-    case 'rpg':
+    case NominationType.RPG:
       return 'fas fa-dragon';
-    case 'gotwoty':
+    case NominationType.GOTWOTY:
       return 'fas fa-calendar-week';
     default:
       return 'fas fa-star';
