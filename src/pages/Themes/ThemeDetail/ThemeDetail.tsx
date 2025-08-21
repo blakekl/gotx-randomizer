@@ -110,7 +110,7 @@ const ThemeDetail = observer(() => {
                         <div key={index} className="column is-one-third">
                           <div className="card">
                             <div className="card-content">
-                              <h4 className="title is-5 mb-4">
+                              <h4 className="title is-5 mb-6">
                                 {winner.yearCategory}
                               </h4>
                               <p className="subtitle is-6 mb-3">
@@ -150,7 +150,7 @@ const ThemeDetail = observer(() => {
                   <div key={index} className="column is-one-third">
                     <div className="card">
                       <div className="card-content">
-                        <h4 className="title is-5 mb-4">
+                        <h4 className="title is-5 mb-6">
                           {winner.yearCategory}
                         </h4>
                         <p className="subtitle is-6 mb-3">
