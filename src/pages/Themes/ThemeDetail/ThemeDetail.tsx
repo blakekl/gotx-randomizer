@@ -25,7 +25,6 @@ const ThemeDetail = observer(() => {
 
   // Group nominations by winner status and year category
   const winners = nominations.filter((nom) => nom.winner);
-  const nonWinners = nominations.filter((nom) => !nom.winner);
 
   // Group winners by year category for GotM themes
   const winnersByCategory = winners.reduce<Record<string, typeof winners>>(
@@ -171,8 +170,8 @@ const ThemeDetail = observer(() => {
           </div>
         )}
 
-        {/* All Nominations Section */}
-        {nonWinners.length > 0 && (
+        {/* All Nominations Section - Grouped by Category */}
+        {nominations.length > 0 && (
           <div className="box">
             <h2 className="title is-3">
               <span className="icon mr-2">
@@ -181,41 +180,62 @@ const ThemeDetail = observer(() => {
               All Nominations ({nominations.length})
             </h2>
 
-            <table className="table is-hoverable is-striped is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Game</th>
-                  <th>Year</th>
-                  <th>Category</th>
-                  <th>Nominated By</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {nominations.map((nomination, index) => (
-                  <tr key={index}>
-                    <td>
-                      <strong>{getBestGameTitle(nomination.game)}</strong>
-                    </td>
-                    <td>{nomination.game.year || 'Unknown'}</td>
-                    <td>{nomination.yearCategory || 'Unknown'}</td>
-                    <td>{nomination.user_name || 'Unknown'}</td>
-                    <td>
-                      {nomination.winner ? (
-                        <span className="tag is-success">
-                          <span className="icon mr-1">
-                            <i className="fas fa-trophy"></i>
-                          </span>
-                          Winner
-                        </span>
-                      ) : (
-                        <span className="tag">Nominated</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {/* Group nominations by category */}
+            {Object.entries(
+              nominations.reduce<Record<string, typeof nominations>>(
+                (acc, nomination) => {
+                  const category = nomination.yearCategory || 'Unknown';
+                  if (!acc[category]) {
+                    acc[category] = [];
+                  }
+                  acc[category].push(nomination);
+                  return acc;
+                },
+                {},
+              ),
+            ).map(([category, categoryNominations]) => (
+              <div key={category} className="mb-5">
+                <h3 className="title is-4 mb-3">
+                  <span className="tag is-primary mr-2">{category}</span>
+                  {categoryNominations.length} nomination
+                  {categoryNominations.length !== 1 ? 's' : ''}
+                </h3>
+
+                <table className="table is-hoverable is-striped is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Game</th>
+                      <th>Year</th>
+                      <th>Nominated By</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {categoryNominations.map((nomination, index) => (
+                      <tr key={index}>
+                        <td>
+                          <strong>{getBestGameTitle(nomination.game)}</strong>
+                        </td>
+                        <td>{nomination.game.year || 'Unknown'}</td>
+                        <td>{nomination.user_name || 'Unknown'}</td>
+                        <td>
+                          {nomination.winner ? (
+                            <span className="tag is-success">
+                              <span className="icon mr-1">
+                                <i className="fas fa-trophy"></i>
+                              </span>
+                              Winner
+                            </span>
+                          ) : (
+                            <span className="tag">Nominated</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
           </div>
         )}
 
