@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { ThemeWithStatus, getThemeTypeDisplay } from '../../../models/game';
 
 interface ThemeDetailModalProps {
@@ -34,6 +35,25 @@ const ThemeDetailModal = ({ theme, onClose }: ThemeDetailModalProps) => {
                 <strong>Nominations:</strong>{' '}
                 {String(theme.nominationCount || 0)}
               </p>
+            </div>
+            <div className="field is-grouped is-grouped-centered mt-4">
+              <div className="control">
+                <Link
+                  to={`/themes/${theme.id}`}
+                  className="button is-primary"
+                  onClick={onClose}
+                >
+                  <span className="icon">
+                    <i className="fas fa-eye"></i>
+                  </span>
+                  <span>View Full Details</span>
+                </Link>
+              </div>
+              <div className="control">
+                <button className="button" onClick={onClose}>
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         )}
