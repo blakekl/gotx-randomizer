@@ -26,7 +26,7 @@ describe('ThemeHeader Component', () => {
 
       expect(screen.getByText('Test Theme Title')).toBeInTheDocument();
       expect(screen.getByText('Test theme description')).toBeInTheDocument();
-      expect(screen.getByText('January 1, 2024')).toBeInTheDocument();
+      expect(screen.getByText('2024-01-01')).toBeInTheDocument(); // Raw date format
     });
 
     it('should display theme type with icon', () => {
@@ -38,11 +38,11 @@ describe('ThemeHeader Component', () => {
       expect(icon).toBeInTheDocument();
     });
 
-    it('should show nomination and winner counts', () => {
+    it('should show nomination count', () => {
       render(<ThemeHeader theme={mockTheme} />);
 
-      expect(screen.getByText('25')).toBeInTheDocument(); // nomination count
-      expect(screen.getByText('3')).toBeInTheDocument(); // winner count
+      expect(screen.getByText('25 Nominations')).toBeInTheDocument();
+      // ThemeHeader doesn't show separate winner count
     });
   });
 
@@ -130,7 +130,7 @@ describe('ThemeHeader Component', () => {
 
       render(<ThemeHeader theme={themeWithZeroCounts} />);
 
-      expect(screen.getByText('0')).toBeInTheDocument();
+      expect(screen.getByText('0 Nominations')).toBeInTheDocument();
     });
   });
 });

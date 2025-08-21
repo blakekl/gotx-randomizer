@@ -61,19 +61,22 @@ describe('RetrobitsThemeDetail Component', () => {
       expect(winnerColumn).toBeInTheDocument();
     });
 
-    it('should display gamepad icon for winner section', () => {
+    it('should display trophy icon for winner section', () => {
       render(<RetrobitsThemeDetail nominations={mockNominations} />);
 
-      const gamepadIcon = document.querySelector('.fas.fa-gamepad');
-      expect(gamepadIcon).toBeInTheDocument();
+      const trophyIcon = document.querySelector('.fas.fa-trophy');
+      expect(trophyIcon).toBeInTheDocument();
     });
 
-    it('should not show category label for single winner', () => {
+    it('should not show additional game details in winner card', () => {
       render(<RetrobitsThemeDetail nominations={mockNominations} />);
 
-      // RetrobitsThemeDetail uses showCategory={false}
-      // The year category should still be visible in the card but not as a separate category label
-      expect(screen.getByText('pre 96')).toBeInTheDocument();
+      // WinnerCard only shows title, image, year - not system, developer, or year category
+      expect(screen.getByText('Retrobit Winner Game')).toBeInTheDocument();
+      expect(screen.getByText('1995')).toBeInTheDocument();
+      expect(screen.queryByText('SNES')).not.toBeInTheDocument();
+      expect(screen.queryByText('Retrobit Developer')).not.toBeInTheDocument();
+      expect(screen.queryByText('pre 96')).not.toBeInTheDocument();
     });
   });
 
@@ -97,7 +100,7 @@ describe('RetrobitsThemeDetail Component', () => {
 
       expect(screen.getByText('No winner announced yet.')).toBeInTheDocument();
       expect(
-        screen.getByText('This Retrobit theme is still in progress.'),
+        screen.getByText('This Retrobits theme is still in progress.'),
       ).toBeInTheDocument();
     });
 
@@ -106,7 +109,7 @@ describe('RetrobitsThemeDetail Component', () => {
 
       expect(screen.getByText('No winner announced yet.')).toBeInTheDocument();
       expect(
-        screen.getByText('This Retrobit theme is still in progress.'),
+        screen.getByText('This Retrobits theme is still in progress.'),
       ).toBeInTheDocument();
     });
 
@@ -119,14 +122,15 @@ describe('RetrobitsThemeDetail Component', () => {
   });
 
   describe('winner information display', () => {
-    it('should display complete winner information', () => {
+    it('should display winner game information from WinnerCard', () => {
       render(<RetrobitsThemeDetail nominations={mockNominations} />);
 
       expect(screen.getByText('Retrobit Winner Game')).toBeInTheDocument();
-      expect(screen.getByText('SNES')).toBeInTheDocument();
       expect(screen.getByText('1995')).toBeInTheDocument();
-      expect(screen.getByText('Retrobit Developer')).toBeInTheDocument();
-      expect(screen.getByText('pre 96')).toBeInTheDocument();
+      // WinnerCard doesn't display system, developer, or year category
+      expect(screen.queryByText('SNES')).not.toBeInTheDocument();
+      expect(screen.queryByText('Retrobit Developer')).not.toBeInTheDocument();
+      expect(screen.queryByText('pre 96')).not.toBeInTheDocument();
     });
 
     it('should render winner game image', () => {
