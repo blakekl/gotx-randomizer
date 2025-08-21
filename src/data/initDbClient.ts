@@ -341,6 +341,14 @@ const initDbClient = async () => {
           .map((x) => nominationWithGameDto(x)) ?? []
       );
     },
+    getThemeDetailWithCategories: (themeId: number) => {
+      return (
+        db
+          ?.exec(getThemeDetailWithCategories(themeId))
+          .flatMap((x) => x.values)
+          .map((x) => nominationWithGameDto(x)) ?? []
+      );
+    },
   };
 };
 
