@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useStores } from '../../stores/useStores';
 import { observer } from 'mobx-react-lite';
 import { useThemeOrdering } from './hooks/useThemeOrdering';
-import CurrentThemeCard from './components/CurrentThemeCard';
+import CurrentThemeCard from './CurrentThemeCard/CurrentThemeCard';
 
 const CurrentThemes = observer(() => {
   const { dbStore } = useStores();

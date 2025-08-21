@@ -219,23 +219,26 @@
 
 ```
 src/pages/Themes/
-├── Themes.tsx                    # Main page component (entry point)
-├── ThemeBrowser.tsx              # Theme history browser (77 lines)
-├── CurrentThemes.tsx             # Current active themes dashboard (48 lines)
-├── components/
-│   ├── ThemeFilterControls.tsx   # Type/search filtering UI (59 lines)
-│   ├── ThemeTable.tsx            # Theme data table display (71 lines)
-│   ├── ThemeDetailModal.tsx      # Theme details modal (52 lines)
-│   └── CurrentThemeCard.tsx      # Individual theme card (93 lines)
+├── Themes.tsx                              # Main page component (entry point)
+├── ThemeBrowser.tsx                        # Theme history browser (77 lines)
+├── CurrentThemes.tsx                       # Current active themes dashboard (48 lines)
+├── ThemeFilterControls/
+│   └── ThemeFilterControls.tsx             # Type/search filtering UI (59 lines)
+├── ThemeTable/
+│   └── ThemeTable.tsx                      # Theme data table display (71 lines)
+├── ThemeDetailModal/
+│   └── ThemeDetailModal.tsx                # Theme details modal (52 lines)
+├── CurrentThemeCard/
+│   └── CurrentThemeCard.tsx                # Individual theme card (93 lines)
 ├── hooks/
-│   ├── useThemeFiltering.ts      # Shared filtering logic (46 lines)
-│   └── useThemeOrdering.ts       # Shared theme ordering logic (20 lines)
-└── index.ts                      # Export barrel (future)
+│   ├── useThemeFiltering.ts                # Shared filtering logic (46 lines)
+│   └── useThemeOrdering.ts                 # Shared theme ordering logic (20 lines)
+└── index.ts                                # Export barrel (future)
 
-src/models/game.ts                # Extended with theme interfaces & 4 utility functions
-src/data/Queries.ts               # 7 new theme-related queries
-src/data/initDbClient.ts          # 7 new database client methods
-src/stores/DbStore.ts             # 7 new store methods with data processing
+src/models/game.ts                          # Extended with theme interfaces & 4 utility functions
+src/data/Queries.ts                         # 7 new theme-related queries
+src/data/initDbClient.ts                    # 7 new database client methods
+src/stores/DbStore.ts                       # 7 new store methods with data processing
 ```
 
 **🔧 Shared Theme Utilities:**
@@ -250,10 +253,11 @@ src/stores/DbStore.ts             # 7 new store methods with data processing
 - **Single Responsibility**: Each component has one clear purpose
 - **Component Reduction**: Main components reduced by 64% (344 → 125 lines)
 - **Reusable Hooks**: Shared logic extracted for filtering and ordering
-- **Focused Components**: Filter controls, table, modal, and cards separated
+- **Focused Components**: Each component in its own folder for better organization
 - **Clean Interfaces**: Well-defined props and clear component boundaries
 - **Better Testability**: Individual components can be tested in isolation
 - **Enhanced Maintainability**: Changes are localized to specific components
+- **Scalable Structure**: Each component folder can contain tests, styles, and utilities
 
 ---
 

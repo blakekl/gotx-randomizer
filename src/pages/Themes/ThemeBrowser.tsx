@@ -4,9 +4,9 @@ import { ThemeWithStatus } from '../../models/game';
 import Pagination from '../../components/Pagination';
 import { observer } from 'mobx-react-lite';
 import { useThemeFiltering } from './hooks/useThemeFiltering';
-import ThemeFilterControls from './components/ThemeFilterControls';
-import ThemeTable from './components/ThemeTable';
-import ThemeDetailModal from './components/ThemeDetailModal';
+import ThemeFilterControls from './ThemeFilterControls/ThemeFilterControls';
+import ThemeTable from './ThemeTable/ThemeTable';
+import ThemeDetailModal from './ThemeDetailModal/ThemeDetailModal';
 
 const ThemeBrowser = observer(() => {
   const { dbStore } = useStores();
