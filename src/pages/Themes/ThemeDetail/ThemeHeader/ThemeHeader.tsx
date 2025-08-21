@@ -1,6 +1,6 @@
 import React from 'react';
-import { ThemeWithStatus } from '../../../models/game';
-import { getThemeTypeDisplay, getThemeIcon } from '../../../models/game';
+import { ThemeWithStatus } from '../../../../models/game';
+import { getThemeTypeDisplay, getThemeIcon } from '../../../../models/game';
 
 interface ThemeHeaderProps {
   theme: ThemeWithStatus;

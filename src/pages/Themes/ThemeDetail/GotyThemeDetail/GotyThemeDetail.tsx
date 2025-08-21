@@ -1,5 +1,5 @@
 import React from 'react';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame } from '../../../../models/game';
 import { WinnerCard } from '../WinnerCard/WinnerCard';
 
 interface GotyThemeDetailProps {
