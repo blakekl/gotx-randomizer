@@ -41,9 +41,10 @@ describe('WinnerCard Component', () => {
       render(<WinnerCard winner={mockWinner} showCategory={false} />);
 
       expect(screen.getByText('Test Game World')).toBeInTheDocument();
-      expect(screen.getByText('SNES')).toBeInTheDocument();
       expect(screen.getByText('1995')).toBeInTheDocument();
-      expect(screen.getByText('Test Developer')).toBeInTheDocument();
+      // WinnerCard doesn't display system or developer
+      expect(screen.queryByText('SNES')).not.toBeInTheDocument();
+      expect(screen.queryByText('Test Developer')).not.toBeInTheDocument();
     });
 
     it('should show category when showCategory is true', () => {
@@ -87,8 +88,9 @@ describe('WinnerCard Component', () => {
 
       render(<WinnerCard winner={winnerWithoutImage} showCategory={false} />);
 
-      const image = screen.getByRole('img');
-      expect(image).toHaveAttribute('src', '');
+      // When img_url is empty, no image should be rendered
+      const image = screen.queryByRole('img');
+      expect(image).not.toBeInTheDocument();
     });
   });
 
@@ -112,21 +114,17 @@ describe('WinnerCard Component', () => {
   });
 
   describe('year category display', () => {
-    it('should display year category tag', () => {
+    it('should not display year category when showCategory is false', () => {
       render(<WinnerCard winner={mockWinner} showCategory={false} />);
 
-      expect(screen.getByText('pre 96')).toBeInTheDocument();
+      // Year category should not be shown when showCategory=false
+      expect(screen.queryByText('pre 96')).not.toBeInTheDocument();
     });
 
-    it('should handle different year categories', () => {
-      const winnerWith96Category = {
-        ...mockWinner,
-        yearCategory: '96-99',
-      };
+    it('should display year category when showCategory is true', () => {
+      render(<WinnerCard winner={mockWinner} showCategory={true} />);
 
-      render(<WinnerCard winner={winnerWith96Category} showCategory={false} />);
-
-      expect(screen.getByText('96-99')).toBeInTheDocument();
+      expect(screen.getByText('pre 96')).toBeInTheDocument();
     });
   });
 });

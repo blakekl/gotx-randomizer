@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import ThemeDetail from '../../../pages/Themes/ThemeDetail/ThemeDetail';
 import { NominationType } from '../../../models/game';
 
@@ -62,6 +61,18 @@ vi.mock(
   }),
 );
 
+// Mock react-router-dom to avoid Router conflicts
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useParams: () => ({ themeId: '1' }),
+    Navigate: ({ to }: { to: string }) => (
+      <div data-testid="navigate">Redirecting to {to}</div>
+    ),
+  };
+});
+
 const mockThemeData = {
   theme: {
     id: 1,
@@ -117,18 +128,13 @@ describe('ThemeDetail Router Component', () => {
         theme: { ...mockThemeData.theme, nomination_type: NominationType.GOTM },
       };
 
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => gotmThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => gotmThemeData),
           },
         },
-      );
+      });
 
       expect(screen.getByTestId('gotm-theme-detail')).toBeInTheDocument();
       expect(
@@ -145,18 +151,13 @@ describe('ThemeDetail Router Component', () => {
         },
       };
 
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => retrobitThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => retrobitThemeData),
           },
         },
-      );
+      });
 
       expect(screen.getByTestId('retrobit-theme-detail')).toBeInTheDocument();
       expect(
@@ -170,18 +171,13 @@ describe('ThemeDetail Router Component', () => {
         theme: { ...mockThemeData.theme, nomination_type: NominationType.RPG },
       };
 
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => rpgThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => rpgThemeData),
           },
         },
-      );
+      });
 
       expect(screen.getByTestId('rpg-theme-detail')).toBeInTheDocument();
       expect(
@@ -195,18 +191,13 @@ describe('ThemeDetail Router Component', () => {
         theme: { ...mockThemeData.theme, nomination_type: NominationType.GOTY },
       };
 
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => gotyThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => gotyThemeData),
           },
         },
-      );
+      });
 
       expect(screen.getByTestId('goty-theme-detail')).toBeInTheDocument();
       expect(
@@ -223,18 +214,13 @@ describe('ThemeDetail Router Component', () => {
         },
       };
 
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => gotwotyThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => gotwotyThemeData),
           },
         },
-      );
+      });
 
       expect(screen.getByTestId('gotwoty-theme-detail')).toBeInTheDocument();
       expect(
@@ -245,18 +231,13 @@ describe('ThemeDetail Router Component', () => {
 
   describe('theme header rendering', () => {
     it('should render theme header with theme information', () => {
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => mockThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => mockThemeData),
           },
         },
-      );
+      });
 
       expect(screen.getByText('Test Theme')).toBeInTheDocument();
       expect(screen.getByText('Test theme description')).toBeInTheDocument();
@@ -264,44 +245,20 @@ describe('ThemeDetail Router Component', () => {
   });
 
   describe('error handling', () => {
-    it('should redirect to themes page when theme ID is invalid', () => {
-      render(
-        <MemoryRouter initialEntries={['/themes/invalid']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => mockThemeData),
-            },
-          },
-        },
-      );
-
-      // Should redirect - we can't easily test navigation in this setup,
-      // but we can verify the component doesn't crash
-      expect(document.body).toBeInTheDocument();
-    });
-
     it('should handle missing theme data gracefully', () => {
-      render(
-        <MemoryRouter initialEntries={['/themes/999']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => ({
-                theme: null,
-                nominations: [],
-              })),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => ({
+              theme: null,
+              nominations: [],
+            })),
           },
         },
-      );
+      });
 
       // Should redirect when theme is null
-      expect(document.body).toBeInTheDocument();
+      expect(screen.getByTestId('navigate')).toBeInTheDocument();
     });
   });
 
@@ -312,18 +269,13 @@ describe('ThemeDetail Router Component', () => {
         theme: { ...mockThemeData.theme, nomination_type: 'unknown' as any },
       };
 
-      render(
-        <MemoryRouter initialEntries={['/themes/1']}>
-          <ThemeDetail />
-        </MemoryRouter>,
-        {
-          storeOverrides: {
-            dbStore: {
-              getThemeDetailWithCategories: vi.fn(() => unknownTypeThemeData),
-            },
+      render(<ThemeDetail />, {
+        storeOverrides: {
+          dbStore: {
+            getThemeDetailWithCategories: vi.fn(() => unknownTypeThemeData),
           },
         },
-      );
+      });
 
       // Should default to GotM theme detail
       expect(screen.getByTestId('gotm-theme-detail')).toBeInTheDocument();
