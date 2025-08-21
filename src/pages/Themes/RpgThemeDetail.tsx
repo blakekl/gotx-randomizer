@@ -1,7 +1,7 @@
 import React from 'react';
-import { NominationWithGame } from '../../../../models/game';
-import { WinnerCard } from '../shared/WinnerCard';
-import { NominationsTable } from '../shared/NominationsTable';
+import { NominationWithGame } from '../../models/game';
+import { WinnerCard } from './WinnerCard';
+import { NominationsTable } from './NominationsTable';
 
 interface RpgThemeDetailProps {
   nominations: NominationWithGame[];
