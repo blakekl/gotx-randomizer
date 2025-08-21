@@ -25,22 +25,6 @@ export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
     })),
   );
 
-  // Group winners by nomination description (e.g., "2024 GotY Runner Up, Best Art Style/Art Direction")
-  const winnersByCategory = winners.reduce<Record<string, typeof winners>>(
-    (acc, winner) => {
-      // Use nomination description as the category (e.g., "2024 GotY Runner Up, Best Art Style/Art Direction")
-      const category = winner.description || 'Unknown Category';
-      if (!acc[category]) {
-        acc[category] = [];
-      }
-      acc[category].push(winner);
-      return acc;
-    },
-    {},
-  );
-
-  const hasMultipleCategories = Object.keys(winnersByCategory).length > 1;
-
   return (
     <>
       {/* Winners Section */}
@@ -53,40 +37,18 @@ export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
             Winners
           </h2>
 
-          {hasMultipleCategories ? (
-            // Multiple categories - show grouped by nomination description
-            Object.entries(winnersByCategory).map(
-              ([category, categoryWinners]) => (
-                <div key={category} className="mb-5">
-                  <h3 className="title is-4 mb-3">{category}</h3>
-                  <div className="columns is-multiline">
-                    {categoryWinners.map((winner, index) => (
-                      <div key={index} className="column is-one-third">
-                        <WinnerCard
-                          winner={winner}
-                          showCategory={false}
-                          categoryLabel={category}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ),
-            )
-          ) : (
-            // Single category - show category in cards
-            <div className="columns is-multiline">
-              {winners.map((winner, index) => (
-                <div key={index} className="column is-one-third">
-                  <WinnerCard
-                    winner={winner}
-                    showCategory={true}
-                    categoryLabel={winner.description}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          {/* All winners in horizontal layout with category information in cards */}
+          <div className="columns is-multiline">
+            {winners.map((winner, index) => (
+              <div key={index} className="column is-one-third">
+                <WinnerCard
+                  winner={winner}
+                  showCategory={true}
+                  categoryLabel={winner.description}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
