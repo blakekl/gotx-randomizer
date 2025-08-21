@@ -173,7 +173,7 @@ const ThemeDetail = observer(() => {
         {/* All Nominations Section - Grouped by Category */}
         {nominations.length > 0 && (
           <div className="box">
-            <h2 className="title is-3 has-text-centered">
+            <h2 className="title is-3">
               <span className="icon mr-2">
                 <i className="fas fa-list"></i>
               </span>
