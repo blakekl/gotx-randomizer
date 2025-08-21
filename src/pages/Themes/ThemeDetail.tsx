@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import { useParams, Navigate } from 'react-router-dom';
-import { useStores } from '../../../stores/useStores';
-import { NominationType } from '../../../models/game';
-import { ThemeHeader } from './shared/ThemeHeader';
-import { GotmThemeDetail } from './components/GotmThemeDetail';
-import { RetrobitsThemeDetail } from './components/RetrobitsThemeDetail';
-import { RpgThemeDetail } from './components/RpgThemeDetail';
-import { GotyThemeDetail } from './components/GotyThemeDetail';
-import { GotwotypThemeDetail } from './components/GotwotypThemeDetail';
+import { useStores } from '../../stores/useStores';
+import { NominationType } from '../../models/game';
+import { ThemeHeader } from './ThemeHeader';
+import { GotmThemeDetail } from './GotmThemeDetail';
+import { RetrobitsThemeDetail } from './RetrobitsThemeDetail';
+import { RpgThemeDetail } from './RpgThemeDetail';
+import { GotyThemeDetail } from './GotyThemeDetail';
+import { GotwotypThemeDetail } from './GotwotypThemeDetail';
 
 const ThemeDetail = observer(() => {
   const { themeId } = useParams<{ themeId: string }>();

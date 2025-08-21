@@ -1,6 +1,6 @@
 import React from 'react';
-import { NominationWithGame } from '../../../../models/game';
-import { WinnerCard } from '../shared/WinnerCard';
+import { NominationWithGame } from '../../models/game';
+import { WinnerCard } from './WinnerCard';
 
 interface RetrobitsThemeDetailProps {
   nominations: NominationWithGame[];
