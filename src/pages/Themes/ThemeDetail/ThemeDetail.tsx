@@ -116,6 +116,15 @@ const ThemeDetail = observer(() => {
                               <p className="subtitle is-6 mb-3">
                                 {getBestGameTitle(winner.game)}
                               </p>
+                              {winner.game.img_url && (
+                                <figure className="image is-16by9 mb-3">
+                                  <img
+                                    src={winner.game.img_url}
+                                    alt={getBestGameTitle(winner.game)}
+                                    className="is-rounded"
+                                  />
+                                </figure>
+                              )}
                               {winner.game.year && (
                                 <span className="tag is-info mb-2">
                                   {winner.game.year}
@@ -147,6 +156,15 @@ const ThemeDetail = observer(() => {
                         <p className="subtitle is-6 mb-3">
                           {getBestGameTitle(winner.game)}
                         </p>
+                        {winner.game.img_url && (
+                          <figure className="image is-16by9 mb-3">
+                            <img
+                              src={winner.game.img_url}
+                              alt={getBestGameTitle(winner.game)}
+                              className="is-rounded"
+                            />
+                          </figure>
+                        )}
                         {winner.game.year && (
                           <span className="tag is-info mb-2">
                             {winner.game.year}
