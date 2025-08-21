@@ -209,7 +209,7 @@ const ThemeDetail = observer(() => {
                           Winner
                         </span>
                       ) : (
-                        <span className="tag is-light">Nominated</span>
+                        <span className="tag">Nominated</span>
                       )}
                     </td>
                   </tr>
