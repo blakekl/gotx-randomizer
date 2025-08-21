@@ -1,16 +1,14 @@
 import { useMemo } from 'react';
 import { useStores } from '../../stores/useStores';
-import { CurrentTheme } from '../../models/game';
 import { observer } from 'mobx-react-lite';
 
 const CurrentThemes = observer(() => {
-  const { dbStore } = useStores(); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const { dbStore } = useStores();
 
   // Get current active themes with winners
   const currentThemes = useMemo(() => {
-    // TODO: This will be populated from dbStore.getCurrentWinners() once store is extended
-    return [] as CurrentTheme[];
-  }, []);
+    return dbStore.getCurrentWinners();
+  }, [dbStore]);
 
   const getThemeTypeDisplay = (type: string) => {
     switch (type) {
@@ -128,7 +126,7 @@ const CurrentThemes = observer(() => {
                       <div className="content">
                         {currentTheme.winners.map((winner, index) => (
                           <div key={index} className="mb-2">
-                            <strong>{winner.title}</strong>
+                            <strong>{winner.title_usa}</strong>
                             {winner.year && (
                               <span className="tag is-small is-light ml-2">
                                 {String(winner.year)}
