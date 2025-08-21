@@ -1,7 +1,6 @@
 import React from 'react';
 import { NominationWithGame } from '../../../../models/game';
 import { WinnerCard } from '../shared/WinnerCard';
-import { NominationsTable } from '../shared/NominationsTable';
 
 interface GotyThemeDetailProps {
   nominations: NominationWithGame[];
@@ -12,6 +11,16 @@ export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
 }) => {
   // GotY themes have multiple winners with theme description categories
   const winners = nominations.filter((nom) => nom.winner);
+
+  // Debug: Log the winners to see what data we have
+  console.log('GotY Winners:', winners);
+  console.log(
+    'Theme descriptions:',
+    winners.map((w) => ({
+      game: w.game.title_world,
+      themeDescription: w.themeDescription,
+    })),
+  );
 
   // Group winners by theme description (e.g., "Best Soundtrack", "Game of the Year")
   const winnersByThemeDescription = winners.reduce<
@@ -77,12 +86,7 @@ export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
         </div>
       )}
 
-      {/* All Nominations Section - Grouped by Theme Description */}
-      <NominationsTable
-        nominations={nominations}
-        showCategories={true}
-        title="All Nominations"
-      />
+      {/* No nominations table for GotY - not needed */}
     </>
   );
 };
