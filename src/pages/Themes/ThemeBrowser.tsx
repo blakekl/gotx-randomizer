@@ -4,7 +4,6 @@ import { ThemeWithStatus, getThemeTypeDisplay } from '../../models/game';
 import Pagination from '../../components/Pagination';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import CurrentThemes from './CurrentThemes';
 
 type ThemeTypeFilter = 'All' | 'GotM' | 'Retrobit' | 'RPG' | 'GotY';
 
@@ -59,109 +58,95 @@ const ThemeBrowser = observer(() => {
   };
 
   return (
-    <>
-      <h1 className="title is-1 has-text-centered">Theme Browser</h1>
+    <div className="mt-6">
+      <h2 className="title is-3">Theme History</h2>
 
-      {/* Current Themes Dashboard */}
-      <CurrentThemes />
-
-      {/* Theme History Section */}
-      <div className="mt-6">
-        <h2 className="title is-3">Theme History</h2>
-
-        {/* Type Filter Buttons */}
-        <div className="field mt-4">
-          <div className="field has-addons">
-            {(
-              ['All', 'GotM', 'Retrobit', 'RPG', 'GotY'] as ThemeTypeFilter[]
-            ).map((filterType) => (
-              <p key={filterType} className="control">
-                <button
-                  className={classNames('button', {
-                    'is-primary': typeFilter === filterType,
-                  })}
-                  onClick={() => setTypeFilter(filterType)}
-                >
-                  {filterType}
-                </button>
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* Search Filter */}
-        <div className="field mt-4">
-          <p className="control has-icons-left">
-            <input
-              className="input"
-              type="text"
-              placeholder="Search themes..."
-              value={titleFilter}
-              onChange={(e) => setTitleFilter(e.currentTarget.value)}
-            />
-            <span className="icon is-small is-left">
-              <i className="fas fa-search" />
-            </span>
-          </p>
-        </div>
-
-        {/* Themes Table */}
-        <table className="table is-hoverable is-striped is-fullwidth">
-          <thead>
-            <tr className="title is-5">
-              <th>Theme</th>
-              <th>Type</th>
-              <th>Date</th>
-              <th className="has-text-right">Nominations</th>
-            </tr>
-          </thead>
-          <tbody>
-            {themeList.slice(indexRange[0], indexRange[1]).map((theme) => (
-              <tr
-                key={theme.id}
-                onClick={() => handleRowClicked(theme)}
-                className={classNames({
-                  'is-selected':
-                    (selectedTheme && theme.id === selectedTheme.id) ||
-                    hovered === theme.id,
-                  'is-clickable': true,
+      {/* Type Filter Buttons */}
+      <div className="field mt-4">
+        <div className="field has-addons">
+          {(
+            ['All', 'GotM', 'Retrobit', 'RPG', 'GotY'] as ThemeTypeFilter[]
+          ).map((filterType) => (
+            <p key={filterType} className="control">
+              <button
+                className={classNames('button', {
+                  'is-primary': typeFilter === filterType,
                 })}
-                onMouseEnter={() => setHovered(theme.id)}
-                onMouseLeave={() => setHovered(0)}
+                onClick={() => setTypeFilter(filterType)}
               >
-                <td>
-                  <strong>{theme.title || 'Upcoming Theme'}</strong>
-                  {theme.description && (
-                    <div className="is-size-7 has-text-grey">
-                      {theme.description}
-                    </div>
-                  )}
-                </td>
-                <td>{getThemeTypeDisplay(String(theme.nomination_type))}</td>
-                <td>
-                  {theme.creation_date
-                    ? new Date(theme.creation_date).toLocaleDateString()
-                    : 'TBD'}
-                </td>
-                <td className="has-text-right">
-                  {String(theme.nominationCount || 0)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {/* Pagination */}
-        <Pagination count={themeList.length} onPageChange={setIndexRange} />
+                {filterType}
+              </button>
+            </p>
+          ))}
+        </div>
       </div>
 
+      {/* Search Filter */}
+      <div className="field mt-4">
+        <p className="control has-icons-left">
+          <input
+            className="input"
+            type="text"
+            placeholder="Search themes..."
+            value={titleFilter}
+            onChange={(e) => setTitleFilter(e.currentTarget.value)}
+          />
+          <span className="icon is-small is-left">
+            <i className="fas fa-search" />
+          </span>
+        </p>
+      </div>
+
+      {/* Themes Table */}
+      <table className="table is-hoverable is-striped is-fullwidth">
+        <thead>
+          <tr className="title is-5">
+            <th>Theme</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th className="has-text-right">Nominations</th>
+          </tr>
+        </thead>
+        <tbody>
+          {themeList.slice(indexRange[0], indexRange[1]).map((theme) => (
+            <tr
+              key={theme.id}
+              onClick={() => handleRowClicked(theme)}
+              className={classNames({
+                'is-selected':
+                  (selectedTheme && theme.id === selectedTheme.id) ||
+                  hovered === theme.id,
+                'is-clickable': true,
+              })}
+              onMouseEnter={() => setHovered(theme.id)}
+              onMouseLeave={() => setHovered(0)}
+            >
+              <td>
+                <strong>{theme.title || 'Upcoming Theme'}</strong>
+                {theme.description && (
+                  <div className="is-size-7 has-text-grey">
+                    {theme.description}
+                  </div>
+                )}
+              </td>
+              <td>{getThemeTypeDisplay(String(theme.nomination_type))}</td>
+              <td>
+                {theme.creation_date
+                  ? new Date(theme.creation_date).toLocaleDateString()
+                  : 'TBD'}
+              </td>
+              <td className="has-text-right">
+                {String(theme.nominationCount || 0)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <Pagination count={themeList.length} onPageChange={setIndexRange} />
+
       {/* Theme Detail Modal */}
-      <div
-        className={classNames({
-          modal: true,
-          'is-active': selectedTheme !== null,
-        })}
-      >
+      <div className={classNames('modal', { 'is-active': selectedTheme })}>
         <div
           className="modal-background"
           onClick={() => setSelectedTheme(null)}
@@ -202,7 +187,7 @@ const ThemeBrowser = observer(() => {
           onClick={() => setSelectedTheme(null)}
         ></button>
       </div>
-    </>
+    </div>
   );
 });
 

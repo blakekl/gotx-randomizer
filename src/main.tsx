@@ -11,7 +11,7 @@ import Games from './pages/Games/Games.tsx';
 import Users from './pages/Users/Users.tsx';
 import GameDetails from './pages/Games/GameDetails.tsx';
 import Home from './pages/Home/Home.tsx';
-import ThemeBrowser from './pages/Themes/ThemeBrowser.tsx';
+import Themes from './pages/Themes/Themes.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement !== null) {
@@ -27,7 +27,7 @@ if (rootElement !== null) {
               <Route path="/stats" element={<Statistics />} />
               <Route path="/games" element={<Games />} />
               <Route path="/games/:gameId" element={<GameDetails />} />
-              <Route path="/themes" element={<ThemeBrowser />} />
+              <Route path="/themes" element={<Themes />} />
               <Route path="/users" element={<Users />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
