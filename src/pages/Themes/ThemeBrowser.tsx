@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite';
 import CurrentThemes from './CurrentThemes';
 
 const ThemeBrowser = observer(() => {
-  const { dbStore } = useStores(); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const { dbStore } = useStores();
   const [themeList, setThemeList] = useState(new Array<ThemeWithStatus>());
   const [indexRange, setIndexRange] = useState([0, 0]);
   const [titleFilter, setTitleFilter] = useState('');
@@ -18,9 +18,8 @@ const ThemeBrowser = observer(() => {
 
   // Get themes with status (excluding upcoming themes for privacy)
   const allThemes = useMemo(() => {
-    // TODO: This will be populated from dbStore.getThemesWithStatus() once store is extended
-    return [] as ThemeWithStatus[];
-  }, []);
+    return dbStore.getThemesWithStatus();
+  }, [dbStore]);
 
   // Filter themes based on search
   useMemo(() => {

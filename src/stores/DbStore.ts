@@ -1,6 +1,14 @@
 import { runInAction } from 'mobx';
 import dbClient from '../data';
-import { Game, LabeledStat, UserListItem } from '../models/game';
+import {
+  Game,
+  LabeledStat,
+  UserListItem,
+  ThemeWithStatus,
+  CurrentTheme,
+  GotyYearGroup,
+  NominationWithGame,
+} from '../models/game';
 import { RootStore } from './RootStore';
 
 interface GameCollection {
@@ -158,6 +166,45 @@ class DbStore {
 
   getGameById(id: number) {
     return dbClient.getGameById(id) ?? null;
+  }
+
+  // Theme browser methods
+  getThemesWithStatus(): ThemeWithStatus[] {
+    return dbClient.getThemesWithStatus() ?? [];
+  }
+
+  getCurrentWinners(): CurrentTheme[] {
+    return dbClient.getCurrentWinners() ?? [];
+  }
+
+  getUpcomingThemes(): ThemeWithStatus[] {
+    return dbClient.getUpcomingThemes() ?? [];
+  }
+
+  getThemeDetailWithCategories(themeId: number): {
+    theme: ThemeWithStatus | null;
+    nominations: NominationWithGame[];
+  } {
+    const result = dbClient.getThemeDetailWithCategories(themeId) as {
+      theme: ThemeWithStatus | null;
+      nominations: NominationWithGame[];
+    } | null;
+    return {
+      theme: result?.theme ?? null,
+      nominations: result?.nominations ?? [],
+    };
+  }
+
+  getGotyThemesByYear(): GotyYearGroup[] {
+    return dbClient.getGotyThemesByYear() ?? [];
+  }
+
+  getGotyThemesForYear(year: number): ThemeWithStatus[] {
+    return dbClient.getGotyThemesForYear(year) ?? [];
+  }
+
+  getThemeWinners(themeId: number): Game[] {
+    return dbClient.getThemeWinners(themeId) ?? [];
   }
 }
 
