@@ -405,26 +405,26 @@ export const themeWithStatusDto = (data: any[]): ThemeWithStatus => {
 };
 
 export const nominationWithGameDto = (data: any[]): NominationWithGame => {
-  const [
-    theme_id,
-    // title - theme title, not used in this DTO
-    nomination_type,
-    // creation_date - not used in this DTO
-    // description - theme description, not used in this DTO
-    game_title,
-    game_id,
-    year,
-    screenscraper_id,
-    system,
-    developer,
-    genre,
-    img_url,
-    time_to_beat,
-    winner,
-    nomination_description,
-    user_name,
-    year_category,
-  ] = data;
+  // Extract only the fields we need, using array indices
+  const theme_id = data[0]; // t.id
+  const nomination_type = data[2]; // t.nomination_type
+  const title_world = data[5]; // g.title_world
+  const title_usa = data[6]; // g.title_usa
+  const title_eu = data[7]; // g.title_eu
+  const title_jap = data[8]; // g.title_jap
+  const title_other = data[9]; // g.title_other
+  const game_id = data[10]; // g.id as game_id
+  const year = data[11]; // g.year
+  const screenscraper_id = data[12]; // g.screenscraper_id
+  const system = data[13]; // g.system
+  const developer = data[14]; // g.developer
+  const genre = data[15]; // g.genre
+  const img_url = data[16]; // g.img_url
+  const time_to_beat = data[17]; // g.time_to_beat
+  const winner = data[18]; // n.winner
+  const nomination_description = data[19]; // n.description as nomination_description
+  const user_name = data[20]; // u.name as user_name
+  const year_category = data[21]; // year_category
 
   return {
     // Nomination fields (using existing Nomination interface structure)
@@ -438,10 +438,14 @@ export const nominationWithGameDto = (data: any[]): NominationWithGame => {
     created_at: '',
     updated_at: '',
 
-    // Game object
+    // Game object with all title fields
     game: {
       id: game_id,
-      title_world: game_title,
+      title_world,
+      title_usa,
+      title_eu,
+      title_jap,
+      title_other,
       year,
       system,
       developer,
