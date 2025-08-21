@@ -123,7 +123,7 @@ const ThemeBrowser = observer(() => {
                     </div>
                   )}
                 </td>
-                <td>{getThemeTypeDisplay(String(theme.type))}</td>
+                <td>{getThemeTypeDisplay(String(theme.nomination_type))}</td>
                 <td>
                   {theme.creation_date
                     ? new Date(theme.creation_date).toLocaleDateString()
@@ -131,7 +131,7 @@ const ThemeBrowser = observer(() => {
                 </td>
                 <td>{getStatusBadge(theme.status)}</td>
                 <td className="has-text-right">
-                  {String(theme.nomination_count || 0)}
+                  {String(theme.nominationCount || 0)}
                 </td>
               </tr>
             ))}
@@ -162,7 +162,7 @@ const ThemeBrowser = observer(() => {
               <div className="content">
                 <p>
                   <strong>Type:</strong>{' '}
-                  {getThemeTypeDisplay(String(selectedTheme.type))}
+                  {getThemeTypeDisplay(String(selectedTheme.nomination_type))}
                 </p>
                 <p>
                   <strong>Date:</strong>{' '}
@@ -181,7 +181,7 @@ const ThemeBrowser = observer(() => {
                 )}
                 <p>
                   <strong>Nominations:</strong>{' '}
-                  {String(selectedTheme.nomination_count || 0)}
+                  {String(selectedTheme.nominationCount || 0)}
                 </p>
               </div>
             </div>

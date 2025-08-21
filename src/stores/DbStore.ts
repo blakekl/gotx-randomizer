@@ -174,7 +174,32 @@ class DbStore {
   }
 
   getCurrentWinners(): CurrentTheme[] {
-    return dbClient.getCurrentWinners() ?? [];
+    const rawData = dbClient.getCurrentWinners() ?? [];
+
+    // Group by theme_id to handle multiple winners per theme
+    const groupedByTheme = rawData.reduce(
+      (acc: { [key: number]: CurrentTheme }, current: CurrentTheme) => {
+        const themeId = current.theme.id;
+
+        if (!acc[themeId]) {
+          // First winner for this theme
+          acc[themeId] = {
+            ...current,
+            winners: [current.winners[0]], // Start with first winner
+            isMultiWinner: false,
+          };
+        } else {
+          // Additional winner for existing theme
+          acc[themeId].winners.push(current.winners[0]);
+          acc[themeId].isMultiWinner = true;
+        }
+
+        return acc;
+      },
+      {},
+    );
+
+    return Object.values(groupedByTheme);
   }
 
   getUpcomingThemes(): ThemeWithStatus[] {
