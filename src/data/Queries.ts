@@ -410,30 +410,8 @@ SELECT
   t.description,
   t.created_at,
   t.updated_at,
-  CASE 
-    WHEN t.creation_date <= strftime('%Y-%m-%d', 'now') AND EXISTS(
-      SELECT 1 FROM [public.nominations] n WHERE n.theme_id = t.id AND n.winner = 1
-    ) AND t.creation_date = (
-      SELECT MAX(creation_date) FROM [public.themes] t2 
-      WHERE t2.nomination_type = t.nomination_type 
-      AND t2.creation_date <= strftime('%Y-%m-%d', 'now')
-      AND EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t2.id AND n2.winner = 1)
-    ) THEN 'current'
-    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') OR (
-      t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
-        SELECT 1 FROM [public.nominations] n WHERE n.theme_id = t.id AND n.winner = 1
-      )
-    ) THEN 'upcoming'
-    ELSE 'historical'
-  END as status,
-  CASE 
-    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') OR (
-      t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
-        SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = t.id AND n3.winner = 1
-      )
-    ) THEN NULL  -- Privacy: hide upcoming theme titles
-    ELSE t.title
-  END as display_title,
+  'historical' as status,
+  t.title as display_title,
   COUNT(n.id) as nomination_count,
   COUNT(CASE WHEN n.winner = 1 THEN 1 END) as winner_count
 FROM [public.themes] t
@@ -448,7 +426,14 @@ SELECT
   t.title as theme_title,
   t.id as theme_id,
   t.creation_date,
-  ${coalescedTitle},
+  t.description as theme_description,
+  t.created_at as theme_created_at,
+  t.updated_at as theme_updated_at,
+  g.title_world,
+  g.title_usa,
+  g.title_eu,
+  g.title_jap,
+  g.title_other,
   g.id as game_id,
   g.screenscraper_id,
   g.year,
@@ -457,37 +442,21 @@ SELECT
   g.genre,
   g.img_url,
   g.time_to_beat,
-  CASE 
-    WHEN t.id < 235 AND g.year < 1996 THEN 'pre 96'
-    WHEN t.id < 235 AND g.year BETWEEN 1996 AND 1999 THEN '96-99'
-    WHEN t.id < 235 AND g.year >= 2000 THEN '2k+'
-    WHEN t.id >= 235 AND g.year < 1996 THEN 'pre 96'
-    WHEN t.id >= 235 AND g.year BETWEEN 1996 AND 2001 THEN '96-01'
-    WHEN t.id >= 235 AND g.year >= 2002 THEN '02+'
-    ELSE 'Unknown'
-  END AS year_category
+  'Unknown' AS year_category
 FROM [public.nominations] n 
 INNER JOIN [public.games] g ON n.game_id = g.id
 INNER JOIN [public.themes] t ON n.theme_id = t.id
 WHERE n.winner = 1
-AND n.theme_id IN (
+AND t.creation_date <= strftime('%Y-%m-%d', 'now')
+AND t.id IN (
     SELECT t2.id FROM [public.themes] t2
-    WHERE t2.creation_date <= strftime('%Y-%m-%d', 'now')
-    AND t2.creation_date = (
-        SELECT MAX(t3.creation_date) 
-        FROM [public.themes] t3 
-        WHERE t3.nomination_type = t2.nomination_type 
-        AND t3.creation_date <= strftime('%Y-%m-%d', 'now')
-        AND EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t3.id AND n2.winner = 1)
-    )
+    INNER JOIN [public.nominations] n2 ON t2.id = n2.theme_id AND n2.winner = 1
+    WHERE t2.nomination_type = t.nomination_type
+    AND t2.creation_date <= strftime('%Y-%m-%d', 'now')
+    ORDER BY t2.creation_date DESC, t2.id DESC
+    LIMIT 1
 )
-ORDER BY CASE n.nomination_type
-    WHEN 'gotm' THEN 1
-    WHEN 'retro' THEN 2
-    WHEN 'rpg' THEN 3
-    WHEN 'goty' THEN 4
-    WHEN 'gotwoty' THEN 5
-END, year_category;`;
+ORDER BY t.creation_date DESC, n.nomination_type;`;
 
 // Get upcoming themes (privacy-protected)
 export const getUpcomingThemes = `
