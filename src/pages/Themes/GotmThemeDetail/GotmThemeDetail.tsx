@@ -1,7 +1,7 @@
 import React from 'react';
-import { NominationWithGame } from '../../models/game';
-import { WinnerCard } from './WinnerCard';
-import { NominationsTable } from './NominationsTable';
+import { NominationWithGame } from '../../../models/game';
+import { WinnerCard } from '../WinnerCard/WinnerCard';
+import { NominationsTable } from '../NominationsTable/NominationsTable';
 
 interface GotmThemeDetailProps {
   nominations: NominationWithGame[];

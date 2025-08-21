@@ -1,5 +1,5 @@
 import React from 'react';
-import { NominationWithGame, getBestGameTitle } from '../../models/game';
+import { NominationWithGame, getBestGameTitle } from '../../../models/game';
 
 interface WinnerCardProps {
   winner: NominationWithGame;
