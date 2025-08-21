@@ -310,12 +310,31 @@ const initDbClient = async () => {
       );
     },
     getThemeDetailWithCategories: (themeId: number) => {
-      return (
+      const rawResults =
         db
           ?.exec(getThemeDetailWithCategories(themeId))
-          .flatMap((x) => x.values)
-          .map((x) => nominationWithGameDto(x)) ?? []
-      );
+          .flatMap((x) => x.values) ?? [];
+
+      if (rawResults.length === 0) {
+        return { theme: null, nominations: [] };
+      }
+
+      // Extract theme info from first row
+      const firstRow = rawResults[0];
+      const theme = {
+        id: firstRow[0],
+        title: firstRow[1],
+        nomination_type: firstRow[2],
+        creation_date: firstRow[3],
+        description: firstRow[4],
+        nominationCount: rawResults.length,
+        status: 'detailed' as const,
+      };
+
+      // Map all rows to nominations
+      const nominations = rawResults.map((x) => nominationWithGameDto(x));
+
+      return { theme, nominations };
     },
     getGotyThemesByYear: () => {
       return (
