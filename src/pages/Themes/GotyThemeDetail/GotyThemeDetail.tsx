@@ -1,6 +1,6 @@
 import React from 'react';
-import { NominationWithGame } from '../../models/game';
-import { WinnerCard } from './WinnerCard';
+import { NominationWithGame } from '../../../models/game';
+import { WinnerCard } from '../WinnerCard/WinnerCard';
 
 interface GotyThemeDetailProps {
   nominations: NominationWithGame[];
