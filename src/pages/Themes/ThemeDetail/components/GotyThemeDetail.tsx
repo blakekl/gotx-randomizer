@@ -10,8 +10,23 @@ interface GotyThemeDetailProps {
 export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
   nominations,
 }) => {
-  // GotY themes have multiple winners
+  // GotY themes have multiple winners with theme description categories
   const winners = nominations.filter((nom) => nom.winner);
+
+  // Group winners by theme description (e.g., "Best Soundtrack", "Game of the Year")
+  const winnersByThemeDescription = winners.reduce<
+    Record<string, typeof winners>
+  >((acc, winner) => {
+    const category = winner.themeDescription || 'Unknown Category';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(winner);
+    return acc;
+  }, {});
+
+  const hasMultipleCategories =
+    Object.keys(winnersByThemeDescription).length > 1;
 
   return (
     <>
@@ -25,21 +40,47 @@ export const GotyThemeDetail: React.FC<GotyThemeDetailProps> = ({
             Winners
           </h2>
 
-          {/* All winners in horizontal layout */}
-          <div className="columns is-multiline">
-            {winners.map((winner, index) => (
-              <div key={index} className="column is-one-third">
-                <WinnerCard winner={winner} showCategory={false} />
-              </div>
-            ))}
-          </div>
+          {hasMultipleCategories ? (
+            // Multiple theme description categories - show grouped by category
+            Object.entries(winnersByThemeDescription).map(
+              ([themeDescription, categoryWinners]) => (
+                <div key={themeDescription} className="mb-5">
+                  <h3 className="title is-4 mb-3">{themeDescription}</h3>
+                  <div className="columns is-multiline">
+                    {categoryWinners.map((winner, index) => (
+                      <div key={index} className="column is-one-third">
+                        <WinnerCard
+                          winner={winner}
+                          showCategory={false}
+                          categoryLabel={themeDescription}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ),
+            )
+          ) : (
+            // Single theme description category - show category in cards
+            <div className="columns is-multiline">
+              {winners.map((winner, index) => (
+                <div key={index} className="column is-one-third">
+                  <WinnerCard
+                    winner={winner}
+                    showCategory={true}
+                    categoryLabel={winner.themeDescription}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
-      {/* All Nominations Section - Flat table for GotY */}
+      {/* All Nominations Section - Grouped by Theme Description */}
       <NominationsTable
         nominations={nominations}
-        showCategories={false}
+        showCategories={true}
         title="All Nominations"
       />
     </>

@@ -342,6 +342,7 @@ export interface NominationWithGame extends Nomination {
   game: Game; // Full game object instead of just game_id
   yearCategory: string; // Computed category based on theme_id and year
   user_name?: string; // From user join
+  themeDescription?: string; // Theme description for GotY categories
 }
 
 // For current active themes dashboard - updated for multiple winners
@@ -407,7 +408,10 @@ export const themeWithStatusDto = (data: any[]): ThemeWithStatus => {
 export const nominationWithGameDto = (data: any[]): NominationWithGame => {
   // Extract only the fields we need, using array indices
   const theme_id = data[0]; // t.id
+  // const theme_title = data[1]; // t.title (not used)
   const nomination_type = data[2]; // t.nomination_type
+  // const creation_date = data[3]; // t.creation_date (not used)
+  const theme_description = data[4]; // t.description
   const title_world = data[5]; // g.title_world
   const title_usa = data[6]; // g.title_usa
   const title_eu = data[7]; // g.title_eu
@@ -460,6 +464,7 @@ export const nominationWithGameDto = (data: any[]): NominationWithGame => {
     // Additional fields
     yearCategory: year_category || 'Unknown',
     user_name,
+    themeDescription: theme_description || undefined, // Theme description for GotY categories
   } as NominationWithGame;
 };
 
