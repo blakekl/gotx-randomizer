@@ -211,17 +211,17 @@ describe('GotyThemeDetail Component', () => {
       expect(
         screen.getByText('The Legend of Zelda: A Link to the Past'),
       ).toBeInTheDocument();
-      expect(screen.getByText('Nintendo')).toBeInTheDocument();
+      expect(screen.getByText('1991')).toBeInTheDocument();
 
       // Check second winner
       expect(screen.getByText('Super Metroid')).toBeInTheDocument();
-      expect(screen.getByText('Nintendo R&D1')).toBeInTheDocument();
+      expect(screen.getByText('1994')).toBeInTheDocument();
 
       // Check third winner
       expect(
         screen.getByText('Star Ocean: The Second Story'),
       ).toBeInTheDocument();
-      expect(screen.getByText('tri-Ace')).toBeInTheDocument();
+      expect(screen.getByText('1998')).toBeInTheDocument();
     });
 
     it('should render winner game images', () => {

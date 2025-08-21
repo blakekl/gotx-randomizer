@@ -104,8 +104,8 @@ describe('GotmThemeDetail Component', () => {
       render(<GotmThemeDetail nominations={mockNominations} />);
 
       expect(screen.getByText('Winners')).toBeInTheDocument();
-      expect(screen.getByText('Winner Game Pre 96')).toBeInTheDocument();
-      expect(screen.getByText('Winner Game 96-99')).toBeInTheDocument();
+      expect(screen.getAllByText('Winner Game Pre 96')).toHaveLength(2); // Once in winner card, once in table
+      expect(screen.getAllByText('Winner Game 96-99')).toHaveLength(2); // Once in winner card, once in table
     });
 
     it('should display winners in horizontal layout', () => {
@@ -123,15 +123,15 @@ describe('GotmThemeDetail Component', () => {
     it('should show year categories for each winner', () => {
       render(<GotmThemeDetail nominations={mockNominations} />);
 
-      expect(screen.getByText('pre 96')).toBeInTheDocument();
-      expect(screen.getByText('96-99')).toBeInTheDocument();
+      expect(screen.getAllByText('pre 96')).toHaveLength(2); // Once in winner card, once in table header
+      expect(screen.getAllByText('96-99')).toHaveLength(2); // Once in winner card, once in table header
     });
 
-    it('should display crown icon for winners section', () => {
+    it('should display trophy icon for winners section', () => {
       render(<GotmThemeDetail nominations={mockNominations} />);
 
-      const crownIcon = document.querySelector('.fas.fa-crown');
-      expect(crownIcon).toBeInTheDocument();
+      const trophyIcon = document.querySelector('.fas.fa-trophy');
+      expect(trophyIcon).toBeInTheDocument();
     });
   });
 
@@ -139,7 +139,7 @@ describe('GotmThemeDetail Component', () => {
     it('should render nominations table with all nominations', () => {
       render(<GotmThemeDetail nominations={mockNominations} />);
 
-      expect(screen.getByText('Nominations')).toBeInTheDocument();
+      expect(screen.getByText('All Nominations')).toBeInTheDocument();
       expect(screen.getByText('Regular Game')).toBeInTheDocument();
     });
 
@@ -164,14 +164,14 @@ describe('GotmThemeDetail Component', () => {
       // Should not show winners section
       expect(screen.queryByText('Winners')).not.toBeInTheDocument();
       // Should still show nominations
-      expect(screen.getByText('Nominations')).toBeInTheDocument();
+      expect(screen.getByText('All Nominations')).toBeInTheDocument();
     });
 
     it('should handle empty nominations array', () => {
       render(<GotmThemeDetail nominations={[]} />);
 
       expect(screen.queryByText('Winners')).not.toBeInTheDocument();
-      expect(screen.getByText('Nominations')).toBeInTheDocument();
+      expect(screen.queryByText('All Nominations')).not.toBeInTheDocument();
     });
   });
 
@@ -182,7 +182,7 @@ describe('GotmThemeDetail Component', () => {
       render(<GotmThemeDetail nominations={singleWinnerNominations} />);
 
       expect(screen.getByText('Winners')).toBeInTheDocument();
-      expect(screen.getByText('Winner Game Pre 96')).toBeInTheDocument();
+      expect(screen.getAllByText('Winner Game Pre 96')).toHaveLength(2); // Once in winner card, once in table
       expect(screen.queryByText('Winner Game 96-99')).not.toBeInTheDocument();
     });
 
@@ -204,9 +204,9 @@ describe('GotmThemeDetail Component', () => {
 
       render(<GotmThemeDetail nominations={threeWinnerNominations} />);
 
-      expect(screen.getByText('pre 96')).toBeInTheDocument();
-      expect(screen.getByText('96-99')).toBeInTheDocument();
-      expect(screen.getByText('00+')).toBeInTheDocument();
+      expect(screen.getAllByText('pre 96')).toHaveLength(2); // Once in winner card, once in table header
+      expect(screen.getAllByText('96-99')).toHaveLength(2); // Once in winner card, once in table header
+      expect(screen.getAllByText('00+')).toHaveLength(2); // Once in winner card, once in table header
     });
   });
 });
