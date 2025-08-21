@@ -34,12 +34,16 @@ const ThemeDetail = observer(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const themeType = String(theme.nomination_type).toLowerCase();
 
+    // Debug: log the theme type to help identify issues
+    console.log('Theme type detected:', themeType);
+
     switch (themeType) {
       case 'gotm':
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <GotmThemeDetail nominations={nominations} />;
 
       case 'retrobits':
+      case 'retrobit':
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <RetrobitsThemeDetail nominations={nominations} />;
 

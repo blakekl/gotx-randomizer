@@ -26,8 +26,8 @@ export const RpgThemeDetail: React.FC<RpgThemeDetailProps> = ({
           </h2>
 
           {/* Single winner card - centered and prominent */}
-          <div className="columns is-centered">
-            <div className="column is-half">
+          <div className="columns is-centered is-vcentered">
+            <div className="column is-one-third">
               <WinnerCard winner={winners[0]} showCategory={false} />
             </div>
           </div>
