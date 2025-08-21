@@ -1,20 +1,21 @@
 import React from 'react';
-import { NominationWithGame } from '../../models/game';
-import { WinnerCard } from './WinnerCard';
+import { NominationWithGame } from '../../../models/game';
+import { WinnerCard } from '../WinnerCard/WinnerCard';
+import { NominationsTable } from '../NominationsTable/NominationsTable';
 
-interface RetrobitsThemeDetailProps {
+interface RpgThemeDetailProps {
   nominations: NominationWithGame[];
 }
 
-export const RetrobitsThemeDetail: React.FC<RetrobitsThemeDetailProps> = ({
+export const RpgThemeDetail: React.FC<RpgThemeDetailProps> = ({
   nominations,
 }) => {
-  // Retrobits themes have only one winner and no other nominations
+  // RPG themes have one winner and multiple nominations
   const winners = nominations.filter((nom) => nom.winner);
 
   return (
     <>
-      {/* Single Winner Showcase */}
+      {/* Single Winner Section */}
       {winners.length > 0 && (
         <div className="box">
           <h2 className="title is-3">
@@ -33,17 +34,12 @@ export const RetrobitsThemeDetail: React.FC<RetrobitsThemeDetailProps> = ({
         </div>
       )}
 
-      {/* No nominations table for Retrobits - they don't have other nominations */}
-      {winners.length === 0 && (
-        <div className="box">
-          <div className="notification is-info">
-            <p>
-              <strong>No winner announced yet.</strong>
-            </p>
-            <p>This Retrobits theme is still in progress.</p>
-          </div>
-        </div>
-      )}
+      {/* All Nominations Section - Flat table (no categories for RPG) */}
+      <NominationsTable
+        nominations={nominations}
+        showCategories={false}
+        title="All Nominations"
+      />
     </>
   );
 };
