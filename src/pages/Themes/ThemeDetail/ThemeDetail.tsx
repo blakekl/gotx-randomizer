@@ -6,6 +6,7 @@ import { ThemeHeader } from './shared/ThemeHeader';
 import { GotmThemeDetail } from './components/GotmThemeDetail';
 import { RetrobitsThemeDetail } from './components/RetrobitsThemeDetail';
 import { RpgThemeDetail } from './components/RpgThemeDetail';
+import { GotyThemeDetail } from './components/GotyThemeDetail';
 
 const ThemeDetail = observer(() => {
   const { themeId } = useParams<{ themeId: string }>();
@@ -52,20 +53,8 @@ const ThemeDetail = observer(() => {
         return <RpgThemeDetail nominations={nominations} />;
 
       case NominationType.GOTY:
-        // TODO: Implement GotyThemeDetail
-        return (
-          <div className="box">
-            <div className="notification is-info">
-              <p>
-                <strong>GotY theme display coming soon!</strong>
-              </p>
-              <p>
-                This theme type will have multiple winners with theme
-                description categories.
-              </p>
-            </div>
-          </div>
-        );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        return <GotyThemeDetail nominations={nominations} />;
 
       default:
         // Fallback to GotM format for unknown types
