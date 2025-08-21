@@ -6,11 +6,14 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import CurrentThemes from './CurrentThemes';
 
+type ThemeTypeFilter = 'All' | 'GotM' | 'Retrobit' | 'RPG' | 'GotY';
+
 const ThemeBrowser = observer(() => {
   const { dbStore } = useStores();
   const [themeList, setThemeList] = useState(new Array<ThemeWithStatus>());
   const [indexRange, setIndexRange] = useState([0, 0]);
   const [titleFilter, setTitleFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState<ThemeTypeFilter>('All');
   const [selectedTheme, setSelectedTheme] = useState<ThemeWithStatus | null>(
     null,
   );
@@ -21,13 +24,35 @@ const ThemeBrowser = observer(() => {
     return dbStore.getThemesWithStatus();
   }, [dbStore]);
 
-  // Filter themes based on search
+  // Filter themes based on search and type
   useMemo(() => {
-    const filteredThemes = allThemes.filter((theme) =>
+    let filteredThemes = allThemes.filter((theme) =>
       theme.title?.toLowerCase().includes(titleFilter.toLowerCase()),
     );
+
+    // Apply type filter
+    if (typeFilter !== 'All') {
+      filteredThemes = filteredThemes.filter((theme) => {
+        switch (typeFilter) {
+          case 'GotM':
+            return String(theme.nomination_type) === 'gotm';
+          case 'Retrobit':
+            return String(theme.nomination_type) === 'retro';
+          case 'RPG':
+            return String(theme.nomination_type) === 'rpg';
+          case 'GotY':
+            return (
+              String(theme.nomination_type) === 'goty' ||
+              String(theme.nomination_type) === 'gotwoty'
+            );
+          default:
+            return true;
+        }
+      });
+    }
+
     setThemeList(filteredThemes);
-  }, [allThemes, titleFilter]);
+  }, [allThemes, titleFilter, typeFilter]);
 
   const handleRowClicked = (theme: ThemeWithStatus) => {
     setSelectedTheme(theme);
@@ -88,6 +113,27 @@ const ThemeBrowser = observer(() => {
               <i className="fas fa-search" />
             </span>
           </p>
+        </div>
+
+        {/* Type Filter Buttons */}
+        <div className="field mt-4">
+          <div className="field has-addons">
+            {(
+              ['All', 'GotM', 'Retrobit', 'RPG', 'GotY'] as ThemeTypeFilter[]
+            ).map((filterType) => (
+              <p key={filterType} className="control">
+                <button
+                  className={classNames('button', {
+                    'is-primary': typeFilter === filterType,
+                    'is-outlined': typeFilter !== filterType,
+                  })}
+                  onClick={() => setTypeFilter(filterType)}
+                >
+                  {filterType}
+                </button>
+              </p>
+            ))}
+          </div>
         </div>
 
         {/* Themes Table */}
