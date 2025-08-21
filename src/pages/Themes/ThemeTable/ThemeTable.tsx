@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import { ThemeWithStatus, getThemeTypeDisplay } from '../../../models/game';
 
 interface ThemeTableProps {
@@ -28,23 +29,26 @@ const ThemeTable = ({
           <th>Type</th>
           <th>Date</th>
           <th className="has-text-right">Nominations</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {themes.slice(indexRange[0], indexRange[1]).map((theme) => (
           <tr
             key={theme.id}
-            onClick={() => onThemeClick(theme)}
             className={classNames({
               'is-selected':
                 (selectedTheme && theme.id === selectedTheme.id) ||
                 hoveredTheme === theme.id,
-              'is-clickable': true,
             })}
             onMouseEnter={() => onThemeHover(theme.id)}
             onMouseLeave={onThemeLeave}
           >
-            <td>
+            <td
+              onClick={() => onThemeClick(theme)}
+              className="is-clickable"
+              style={{ cursor: 'pointer' }}
+            >
               <strong>{theme.title || 'Upcoming Theme'}</strong>
               {theme.description && (
                 <div className="is-size-7 has-text-grey">
@@ -52,14 +56,39 @@ const ThemeTable = ({
                 </div>
               )}
             </td>
-            <td>{getThemeTypeDisplay(String(theme.nomination_type))}</td>
-            <td>
+            <td
+              onClick={() => onThemeClick(theme)}
+              className="is-clickable"
+              style={{ cursor: 'pointer' }}
+            >
+              {getThemeTypeDisplay(String(theme.nomination_type))}
+            </td>
+            <td
+              onClick={() => onThemeClick(theme)}
+              className="is-clickable"
+              style={{ cursor: 'pointer' }}
+            >
               {theme.creation_date
                 ? new Date(theme.creation_date).toLocaleDateString()
                 : 'TBD'}
             </td>
-            <td className="has-text-right">
+            <td
+              onClick={() => onThemeClick(theme)}
+              className="has-text-right is-clickable"
+              style={{ cursor: 'pointer' }}
+            >
               {String(theme.nominationCount || 0)}
+            </td>
+            <td>
+              <Link
+                to={`/themes/${theme.id}`}
+                className="button is-small is-primary"
+              >
+                <span className="icon is-small">
+                  <i className="fas fa-eye"></i>
+                </span>
+                <span>View Details</span>
+              </Link>
             </td>
           </tr>
         ))}

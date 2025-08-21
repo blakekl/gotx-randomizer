@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   CurrentTheme,
   getBestGameTitle,
@@ -83,6 +84,17 @@ const CurrentThemeCard = ({ currentTheme }: CurrentThemeCardProps) => {
               )}
             </div>
           </div>
+        </div>
+        <div className="card-footer">
+          <Link
+            to={`/themes/${currentTheme.theme.id}`}
+            className="card-footer-item"
+          >
+            <span className="icon mr-2">
+              <i className="fas fa-eye"></i>
+            </span>
+            View Details
+          </Link>
         </div>
       </div>
     </div>
