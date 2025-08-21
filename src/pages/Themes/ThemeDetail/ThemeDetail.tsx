@@ -42,8 +42,7 @@ const ThemeDetail = observer(() => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <GotmThemeDetail nominations={nominations} />;
 
-      case 'retrobits':
-      case 'retrobit':
+      case 'retro':
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         return <RetrobitsThemeDetail nominations={nominations} />;
 
