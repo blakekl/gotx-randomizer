@@ -15,7 +15,7 @@ const mockTheme: ThemeWithStatus = {
   updated_at: '2024-01-01T00:00:00Z',
   status: 'completed' as const,
   display_title: 'Test Theme Title',
-  nomination_count: 25,
+  nominationCount: 25, // Use nominationCount instead of nomination_count
   winner_count: 3,
 };
 
@@ -50,7 +50,7 @@ describe('ThemeHeader Component', () => {
     it('should render Retrobit theme correctly', () => {
       const retrobitTheme = {
         ...mockTheme,
-        nomination_type: 'retrobit',
+        nomination_type: 'retro', // Use 'retro' not 'retrobit'
       };
 
       render(<ThemeHeader theme={retrobitTheme} />);
@@ -124,7 +124,7 @@ describe('ThemeHeader Component', () => {
     it('should handle zero counts', () => {
       const themeWithZeroCounts = {
         ...mockTheme,
-        nomination_count: 0,
+        nominationCount: 0,
         winner_count: 0,
       };
 
