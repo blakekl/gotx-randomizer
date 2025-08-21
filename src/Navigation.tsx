@@ -56,6 +56,9 @@ const Navigation = () => {
           <Link className="navbar-item" to="/games">
             Games
           </Link>
+          <Link className="navbar-item" to="/themes">
+            Themes
+          </Link>
           <Link className="navbar-item" to="/users">
             Users
           </Link>
