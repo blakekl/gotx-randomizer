@@ -6,6 +6,289 @@ This document provides copy-paste examples of established patterns in the codeba
 
 ---
 
+## 📁 **Folder Structure & Organization**
+
+### **🏗️ Component Architecture Patterns**
+
+The codebase follows a **hierarchical component organization** based on DOM structure and usage patterns:
+
+#### **✅ CORRECT: Hierarchical Structure (Theme Browser Pattern)**
+
+```
+src/pages/Themes/
+├── Themes.tsx                              # Page entry point
+├── ThemeBrowser.tsx                        # Main browser component
+├── CurrentThemes.tsx                       # Dashboard component
+└── ThemeDetail/                            # Feature-specific folder
+    ├── ThemeDetail.tsx                     # Router component
+    ├── GotmThemeDetail/
+    │   └── GotmThemeDetail.tsx             # Theme-specific component
+    ├── RetrobitsThemeDetail/
+    │   └── RetrobitsThemeDetail.tsx        # Theme-specific component
+    ├── GotyThemeDetail/
+    │   └── GotyThemeDetail.tsx             # Theme-specific component
+    ├── RpgThemeDetail/
+    │   └── RpgThemeDetail.tsx              # Theme-specific component
+    ├── GotwotypThemeDetail/
+    │   └── GotwotypThemeDetail.tsx         # Theme-specific component
+    ├── ThemeHeader/                        # Shared component
+    │   └── ThemeHeader.tsx                 # Used by all theme types
+    ├── WinnerCard/                         # Shared component
+    │   └── WinnerCard.tsx                  # Used by multiple themes
+    └── NominationsTable/                   # Shared component
+        └── NominationsTable.tsx            # Used by multiple themes
+```
+
+#### **❌ WRONG: Flat Structure**
+
+```
+src/pages/Themes/
+├── Themes.tsx
+├── ThemeBrowser.tsx
+├── CurrentThemes.tsx
+├── ThemeDetail.tsx                         # ❌ Should be in subfolder
+├── GotmThemeDetail.tsx                     # ❌ Should be in subfolder
+├── RetrobitsThemeDetail.tsx                # ❌ Should be in subfolder
+├── GotyThemeDetail.tsx                     # ❌ Should be in subfolder
+├── ThemeHeader.tsx                         # ❌ Should be in subfolder
+├── WinnerCard.tsx                          # ❌ Should be in subfolder
+└── NominationsTable.tsx                    # ❌ Should be in subfolder
+```
+
+### **🎯 Folder Structure Rules**
+
+#### **Rule 1: Mirror DOM Hierarchy**
+
+- **Folder structure should match component usage hierarchy**
+- **Parent components contain child component folders**
+- **Shared components live at the common ancestor level**
+
+```typescript
+// ✅ CORRECT: ThemeDetail contains theme-specific components
+<ThemeDetail>           // ThemeDetail/
+  <ThemeHeader />       //   ├── ThemeHeader/
+  <GotmThemeDetail>     //   ├── GotmThemeDetail/
+    <WinnerCard />      //   │   └── (uses WinnerCard from ../WinnerCard/)
+  </GotmThemeDetail>
+</ThemeDetail>
+```
+
+#### **Rule 2: One Component Per Folder**
+
+- **Each component gets its own folder**
+- **Component file matches folder name exactly**
+- **Future tests, styles, and utilities go in same folder**
+
+```
+ComponentName/
+├── ComponentName.tsx                       # Main component file
+├── ComponentName.test.tsx                  # Tests (future)
+├── ComponentName.module.css               # Styles (future)
+└── utils.ts                               # Component utilities (future)
+```
+
+#### **Rule 3: Shared Components at Common Ancestor**
+
+- **Components used by multiple siblings live at parent level**
+- **Don't duplicate shared components**
+- **Import paths use relative navigation (../ patterns)**
+
+```typescript
+// ✅ CORRECT: WinnerCard shared between theme types
+ThemeDetail/
+├── WinnerCard/                            # Shared by multiple themes
+│   └── WinnerCard.tsx
+├── GotmThemeDetail/
+│   └── GotmThemeDetail.tsx                # imports '../WinnerCard/WinnerCard'
+└── GotyThemeDetail/
+    └── GotyThemeDetail.tsx                # imports '../WinnerCard/WinnerCard'
+```
+
+#### **Rule 4: Feature-Based Top-Level Organization**
+
+- **Pages represent major features**
+- **Each page gets its own folder under `/pages/`**
+- **Related components stay within feature folder**
+
+```
+src/pages/
+├── Games/                                 # Games feature
+│   ├── Games.tsx
+│   └── GameDetail/
+├── Users/                                 # Users feature
+│   ├── Users.tsx
+│   └── UserProfile/
+├── Themes/                                # Themes feature
+│   ├── Themes.tsx
+│   ├── ThemeBrowser.tsx
+│   └── ThemeDetail/
+└── Statistics/                            # Statistics feature
+    ├── Statistics.tsx
+    └── Chart/
+```
+
+### **📂 Complete Application Structure**
+
+```
+src/
+├── components/                            # Global shared components
+│   ├── Navigation/
+│   │   └── Navigation.tsx
+│   ├── Settings/
+│   │   └── Settings.tsx
+│   └── Pagination/
+│       └── Pagination.tsx
+├── pages/                                 # Feature-based organization
+│   ├── Games/
+│   │   ├── Games.tsx                      # Page entry point
+│   │   ├── GameDisplay/                   # Feature component
+│   │   │   └── GameDisplay.tsx
+│   │   └── GameDetails/                   # Feature component
+│   │       └── GameDetails.tsx
+│   ├── Users/
+│   │   ├── Users.tsx                      # Page entry point
+│   │   └── UserDisplay/                   # Feature component
+│   │       └── UserDisplay.tsx
+│   ├── Themes/                            # ✅ NEW: Theme browser feature
+│   │   ├── Themes.tsx                     # Page entry point
+│   │   ├── ThemeBrowser.tsx               # Feature component
+│   │   ├── CurrentThemes.tsx              # Feature component
+│   │   └── ThemeDetail/                   # Sub-feature
+│   │       ├── ThemeDetail.tsx            # Router component
+│   │       ├── [ThemeType]ThemeDetail/    # Theme-specific components
+│   │       └── [Shared]/                  # Shared theme components
+│   ├── Statistics/
+│   │   ├── Statistics.tsx                 # Page entry point
+│   │   └── Chart/                         # Feature component
+│   │       └── Chart.tsx
+│   └── Home/
+│       └── Home.tsx                       # Simple page
+├── stores/                                # MobX stores
+│   ├── DbStore.ts
+│   ├── SettingsStore.ts
+│   └── RootStore.ts
+├── models/                                # TypeScript interfaces
+│   └── game.ts
+├── data/                                  # Database layer
+│   ├── Queries.ts
+│   ├── initDbClient.ts
+│   └── index.ts
+└── test-utils/                            # Testing utilities
+    └── test-utils.tsx
+```
+
+### **🔄 Import Path Patterns**
+
+#### **Relative Imports (Preferred)**
+
+```typescript
+// ✅ CORRECT: Use relative paths within feature
+import { ThemeHeader } from '../ThemeHeader/ThemeHeader';
+import { WinnerCard } from '../WinnerCard/WinnerCard';
+import { GotmThemeDetail } from './GotmThemeDetail/GotmThemeDetail';
+```
+
+#### **Absolute Imports (Cross-Feature)**
+
+```typescript
+// ✅ CORRECT: Use absolute paths across features
+import { useStores } from '../../../stores/useStores';
+import { NominationType } from '../../../models/game';
+import { Navigation } from '../../../components/Navigation/Navigation';
+```
+
+### **🧪 Test File Organization**
+
+#### **Co-located Tests (Future Pattern)**
+
+```
+ComponentName/
+├── ComponentName.tsx                      # Component
+├── ComponentName.test.tsx                 # Unit tests
+└── ComponentName.integration.test.tsx     # Integration tests
+```
+
+#### **Current Test Structure**
+
+```
+src/__tests__/
+├── integration/
+│   ├── components/                        # Component integration tests
+│   │   ├── GotmThemeDetail.test.tsx
+│   │   ├── GotyThemeDetail.test.tsx
+│   │   └── ThemeDetail.test.tsx
+│   └── pages/                             # Page integration tests
+│       ├── ThemeBrowser.test.tsx
+│       └── CurrentThemes.test.tsx
+└── unit/                                  # Unit tests
+    ├── stores/
+    ├── models/
+    └── data/
+```
+
+### **📋 Folder Creation Checklist**
+
+When creating new components, follow this checklist:
+
+1. **✅ Determine hierarchy level** - Where does this component fit in the DOM?
+2. **✅ Check for shared usage** - Will multiple components use this?
+3. **✅ Create component folder** - One folder per component
+4. **✅ Match folder and file names** - Exact case-sensitive match
+5. **✅ Use relative imports** - For components within same feature
+6. **✅ Plan for growth** - Leave room for tests, styles, utilities
+
+### **🚨 Common Folder Structure Mistakes**
+
+#### **❌ Mistake 1: Flat Organization**
+
+```
+// ❌ WRONG: Everything in one folder
+src/pages/Themes/
+├── Component1.tsx
+├── Component2.tsx
+├── Component3.tsx
+└── Component4.tsx
+```
+
+#### **❌ Mistake 2: Wrong Hierarchy**
+
+```
+// ❌ WRONG: Child component contains parent
+src/pages/Themes/
+└── WinnerCard/
+    ├── WinnerCard.tsx
+    └── ThemeDetail/                       # ❌ Parent inside child
+        └── ThemeDetail.tsx
+```
+
+#### **❌ Mistake 3: Duplicate Shared Components**
+
+```
+// ❌ WRONG: Duplicating shared components
+src/pages/Themes/
+├── GotmThemeDetail/
+│   ├── GotmThemeDetail.tsx
+│   └── WinnerCard.tsx                     # ❌ Duplicate
+└── GotyThemeDetail/
+    ├── GotyThemeDetail.tsx
+    └── WinnerCard.tsx                     # ❌ Duplicate
+```
+
+#### **✅ Correct Solution: Shared at Common Ancestor**
+
+```
+// ✅ CORRECT: Shared component at parent level
+src/pages/Themes/ThemeDetail/
+├── WinnerCard/                            # Shared component
+│   └── WinnerCard.tsx
+├── GotmThemeDetail/
+│   └── GotmThemeDetail.tsx                # imports '../WinnerCard/WinnerCard'
+└── GotyThemeDetail/
+    └── GotyThemeDetail.tsx                # imports '../WinnerCard/WinnerCard'
+```
+
+---
+
 ## 🗄️ **Database Patterns**
 
 ### **Query Definition (Queries.ts)**
