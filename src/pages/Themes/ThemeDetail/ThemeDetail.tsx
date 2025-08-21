@@ -49,13 +49,13 @@ const ThemeDetail = observer(() => {
             <div className="level-left">
               <div className="level-item">
                 <div>
-                  <h1 className="title is-2">
+                  <h1 className="title is-2 mb-2">
                     <span className="icon mr-3">
                       <i className={getThemeIcon(theme.nomination_type)}></i>
                     </span>
                     {theme.title || 'Upcoming Theme'}
                   </h1>
-                  <p className="subtitle is-4">
+                  <p className="subtitle is-4 mt-2">
                     {getThemeTypeDisplay(String(theme.nomination_type))}
                   </p>
                 </div>
@@ -111,15 +111,21 @@ const ThemeDetail = observer(() => {
                         <div key={index} className="column is-one-third">
                           <div className="card">
                             <div className="card-content">
-                              <h4 className="title is-5">
+                              <h4 className="title is-5 mb-2">
                                 {getBestGameTitle(winner.game)}
                               </h4>
-                              <p className="subtitle is-6">
-                                {winner.game.year &&
-                                  `Released: ${winner.game.year}`}
-                              </p>
+                              <div className="tags mb-3">
+                                <span className="tag is-primary">
+                                  {winner.yearCategory}
+                                </span>
+                                {winner.game.year && (
+                                  <span className="tag is-light">
+                                    {winner.game.year}
+                                  </span>
+                                )}
+                              </div>
                               {winner.user_name && (
-                                <p className="has-text-grey">
+                                <p className="has-text-grey is-size-7">
                                   Nominated by: {winner.user_name}
                                 </p>
                               )}
@@ -138,14 +144,21 @@ const ThemeDetail = observer(() => {
                   <div key={index} className="column is-one-third">
                     <div className="card">
                       <div className="card-content">
-                        <h4 className="title is-5">
+                        <h4 className="title is-5 mb-2">
                           {getBestGameTitle(winner.game)}
                         </h4>
-                        <p className="subtitle is-6">
-                          {winner.game.year && `Released: ${winner.game.year}`}
-                        </p>
+                        <div className="tags mb-3">
+                          <span className="tag is-primary">
+                            {winner.yearCategory}
+                          </span>
+                          {winner.game.year && (
+                            <span className="tag is-light">
+                              {winner.game.year}
+                            </span>
+                          )}
+                        </div>
                         {winner.user_name && (
-                          <p className="has-text-grey">
+                          <p className="has-text-grey is-size-7">
                             Nominated by: {winner.user_name}
                           </p>
                         )}
