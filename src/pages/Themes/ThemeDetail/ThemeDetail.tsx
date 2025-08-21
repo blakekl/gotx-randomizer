@@ -121,7 +121,7 @@ const ThemeDetail = observer(() => {
                                   <img
                                     src={winner.game.img_url}
                                     alt={getBestGameTitle(winner.game)}
-                                    className="is-rounded"
+                                    style={{ borderRadius: '6px' }}
                                   />
                                 </figure>
                               )}
@@ -161,7 +161,7 @@ const ThemeDetail = observer(() => {
                             <img
                               src={winner.game.img_url}
                               alt={getBestGameTitle(winner.game)}
-                              className="is-rounded"
+                              style={{ borderRadius: '6px' }}
                             />
                           </figure>
                         )}
