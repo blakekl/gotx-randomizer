@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useParams, Navigate } from 'react-router-dom';
-import { useStores } from '../../../hooks/useStores';
+import { useStores } from '../../../stores/useStores';
 import { ThemeHeader } from './shared/ThemeHeader';
 import { GotmThemeDetail } from './components/GotmThemeDetail';
 
