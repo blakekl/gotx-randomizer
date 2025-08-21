@@ -1,7 +1,7 @@
 /**
  * Get game list queries.
  */
-const coalescedTitle = `COALESCE([public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title`;
+const coalescedTitle = `COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title`;
 export const getRetrobits = `SELECT
   *
 FROM [public.games]
@@ -411,24 +411,24 @@ SELECT
   t.created_at,
   t.updated_at,
   CASE 
-    WHEN t.creation_date <= date('now') AND EXISTS(
+    WHEN t.creation_date <= strftime('%Y-%m-%d', 'now') AND EXISTS(
       SELECT 1 FROM [public.nominations] n WHERE n.theme_id = t.id AND n.winner = 1
     ) AND t.creation_date = (
       SELECT MAX(creation_date) FROM [public.themes] t2 
       WHERE t2.nomination_type = t.nomination_type 
-      AND t2.creation_date <= date('now')
+      AND t2.creation_date <= strftime('%Y-%m-%d', 'now')
       AND EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t2.id AND n2.winner = 1)
     ) THEN 'current'
-    WHEN t.creation_date > date('now') OR (
-      t.creation_date <= date('now') AND NOT EXISTS(
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') OR (
+      t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
         SELECT 1 FROM [public.nominations] n WHERE n.theme_id = t.id AND n.winner = 1
       )
     ) THEN 'upcoming'
     ELSE 'historical'
   END as status,
   CASE 
-    WHEN t.creation_date > date('now') OR (
-      t.creation_date <= date('now') AND NOT EXISTS(
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') OR (
+      t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
         SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = t.id AND n3.winner = 1
       )
     ) THEN NULL  -- Privacy: hide upcoming theme titles
@@ -472,12 +472,12 @@ INNER JOIN [public.themes] t ON n.theme_id = t.id
 WHERE n.winner = 1
 AND n.theme_id IN (
     SELECT t2.id FROM [public.themes] t2
-    WHERE t2.creation_date <= date('now')
+    WHERE t2.creation_date <= strftime('%Y-%m-%d', 'now')
     AND t2.creation_date = (
         SELECT MAX(t3.creation_date) 
         FROM [public.themes] t3 
         WHERE t3.nomination_type = t2.nomination_type 
-        AND t3.creation_date <= date('now')
+        AND t3.creation_date <= strftime('%Y-%m-%d', 'now')
         AND EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t3.id AND n2.winner = 1)
     )
 )
@@ -502,8 +502,8 @@ SELECT
   COUNT(n.id) as nomination_count
 FROM [public.themes] t
 LEFT JOIN [public.nominations] n ON t.id = n.theme_id
-WHERE t.creation_date > date('now') 
-   OR (t.creation_date <= date('now') AND NOT EXISTS(
+WHERE t.creation_date > strftime('%Y-%m-%d', 'now') 
+   OR (t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
        SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t.id AND n2.winner = 1
    ))
 GROUP BY t.id, t.nomination_type, t.creation_date, t.description, t.created_at, t.updated_at
