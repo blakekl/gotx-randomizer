@@ -37,9 +37,6 @@ const ThemeDetail = observer(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const themeType = theme.nomination_type;
 
-    // Debug: log the theme type to help identify issues
-    console.log('Theme type detected:', themeType);
-
     switch (themeType) {
       case NominationType.GOTM:
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
