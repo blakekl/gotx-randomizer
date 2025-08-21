@@ -71,11 +71,11 @@ describe('NominationsTable Component', () => {
     it('should render nominations table with headers', () => {
       render(<NominationsTable nominations={mockNominations} />);
 
-      expect(screen.getByText('Nominations')).toBeInTheDocument();
+      expect(screen.getByText('All Nominations')).toBeInTheDocument();
       expect(screen.getByText('Game')).toBeInTheDocument();
-      expect(screen.getByText('System')).toBeInTheDocument();
       expect(screen.getByText('Year')).toBeInTheDocument();
-      expect(screen.getByText('Category')).toBeInTheDocument();
+      expect(screen.getByText('Nominated By')).toBeInTheDocument();
+      expect(screen.getByText('Status')).toBeInTheDocument();
     });
 
     it('should render all nominations in the table', () => {
@@ -83,82 +83,70 @@ describe('NominationsTable Component', () => {
 
       expect(screen.getByText('Game One')).toBeInTheDocument();
       expect(screen.getByText('Game Two')).toBeInTheDocument();
-      expect(screen.getByText('SNES')).toBeInTheDocument();
-      expect(screen.getByText('PSX')).toBeInTheDocument();
       expect(screen.getByText('1995')).toBeInTheDocument();
       expect(screen.getByText('1997')).toBeInTheDocument();
     });
 
-    it('should group nominations by year category', () => {
+    it('should show nomination count in header', () => {
       render(<NominationsTable nominations={mockNominations} />);
 
-      // Should show category headers
-      expect(screen.getByText('pre 96')).toBeInTheDocument();
-      expect(screen.getByText('96-99')).toBeInTheDocument();
+      expect(screen.getByText('2')).toBeInTheDocument(); // Count badge
     });
   });
 
   describe('empty states', () => {
-    it('should handle empty nominations array', () => {
-      render(<NominationsTable nominations={[]} />);
+    it('should render nothing when nominations array is empty', () => {
+      const { container } = render(<NominationsTable nominations={[]} />);
 
-      expect(screen.getByText('Nominations')).toBeInTheDocument();
-      // Should still show headers but no content
-      expect(screen.getByText('Game')).toBeInTheDocument();
+      // Component returns null for empty nominations
+      expect(container.firstChild).toBeNull();
     });
   });
 
   describe('category grouping', () => {
-    it('should properly group nominations by year category', () => {
-      render(<NominationsTable nominations={mockNominations} />);
+    it('should group nominations by year category when showCategories is true', () => {
+      render(
+        <NominationsTable
+          nominations={mockNominations}
+          showCategories={true}
+        />,
+      );
 
-      // Check that games appear under correct category sections
-      const pre96Section = screen.getByText('pre 96').closest('div');
-      const category96Section = screen.getByText('96-99').closest('div');
-
-      expect(pre96Section).toBeInTheDocument();
-      expect(category96Section).toBeInTheDocument();
+      // Should show category headers when showCategories=true
+      expect(screen.getByText('pre 96')).toBeInTheDocument();
+      expect(screen.getByText('96-99')).toBeInTheDocument();
     });
 
-    it('should handle nominations with same year category', () => {
-      const sameYearNominations = [
-        { ...mockNominations[0] },
-        {
-          ...mockNominations[0],
-          id: 3,
-          game: {
-            ...mockNominations[0].game,
-            id: 3,
-            title_world: 'Game Three',
-          },
-        },
-      ];
+    it('should not show categories when showCategories is false', () => {
+      render(
+        <NominationsTable
+          nominations={mockNominations}
+          showCategories={false}
+        />,
+      );
 
-      render(<NominationsTable nominations={sameYearNominations} />);
-
-      expect(screen.getByText('Game One')).toBeInTheDocument();
-      expect(screen.getByText('Game Three')).toBeInTheDocument();
-      // Should only show one category header
-      const categoryHeaders = screen.getAllByText('pre 96');
-      expect(categoryHeaders).toHaveLength(1);
+      // Should not show category headers when showCategories=false
+      expect(screen.queryByText('pre 96')).not.toBeInTheDocument();
+      expect(screen.queryByText('96-99')).not.toBeInTheDocument();
     });
   });
 
   describe('game information display', () => {
-    it('should display complete game information', () => {
+    it('should display game information in table format', () => {
       render(<NominationsTable nominations={mockNominations} />);
 
       // Check first game
       expect(screen.getByText('Game One')).toBeInTheDocument();
-      expect(screen.getByText('SNES')).toBeInTheDocument();
       expect(screen.getByText('1995')).toBeInTheDocument();
-      expect(screen.getByText('Developer One')).toBeInTheDocument();
+      expect(screen.getByText('Unknown')).toBeInTheDocument(); // Nominated By
+      expect(screen.getByText('Nominated')).toBeInTheDocument(); // Status
 
       // Check second game
       expect(screen.getByText('Game Two')).toBeInTheDocument();
-      expect(screen.getByText('PSX')).toBeInTheDocument();
       expect(screen.getByText('1997')).toBeInTheDocument();
-      expect(screen.getByText('Developer Two')).toBeInTheDocument();
+      // NominationsTable doesn't show system or developer
+      expect(screen.queryByText('SNES')).not.toBeInTheDocument();
+      expect(screen.queryByText('PSX')).not.toBeInTheDocument();
     });
 
     it('should handle missing game information gracefully', () => {
