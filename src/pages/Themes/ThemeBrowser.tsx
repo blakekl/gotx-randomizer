@@ -58,19 +58,6 @@ const ThemeBrowser = observer(() => {
     setSelectedTheme(theme);
   };
 
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return <span className="tag is-success">Completed</span>;
-      case 'active':
-        return <span className="tag is-primary">Active</span>;
-      case 'upcoming':
-        return <span className="tag is-warning">Upcoming</span>;
-      default:
-        return <span className="tag is-light">Unknown</span>;
-    }
-  };
-
   return (
     <>
       <h1 className="title is-1 has-text-centered">Theme Browser</h1>
@@ -125,7 +112,6 @@ const ThemeBrowser = observer(() => {
               <th>Theme</th>
               <th>Type</th>
               <th>Date</th>
-              <th>Status</th>
               <th className="has-text-right">Nominations</th>
             </tr>
           </thead>
@@ -157,7 +143,6 @@ const ThemeBrowser = observer(() => {
                     ? new Date(theme.creation_date).toLocaleDateString()
                     : 'TBD'}
                 </td>
-                <td>{getStatusBadge(theme.status)}</td>
                 <td className="has-text-right">
                   {String(theme.nominationCount || 0)}
                 </td>
@@ -197,10 +182,6 @@ const ThemeBrowser = observer(() => {
                   {selectedTheme.creation_date
                     ? new Date(selectedTheme.creation_date).toLocaleDateString()
                     : 'TBD'}
-                </p>
-                <p>
-                  <strong>Status:</strong>{' '}
-                  {getStatusBadge(selectedTheme.status)}
                 </p>
                 {selectedTheme.description && (
                   <p>
