@@ -20,7 +20,7 @@ export const ThemeHeader: React.FC<ThemeHeaderProps> = ({ theme }) => {
                 {theme.title || 'Upcoming Theme'}
               </h1>
               <p className="subtitle is-4 mt-2">
-                {getThemeTypeDisplay(String(theme.nomination_type))}
+                {getThemeTypeDisplay(theme.nomination_type)}
               </p>
             </div>
           </div>
