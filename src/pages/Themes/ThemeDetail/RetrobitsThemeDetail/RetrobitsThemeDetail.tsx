@@ -1,6 +1,8 @@
-import React from 'react';
-import { NominationWithGame } from '../../../../models/game';
+import React, { useState } from 'react';
+import { NominationWithGame, Game } from '../../../../models/game';
 import { WinnerCard } from '../WinnerCard/WinnerCard';
+import GameDisplay from '../../../Randomizer/GameDisplay/GameDisplay';
+import classNames from 'classnames';
 
 interface RetrobitsThemeDetailProps {
   nominations: NominationWithGame[];
@@ -9,6 +11,8 @@ interface RetrobitsThemeDetailProps {
 export const RetrobitsThemeDetail: React.FC<RetrobitsThemeDetailProps> = ({
   nominations,
 }) => {
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+
   // Retrobits themes have only one winner and no other nominations
   const winners = nominations.filter((nom) => nom.winner);
 
@@ -27,7 +31,11 @@ export const RetrobitsThemeDetail: React.FC<RetrobitsThemeDetailProps> = ({
           {/* Single winner card - centered and prominent */}
           <div className="columns is-centered is-vcentered">
             <div className="column is-one-third">
-              <WinnerCard winner={winners[0]} showCategory={false} />
+              <WinnerCard
+                winner={winners[0]}
+                showCategory={false}
+                onGameClick={setSelectedGame}
+              />
             </div>
           </div>
         </div>
@@ -44,6 +52,22 @@ export const RetrobitsThemeDetail: React.FC<RetrobitsThemeDetailProps> = ({
           </div>
         </div>
       )}
+
+      {/* Game Detail Modal */}
+      <div className={classNames('modal', { 'is-active': selectedGame })}>
+        <div
+          className="modal-background"
+          onClick={() => setSelectedGame(null)}
+        ></div>
+        <div className="modal-content">
+          {selectedGame && <GameDisplay game={selectedGame} />}
+        </div>
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={() => setSelectedGame(null)}
+        ></button>
+      </div>
     </>
   );
 };
