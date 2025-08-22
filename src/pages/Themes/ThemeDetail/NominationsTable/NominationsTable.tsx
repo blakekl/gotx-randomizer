@@ -1,17 +1,31 @@
-import React from 'react';
-import { NominationWithGame, getBestGameTitle } from '../../../../models/game';
+import React, { useState } from 'react';
+import {
+  NominationWithGame,
+  getBestGameTitle,
+  Game,
+} from '../../../../models/game';
+import classNames from 'classnames';
 
 interface NominationsTableProps {
   nominations: NominationWithGame[];
   showCategories?: boolean; // For GotM themes that group by year categories
   title?: string; // Custom title for the section
+  onGameClick?: (game: Game) => void; // Callback when a game row is clicked
 }
 
 export const NominationsTable: React.FC<NominationsTableProps> = ({
   nominations,
   showCategories = false,
   title = 'All Nominations',
+  onGameClick,
 }) => {
+  const [hoveredGameId, setHoveredGameId] = useState<number | null>(null);
+
+  const handleRowClick = (nomination: NominationWithGame) => {
+    if (onGameClick) {
+      onGameClick(nomination.game);
+    }
+  };
   if (nominations.length === 0) {
     return null;
   }
@@ -60,7 +74,16 @@ export const NominationsTable: React.FC<NominationsTableProps> = ({
                 </thead>
                 <tbody>
                   {categoryNominations.map((nomination, index) => (
-                    <tr key={index}>
+                    <tr
+                      key={index}
+                      onClick={() => handleRowClick(nomination)}
+                      onMouseEnter={() => setHoveredGameId(nomination.game.id)}
+                      onMouseLeave={() => setHoveredGameId(null)}
+                      className={classNames({
+                        'is-selected': hoveredGameId === nomination.game.id,
+                      })}
+                      style={{ cursor: onGameClick ? 'pointer' : 'default' }}
+                    >
                       <td>
                         <strong>{getBestGameTitle(nomination.game)}</strong>
                       </td>
@@ -111,7 +134,16 @@ export const NominationsTable: React.FC<NominationsTableProps> = ({
         </thead>
         <tbody>
           {nominations.map((nomination, index) => (
-            <tr key={index}>
+            <tr
+              key={index}
+              onClick={() => handleRowClick(nomination)}
+              onMouseEnter={() => setHoveredGameId(nomination.game.id)}
+              onMouseLeave={() => setHoveredGameId(null)}
+              className={classNames({
+                'is-selected': hoveredGameId === nomination.game.id,
+              })}
+              style={{ cursor: onGameClick ? 'pointer' : 'default' }}
+            >
               <td>
                 <strong>{getBestGameTitle(nomination.game)}</strong>
               </td>
