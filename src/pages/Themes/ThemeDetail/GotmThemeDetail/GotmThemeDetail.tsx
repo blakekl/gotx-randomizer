@@ -1,7 +1,9 @@
-import React from 'react';
-import { NominationWithGame } from '../../../../models/game';
+import React, { useState } from 'react';
+import { NominationWithGame, Game } from '../../../../models/game';
 import { WinnerCard } from '../WinnerCard/WinnerCard';
 import { NominationsTable } from '../NominationsTable/NominationsTable';
+import GameDisplay from '../../../Randomizer/GameDisplay/GameDisplay';
+import classNames from 'classnames';
 
 interface GotmThemeDetailProps {
   nominations: NominationWithGame[];
@@ -10,6 +12,8 @@ interface GotmThemeDetailProps {
 export const GotmThemeDetail: React.FC<GotmThemeDetailProps> = ({
   nominations,
 }) => {
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+
   // Group nominations by winner status
   const winners = nominations.filter((nom) => nom.winner);
 
@@ -29,7 +33,11 @@ export const GotmThemeDetail: React.FC<GotmThemeDetailProps> = ({
           <div className="columns is-multiline">
             {winners.map((winner, index) => (
               <div key={index} className="column is-one-third">
-                <WinnerCard winner={winner} showCategory={true} />
+                <WinnerCard
+                  winner={winner}
+                  showCategory={true}
+                  onGameClick={setSelectedGame}
+                />
               </div>
             ))}
           </div>
@@ -41,7 +49,24 @@ export const GotmThemeDetail: React.FC<GotmThemeDetailProps> = ({
         nominations={nominations}
         showCategories={true}
         title="All Nominations"
+        onGameClick={setSelectedGame}
       />
+
+      {/* Game Detail Modal */}
+      <div className={classNames('modal', { 'is-active': selectedGame })}>
+        <div
+          className="modal-background"
+          onClick={() => setSelectedGame(null)}
+        ></div>
+        <div className="modal-content">
+          {selectedGame && <GameDisplay game={selectedGame} />}
+        </div>
+        <button
+          className="modal-close is-large"
+          aria-label="close"
+          onClick={() => setSelectedGame(null)}
+        ></button>
+      </div>
     </>
   );
 };
