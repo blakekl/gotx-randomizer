@@ -30,13 +30,13 @@ const Chart = observer(({ data, title, name }: ChartProps) => {
       series: [
         {
           name: name,
-          data: data.map((x) => x.value).slice(indexRange[0], indexRange[1]),
+          data:
+            data?.map((x) => x.value).slice(indexRange[0], indexRange[1]) || [],
         },
       ],
       xAxis: {
-        categories: data
-          .map((x) => x.label)
-          .slice(indexRange[0], indexRange[1]),
+        categories:
+          data?.map((x) => x.label).slice(indexRange[0], indexRange[1]) || [],
       },
       legend: {
         enabled: false,
@@ -91,7 +91,7 @@ const Chart = observer(({ data, title, name }: ChartProps) => {
         </div>
         <HighchartsReact highcharts={Highcharts} options={chartOptions} />
         <Pagination
-          count={data.length}
+          count={data?.length || 0}
           onPageChange={setIndexRange}
         ></Pagination>
         <hr />
