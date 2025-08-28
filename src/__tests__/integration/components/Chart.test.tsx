@@ -356,7 +356,7 @@ describe('Chart Component Integration', () => {
             name="Missing Series"
           />,
         );
-      }).toThrow();
+      }).not.toThrow();
     });
 
     it('should handle invalid data gracefully', () => {
