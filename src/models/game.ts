@@ -586,8 +586,9 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
     developer,
     genre,
     img_url,
-    time_to_beat,
-    // year_category - not used in this DTO but part of query result
+    time_to_beat, // year_category - not used
+    ,
+    nomination_count,
   ] = data;
 
   const game: Game = {
@@ -618,7 +619,7 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
     nomination_type,
     status: 'current',
     displayTitle: theme_title,
-    nominationCount: 0,
+    nominationCount: nomination_count || 0,
     winners: [game],
     categoryBreakdown: {},
   };
