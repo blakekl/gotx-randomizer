@@ -5,7 +5,7 @@ import ThemeBrowser from './ThemeBrowser';
 const Themes = observer(() => {
   return (
     <>
-      <h1 className="title is-1 has-text-centered">Theme Browser</h1>
+      <h1 className="title is-1 has-text-centered">Themes</h1>
 
       {/* Current Themes Dashboard */}
       <CurrentThemes />

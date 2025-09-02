@@ -33,7 +33,7 @@ const CurrentThemes = observer(() => {
 
   return (
     <div>
-      <h2 className="title is-3">Current Themes</h2>
+      <h2 className="title is-3">Current GotX Games</h2>
       <div className="columns is-multiline">
         {currentThemes.map((currentTheme, index) => (
           <CurrentThemeCard key={index} currentTheme={currentTheme} />
