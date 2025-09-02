@@ -450,7 +450,8 @@ SELECT
   g.genre,
   g.img_url,
   g.time_to_beat,
-  'Unknown' AS year_category
+  'Unknown' AS year_category,
+  (SELECT COUNT(*) FROM [public.nominations] n3 WHERE n3.theme_id = t.id) as nomination_count
 FROM [public.nominations] n 
 INNER JOIN [public.games] g ON n.game_id = g.id
 INNER JOIN [public.themes] t ON n.theme_id = t.id
