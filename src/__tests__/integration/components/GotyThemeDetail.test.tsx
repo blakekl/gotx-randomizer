@@ -1,9 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import { GotyThemeDetail } from '../../../pages/Themes/ThemeDetail/GotyThemeDetail/GotyThemeDetail';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame, NominationType } from '../../../models/game';
 
 const mockNominations: NominationWithGame[] = [
   // GotY Winner
@@ -12,7 +11,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 1,
     user_id: 1,
-    winner: 1,
+    nomination_type: NominationType.GOTY,
+    winner: true,
     description: '2024 GotY Winner, Game of the Year',
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-01-01T00:00:00Z',
@@ -42,7 +42,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 2,
     user_id: 2,
-    winner: 1,
+    nomination_type: NominationType.GOTY,
+    winner: true,
     description: '2024 GotY Runner up, Best Platformer/ Action-Platformer',
     created_at: '2024-01-02T00:00:00Z',
     updated_at: '2024-01-02T00:00:00Z',
@@ -72,7 +73,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 3,
     user_id: 3,
-    winner: 1,
+    nomination_type: NominationType.GOTY,
+    winner: true,
     description: '2024 GotY Runner up, Best RPG/ARPG',
     created_at: '2024-01-03T00:00:00Z',
     updated_at: '2024-01-03T00:00:00Z',
@@ -174,7 +176,7 @@ describe('GotyThemeDetail Component', () => {
     it('should handle no winners gracefully', () => {
       const nominationsWithoutWinners = mockNominations.map((nom) => ({
         ...nom,
-        winner: 0,
+        winner: false,
       }));
 
       render(<GotyThemeDetail nominations={nominationsWithoutWinners} />);

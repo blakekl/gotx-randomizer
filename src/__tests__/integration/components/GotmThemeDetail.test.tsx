@@ -1,9 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import { GotmThemeDetail } from '../../../pages/Themes/ThemeDetail/GotmThemeDetail/GotmThemeDetail';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame, NominationType } from '../../../models/game';
 
 const mockNominations: NominationWithGame[] = [
   // Winner for pre 96 category
@@ -12,7 +11,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 1,
     user_id: 1,
-    winner: 1,
+    nomination_type: NominationType.GOTM,
+    winner: true,
     description: 'Winner nomination',
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-01-01T00:00:00Z',
@@ -42,7 +42,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 2,
     user_id: 2,
-    winner: 1,
+    nomination_type: NominationType.GOTM,
+    winner: true,
     description: 'Another winner',
     created_at: '2024-01-02T00:00:00Z',
     updated_at: '2024-01-02T00:00:00Z',
@@ -72,7 +73,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 3,
     user_id: 3,
-    winner: 0,
+    nomination_type: NominationType.GOTM,
+    winner: false,
     description: 'Regular nomination',
     created_at: '2024-01-03T00:00:00Z',
     updated_at: '2024-01-03T00:00:00Z',
@@ -156,7 +158,7 @@ describe('GotmThemeDetail Component', () => {
     it('should handle no winners gracefully', () => {
       const nominationsWithoutWinners = mockNominations.map((nom) => ({
         ...nom,
-        winner: 0,
+        winner: false,
       }));
 
       render(<GotmThemeDetail nominations={nominationsWithoutWinners} />);

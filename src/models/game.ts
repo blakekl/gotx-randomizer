@@ -417,7 +417,7 @@ export const themeWithStatusDto = (data: any[]): ThemeWithStatus => {
       `Upcoming ${String(nomination_type).toUpperCase()} Theme`,
     nominationCount: nomination_count || 0,
     winners: [], // Will be populated separately
-    categoryBreakdown: {}, // Will be computed separately
+    categoryBreakdown: { 'pre 96': 0 }, // Will be computed separately
   } as ThemeWithStatus;
 };
 
@@ -621,7 +621,7 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
     displayTitle: theme_title,
     nominationCount: nomination_count || 0,
     winners: [game],
-    categoryBreakdown: {},
+    categoryBreakdown: { 'pre 96': 0 },
   };
 
   return {

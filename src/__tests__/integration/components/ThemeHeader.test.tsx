@@ -1,22 +1,22 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import { ThemeHeader } from '../../../pages/Themes/ThemeDetail/ThemeHeader/ThemeHeader';
-import { ThemeWithStatus } from '../../../models/game';
+import { ThemeWithStatus, NominationType } from '../../../models/game';
 
 const mockTheme: ThemeWithStatus = {
   id: 1,
   title: 'Test Theme Title',
-  nomination_type: 'gotm',
+  nomination_type: NominationType.GOTM,
   creation_date: '2024-01-01',
   description: 'Test theme description',
   created_at: '2024-01-01T00:00:00Z',
   updated_at: '2024-01-01T00:00:00Z',
-  status: 'completed' as const,
-  display_title: 'Test Theme Title',
-  nominationCount: 25, // Use nominationCount instead of nomination_count
-  winner_count: 3,
+  status: 'historical' as const,
+  displayTitle: 'Test Theme Title',
+  nominationCount: 25,
+  winners: [],
+  categoryBreakdown: { 'pre 96': 0 },
 };
 
 describe('ThemeHeader Component', () => {
@@ -50,7 +50,7 @@ describe('ThemeHeader Component', () => {
     it('should render Retrobit theme correctly', () => {
       const retrobitTheme = {
         ...mockTheme,
-        nomination_type: 'retro', // Use 'retro' not 'retrobit'
+        nomination_type: NominationType.RETROBIT,
       };
 
       render(<ThemeHeader theme={retrobitTheme} />);
@@ -64,7 +64,7 @@ describe('ThemeHeader Component', () => {
     it('should render RPG theme correctly', () => {
       const rpgTheme = {
         ...mockTheme,
-        nomination_type: 'rpg',
+        nomination_type: NominationType.RPG,
       };
 
       render(<ThemeHeader theme={rpgTheme} />);
@@ -78,7 +78,7 @@ describe('ThemeHeader Component', () => {
     it('should render GotY theme correctly', () => {
       const gotyTheme = {
         ...mockTheme,
-        nomination_type: 'goty',
+        nomination_type: NominationType.GOTY,
       };
 
       render(<ThemeHeader theme={gotyTheme} />);
@@ -92,7 +92,7 @@ describe('ThemeHeader Component', () => {
     it('should render GOTWOTY theme correctly', () => {
       const gotwotyTheme = {
         ...mockTheme,
-        nomination_type: 'gotwoty',
+        nomination_type: NominationType.GOTWOTY,
       };
 
       render(<ThemeHeader theme={gotwotyTheme} />);

@@ -52,7 +52,7 @@ const ThemeTable = ({
                 </div>
               )}
             </td>
-            <td>{getThemeTypeDisplay(String(theme.nomination_type))}</td>
+            <td>{getThemeTypeDisplay(theme.nomination_type)}</td>
             <td>
               {theme.creation_date
                 ? new Date(theme.creation_date).toLocaleDateString()

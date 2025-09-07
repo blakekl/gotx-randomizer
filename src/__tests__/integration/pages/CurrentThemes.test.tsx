@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import CurrentThemes from '../../../pages/Themes/CurrentThemes';
 import { NominationType } from '../../../models/game';
 
@@ -31,15 +30,25 @@ describe('CurrentThemes Component Integration', () => {
         theme: {
           id: 1,
           title: 'Test Theme',
-          type: 'gotm',
-          status: 'active',
-          created_at: '2025-01-01',
-          updated_at: '2025-01-01',
+          nomination_type: NominationType.GOTM,
+          creation_date: '2025-01-01',
+          description: 'Test theme description',
+          created_at: '2025-01-01T00:00:00Z',
+          updated_at: '2025-01-01T00:00:00Z',
+          status: 'current' as const,
+          displayTitle: 'Test Theme',
+          nominationCount: 5,
+          winners: [],
+          categoryBreakdown: { 'pre 96': 0 },
         },
         winners: [
           {
             id: 1,
+            title_world: 'Test Game',
             title_usa: 'Test Game',
+            title_eu: 'Test Game',
+            title_jap: 'Test Game',
+            title_other: 'Test Game',
             year: 2020,
             system: 'NES',
             developer: 'Test Dev',

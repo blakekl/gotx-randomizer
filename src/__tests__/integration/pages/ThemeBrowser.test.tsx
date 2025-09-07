@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import ThemeBrowser from '../../../pages/Themes/ThemeBrowser';
 
 describe('ThemeBrowser Component Integration', () => {

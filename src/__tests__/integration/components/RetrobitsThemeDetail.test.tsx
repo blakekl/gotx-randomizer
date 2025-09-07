@@ -1,9 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import { RetrobitsThemeDetail } from '../../../pages/Themes/ThemeDetail/RetrobitsThemeDetail/RetrobitsThemeDetail';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame, NominationType } from '../../../models/game';
 
 const mockNominations: NominationWithGame[] = [
   // Single winner
@@ -12,7 +11,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 1,
     user_id: 1,
-    winner: 1,
+    nomination_type: NominationType.RETROBIT,
+    winner: true,
     description: 'Retrobit winner',
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-01-01T00:00:00Z',
@@ -93,7 +93,7 @@ describe('RetrobitsThemeDetail Component', () => {
     it('should show empty state when no winner', () => {
       const nominationsWithoutWinner = mockNominations.map((nom) => ({
         ...nom,
-        winner: 0,
+        winner: false,
       }));
 
       render(<RetrobitsThemeDetail nominations={nominationsWithoutWinner} />);

@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import ThemeDetail from '../../../pages/Themes/ThemeDetail/ThemeDetail';
 import { NominationType } from '../../../models/game';
 
@@ -77,15 +76,16 @@ const mockThemeData = {
   theme: {
     id: 1,
     title: 'Test Theme',
-    nomination_type: 'gotm',
+    nomination_type: NominationType.GOTM,
     creation_date: '2024-01-01',
     description: 'Test theme description',
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-01-01T00:00:00Z',
-    status: 'completed' as const,
-    display_title: 'Test Theme',
-    nomination_count: 5,
-    winner_count: 1,
+    status: 'historical' as const,
+    displayTitle: 'Test Theme',
+    nominationCount: 5,
+    winners: [],
+    categoryBreakdown: { 'pre 96': 0 },
   },
   nominations: [
     {
@@ -93,7 +93,8 @@ const mockThemeData = {
       theme_id: 1,
       game_id: 1,
       user_id: 1,
-      winner: 1,
+      nomination_type: NominationType.GOTM,
+      winner: true,
       description: 'Test nomination',
       created_at: '2024-01-01T00:00:00Z',
       updated_at: '2024-01-01T00:00:00Z',

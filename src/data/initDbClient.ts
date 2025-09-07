@@ -347,7 +347,7 @@ const initDbClient = async () => {
     getGotyThemesForYear: (year: number) => {
       return (
         db
-          ?.exec(getGotyThemesForYear(year))
+          ?.exec(getGotyThemesForYear(year.toString()))
           .flatMap((x) => x.values)
           .map((x) => themeWithStatusDto(x)) ?? []
       );

@@ -18,7 +18,7 @@ const ThemeDetailModal = ({ theme, onClose }: ThemeDetailModalProps) => {
             <div className="content">
               <p>
                 <strong>Type:</strong>{' '}
-                {getThemeTypeDisplay(String(theme.nomination_type))}
+                {getThemeTypeDisplay(theme.nomination_type)}
               </p>
               <p>
                 <strong>Date:</strong>{' '}

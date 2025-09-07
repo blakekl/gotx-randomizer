@@ -1,9 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import { NominationsTable } from '../../../pages/Themes/ThemeDetail/NominationsTable/NominationsTable';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame, NominationType } from '../../../models/game';
 
 const mockNominations: NominationWithGame[] = [
   {
@@ -11,7 +10,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 1,
     user_id: 1,
-    winner: 0,
+    nomination_type: NominationType.GOTM,
+    winner: false,
     description: 'Great game nomination',
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-01-01T00:00:00Z',
@@ -40,7 +40,8 @@ const mockNominations: NominationWithGame[] = [
     theme_id: 1,
     game_id: 2,
     user_id: 2,
-    winner: 0,
+    nomination_type: NominationType.GOTM,
+    winner: false,
     description: 'Another great nomination',
     created_at: '2024-01-02T00:00:00Z',
     updated_at: '2024-01-02T00:00:00Z',

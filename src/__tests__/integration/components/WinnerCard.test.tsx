@@ -1,16 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import { render } from '../../../test-utils/test-utils';
-import React from 'react';
 import { WinnerCard } from '../../../pages/Themes/ThemeDetail/WinnerCard/WinnerCard';
-import { NominationWithGame } from '../../../models/game';
+import { NominationWithGame, NominationType } from '../../../models/game';
 
 const mockWinner: NominationWithGame = {
   id: 1,
   theme_id: 1,
   game_id: 1,
   user_id: 1,
-  winner: 1,
+  nomination_type: NominationType.GOTY,
+  winner: true,
   description: '2024 GotY Winner, Best Art Style',
   created_at: '2024-01-01T00:00:00Z',
   updated_at: '2024-01-01T00:00:00Z',
