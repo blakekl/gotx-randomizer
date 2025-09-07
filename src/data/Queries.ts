@@ -396,3 +396,205 @@ export const nominationCountByThemeByCategory = `SELECT
 
 export const getGameById = (id: number) =>
   `SELECT * FROM [public.games] WHERE id = "${id}" LIMIT 1;`;
+
+/**
+ * Theme browser queries.
+ */
+
+// Get all themes with status and privacy handling
+export const getThemesWithStatus = `
+SELECT 
+  t.id,
+  t.nomination_type,
+  t.creation_date,
+  t.description,
+  t.created_at,
+  t.updated_at,
+  CASE 
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') THEN 'upcoming'
+    WHEN EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t.id AND n2.winner = 1) THEN 'completed'
+    ELSE 'active'
+  END as status,
+  CASE 
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') THEN NULL  -- Privacy: hide upcoming theme titles
+    ELSE t.title
+  END as display_title,
+  COUNT(n.id) as nomination_count,
+  COUNT(CASE WHEN n.winner = 1 THEN 1 END) as winner_count
+FROM [public.themes] t
+LEFT JOIN [public.nominations] n ON t.id = n.theme_id
+WHERE t.creation_date <= strftime('%Y-%m-%d', 'now')  -- Privacy: exclude upcoming themes entirely
+GROUP BY t.id, t.title, t.nomination_type, t.creation_date, t.description, t.created_at, t.updated_at
+ORDER BY t.creation_date DESC, t.nomination_type;`;
+
+// Get current winners with category information (for multi-winner support)
+export const getCurrentWinners = `
+SELECT
+  n.nomination_type,
+  t.title as theme_title,
+  t.id as theme_id,
+  t.creation_date,
+  t.description as theme_description,
+  t.created_at as theme_created_at,
+  t.updated_at as theme_updated_at,
+  g.title_world,
+  g.title_usa,
+  g.title_eu,
+  g.title_jap,
+  g.title_other,
+  g.id as game_id,
+  g.screenscraper_id,
+  g.year,
+  g.system,
+  g.developer,
+  g.genre,
+  g.img_url,
+  g.time_to_beat,
+  'Unknown' AS year_category,
+  (SELECT COUNT(*) FROM [public.nominations] n3 WHERE n3.theme_id = t.id) as nomination_count
+FROM [public.nominations] n 
+INNER JOIN [public.games] g ON n.game_id = g.id
+INNER JOIN [public.themes] t ON n.theme_id = t.id
+WHERE n.winner = 1
+AND t.creation_date <= strftime('%Y-%m-%d', 'now')
+AND t.id IN (
+    SELECT t2.id FROM [public.themes] t2
+    INNER JOIN [public.nominations] n2 ON t2.id = n2.theme_id AND n2.winner = 1
+    WHERE t2.nomination_type = t.nomination_type
+    AND t2.creation_date <= strftime('%Y-%m-%d', 'now')
+    ORDER BY t2.creation_date DESC, t2.id DESC
+    LIMIT 1
+)
+ORDER BY t.creation_date DESC, n.nomination_type;`;
+
+// Get upcoming themes (privacy-protected)
+export const getUpcomingThemes = `
+SELECT
+  t.id,
+  t.nomination_type,
+  t.creation_date,
+  t.description,
+  t.created_at,
+  t.updated_at,
+  NULL as title, -- Privacy: hide theme titles
+  COUNT(n.id) as nomination_count
+FROM [public.themes] t
+LEFT JOIN [public.nominations] n ON t.id = n.theme_id
+WHERE t.creation_date > strftime('%Y-%m-%d', 'now') 
+   OR (t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
+       SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t.id AND n2.winner = 1
+   ))
+GROUP BY t.id, t.nomination_type, t.creation_date, t.description, t.created_at, t.updated_at
+ORDER BY t.creation_date ASC, t.nomination_type;`;
+
+// Get theme detail with categories (parameterized function)
+export const getThemeDetailWithCategories = (themeId: number) => `
+SELECT 
+  t.id,
+  CASE 
+    WHEN t.creation_date > strftime('%Y-%m-%d', 'now') OR (
+      t.creation_date <= strftime('%Y-%m-%d', 'now') AND NOT EXISTS(
+        SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = t.id AND n3.winner = 1
+      )
+    ) THEN NULL  -- Privacy: hide upcoming theme titles
+    ELSE t.title
+  END as title,
+  t.nomination_type,
+  t.creation_date,
+  t.description,
+  g.title_world,
+  g.title_usa,
+  g.title_eu,
+  g.title_jap,
+  g.title_other,
+  g.id as game_id,
+  g.year,
+  g.screenscraper_id,
+  g.system,
+  g.developer,
+  g.genre,
+  g.img_url,
+  g.time_to_beat,
+  n.winner,
+  n.description as nomination_description,
+  u.name as user_name,
+  CASE 
+    WHEN t.id < 235 AND g.year < 1996 THEN 'pre 96'
+    WHEN t.id < 235 AND g.year BETWEEN 1996 AND 1999 THEN '96-99'
+    WHEN t.id < 235 AND g.year >= 2000 THEN '2k+'
+    WHEN t.id >= 235 AND g.year < 1996 THEN 'pre 96'
+    WHEN t.id >= 235 AND g.year BETWEEN 1996 AND 2001 THEN '96-01'
+    WHEN t.id >= 235 AND g.year >= 2002 THEN '02+'
+    ELSE 'Unknown'
+  END AS year_category
+FROM [public.themes] t
+INNER JOIN [public.nominations] n ON t.id = n.theme_id
+INNER JOIN [public.games] g ON n.game_id = g.id
+LEFT JOIN [public.users] u ON n.user_id = u.id
+WHERE t.id = ${themeId}
+ORDER BY n.winner DESC, g.year ASC;`;
+
+// GotY themes grouped by year (same creation_date, multiple themes)
+export const getGotyThemesByYear = `
+SELECT 
+  t.creation_date,
+  strftime('%Y', t.creation_date) as year,
+  COUNT(DISTINCT t.id) as theme_count,
+  COUNT(CASE WHEN n.winner = 1 THEN 1 END) as total_winners,
+  GROUP_CONCAT(DISTINCT t.title) as category_titles
+FROM [public.themes] t
+LEFT JOIN [public.nominations] n ON t.id = n.theme_id
+WHERE t.nomination_type = 'goty'
+GROUP BY t.creation_date
+ORDER BY t.creation_date DESC;`;
+
+// Get all themes for a specific GotY year
+export const getGotyThemesForYear = (creation_date: string) => `
+SELECT 
+  t.id,
+  t.title,
+  t.description,
+  t.creation_date,
+  COUNT(n.id) as nomination_count,
+  COUNT(CASE WHEN n.winner = 1 THEN 1 END) as winner_count,
+  ${coalescedTitle} as winner_title,
+  g.id as winner_game_id,
+  g.screenscraper_id as winner_screenscraper_id
+FROM [public.themes] t
+LEFT JOIN [public.nominations] n ON t.id = n.theme_id
+LEFT JOIN [public.games] g ON n.game_id = g.id AND n.winner = 1
+WHERE t.nomination_type = 'goty' 
+AND t.creation_date = '${creation_date}'
+GROUP BY t.id, t.title, t.description, t.creation_date, g.id
+ORDER BY t.title;`;
+
+// Get theme winners with category information (for GotM multiple winners)
+export const getThemeWinners = (themeId: number) => `
+SELECT 
+  ${coalescedTitle},
+  g.id as game_id,
+  g.year,
+  g.screenscraper_id,
+  g.system,
+  g.developer,
+  g.genre,
+  g.img_url,
+  g.time_to_beat,
+  n.description as nomination_description,
+  u.name as user_name,
+  CASE 
+    WHEN t.id < 235 AND g.year < 1996 THEN 'pre 96'
+    WHEN t.id < 235 AND g.year BETWEEN 1996 AND 1999 THEN '96-99'
+    WHEN t.id < 235 AND g.year >= 2000 THEN '2k+'
+    WHEN t.id >= 235 AND g.year < 1996 THEN 'pre 96'
+    WHEN t.id >= 235 AND g.year BETWEEN 1996 AND 2001 THEN '96-01'
+    WHEN t.id >= 235 AND g.year >= 2002 THEN '02+'
+    ELSE 'Unknown'
+  END AS year_category
+FROM [public.nominations] n
+INNER JOIN [public.games] g ON n.game_id = g.id
+INNER JOIN [public.themes] t ON n.theme_id = t.id
+LEFT JOIN [public.users] u ON n.user_id = u.id
+WHERE n.theme_id = ${themeId} 
+AND n.winner = 1
+ORDER BY year_category, g.year ASC;`;

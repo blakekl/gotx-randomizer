@@ -1,9 +1,11 @@
 import { action, makeAutoObservable, observable } from 'mobx';
+import { RootStore } from './RootStore';
 
 class SettingsStore {
   hltbFilter = [0, Number.MAX_SAFE_INTEGER];
   hltbMax = Number.MAX_SAFE_INTEGER;
   hltbMin = 0;
+  myUserName = '';
   hiddenGames: number[] = [];
   includeGotmRunnerUp = true;
   includeGotmWinners = true;
@@ -13,9 +15,12 @@ class SettingsStore {
   includeRpgWinners = true;
 
   private readonly HIDDEN_KEY = 'completed';
+  private readonly USER_NAME = 'userName';
 
-  constructor() {
+  //@ts-expect-error rootStore is not currently used, but could be. Remove this if you start using rootStore
+  constructor(private rootStore: RootStore) {
     makeAutoObservable(this, {
+      myUserName: observable,
       hiddenGames: observable,
       hltbFilter: observable,
       hltbMax: observable,
@@ -39,9 +44,15 @@ class SettingsStore {
       setHltbMin: action,
     });
     this.hiddenGames = JSON.parse(
-      localStorage?.getItem(this.HIDDEN_KEY) || '[]',
+      localStorage?.getItem(this.HIDDEN_KEY) ?? '[]',
     ) as number[];
+    this.myUserName = localStorage.getItem(this.USER_NAME) ?? '';
   }
+
+  setMyUserName = (userName: string) => {
+    this.myUserName = userName;
+    localStorage?.setItem(this.USER_NAME, this.myUserName);
+  };
 
   setHltbFilter = (filter: number[]) => {
     if (filter[0] >= this.hltbMin && filter[1] <= this.hltbMax) {

@@ -85,8 +85,9 @@ describe('GameDetails Component Integration', () => {
       renderWithStores('1');
 
       await waitFor(() => {
-        // The component shows the first available title with flag (using actual displayed data)
-        expect(screen.getByText(/🇺🇸 Test Game/)).toBeInTheDocument();
+        // The component shows the title text and flag icon separately
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+        expect(document.querySelector('.fi-us')).toBeInTheDocument();
       });
     });
 
@@ -155,8 +156,9 @@ describe('GameDetails Component Integration', () => {
       renderWithStores('1');
 
       await waitFor(() => {
-        // Main title with flag (using actual displayed data)
-        expect(screen.getByText(/🇺🇸 Test Game/)).toBeInTheDocument();
+        // Main title with flag icon and text separately
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+        expect(document.querySelector('.fi-us')).toBeInTheDocument();
       });
     });
 
@@ -164,8 +166,9 @@ describe('GameDetails Component Integration', () => {
       renderWithStores('1');
 
       await waitFor(() => {
-        // Should display the available title
-        expect(screen.getByText(/🇺🇸 Test Game/)).toBeInTheDocument();
+        // Should display the available title and flag icon
+        expect(screen.getByText('Test Game')).toBeInTheDocument();
+        expect(document.querySelector('.fi-us')).toBeInTheDocument();
         // Should have a title element
         const titleElement = screen.getByRole('heading', { level: 1 });
         expect(titleElement).toBeInTheDocument();

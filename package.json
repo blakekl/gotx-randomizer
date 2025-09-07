@@ -14,7 +14,7 @@
     "prettier": "prettier . --write",
     "preview": "vite preview",
     "publish": "npm run build && npm run deploy",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",

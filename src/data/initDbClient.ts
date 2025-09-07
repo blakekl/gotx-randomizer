@@ -36,6 +36,14 @@ import {
   getNominationDataByUserId,
   getCompletionsByUserId,
   getGameById,
+  // Theme browser queries
+  getThemesWithStatus,
+  getCurrentWinners,
+  getUpcomingThemes,
+  getThemeDetailWithCategories,
+  getGotyThemesByYear,
+  getGotyThemesForYear,
+  getThemeWinners,
 } from '../data/Queries';
 import {
   completionsByUserIdDto,
@@ -43,6 +51,10 @@ import {
   labeledStatDto,
   nominationListItemDto,
   userListItemDto,
+  // Theme browser DTOs
+  themeWithStatusDto,
+  nominationWithGameDto,
+  currentThemeDto,
 } from '../models/game';
 
 const initDbClient = async () => {
@@ -270,6 +282,82 @@ const initDbClient = async () => {
           ?.exec(getGameById(id))
           .pop()
           ?.values.map((x) => gameDto(x))[0] ?? null
+      );
+    },
+    // Theme browser methods
+    getThemesWithStatus: () => {
+      return (
+        db
+          ?.exec(getThemesWithStatus)
+          .flatMap((x) => x.values)
+          .map((x) => themeWithStatusDto(x)) ?? []
+      );
+    },
+    getCurrentWinners: () => {
+      return (
+        db
+          ?.exec(getCurrentWinners)
+          .flatMap((x) => x.values)
+          .map((x) => currentThemeDto(x)) ?? []
+      );
+    },
+    getUpcomingThemes: () => {
+      return (
+        db
+          ?.exec(getUpcomingThemes)
+          .flatMap((x) => x.values)
+          .map((x) => themeWithStatusDto(x)) ?? []
+      );
+    },
+    getThemeDetailWithCategories: (themeId: number) => {
+      const rawResults =
+        db
+          ?.exec(getThemeDetailWithCategories(themeId))
+          .flatMap((x) => x.values) ?? [];
+
+      if (rawResults.length === 0) {
+        return { theme: null, nominations: [] };
+      }
+
+      // Extract theme info from first row
+      const firstRow = rawResults[0];
+      const theme = {
+        id: firstRow[0],
+        title: firstRow[1],
+        nomination_type: firstRow[2],
+        creation_date: firstRow[3],
+        description: firstRow[4],
+        nominationCount: rawResults.length,
+        status: 'detailed' as const,
+      };
+
+      // Map all rows to nominations
+      const nominations = rawResults.map((x) => nominationWithGameDto(x));
+
+      return { theme, nominations };
+    },
+    getGotyThemesByYear: () => {
+      return (
+        db
+          ?.exec(getGotyThemesByYear)
+          .flatMap((x) => x.values)
+          .map((x) => themeWithStatusDto(x)) ?? []
+      );
+    },
+    getGotyThemesForYear: (year: number) => {
+      return (
+        db
+          ?.exec(getGotyThemesForYear(year))
+          .flatMap((x) => x.values)
+          .map((x) => themeWithStatusDto(x)) ?? []
+      );
+    },
+    getThemeWinners: (themeId: number) => {
+      return (
+        db
+          ?.exec(getThemeWinners(themeId))
+          .flatMap((x) => x.values)
+          .map((x) => nominationWithGameDto(x)) ?? []
       );
     },
   };

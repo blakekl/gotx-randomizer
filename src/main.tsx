@@ -10,26 +10,32 @@ import NotFound from './pages/NotFound/NotFound.tsx';
 import Games from './pages/Games/Games.tsx';
 import Users from './pages/Users/Users.tsx';
 import GameDetails from './pages/Games/GameDetails.tsx';
+import Home from './pages/Home/Home.tsx';
+import Themes from './pages/Themes/Themes.tsx';
+import ThemeDetail from './pages/Themes/ThemeDetail/ThemeDetail.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement !== null) {
   ReactDOM.createRoot(rootElement).render(
     <StrictMode>
-      <Navigation />
-      <main className="section">
-        <div className="container">
-          <Router>
+      <Router>
+        <Navigation />
+        <main className="section">
+          <div className="container">
             <Routes>
-              <Route path="/" element={<Randomizer />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/randomizer" element={<Randomizer />} />
               <Route path="/stats" element={<Statistics />} />
               <Route path="/games" element={<Games />} />
               <Route path="/games/:gameId" element={<GameDetails />} />
+              <Route path="/themes" element={<Themes />} />
+              <Route path="/themes/:themeId" element={<ThemeDetail />} />
               <Route path="/users" element={<Users />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </Router>
-        </div>
-      </main>
+          </div>
+        </main>
+      </Router>
       <Footer />
     </StrictMode>,
   );
