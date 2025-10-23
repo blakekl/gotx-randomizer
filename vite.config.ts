@@ -50,7 +50,7 @@ export default defineConfig({
       },
     }),
   ],
-  assetsInclude: ['**/*.sqlite'],
+  assetsInclude: ['**/*.sqlite', '**/*.wasm'],
   test: {
     globals: true,
     environment: 'jsdom',

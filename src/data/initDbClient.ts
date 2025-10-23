@@ -63,7 +63,7 @@ const initDbClient = async () => {
   try {
     SQL = await initSqlJs({
       locateFile: (file) =>
-        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}`,
+        `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`,
     });
     const response = await fetch(databaseUrl);
     const blob = await response.blob();
