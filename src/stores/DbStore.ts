@@ -202,10 +202,6 @@ class DbStore {
     return Object.values(groupedByTheme);
   }
 
-  getUpcomingThemes(): ThemeWithStatus[] {
-    return dbClient.getUpcomingThemes() ?? [];
-  }
-
   getThemeDetailWithCategories(themeId: number): {
     theme: ThemeWithStatus | null;
     nominations: NominationWithGame[];

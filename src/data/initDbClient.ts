@@ -39,7 +39,6 @@ import {
   // Theme browser queries
   getThemesWithStatus,
   getCurrentWinners,
-  getUpcomingThemes,
   getThemeDetailWithCategories,
   getGotyThemesByYear,
   getGotyThemesForYear,
@@ -299,14 +298,6 @@ const initDbClient = async () => {
           ?.exec(getCurrentWinners)
           .flatMap((x) => x.values)
           .map((x) => currentThemeDto(x)) ?? []
-      );
-    },
-    getUpcomingThemes: () => {
-      return (
-        db
-          ?.exec(getUpcomingThemes)
-          .flatMap((x) => x.values)
-          .map((x) => themeWithStatusDto(x)) ?? []
       );
     },
     getThemeDetailWithCategories: (themeId: number) => {

@@ -180,5 +180,73 @@ db.transaction((queries: BetterSQLite3.Statement[]) =>
   }),
 ).deferred(preparedQueries);
 console.log('Execution successful');
+
+// Check for winner changes in latest themes
+console.log('\nChecking for winner changes in latest themes...');
+const checkWinnerChanges = () => {
+  // Get the latest theme for each nomination type (gotm, rpg)
+  const latestThemes = db.prepare(`
+    SELECT t.id, t.title, t.nomination_type
+    FROM [public.themes] t
+    WHERE t.nomination_type IN ('gotm', 'rpg')
+    AND t.id IN (
+      SELECT MAX(id) FROM [public.themes] 
+      WHERE nomination_type = t.nomination_type
+    )
+  `).all() as Array<{id: number, title: string, nomination_type: string}>;
+
+  if (latestThemes.length === 0) return;
+
+  let changesFound = false;
+  
+  latestThemes.forEach(theme => {
+    // Get current winners from local DB
+    const currentWinners = db.prepare(`
+      SELECT id FROM [public.nominations] 
+      WHERE theme_id = ? AND winner = 1
+    `).all(theme.id) as Array<{id: number}>;
+
+    // Get expected winners from dump data - parse field positions safely
+    const expectedWinners = inputData
+      .filter(line => line.includes(`INSERT INTO [public.nominations]`) && 
+                     line.includes(`, ${theme.id},`)) // theme_id match
+      .map(line => {
+        const valuesMatch = line.match(/VALUES \(([^)]+)\)/);
+        if (valuesMatch) {
+          const values = valuesMatch[1].split(', ');
+          const nominationId = parseInt(values[0]); // nomination id
+          const isWinner = values[3] === '1'; // winner field is position 3 (0-indexed)
+          return isWinner ? nominationId : null;
+        }
+        return null;
+      })
+      .filter(id => id !== null);
+
+    const currentWinnerIds = currentWinners.map(w => w.id).sort();
+    const expectedWinnerIds = expectedWinners.sort();
+
+    // Check if winners have changed
+    if (JSON.stringify(currentWinnerIds) !== JSON.stringify(expectedWinnerIds)) {
+      console.log(`  Winner change detected for ${theme.title}:`);
+      console.log(`    Current: [${currentWinnerIds.join(', ')}]`);
+      console.log(`    Expected: [${expectedWinnerIds.join(', ')}]`);
+      
+      // Update winners
+      db.prepare('UPDATE [public.nominations] SET winner = 0 WHERE theme_id = ?').run(theme.id);
+      expectedWinnerIds.forEach(winnerId => {
+        db.prepare('UPDATE [public.nominations] SET winner = 1 WHERE id = ?').run(winnerId);
+      });
+      
+      changesFound = true;
+    }
+  });
+
+  if (!changesFound) {
+    console.log('No winner changes detected');
+  }
+};
+
+checkWinnerChanges();
+
 db.close();
 process.exit();
