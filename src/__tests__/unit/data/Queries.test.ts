@@ -13,6 +13,9 @@ import {
   getNominationDataByUserId,
   getCompletionsByUserId,
   getGameById,
+  getThemesWithStatus,
+  getCurrentWinners,
+  getThemeDetailWithCategories,
 } from '../../../data/Queries';
 
 describe('Database Queries', () => {
@@ -97,6 +100,43 @@ describe('Database Queries', () => {
     });
   });
 
+  describe('Theme browser queries', () => {
+    it('should generate valid SQL for getThemesWithStatus', () => {
+      expect(getThemesWithStatus).toContain('SELECT');
+      expect(getThemesWithStatus).toContain('[public.themes]');
+      expect(getThemesWithStatus).toContain('winner = 1');
+      expect(getThemesWithStatus).not.toContain('strftime'); // No date filtering
+      expect(getThemesWithStatus).not.toContain('creation_date >'); // No date comparison
+    });
+
+    it('should generate valid SQL for getCurrentWinners', () => {
+      expect(getCurrentWinners).toContain('SELECT');
+      expect(getCurrentWinners).toContain('[public.nominations]');
+      expect(getCurrentWinners).toContain('winner = 1');
+      expect(getCurrentWinners).not.toContain('strftime'); // No date filtering
+    });
+
+    it('should generate valid SQL for getThemeDetailWithCategories', () => {
+      const query = getThemeDetailWithCategories(123);
+      expect(query).toContain('SELECT');
+      expect(query).toContain('[public.themes]');
+      expect(query).toContain('123');
+      expect(query).toContain('winner = 1'); // Winner-based privacy
+      expect(query).not.toContain('strftime'); // No date filtering
+    });
+
+    it('should use winner-based privacy in theme queries', () => {
+      expect(getThemesWithStatus).toContain(
+        'EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t.id AND n2.winner = 1)',
+      );
+
+      const detailQuery = getThemeDetailWithCategories(1);
+      expect(detailQuery).toContain(
+        'NOT EXISTS(SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = t.id AND n3.winner = 1) THEN NULL',
+      );
+    });
+  });
+
   describe('Parameterized queries', () => {
     it('should generate valid SQL for getNominationDataByGameId', () => {
       const query = getNominationDataByGameId(123);
@@ -154,6 +194,8 @@ describe('Database Queries', () => {
       { name: 'getNominations', query: getNominations },
       { name: 'getGotmNominations', query: getGotmNominations },
       { name: 'getRetrobitNominations', query: getRetrobitNominations },
+      { name: 'getThemesWithStatus', query: getThemesWithStatus },
+      { name: 'getCurrentWinners', query: getCurrentWinners },
     ];
 
     queries.forEach(({ name, query }) => {
@@ -176,6 +218,10 @@ describe('Database Queries', () => {
       { name: 'getNominationDataByUserId', fn: getNominationDataByUserId },
       { name: 'getCompletionsByUserId', fn: getCompletionsByUserId },
       { name: 'getGameById', fn: getGameById },
+      {
+        name: 'getThemeDetailWithCategories',
+        fn: getThemeDetailWithCategories,
+      },
     ];
 
     parameterizedQueries.forEach(({ name, fn }) => {

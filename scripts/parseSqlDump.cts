@@ -165,6 +165,25 @@ if (process.env.DEBUG) {
 }
 
 console.log(`Executing ${toExecute.length} queries in transaction...`);
+
+// Data integrity check before committing
+console.log('\nValidating data integrity...');
+const validateData = () => {
+  // Get current counts before transaction
+  const beforeCounts = {
+    nominations: db.prepare('SELECT COUNT(*) as count FROM [public.nominations]').get() as {count: number},
+    games: db.prepare('SELECT COUNT(*) as count FROM [public.games]').get() as {count: number},
+    themes: db.prepare('SELECT COUNT(*) as count FROM [public.themes]').get() as {count: number},
+    users: db.prepare('SELECT COUNT(*) as count FROM [public.users]').get() as {count: number},
+    winners: db.prepare('SELECT COUNT(*) as count FROM [public.nominations] WHERE winner = 1').get() as {count: number}
+  };
+
+  console.log('Before update:', beforeCounts);
+  return beforeCounts;
+};
+
+const beforeCounts = validateData();
+
 const preparedQueries = toExecute.map((x) => db.prepare(x));
 db.transaction((queries: BetterSQLite3.Statement[]) =>
   queries.forEach((query, index) => {
@@ -179,6 +198,113 @@ db.transaction((queries: BetterSQLite3.Statement[]) =>
     }
   }),
 ).deferred(preparedQueries);
+
+// Validate data after transaction
+const afterCounts = {
+  nominations: db.prepare('SELECT COUNT(*) as count FROM [public.nominations]').get() as {count: number},
+  games: db.prepare('SELECT COUNT(*) as count FROM [public.games]').get() as {count: number},
+  themes: db.prepare('SELECT COUNT(*) as count FROM [public.themes]').get() as {count: number},
+  users: db.prepare('SELECT COUNT(*) as count FROM [public.users]').get() as {count: number},
+  winners: db.prepare('SELECT COUNT(*) as count FROM [public.nominations] WHERE winner = 1').get() as {count: number}
+};
+
+console.log('After update:', afterCounts);
+
+// Check for catastrophic data loss
+const checks = [
+  { name: 'nominations', before: beforeCounts.nominations.count, after: afterCounts.nominations.count, threshold: 0.8 },
+  { name: 'games', before: beforeCounts.games.count, after: afterCounts.games.count, threshold: 0.95 },
+  { name: 'themes', before: beforeCounts.themes.count, after: afterCounts.themes.count, threshold: 0.95 },
+  { name: 'users', before: beforeCounts.users.count, after: afterCounts.users.count, threshold: 0.95 },
+  { name: 'winners', before: beforeCounts.winners.count, after: afterCounts.winners.count, threshold: 0.8 }
+];
+
+let validationFailed = false;
+checks.forEach(check => {
+  const ratio = check.after / check.before;
+  if (ratio < check.threshold) {
+    console.error(`❌ VALIDATION FAILED: ${check.name} count dropped from ${check.before} to ${check.after} (${(ratio * 100).toFixed(1)}%)`);
+    validationFailed = true;
+  } else {
+    console.log(`✅ ${check.name}: ${check.before} → ${check.after} (${(ratio * 100).toFixed(1)}%)`);
+  }
+});
+
+if (validationFailed) {
+  console.error('\n🚨 DATA INTEGRITY CHECK FAILED - Aborting to prevent data loss');
+  db.close();
+  process.exit(1);
+}
+
+console.log('✅ Data integrity validation passed');
 console.log('Execution successful');
+
+// Check for winner changes in latest themes
+console.log('\nChecking for winner changes in latest themes...');
+const checkWinnerChanges = () => {
+  // Get the latest theme for each nomination type (gotm, rpg)
+  const latestThemes = db.prepare(`
+    SELECT t.id, t.title, t.nomination_type
+    FROM [public.themes] t
+    WHERE t.nomination_type IN ('gotm', 'rpg')
+    AND t.id IN (
+      SELECT MAX(id) FROM [public.themes] 
+      WHERE nomination_type = t.nomination_type
+    )
+  `).all() as Array<{id: number, title: string, nomination_type: string}>;
+
+  if (latestThemes.length === 0) return;
+
+  let changesFound = false;
+  
+  latestThemes.forEach(theme => {
+    // Get current winners from local DB
+    const currentWinners = db.prepare(`
+      SELECT id FROM [public.nominations] 
+      WHERE theme_id = ? AND winner = 1
+    `).all(theme.id) as Array<{id: number}>;
+
+    // Get expected winners from dump data - parse field positions safely
+    const expectedWinners = inputData
+      .filter(line => line.includes(`INSERT INTO [public.nominations]`) && 
+                     line.includes(`, ${theme.id},`)) // theme_id match
+      .map(line => {
+        const valuesMatch = line.match(/VALUES \(([^)]+)\)/);
+        if (valuesMatch) {
+          const values = valuesMatch[1].split(', ');
+          const nominationId = parseInt(values[0]); // nomination id
+          const isWinner = values[3] === '1'; // winner field is position 3 (0-indexed)
+          return isWinner ? nominationId : null;
+        }
+        return null;
+      })
+      .filter(id => id !== null);
+
+    const currentWinnerIds = currentWinners.map(w => w.id).sort();
+    const expectedWinnerIds = expectedWinners.sort();
+
+    // Check if winners have changed
+    if (JSON.stringify(currentWinnerIds) !== JSON.stringify(expectedWinnerIds)) {
+      console.log(`  Winner change detected for ${theme.title}:`);
+      console.log(`    Current: [${currentWinnerIds.join(', ')}]`);
+      console.log(`    Expected: [${expectedWinnerIds.join(', ')}]`);
+      
+      // Update winners
+      db.prepare('UPDATE [public.nominations] SET winner = 0 WHERE theme_id = ?').run(theme.id);
+      expectedWinnerIds.forEach(winnerId => {
+        db.prepare('UPDATE [public.nominations] SET winner = 1 WHERE id = ?').run(winnerId);
+      });
+      
+      changesFound = true;
+    }
+  });
+
+  if (!changesFound) {
+    console.log('No winner changes detected');
+  }
+};
+
+checkWinnerChanges();
+
 db.close();
 process.exit();

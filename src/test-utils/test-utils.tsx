@@ -111,7 +111,6 @@ const createMockStoreContext = (
     // Theme browser methods
     getThemesWithStatus: vi.fn(() => []),
     getCurrentWinners: vi.fn(() => []),
-    getUpcomingThemes: vi.fn(() => []),
     getThemeDetailWithCategories: vi.fn(() => ({
       theme: null,
       nominations: [],
