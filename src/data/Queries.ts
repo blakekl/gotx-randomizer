@@ -436,7 +436,7 @@ SELECT
   t.description as theme_description,
   t.created_at as theme_created_at,
   t.updated_at as theme_updated_at,
-  ${coalescedTitle},
+  COALESCE([public.games].title_world, [public.games].title_usa, [public.games].title_eu, [public.games].title_jap, [public.games].title_other) AS title,
   g.id as game_id,
   g.screenscraper_id,
   g.year,
