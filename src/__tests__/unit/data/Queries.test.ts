@@ -127,12 +127,12 @@ describe('Database Queries', () => {
 
     it('should use winner-based privacy in theme queries', () => {
       expect(getThemesWithStatus).toContain(
-        'EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = t.id AND n2.winner = 1)',
+        'EXISTS(SELECT 1 FROM [public.nominations] n2 WHERE n2.theme_id = [public.themes].id AND n2.winner = 1)',
       );
 
       const detailQuery = getThemeDetailWithCategories(1);
       expect(detailQuery).toContain(
-        'NOT EXISTS(SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = t.id AND n3.winner = 1) THEN NULL',
+        'NOT EXISTS(SELECT 1 FROM [public.nominations] n3 WHERE n3.theme_id = [public.themes].id AND n3.winner = 1) THEN NULL',
       );
     });
   });
