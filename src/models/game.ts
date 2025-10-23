@@ -574,11 +574,6 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
     theme_description,
     theme_created_at,
     theme_updated_at,
-    title_world,
-    title_usa,
-    title_eu,
-    title_jap,
-    title_other,
     game_id,
     screenscraper_id,
     year,
@@ -589,15 +584,16 @@ export const currentThemeDto = (data: any[]): CurrentTheme => {
     time_to_beat, // year_category - not used
     ,
     nomination_count,
+    title, // Coalesced title at the end
   ] = data;
 
   const game: Game = {
     id: game_id,
-    title_world,
-    title_usa,
-    title_eu,
-    title_jap,
-    title_other,
+    title_world: '',
+    title_usa: title || '', // Use the coalesced title
+    title_eu: '',
+    title_jap: '',
+    title_other: '',
     year,
     system,
     developer,

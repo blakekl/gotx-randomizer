@@ -429,36 +429,36 @@ ORDER BY t.creation_date DESC, t.nomination_type;`;
 // Get current winners with category information (for multi-winner support)
 export const getCurrentWinners = `
 SELECT
-  n.nomination_type,
-  t.title as theme_title,
-  t.id as theme_id,
-  t.creation_date,
-  t.description as theme_description,
-  t.created_at as theme_created_at,
-  t.updated_at as theme_updated_at,
-  ${coalescedTitle},
-  g.id as game_id,
-  g.screenscraper_id,
-  g.year,
-  g.system,
-  g.developer,
-  g.genre,
-  g.img_url,
-  g.time_to_beat,
+  [public.nominations].nomination_type,
+  [public.themes].title as theme_title,
+  [public.themes].id as theme_id,
+  [public.themes].creation_date,
+  [public.themes].description as theme_description,
+  [public.themes].created_at as theme_created_at,
+  [public.themes].updated_at as theme_updated_at,
+  [public.games].id as game_id,
+  [public.games].screenscraper_id,
+  [public.games].year,
+  [public.games].system,
+  [public.games].developer,
+  [public.games].genre,
+  [public.games].img_url,
+  [public.games].time_to_beat,
   'Unknown' AS year_category,
-  (SELECT COUNT(*) FROM [public.nominations] n3 WHERE n3.theme_id = t.id) as nomination_count
-FROM [public.nominations] n 
-INNER JOIN [public.games] g ON n.game_id = g.id
-INNER JOIN [public.themes] t ON n.theme_id = t.id
-WHERE n.winner = 1
-AND t.id IN (
+  (SELECT COUNT(*) FROM [public.nominations] n3 WHERE n3.theme_id = [public.themes].id) as nomination_count,
+  ${coalescedTitle}
+FROM [public.nominations] 
+INNER JOIN [public.games] ON [public.games].id = [public.nominations].game_id
+INNER JOIN [public.themes] ON [public.themes].id = [public.nominations].theme_id
+WHERE [public.nominations].winner = 1
+AND [public.themes].id IN (
     SELECT t2.id FROM [public.themes] t2
     INNER JOIN [public.nominations] n2 ON t2.id = n2.theme_id AND n2.winner = 1
-    WHERE t2.nomination_type = t.nomination_type
+    WHERE t2.nomination_type = [public.themes].nomination_type
     ORDER BY t2.creation_date DESC, t2.id DESC
     LIMIT 1
 )
-ORDER BY t.creation_date DESC, n.nomination_type;`;
+ORDER BY [public.themes].creation_date DESC, [public.nominations].nomination_type;`;
 
 // Get theme detail with categories (parameterized function)
 export const getThemeDetailWithCategories = (themeId: number) => `
