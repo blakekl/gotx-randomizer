@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Pagination from '../../components/Pagination';
 import { UserListItem } from '../../models/game';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useStores } from '../../stores/useStores';
 import UserDisplay from './UserDisplay/UserDisplay';
 
@@ -28,6 +28,12 @@ const Users = () => {
     setUserList(newPoolArray);
   }, [allUsers, usernameFilter]);
 
+  const rankById = useMemo(() => {
+    const map = new Map<number, number>();
+    allUsers.forEach((u, idx) => map.set(u.id, idx + 1));
+    return map;
+  }, [allUsers]);
+
   return (
     <>
       <h1 className="title is-1 has-text-centered">Users</h1>
@@ -50,7 +56,9 @@ const Users = () => {
       <table className="table is-hoverable is-striped is-fullwidth is-narrow">
         <thead>
           <tr className="title is-3 is-primary">
+            <th>Rank</th>
             <th>Name</th>
+            <th className="has-text-centered">Earned Points</th>
             <th className="has-text-centered">Nominations</th>
             <th className="has-text-centered">Nomination Wins</th>
             <th className="has-text-right">Nomination Win Rate</th>
@@ -69,7 +77,9 @@ const Users = () => {
               onMouseEnter={() => setHovered(x.id)}
               onMouseLeave={() => setHovered(0)}
             >
+              <td>{rankById.get(x.id)}</td>
               <td>{x.name}</td>
+              <td className="has-text-centered">{x.earned_points}</td>
               <td className="has-text-centered">{x.nominations}</td>
               <td className="has-text-centered">{x.wins}</td>
               <td className="has-text-right">{x.success_rate}%</td>

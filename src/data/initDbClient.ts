@@ -43,14 +43,12 @@ import {
   getGotyThemesByYear,
   getGotyThemesForYear,
   getThemeWinners,
-  getUsersWithPoints,
 } from '../data/Queries';
 import {
   completionsByUserIdDto,
   gameDto,
   labeledStatDto,
   nominationListItemDto,
-  userDto,
   userListItemDto,
   // Theme browser DTOs
   themeWithStatusDto,
@@ -283,11 +281,6 @@ const initDbClient = async () => {
           ?.exec(getGameById(id))
           .pop()
           ?.values.map((x) => gameDto(x))[0] ?? null
-      );
-    },
-    getUsersWithPoints: () => {
-      return (
-        db?.exec(getUsersWithPoints)[0]?.values.map((x) => userDto(x)) ?? []
       );
     },
     // Theme browser methods

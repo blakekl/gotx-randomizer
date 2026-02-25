@@ -3,7 +3,6 @@ import dbClient from '../data';
 import {
   Game,
   LabeledStat,
-  User,
   UserListItem,
   ThemeWithStatus,
   CurrentTheme,
@@ -151,10 +150,6 @@ class DbStore {
 
   getNominationSuccessPercentByUser(): UserListItem[] {
     return dbClient.getNominationSuccessPercentByUser() ?? [];
-  }
-
-  getUsersWithPoints(): User[] {
-    return dbClient.getUsersWithPoints() ?? [];
   }
 
   getNominationsByGame(id: number) {

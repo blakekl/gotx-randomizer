@@ -362,6 +362,7 @@ ORDER BY [public.nominations].theme_id DESC, completions DESC;`;
 export const nominationSuccessPercentByUser = `SELECT 
   [public.users].id,
   [public.users].name,
+  [public.users].earned_points,
   COALESCE((100 * SUM(join_winner) / COUNT(join_id)), 0) as success_rate,
   COUNT(join_id) as nominations,
   COALESCE(SUM(join_winner), 0) as wins
@@ -378,7 +379,7 @@ LEFT JOIN (
 ) ON [public.users].id = join_user_id
 WHERE [public.users].id > 1
 GROUP BY [public.users].id
-ORDER BY success_rate DESC, nominations DESC, [public.users].name ASC;`;
+ORDER BY [public.users].earned_points DESC;`;
 
 export const nominationCountByThemeByCategory = `SELECT 
   [public.themes].title,
@@ -396,22 +397,6 @@ export const nominationCountByThemeByCategory = `SELECT
 
 export const getGameById = (id: number) =>
   `SELECT * FROM [public.games] WHERE id = "${id}" LIMIT 1;`;
-
-export const getUsersWithPoints = `SELECT
-  id,
-  name,
-  discord_id,
-  old_discord_name,
-  current_points,
-  redeemed_points,
-  earned_points,
-  premium_points,
-  created_at,
-  updated_at,
-  premium_subscriber
-FROM [public.users]
-WHERE id > 1
-ORDER BY earned_points DESC, name ASC;`;
 
 /**
  * Theme browser queries.
