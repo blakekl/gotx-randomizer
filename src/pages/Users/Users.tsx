@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Pagination from '../../components/Pagination';
 import { UserListItem } from '../../models/game';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useStores } from '../../stores/useStores';
 import UserDisplay from './UserDisplay/UserDisplay';
 
@@ -27,12 +27,6 @@ const Users = () => {
     );
     setUserList(newPoolArray);
   }, [allUsers, usernameFilter]);
-
-  const rankById = useMemo(() => {
-    const map = new Map<number, number>();
-    allUsers.forEach((u, idx) => map.set(u.id, idx + 1));
-    return map;
-  }, [allUsers]);
 
   return (
     <>
@@ -77,7 +71,7 @@ const Users = () => {
               onMouseEnter={() => setHovered(x.id)}
               onMouseLeave={() => setHovered(0)}
             >
-              <td>{rankById.get(x.id)}</td>
+              <td>{x.rank}</td>
               <td>{x.name}</td>
               <td className="has-text-centered">{x.earned_points}</td>
               <td className="has-text-centered">{x.nominations}</td>
