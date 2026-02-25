@@ -6,16 +6,6 @@ import Pagination from '../../components/Pagination';
 
 type LeaderBoardUser = Pick<User, 'id' | 'name' | 'earned_points'>;
 
-const outranksAllSuccessors = (
-  user: LeaderBoardUser,
-  allUsers: LeaderBoardUser[],
-): boolean => {
-  if (user.earned_points <= 0) return false;
-  return !allUsers.some(
-    (other) => other.id > user.id && other.earned_points > user.earned_points,
-  );
-};
-
 const LeaderBoard = () => {
   const { dbStore } = useStores();
   const [rankedUsers, setRankedUsers] = useState(new Array<LeaderBoardUser>());
@@ -40,41 +30,27 @@ const LeaderBoard = () => {
             <th className="has-text-centered">Rank</th>
             <th>Name</th>
             <th className="has-text-right">Earned Points</th>
-            <th className="has-text-centered"></th>
           </tr>
         </thead>
         <tbody>
           {rankedUsers
             .slice(indexRange[0], indexRange[1])
-            .map((user, index) => {
-              const isOutranker = outranksAllSuccessors(user, rankedUsers);
-              return (
-                <tr
-                  key={user.id}
-                  onClick={() => setSelectedUser(user)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <td className="has-text-centered has-text-weight-bold">
-                    {indexRange[0] + index + 1}
-                  </td>
-                  <td>{user.name}</td>
-                  <td className="has-text-right">{user.earned_points}</td>
-                  <td className="has-text-centered">
-                    {isOutranker && (
-                      <span
-                        className="tag is-warning is-light"
-                        title="No user with a higher ID has more earned points"
-                      >
-                        ⭐ outranks all successors
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
+            .map((user, index) => (
+              <tr
+                key={user.id}
+                onClick={() => setSelectedUser(user)}
+                style={{ cursor: 'pointer' }}
+              >
+                <td className="has-text-centered has-text-weight-bold">
+                  {indexRange[0] + index + 1}
+                </td>
+                <td>{user.name}</td>
+                <td className="has-text-right">{user.earned_points}</td>
+              </tr>
+            ))}
           {rankedUsers.length === 0 && (
             <tr>
-              <td colSpan={4} className="has-text-centered has-text-grey">
+              <td colSpan={3} className="has-text-centered has-text-grey">
                 No users found.
               </td>
             </tr>
