@@ -397,6 +397,22 @@ export const nominationCountByThemeByCategory = `SELECT
 export const getGameById = (id: number) =>
   `SELECT * FROM [public.games] WHERE id = "${id}" LIMIT 1;`;
 
+export const getUsersWithPoints = `SELECT
+  id,
+  name,
+  discord_id,
+  old_discord_name,
+  current_points,
+  redeemed_points,
+  earned_points,
+  premium_points,
+  created_at,
+  updated_at,
+  premium_subscriber
+FROM [public.users]
+WHERE id > 1
+ORDER BY earned_points DESC, name ASC;`;
+
 /**
  * Theme browser queries.
  */

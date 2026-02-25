@@ -19,15 +19,22 @@ const Pagination = ({
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const possiblePageSizes = [10, 20, 30, 40, 50, 100];
 
+  // When count or pageSize changes: recalculate page count, reset to page 0,
+  // and immediately notify parent with the correct range.
+  // This handles the case where currentPage was already 0 (setCurrentPage(0)
+  // would be a no-op, so the second effect would never fire with the new pageSize).
   useEffect(() => {
-    setCurrentPage(0);
     setPageCount(Math.ceil(count / pageSize));
-  }, [count, pageSize]);
+    setCurrentPage(0);
+    onPageChange([0, pageSize]);
+  }, [count, pageSize, onPageChange]);
 
+  // When the user navigates to a different page, notify parent.
+  // Intentionally excludes pageSize — page changes from pageSize are handled above.
   useEffect(() => {
     const start = currentPage * pageSize;
     onPageChange([start, start + pageSize]);
-  }, [currentPage, pageSize, onPageChange]);
+  }, [currentPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Cleanup timeout on unmount
   useEffect(() => {

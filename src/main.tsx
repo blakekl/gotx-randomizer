@@ -13,6 +13,7 @@ import GameDetails from './pages/Games/GameDetails.tsx';
 import Home from './pages/Home/Home.tsx';
 import Themes from './pages/Themes/Themes.tsx';
 import ThemeDetail from './pages/Themes/ThemeDetail/ThemeDetail.tsx';
+import Leaderboard from './pages/LeaderBoard/Leaderboard.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement !== null) {
@@ -31,6 +32,7 @@ if (rootElement !== null) {
               <Route path="/themes" element={<Themes />} />
               <Route path="/themes/:themeId" element={<ThemeDetail />} />
               <Route path="/users" element={<Users />} />
+              <Route path="leaderboard" element={<Leaderboard />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

@@ -62,6 +62,9 @@ const Navigation = () => {
           <Link className="navbar-item" to="/users">
             Users
           </Link>
+          <Link className="navbar-item" to="/leaderboard">
+            Leaderboard
+          </Link>
         </div>
       </div>
     </nav>
