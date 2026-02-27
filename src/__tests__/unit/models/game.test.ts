@@ -313,14 +313,16 @@ describe('Game Models and DTOs', () => {
 
   describe('userListItemDto', () => {
     it('should convert array data to UserListItem correctly', () => {
-      const mockData = [1, 'TestUser', 0.75, 8, 6];
+      const mockData = [1, 1, 'TestUser', 4, 0.75, 8, 6];
       const result = userListItemDto(mockData);
 
       expect(result).toEqual({
+        earned_points: 4,
         id: 1,
         name: 'TestUser',
-        success_rate: 0.75,
         nominations: 8,
+        rank: 1,
+        success_rate: 0.75,
         wins: 6,
       });
     });
