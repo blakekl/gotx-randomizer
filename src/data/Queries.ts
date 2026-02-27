@@ -359,26 +359,40 @@ INNER JOIN [public.games] on [public.nominations].game_id = [public.games].id
 GROUP BY [public.completions].nomination_id
 ORDER BY [public.nominations].theme_id DESC, completions DESC;`;
 
-export const nominationSuccessPercentByUser = `SELECT 
-  [public.users].id,
-  [public.users].name,
-  COALESCE((100 * SUM(join_winner) / COUNT(join_id)), 0) as success_rate,
-  COUNT(join_id) as nominations,
-  COALESCE(SUM(join_winner), 0) as wins
-FROM
-  [public.users]
-LEFT JOIN (
+export const nominationSuccessPercentByUser = `
+WITH aggregated AS (
   SELECT 
-    user_id as join_user_id,
-    winner as join_winner,
-    id as join_id,
-    nomination_type as join_nomination_type
-  FROM [public.nominations] 
-  WHERE [public.nominations].nomination_type = 'gotm'
-) ON [public.users].id = join_user_id
-WHERE [public.users].id > 1
-GROUP BY [public.users].id
-ORDER BY success_rate DESC, nominations DESC, [public.users].name ASC;`;
+    [public.users].id,
+    [public.users].name,
+    [public.users].earned_points,
+    COALESCE(
+      FLOOR(100.0 * SUM(join_winner) / NULLIF(COUNT(join_id), 0)),
+      0
+    ) as success_rate,
+    COUNT(join_id) as nominations,
+    COALESCE(SUM(join_winner), 0) as wins
+  FROM
+    [public.users]
+  LEFT JOIN (
+    SELECT 
+      user_id as join_user_id,
+      winner as join_winner,
+      id as join_id
+    FROM [public.nominations] 
+    WHERE [public.nominations].nomination_type = 'gotm'
+  ) ON [public.users].id = join_user_id
+  WHERE [public.users].id > 1
+  GROUP BY 
+    [public.users].id,
+    [public.users].name,
+    [public.users].earned_points
+)
+SELECT
+  ROW_NUMBER() OVER (ORDER BY earned_points DESC) as rank,
+  *
+FROM aggregated
+ORDER BY earned_points DESC;
+`;
 
 export const nominationCountByThemeByCategory = `SELECT 
   [public.themes].title,

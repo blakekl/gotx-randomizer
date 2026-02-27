@@ -119,6 +119,8 @@ export interface UserListItem {
   nominations: number;
   wins: number;
   completions: number;
+  earned_points: number;
+  rank: number;
 }
 
 export interface NominationListItem {
@@ -327,8 +329,16 @@ export const labeledStatDto = (data: any[]): LabeledStat => {
 };
 
 export const userListItemDto = (data: any[]): UserListItem => {
-  const [id, name, success_rate, nominations, wins] = data;
-  return { id, name, success_rate, nominations, wins } as UserListItem;
+  const [rank, id, name, earned_points, success_rate, nominations, wins] = data;
+  return {
+    rank,
+    id,
+    name,
+    earned_points,
+    success_rate,
+    nominations,
+    wins,
+  } as UserListItem;
 };
 
 // ============================================================================

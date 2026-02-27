@@ -50,7 +50,9 @@ const Users = () => {
       <table className="table is-hoverable is-striped is-fullwidth is-narrow">
         <thead>
           <tr className="title is-3 is-primary">
+            <th>Rank</th>
             <th>Name</th>
+            <th className="has-text-centered">Earned Points</th>
             <th className="has-text-centered">Nominations</th>
             <th className="has-text-centered">Nomination Wins</th>
             <th className="has-text-right">Nomination Win Rate</th>
@@ -69,7 +71,9 @@ const Users = () => {
               onMouseEnter={() => setHovered(x.id)}
               onMouseLeave={() => setHovered(0)}
             >
+              <td>{x.rank}</td>
               <td>{x.name}</td>
+              <td className="has-text-centered">{x.earned_points}</td>
               <td className="has-text-centered">{x.nominations}</td>
               <td className="has-text-centered">{x.wins}</td>
               <td className="has-text-right">{x.success_rate}%</td>
