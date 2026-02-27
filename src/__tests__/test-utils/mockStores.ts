@@ -63,16 +63,20 @@ export const mockUsers: User[] = [
 
 export const mockUserListItems: UserListItem[] = [
   {
+    earned_points: 4,
     id: 1,
     name: 'testuser1',
+    rank: 1,
     success_rate: 0.8,
     nominations: 10,
     wins: 8,
     completions: 15,
   },
   {
+    earned_points: 3,
     id: 2,
     name: 'testuser2',
+    rank: 2,
     success_rate: 0.6,
     nominations: 5,
     wins: 3,

@@ -8,15 +8,18 @@ import {
 } from '../../test-utils/mockStores';
 import DbStore from '../../../stores/DbStore';
 import SettingsStore from '../../../stores/SettingsStore';
+import { UserListItem } from '../../../models/game';
 
 const mockUser = {
+  earned_points: 4,
   id: 1,
   name: 'Test User',
+  rank: 1,
   success_rate: 0.8,
   nominations: 10,
   wins: 8,
   completions: 15,
-};
+} as UserListItem;
 
 const mockNominations = [
   {
