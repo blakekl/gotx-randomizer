@@ -388,7 +388,7 @@ WITH aggregated AS (
     [public.users].earned_points
 )
 SELECT
-  ROW_NUMBER() OVER (ORDER BY earned_points DESC) as rank,
+  RANK() OVER (ORDER BY earned_points DESC) as rank,
   *
 FROM aggregated
 ORDER BY earned_points DESC;
