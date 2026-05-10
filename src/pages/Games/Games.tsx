@@ -49,8 +49,6 @@ const Games = observer(() => {
     const newMin =
       newPool
         .map((x) => x.time_to_beat)
-        .filter((x) => x || x === 0)
-        .filter((x) => x && x > -1)
         .reduce(
           (aggregate: number, current) =>
             Math.min(aggregate, Math.round(current || 0)),
