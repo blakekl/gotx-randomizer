@@ -1,7 +1,8 @@
 #!/bin/bash
 # Download postgres dump
-ssh -C $SERVER_NAME@$SERVER_HOST -p $PORT  pg_dump --data-only --inserts -U $DB_USER -h localhost $DATABASE >> $DUMP_PATH
-
+ssh -C "$SERVER_NAME@$SERVER_HOST" -p "$PORT" \
+  pg_dump --inserts -U "$DB_USER" -h localhost "$DATABASE" \
+  > "$DUMP_PATH.debug"
 # Replace invaled sqlite statements.
 #sed -i 's/INTO public.completions/INTO [public.completions]/' $DUMP_PATH
 #sed -i 's/INTO public.games/INTO [public.games]/' $DUMP_PATH
